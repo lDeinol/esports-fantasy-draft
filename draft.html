@@ -890,7 +890,7 @@
     //  Game filter buttons
     // ─────────────────────────────────────────────────────
     function renderGameFilters() {
-      const games = ["all", ...new Set(players.map(p => p.game))];
+      const games = ["all", ...new Set(players.map(p => p.region))];
       const wrap  = document.getElementById("game-filters");
       wrap.innerHTML = "";
       games.forEach(g => {
