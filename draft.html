@@ -706,6 +706,7 @@
     <div class="pick-status" id="pick-status">Loading draft…</div>
     <div class="round-badge" id="round-badge">Round —</div>
     <div class="format-badge" id="format-badge">—</div>
+    <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <div style="margin-left:auto; display:flex; gap:4px;">
       <a href="dashboard.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">My Team</a>
       <a href="standings.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">Standings</a>
@@ -1277,6 +1278,13 @@
 
       document.getElementById("round-badge").textContent  = `Round ${Math.min(round, CONFIG.ROSTER_SIZE)} / ${CONFIG.ROSTER_SIZE}`;
       document.getElementById("format-badge").textContent = format === "auction" ? "🏷 Auction" : "🐍 Snake";
+
+      // Show tournament name in header if available
+      const tournamentBadge = document.getElementById("tournament-badge");
+      if (tournamentBadge && lobbyData.tournamentId) {
+        tournamentBadge.textContent = `📋 ${lobbyData.tournamentId}`;
+        tournamentBadge.style.display = "inline-block";
+      }
 
       const statusEl = document.getElementById("pick-status");
       const myPickLabel = document.getElementById("my-pick-label");

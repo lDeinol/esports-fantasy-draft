@@ -1,0 +1,8 @@
+on the home page show Ongoing/upcoming tournaments and Matches
+
+Add a Stats page
+- Players earn points per match have some sort of system for that in the stats page.
+Add a Matches page 
+- Tournament filter with completed, current, and upcoming matches
+- when you click a match it shows which participants has the player in each match.
+- after the match ends it shows the points earned for each player in that match

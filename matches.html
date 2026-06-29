@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matches — DraftZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0b0f;
+      --surface:  #13151c;
+      --surface2: #1c1f2b;
+      --surface3: #22263a;
+      --border:   #2a2d3a;
+      --accent:   #00e5ff;
+      --accent2:  #7c3aed;
+      --danger:   #ff4757;
+      --text:     #e8eaf0;
+      --muted:    #6b7280;
+      --success:  #10b981;
+      --warn:     #f59e0b;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100vh; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); display: flex; flex-direction: column; }
+
+    header {
+      height: 52px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 24px; gap: 16px;
+      background: var(--surface); flex-shrink: 0;
+    }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .logo span { color: var(--accent); }
+    .header-divider { width: 1px; height: 24px; background: var(--border); }
+    nav { display: flex; gap: 4px; }
+    .nav-link { padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; color: var(--muted); transition: color 0.15s, background 0.15s; }
+    .nav-link:hover { color: var(--text); background: var(--surface2); }
+    .nav-link.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .page-layout {
+      flex: 1; display: flex; overflow: hidden;
+    }
+
+    /* ── Left sidebar: tournament filter ────────────── */
+    .sidebar {
+      width: 260px; flex-shrink: 0; border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 16px; border-bottom: 1px solid var(--border);
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    }
+
+    .tournament-item {
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background 0.12s;
+    }
+    .tournament-item:hover { background: var(--surface2); }
+    .tournament-item.active { background: color-mix(in srgb, var(--accent) 6%, var(--surface2)); border-left: 2px solid var(--accent); }
+
+    .t-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+    .t-meta { font-size: 0.72rem; color: var(--muted); }
+
+    .status-dot {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle;
+    }
+    .status-dot.ongoing  { background: var(--warn);    box-shadow: 0 0 5px var(--warn); animation: pulse 2s infinite; }
+    .status-dot.upcoming { background: var(--accent);  }
+    .status-dot.completed{ background: var(--muted);   }
+    .status-dot.live     { background: var(--success); box-shadow: 0 0 5px var(--success); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    .status-tag {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 4px; padding: 2px 6px; margin-left: 4px;
+    }
+    .status-tag.ongoing   { color: var(--warn);    background: color-mix(in srgb, var(--warn)    12%, transparent); }
+    .status-tag.upcoming  { color: var(--accent);  background: color-mix(in srgb, var(--accent)  12%, transparent); }
+    .status-tag.completed { color: var(--muted);   background: color-mix(in srgb, var(--muted)   12%, transparent); }
+    .status-tag.live      { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); }
+
+    /* ── Right: match list ──────────────────────────── */
+    .match-panel {
+      flex: 1; display: flex; flex-direction: column; overflow: hidden;
+    }
+
+    .match-panel-header {
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+
+    .match-panel-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; flex: 1; }
+
+    .status-filters { display: flex; gap: 6px; }
+    .status-filter-btn {
+      padding: 5px 12px; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--muted); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
+    }
+    .status-filter-btn.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface2)); }
+
+    .match-list { flex: 1; overflow-y: auto; padding: 16px 20px; }
+    .match-list::-webkit-scrollbar { width: 4px; }
+    .match-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ── Match card ─────────────────────────────────── */
+    .match-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      margin-bottom: 12px; overflow: hidden; transition: border-color 0.15s;
+    }
+    .match-card:hover { border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+    .match-card.expanded { border-color: var(--accent); }
+
+    .match-card-header {
+      padding: 14px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer;
+    }
+
+    .match-teams {
+      flex: 1; display: flex; align-items: center; gap: 10px;
+    }
+
+    .match-team { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.02em; }
+    .match-team.winner { color: var(--accent); }
+    .match-vs { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
+    .match-score { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; color: var(--text); }
+
+    .match-meta { font-size: 0.75rem; color: var(--muted); text-align: right; }
+    .match-format { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+    .match-expand-icon { color: var(--muted); font-size: 0.75rem; flex-shrink: 0; }
+
+    /* ── Match detail (expanded) ────────────────────── */
+    .match-detail { display: none; border-top: 1px solid var(--border); }
+    .match-detail.show { display: block; }
+
+    /* Box score section */
+    .box-score { padding: 16px 18px; }
+
+    .box-section-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+
+    .box-score-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 0.8rem; }
+    .box-score-table th {
+      text-align: left; padding: 6px 10px; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .box-score-table td { padding: 8px 10px; border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent); }
+    .box-score-table tr:last-child td { border-bottom: none; }
+    .box-score-table .td-player { font-weight: 600; }
+    .box-score-table .td-num { font-family: var(--font-mono); font-size: 0.8rem; }
+    .box-score-table .td-pts-col { font-family: var(--font-mono); font-weight: 600; color: var(--accent); }
+    .team-divider { background: var(--surface2); }
+    .team-divider td { padding: 5px 10px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+    /* Fantasy overlap section */
+    .fantasy-section { padding: 0 18px 16px; border-top: 1px solid var(--border); }
+    .fantasy-section-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); padding-top: 14px; margin-bottom: 10px;
+    }
+
+    .no-session-note { font-size: 0.8rem; color: var(--muted); font-style: italic; }
+
+    .fantasy-participant {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 14px; margin-bottom: 8px;
+    }
+
+    .fp-name { font-weight: 600; font-size: 0.875rem; margin-bottom: 8px; }
+    .fp-name span { font-size: 0.7rem; font-weight: 400; color: var(--muted); margin-left: 6px; }
+
+    .fp-players { display: flex; flex-wrap: wrap; gap: 6px; }
+    .fp-player-tag {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--surface3); border: 1px solid var(--border); border-radius: 6px;
+      padding: 5px 10px; font-size: 0.78rem;
+    }
+    .fp-player-name { font-weight: 600; }
+    .fp-player-pts { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
+    .fp-player-pts.zero { color: var(--muted); }
+
+    .no-players { font-size: 0.8rem; color: var(--muted); font-style: italic; }
+
+    /* ── Empty state ────────────────────────────────── */
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .empty-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+    .spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="home.html" class="logo">Draft<span>Zone</span></a>
+  <div class="header-divider"></div>
+  <nav>
+    <a href="home.html"      class="nav-link">Home</a>
+    <a href="stats.html"     class="nav-link">Stats</a>
+    <a href="index.html"     class="nav-link">Draft</a>
+    <a href="matches.html"   class="nav-link active">Matches</a>
+    <a href="dashboard.html" class="nav-link">My Team</a>
+    <a href="standings.html" class="nav-link">Standings</a>
+  </nav>
+</header>
+
+<div class="page-layout">
+
+  <!-- Sidebar: tournament list -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">Tournaments</div>
+    <div id="tournament-list"><div style="padding:20px; color:var(--muted); font-size:0.85rem;"><div class="spinner"></div></div></div>
+  </div>
+
+  <!-- Main: match list -->
+  <div class="match-panel">
+    <div class="match-panel-header">
+      <div class="match-panel-title" id="panel-title">All Matches</div>
+      <div class="status-filters">
+        <button class="status-filter-btn active" data-status="all">All</button>
+        <button class="status-filter-btn" data-status="live">Live</button>
+        <button class="status-filter-btn" data-status="upcoming">Upcoming</button>
+        <button class="status-filter-btn" data-status="completed">Completed</button>
+      </div>
+    </div>
+    <div class="match-list" id="match-list">
+      <div class="empty-state"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+  import { db, ref, get, subscribeLobby, ensureAuth, LS, SCORING } from "./app.js";
+
+  let tournaments  = [];
+  let matches      = [];
+  let players      = [];
+  let lobbyData    = null;
+  let activeTournamentId = "all";
+  let activeStatus       = "all";
+  let expandedMatches    = new Set();
+
+  // ── Load static data ──────────────────────────────
+  async function loadData() {
+    [tournaments, matches, players] = await Promise.all([
+      fetch("data/tournaments.json").then(r => r.json()),
+      fetch("data/matches.json").then(r => r.json()),
+      fetch("data/players.json").then(r => r.json()),
+    ]);
+  }
+
+  // ── Load live lobby data if session exists ─────────
+  async function loadLobbyData() {
+    const session = LS.getSession();
+    if (!session?.lobbyCode) return;
+    try {
+      await ensureAuth();
+      const snap = await get(ref(db, `lobbies/${session.lobbyCode}`));
+      lobbyData = snap.val();
+    } catch { lobbyData = null; }
+  }
+
+  // ── Helpers ────────────────────────────────────────
+  function matchPts(stats) {
+    return +SCORING.calculate(stats).toFixed(1);
+  }
+
+  function playerName(id) {
+    return players.find(p => p.id === id)?.name || id;
+  }
+
+  // Who in the lobby has this player in their picks?
+  function fantasyOwnersOf(playerId) {
+    if (!lobbyData?.picks) return [];
+    return Object.values(lobbyData.players || {})
+      .map(p => {
+        const theirPicks = Object.values(lobbyData.picks)
+          .filter(pk => pk.byUid === Object.keys(lobbyData.players).find(k => lobbyData.players[k] === p));
+        return { name: p.name, hasPick: theirPicks.some(pk => pk.playerId === playerId) };
+      })
+      .filter(o => o.hasPick);
+  }
+
+  // Build per-participant player overlap for a match
+  function buildFantasyOverlap(match) {
+    if (!lobbyData?.players || !lobbyData?.picks) return [];
+    const picks = Object.values(lobbyData.picks || {});
+    const playerUidMap = Object.entries(lobbyData.players);
+
+    return playerUidMap.map(([uid, p]) => {
+      const theirPicks = picks.filter(pk => pk.byUid === uid);
+      const matchingPicks = theirPicks.filter(pk =>
+        match.playerStats.some(s => s.playerId === pk.playerId)
+      );
+
+      const enriched = matchingPicks.map(pk => {
+        const stats = match.playerStats.find(s => s.playerId === pk.playerId);
+        const pts   = stats ? matchPts(stats) : 0;
+        return { name: pk.playerName, pts };
+      });
+
+      return { name: p.name, picks: enriched };
+    }).filter(o => o.picks.length > 0);
+  }
+
+  // ── Render sidebar ─────────────────────────────────
+  function renderSidebar() {
+    const list = document.getElementById("tournament-list");
+
+    const allItem = document.createElement("div");
+    allItem.className = "tournament-item" + (activeTournamentId === "all" ? " active" : "");
+    allItem.innerHTML = `<div class="t-name">All Tournaments</div><div class="t-meta">${matches.length} matches</div>`;
+    allItem.addEventListener("click", () => { activeTournamentId = "all"; document.getElementById("panel-title").textContent = "All Matches"; renderSidebar(); renderMatches(); });
+    list.innerHTML = "";
+    list.appendChild(allItem);
+
+    // Sort: ongoing first, then upcoming, then completed
+    const order = { ongoing: 0, live: 0, upcoming: 1, completed: 2 };
+    const sorted = [...tournaments].sort((a, b) => (order[a.status] ?? 3) - (order[b.status] ?? 3));
+
+    sorted.forEach(t => {
+      const count = matches.filter(m => m.tournamentId === t.id).length;
+      const item  = document.createElement("div");
+      item.className = "tournament-item" + (activeTournamentId === t.id ? " active" : "");
+      item.innerHTML = `
+        <div class="t-name">
+          <span class="status-dot ${t.status}"></span>${t.name}
+          <span class="status-tag ${t.status}">${t.status}</span>
+        </div>
+        <div class="t-meta">${t.region} · ${count} matches · ${t.prizePool}</div>
+      `;
+      item.addEventListener("click", () => {
+        activeTournamentId = t.id;
+        document.getElementById("panel-title").textContent = t.name;
+        renderSidebar();
+        renderMatches();
+      });
+      list.appendChild(item);
+    });
+  }
+
+  // ── Render match list ──────────────────────────────
+  function renderMatches() {
+    const list = document.getElementById("match-list");
+
+    let filtered = matches.filter(m => {
+      const matchTournament = activeTournamentId === "all" || m.tournamentId === activeTournamentId;
+      const matchStatus     = activeStatus === "all" || m.status === activeStatus;
+      return matchTournament && matchStatus;
+    });
+
+    // Sort: live → upcoming → completed (most recent first)
+    const order = { live: 0, upcoming: 1, completed: 2 };
+    filtered.sort((a, b) => {
+      const os = (order[a.status] ?? 3) - (order[b.status] ?? 3);
+      if (os !== 0) return os;
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-title">No matches found</div><p>Try a different filter.</p></div>`;
+      return;
+    }
+
+    list.innerHTML = "";
+
+    filtered.forEach(match => {
+      const isExpanded = expandedMatches.has(match.id);
+      const t = tournaments.find(t => t.id === match.tournamentId);
+      const fantasyOverlap = buildFantasyOverlap(match);
+      const session = LS.getSession();
+
+      const card = document.createElement("div");
+      card.className = "match-card" + (isExpanded ? " expanded" : "");
+
+      // Header
+      const headerDiv = document.createElement("div");
+      headerDiv.className = "match-card-header";
+
+      const isLive = match.status === "live";
+      const statusHTML = isLive
+        ? `<span class="status-dot live"></span><span class="status-tag live">Live</span>`
+        : match.status === "upcoming"
+        ? `<span class="status-tag upcoming">Upcoming</span>`
+        : `<span style="font-size:0.72rem; color:var(--muted);">${match.date}</span>`;
+
+      headerDiv.innerHTML = `
+        <div class="match-teams">
+          <span class="match-team ${match.winner === match.team1 ? "winner" : ""}">${match.team1}</span>
+          <span class="match-vs">vs</span>
+          <span class="match-team ${match.winner === match.team2 ? "winner" : ""}">${match.team2}</span>
+          ${match.score ? `<span class="match-score">${match.score}</span>` : ""}
+        </div>
+        <div class="match-meta">
+          ${statusHTML}<br>
+          <span class="match-format">${match.format}</span>
+          ${t ? `<br><span style="font-size:0.68rem; color:var(--muted);">${t.name}</span>` : ""}
+        </div>
+        <div class="match-expand-icon">${isExpanded ? "▲" : "▼"}</div>
+      `;
+      headerDiv.addEventListener("click", () => {
+        expandedMatches.has(match.id) ? expandedMatches.delete(match.id) : expandedMatches.add(match.id);
+        renderMatches();
+      });
+      card.appendChild(headerDiv);
+
+      // Detail panel
+      const detailDiv = document.createElement("div");
+      detailDiv.className = "match-detail" + (isExpanded ? " show" : "");
+
+      if (match.status === "completed" && match.playerStats.length > 0) {
+        // Box score grouped by team
+        const team1Stats = match.playerStats.filter(s => s.team === match.team1);
+        const team2Stats = match.playerStats.filter(s => s.team === match.team2);
+
+        const renderTeamRows = (teamStats, teamName) => {
+          const divider = `<tr class="team-divider"><td colspan="9">${teamName}</td></tr>`;
+          const rows = teamStats.map(s => `
+            <tr>
+              <td class="td-player">${playerName(s.playerId)}</td>
+              <td class="td-num">${s.rating}</td>
+              <td class="td-num">${s.kd}</td>
+              <td class="td-num">${s.acs}</td>
+              <td class="td-num">${s.adr}</td>
+              <td class="td-num">${s.kpr}</td>
+              <td class="td-num">${s.cl}%</td>
+              <td class="td-pts-col">${matchPts(s)}</td>
+            </tr>
+          `).join("");
+          return divider + rows;
+        };
+
+        const boxScoreHTML = `
+          <div class="box-score">
+            <div class="box-section-title">Box Score</div>
+            <table class="box-score-table">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Rating</th><th>K/D</th><th>ACS</th>
+                  <th>ADR</th><th>KPR</th><th>CL%</th>
+                  <th>Pts</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${renderTeamRows(team1Stats, match.team1)}
+                ${renderTeamRows(team2Stats, match.team2)}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        // Fantasy overlap
+        let fantasyHTML = `
+          <div class="fantasy-section">
+            <div class="fantasy-section-title">Fantasy Team Overlap</div>
+        `;
+
+        if (!session) {
+          fantasyHTML += `<div class="no-session-note">Join or create a draft to see which participants own players in this match.</div>`;
+        } else if (fantasyOverlap.length === 0) {
+          fantasyHTML += `<div class="no-session-note">No participants in your lobby have players from this match.</div>`;
+        } else {
+          fantasyHTML += fantasyOverlap.map(o => `
+            <div class="fantasy-participant">
+              <div class="fp-name">${o.name} <span>${o.picks.reduce((s, p) => s + p.pts, 0).toFixed(1)} pts from this match</span></div>
+              <div class="fp-players">
+                ${o.picks.map(p => `
+                  <div class="fp-player-tag">
+                    <span class="fp-player-name">${p.name}</span>
+                    <span class="fp-player-pts ${p.pts === 0 ? "zero" : ""}">${p.pts} pts</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          `).join("");
+        }
+        fantasyHTML += `</div>`;
+
+        detailDiv.innerHTML = boxScoreHTML + fantasyHTML;
+
+      } else if (match.status === "live") {
+        detailDiv.innerHTML = `<div style="padding:20px 18px; color:var(--success); font-size:0.875rem;"><span class="status-dot live" style="display:inline-block;"></span> Match is currently live. Stats will appear when complete.</div>`;
+      } else {
+        detailDiv.innerHTML = `<div style="padding:20px 18px; color:var(--muted); font-size:0.875rem;">Match hasn't started yet. Check back later for stats.</div>`;
+      }
+
+      card.appendChild(detailDiv);
+      list.appendChild(card);
+    });
+  }
+
+  // ── Status filter buttons ──────────────────────────
+  document.querySelectorAll(".status-filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeStatus = btn.dataset.status;
+      document.querySelectorAll(".status-filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderMatches();
+    });
+  });
+
+  // ── Init ───────────────────────────────────────────
+  await loadData();
+  await loadLobbyData();
+  renderSidebar();
+  renderMatches();
+</script>
+
+</body>
+</html>

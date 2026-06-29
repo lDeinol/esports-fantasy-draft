@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stats — DraftZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0b0f;
+      --surface:  #13151c;
+      --surface2: #1c1f2b;
+      --surface3: #22263a;
+      --border:   #2a2d3a;
+      --accent:   #00e5ff;
+      --accent2:  #7c3aed;
+      --danger:   #ff4757;
+      --text:     #e8eaf0;
+      --muted:    #6b7280;
+      --success:  #10b981;
+      --warn:     #f59e0b;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100vh; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); display: flex; flex-direction: column; }
+
+    header {
+      height: 52px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 24px; gap: 16px;
+      background: var(--surface); flex-shrink: 0;
+    }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .logo span { color: var(--accent); }
+    .header-divider { width: 1px; height: 24px; background: var(--border); }
+    nav { display: flex; gap: 4px; }
+    .nav-link { padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; color: var(--muted); transition: color 0.15s, background 0.15s; }
+    .nav-link:hover { color: var(--text); background: var(--surface2); }
+    .nav-link.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+    main { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 32px 24px; }
+
+    .page-title { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
+    .page-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 24px; }
+
+    /* ── Controls ───────────────────────────────────── */
+    .controls {
+      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;
+    }
+
+    .search-input {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 9px 14px; color: var(--text); font-family: var(--font-body); font-size: 0.875rem;
+      outline: none; transition: border-color 0.15s; width: 220px;
+    }
+    .search-input:focus { border-color: var(--accent); }
+
+    .filter-btn {
+      padding: 7px 14px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--muted); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
+    }
+    .filter-btn.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+
+    .sort-label { font-size: 0.75rem; color: var(--muted); margin-left: auto; }
+    .sort-select {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 12px; color: var(--text); font-size: 0.8rem; outline: none; cursor: pointer;
+    }
+    .sort-select option { background: var(--surface2); }
+
+    /* ── Scoring legend ─────────────────────────────── */
+    .scoring-legend {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 20px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+    }
+    .legend-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+    .legend-item { font-size: 0.78rem; color: var(--text); }
+    .legend-item span { font-family: var(--font-mono); color: var(--accent); }
+
+    /* ── Table ──────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+
+    thead th {
+      background: var(--surface); padding: 11px 14px; text-align: left;
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer;
+      user-select: none; transition: color 0.15s;
+    }
+    thead th:hover { color: var(--accent); }
+    thead th.sorted { color: var(--accent); }
+    thead th .sort-arrow { margin-left: 4px; font-size: 0.6rem; }
+
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; cursor: pointer; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    tbody tr.expanded { background: var(--surface2); }
+
+    td { padding: 12px 14px; font-size: 0.875rem; white-space: nowrap; }
+
+    .td-rank { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); width: 36px; }
+    .td-name { font-weight: 600; }
+    .td-team { color: var(--muted); font-size: 0.8rem; }
+    .td-role {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      background: var(--surface3); border-radius: 4px; padding: 2px 7px; color: var(--muted);
+    }
+    .td-region { font-size: 0.78rem; color: var(--muted); }
+    .td-stat { font-family: var(--font-mono); font-size: 0.85rem; }
+    .td-pts { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; color: var(--accent); }
+    .td-matches { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+
+    /* ── Expanded match history ─────────────────────── */
+    .expand-row { display: none; }
+    .expand-row.show { display: table-row; }
+
+    .expand-cell {
+      padding: 0 14px 16px 50px; background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .expand-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; padding-top: 12px; }
+
+    .match-history-row {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface3); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; margin-bottom: 6px;
+    }
+
+    .mh-tournament { font-size: 0.72rem; color: var(--muted); flex: 1; min-width: 160px; }
+    .mh-match { font-size: 0.82rem; font-weight: 600; min-width: 120px; }
+    .mh-result { font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+    .mh-result.win  { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); border: 1px solid color-mix(in srgb, var(--success) 25%, transparent); }
+    .mh-result.loss { color: var(--danger);  background: color-mix(in srgb, var(--danger)  12%, transparent); border: 1px solid color-mix(in srgb, var(--danger)  25%, transparent); }
+
+    .mh-stats { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mh-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+    .mh-chip span { color: var(--text); font-weight: 600; }
+    .mh-pts { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
+
+    /* ── Loading ────────────────────────────────────── */
+    .loading-wrap { display: flex; align-items: center; justify-content: center; padding: 80px; }
+    .spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="home.html" class="logo">Draft<span>Zone</span></a>
+  <div class="header-divider"></div>
+  <nav>
+    <a href="home.html"      class="nav-link">Home</a>
+    <a href="stats.html"     class="nav-link active">Stats</a>
+    <a href="index.html"     class="nav-link">Draft</a>
+    <a href="dashboard.html" class="nav-link">My Team</a>
+    <a href="standings.html" class="nav-link">Standings</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-title">Player Stats</div>
+  <div class="page-sub">Season averages + fantasy points earned across all completed matches. Click a player to see their match history.</div>
+
+  <div class="scoring-legend">
+    <span class="legend-label">Scoring:</span>
+    <span class="legend-item">Rating <span>×40</span></span>
+    <span class="legend-item">K/D <span>×25</span></span>
+    <span class="legend-item">ACS <span>×0.15</span></span>
+    <span class="legend-item">ADR <span>×0.10</span></span>
+    <span class="legend-item">KPR <span>×10</span></span>
+    <span class="legend-item">CL% <span>×0.20</span></span>
+    <span style="font-size:0.75rem; color:var(--muted); margin-left:auto;">Points are summed across all completed matches</span>
+  </div>
+
+  <div class="controls">
+    <input class="search-input" id="search" type="text" placeholder="Search players or teams…" />
+    <button class="filter-btn active" data-region="all">All</button>
+    <button class="filter-btn" data-region="Americas">Americas</button>
+    <button class="filter-btn" data-region="EMEA">EMEA</button>
+    <button class="filter-btn" data-region="Pacific">Pacific</button>
+    <span class="sort-label">Sort by</span>
+    <select class="sort-select" id="sort-select">
+      <option value="totalPts">Total Pts</option>
+      <option value="rating">Rating</option>
+      <option value="acs">ACS</option>
+      <option value="kd">K/D</option>
+      <option value="adr">ADR</option>
+      <option value="kpr">KPR</option>
+      <option value="cl">CL%</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table id="stats-table">
+      <thead>
+        <tr>
+          <th class="td-rank">#</th>
+          <th>Player</th>
+          <th>Team</th>
+          <th>Role</th>
+          <th>Region</th>
+          <th data-col="rating" class="sorted">Rating <span class="sort-arrow">▼</span></th>
+          <th data-col="kd">K/D</th>
+          <th data-col="acs">ACS</th>
+          <th data-col="adr">ADR</th>
+          <th data-col="kpr">KPR</th>
+          <th data-col="cl">CL%</th>
+          <th data-col="totalPts" class="sorted">Pts <span class="sort-arrow">▼</span></th>
+          <th>Matches</th>
+        </tr>
+      </thead>
+      <tbody id="stats-tbody">
+        <tr><td colspan="13"><div class="loading-wrap"><div class="spinner"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script type="module">
+  import { SCORING } from "./app.js";
+
+  let players    = [];
+  let matches    = [];
+  let tournaments = [];
+  let activeRegion = "all";
+  let sortCol    = "totalPts";
+  let expanded   = new Set();
+
+  async function loadData() {
+    [players, matches, tournaments] = await Promise.all([
+      fetch("data/players.json").then(r => r.json()),
+      fetch("data/matches.json").then(r => r.json()),
+      fetch("data/tournaments.json").then(r => r.json()),
+    ]);
+  }
+
+  // Build tournament lookup
+  function tournamentName(id) {
+    return tournaments.find(t => t.id === id)?.name || id;
+  }
+
+  // Calculate per-match fantasy points
+  function matchPts(stats) {
+    return +SCORING.calculate(stats).toFixed(1);
+  }
+
+  // Build enriched player list with match history and total pts
+  function buildPlayerData() {
+    const completedMatches = matches.filter(m => m.status === "completed");
+
+    return players.map(p => {
+      const matchHistory = completedMatches
+        .filter(m => m.playerStats.some(s => s.playerId === p.id))
+        .map(m => {
+          const stats  = m.playerStats.find(s => s.playerId === p.id);
+          const pts    = matchPts(stats);
+          const isWin  = m.winner === stats.team;
+          return { match: m, stats, pts, isWin };
+        });
+
+      const totalPts   = +matchHistory.reduce((s, h) => s + h.pts, 0).toFixed(1);
+      const matchCount = matchHistory.length;
+
+      return { ...p, matchHistory, totalPts, matchCount };
+    });
+  }
+
+  function filteredSorted(allPlayers) {
+    return allPlayers
+      .filter(p => {
+        const q = document.getElementById("search").value.toLowerCase();
+        const matchRegion = activeRegion === "all" || p.region === activeRegion;
+        const matchSearch = !q || p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q);
+        return matchRegion && matchSearch;
+      })
+      .sort((a, b) => {
+        if (sortCol === "totalPts") return b.totalPts - a.totalPts;
+        return (b.stats?.[sortCol] ?? 0) - (a.stats?.[sortCol] ?? 0);
+      });
+  }
+
+  function renderTable(allPlayers) {
+    const rows = filteredSorted(allPlayers);
+    const tbody = document.getElementById("stats-tbody");
+    tbody.innerHTML = "";
+
+    rows.forEach((p, i) => {
+      const isExpanded = expanded.has(p.id);
+
+      // Main row
+      const tr = document.createElement("tr");
+      if (isExpanded) tr.classList.add("expanded");
+      tr.innerHTML = `
+        <td class="td-rank">${i + 1}</td>
+        <td class="td-name">${p.name}</td>
+        <td class="td-team">${p.team}</td>
+        <td><span class="td-role">${p.role}</span></td>
+        <td class="td-region">${p.region}</td>
+        <td class="td-stat">${p.stats.rating}</td>
+        <td class="td-stat">${p.stats.kd}</td>
+        <td class="td-stat">${p.stats.acs}</td>
+        <td class="td-stat">${p.stats.adr}</td>
+        <td class="td-stat">${p.stats.kpr}</td>
+        <td class="td-stat">${p.stats.cl}%</td>
+        <td class="td-pts">${p.totalPts}</td>
+        <td class="td-matches">${p.matchCount} ${isExpanded ? "▲" : "▼"}</td>
+      `;
+      tr.addEventListener("click", () => {
+        expanded.has(p.id) ? expanded.delete(p.id) : expanded.add(p.id);
+        renderTable(allPlayers);
+      });
+      tbody.appendChild(tr);
+
+      // Expanded match history row
+      const expandTr = document.createElement("tr");
+      expandTr.className = "expand-row" + (isExpanded ? " show" : "");
+      const expandTd = document.createElement("td");
+      expandTd.className = "expand-cell";
+      expandTd.colSpan = 13;
+
+      if (p.matchCount === 0) {
+        expandTd.innerHTML = `<div class="expand-title">Match History</div><div style="color:var(--muted); font-size:0.85rem; padding:4px 0 8px;">No completed matches yet.</div>`;
+      } else {
+        const historyHTML = p.matchHistory.map(h => `
+          <div class="match-history-row">
+            <div class="mh-tournament">${tournamentName(h.match.tournamentId)}</div>
+            <div class="mh-match">${h.match.team1} vs ${h.match.team2} <span style="color:var(--muted); font-size:0.72rem;">${h.match.score}</span></div>
+            <div class="mh-result ${h.isWin ? "win" : "loss"}">${h.isWin ? "W" : "L"}</div>
+            <div class="mh-stats">
+              <div class="mh-chip">RTG <span>${h.stats.rating}</span></div>
+              <div class="mh-chip">K/D <span>${h.stats.kd}</span></div>
+              <div class="mh-chip">ACS <span>${h.stats.acs}</span></div>
+              <div class="mh-chip">ADR <span>${h.stats.adr}</span></div>
+              <div class="mh-chip">KPR <span>${h.stats.kpr}</span></div>
+              <div class="mh-chip">CL <span>${h.stats.cl}%</span></div>
+            </div>
+            <div class="mh-pts">${h.pts} pts</div>
+          </div>
+        `).join("");
+        expandTd.innerHTML = `<div class="expand-title">Match History</div>${historyHTML}`;
+      }
+
+      expandTr.appendChild(expandTd);
+      tbody.appendChild(expandTr);
+    });
+  }
+
+  // Controls
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeRegion = btn.dataset.region;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderTable(buildPlayerData());
+    });
+  });
+
+  document.getElementById("search").addEventListener("input", () => renderTable(buildPlayerData()));
+
+  document.getElementById("sort-select").addEventListener("change", (e) => {
+    sortCol = e.target.value;
+    renderTable(buildPlayerData());
+  });
+
+  // Column header click to sort
+  document.querySelectorAll("thead th[data-col]").forEach(th => {
+    th.addEventListener("click", () => {
+      sortCol = th.dataset.col;
+      document.getElementById("sort-select").value = sortCol;
+      renderTable(buildPlayerData());
+    });
+  });
+
+  await loadData();
+  renderTable(buildPlayerData());
+</script>
+
+</body>
+</html>

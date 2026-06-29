@@ -1,0 +1,57 @@
+[
+  {
+    "id": "vct-2025-americas-kickoff",
+    "name": "VCT 2025 Americas Kickoff",
+    "region": "Americas",
+    "status": "ongoing",
+    "startDate": "2025-01-10",
+    "endDate": "2025-01-26",
+    "prizePool": "$250,000",
+    "teams": ["LOUD", "NRG", "Sentinels", "EG", "100 Thieves", "KRÜ Esports"],
+    "logoColor": "#ff4655"
+  },
+  {
+    "id": "vct-2025-emea-kickoff",
+    "name": "VCT 2025 EMEA Kickoff",
+    "region": "EMEA",
+    "status": "ongoing",
+    "startDate": "2025-01-12",
+    "endDate": "2025-01-28",
+    "prizePool": "$250,000",
+    "teams": ["Fnatic", "Team Liquid", "Karmine Corp", "NaVi", "Team Vitality", "BBL Esports"],
+    "logoColor": "#7c3aed"
+  },
+  {
+    "id": "vct-2025-pacific-kickoff",
+    "name": "VCT 2025 Pacific Kickoff",
+    "region": "Pacific",
+    "status": "upcoming",
+    "startDate": "2025-01-20",
+    "endDate": "2025-02-05",
+    "prizePool": "$250,000",
+    "teams": ["Paper Rex", "DRX", "ZETA Division", "T1", "Gen.G", "Rex Regum Qeon"],
+    "logoColor": "#00e5ff"
+  },
+  {
+    "id": "vct-2024-masters-shanghai",
+    "name": "VCT 2024 Masters Shanghai",
+    "region": "International",
+    "status": "completed",
+    "startDate": "2024-06-02",
+    "endDate": "2024-06-16",
+    "prizePool": "$500,000",
+    "teams": ["LOUD", "Fnatic", "Paper Rex", "NRG", "DRX", "EDward Gaming", "Team Liquid", "Sentinels"],
+    "logoColor": "#10b981"
+  },
+  {
+    "id": "vct-2024-champions-london",
+    "name": "VCT 2024 Champions London",
+    "region": "International",
+    "status": "completed",
+    "startDate": "2024-08-01",
+    "endDate": "2024-08-25",
+    "prizePool": "$1,000,000",
+    "teams": ["LOUD", "Fnatic", "Paper Rex", "NRG", "DRX", "ZETA Division", "Team Liquid", "Sentinels"],
+    "logoColor": "#f59e0b"
+  }
+]

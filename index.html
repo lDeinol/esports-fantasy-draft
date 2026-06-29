@@ -446,6 +446,13 @@
           </div>
 
           <div class="field">
+            <label>Tournament</label>
+            <select id="create-tournament">
+              <option value="">Loading tournaments…</option>
+            </select>
+          </div>
+
+          <div class="field">
             <label>Draft Format</label>
             <div class="format-toggle">
               <button class="format-btn active" data-format="snake">
@@ -489,6 +496,7 @@
           <span id="lobby-format-badge" class="lobby-format-badge">Snake</span>
         </div>
         <div class="card-sub" id="lobby-sub">Share the code below with your friends</div>
+        <div id="lobby-tournament-name" style="font-size:0.8rem; color:var(--accent); margin-bottom:12px; display:none;"></div>
 
         <div class="lobby-code-display">
           <div>
@@ -531,6 +539,25 @@
     let selectedFormat = "snake";
     let currentUid     = null;
     let unsubLobby     = null;
+    let tournamentsData = [];
+
+    // ── Load tournaments into select ───────────────────
+    (async () => {
+      try {
+        tournamentsData = await fetch("data/tournaments.json").then(r => r.json());
+        const sel = document.getElementById("create-tournament");
+        sel.innerHTML = "";
+        tournamentsData.forEach(t => {
+          const opt = document.createElement("option");
+          opt.value = t.id;
+          const statusLabel = t.status === "ongoing" ? " 🟡 Live" : t.status === "upcoming" ? " 🔵 Upcoming" : " ⚫ Completed";
+          opt.textContent = `${t.name}${statusLabel}`;
+          sel.appendChild(opt);
+        });
+      } catch {
+        document.getElementById("create-tournament").innerHTML = `<option value="">Failed to load tournaments</option>`;
+      }
+    })();
 
     // ── Tab switching ──────────────────────────────────
     document.querySelectorAll(".tab").forEach(btn => {
@@ -600,6 +627,14 @@
       document.getElementById("lobby-format-badge").textContent =
         lobbyData.format === "auction" ? "🏷 Auction" : "🐍 Snake";
 
+      // Show tournament name
+      if (lobbyData.tournamentId) {
+        const t = tournamentsData.find(t => t.id === lobbyData.tournamentId);
+        const nameEl = document.getElementById("lobby-tournament-name");
+        nameEl.textContent = `📋 ${t?.name || lobbyData.tournamentId}`;
+        nameEl.style.display = "block";
+      }
+
       // Host controls vs non-host
       if (isHost) {
         document.getElementById("btn-start").style.display  = "block";
@@ -648,8 +683,10 @@
     // ── Create Lobby ───────────────────────────────────
     document.getElementById("btn-create").addEventListener("click", async () => {
       clearError("create-error");
-      const name = document.getElementById("create-name").value.trim();
-      if (!name) return showError("create-error", "Enter your name.");
+      const name         = document.getElementById("create-name").value.trim();
+      const tournamentId = document.getElementById("create-tournament").value;
+      if (!name)         return showError("create-error", "Enter your name.");
+      if (!tournamentId) return showError("create-error", "Select a tournament.");
 
       const btn = document.getElementById("btn-create");
       btn.disabled = true;
@@ -660,7 +697,7 @@
         currentUid = user.uid;
         const code = generateCode();
 
-        await createLobby({ code, hostUid: currentUid, hostName: name, format: selectedFormat });
+        await createLobby({ code, hostUid: currentUid, hostName: name, format: selectedFormat, tournamentId });
         LS.saveSession({ uid: currentUid, name, lobbyCode: code, isHost: true });
 
         const snap = await get(ref(db, `lobbies/${code}`));

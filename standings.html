@@ -390,6 +390,7 @@
     <nav>
       <a href="home.html"      class="nav-link">Home</a>
       <a href="stats.html"     class="nav-link">Stats</a>
+      <a href="matches.html"   class="nav-link">Matches</a>
       <a href="index.html"     class="nav-link">Draft</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link active">Standings</a>
@@ -419,15 +420,17 @@
     // Track which rows are expanded
     const expanded = new Set();
 
-    async function loadPlayerData() {
-      try {
-        const res = await fetch("data/players.json");
-        return await res.json();
-      } catch { return []; }
+    async function loadData() {
+      const [playerData, matchData, tournamentData] = await Promise.all([
+        fetch("data/players.json").then(r => r.json()).catch(() => []),
+        fetch("data/matches.json").then(r => r.json()).catch(() => []),
+        fetch("data/tournaments.json").then(r => r.json()).catch(() => []),
+      ]);
+      return { playerData, matchData, tournamentData };
     }
 
     // ── Build per-participant standings ────────────────
-    function buildStandings(lobbyData, playerMap) {
+    function buildStandings(lobbyData, playerMap, matchData, tournamentId) {
       const { players, picks = {}, pickOrder = [] } = lobbyData;
       const picksArr = Object.values(picks);
 
@@ -437,9 +440,10 @@
         const enriched = myPicksList.map(pick => {
           const pData     = playerMap[pick.playerId] || {};
           const stats     = pData.stats || {};
-          const pts       = +SCORING.calculate(stats).toFixed(1);
+          const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
           const breakdown = SCORING.breakdown(stats);
-          return { ...pick, pData, stats, pts, breakdown };
+          const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
+          return { ...pick, pData, stats, pts, breakdown, history };
         });
 
         const totalScore = +enriched.reduce((s, e) => s + e.pts, 0).toFixed(1);
@@ -509,7 +513,7 @@
     }
 
     // ── Main render ────────────────────────────────────
-    function render(lobbyData, playerData) {
+    function render(lobbyData, playerData, matchData, tournamentData) {
       const content = document.getElementById("content");
 
       if (!lobbyData) {
@@ -521,10 +525,16 @@
         return;
       }
 
-      const playerMap  = Object.fromEntries(playerData.map(p => [p.id, p]));
-      const standings  = buildStandings(lobbyData, playerMap);
-      const isLive     = lobbyData.status === "drafting";
-      const top3       = standings.slice(0, 3);
+      const playerMap    = Object.fromEntries(playerData.map(p => [p.id, p]));
+      const tournamentId = lobbyData.tournamentId || null;
+      const tournament   = tournamentData.find(t => t.id === tournamentId);
+      const standings    = buildStandings(lobbyData, playerMap, matchData, tournamentId);
+      const isLive       = lobbyData.status === "drafting";
+      const top3         = standings.slice(0, 3);
+
+      const tournamentLabel = tournament
+        ? `· <span style="color:var(--accent); font-family:var(--font-mono);">📋 ${tournament.name}</span>`
+        : "";
 
       const podiumHTML = top3.length > 0 ? `
         <div class="podium">
@@ -566,6 +576,7 @@
         <div class="page-sub">
           Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span>
           · ${standings.length} participants
+          ${tournamentLabel}
           · ${isLive
               ? '<span class="live-dot"></span><span style="color:var(--success);">Live</span>'
               : '<span style="color:var(--muted);">Draft Complete</span>'}
@@ -591,29 +602,28 @@
     }
 
     // ── Toggle expanded roster ─────────────────────────
-    // Exposed to window so inline onclick can reach it
     window.toggleExpand = function(uid) {
       if (expanded.has(uid)) {
         expanded.delete(uid);
       } else {
         expanded.add(uid);
       }
-      // Re-render is triggered by the live subscription,
-      // but force one immediately for instant feedback
       if (window._lastLobbyData && window._lastPlayerData) {
-        render(window._lastLobbyData, window._lastPlayerData);
+        render(window._lastLobbyData, window._lastPlayerData, window._lastMatchData, window._lastTournamentData);
       }
     };
 
     // ── Init ───────────────────────────────────────────
     async function init() {
       await ensureAuth();
-      const playerData = await loadPlayerData();
-      window._lastPlayerData = playerData;
+      const { playerData, matchData, tournamentData } = await loadData();
+      window._lastPlayerData     = playerData;
+      window._lastMatchData      = matchData;
+      window._lastTournamentData = tournamentData;
 
       subscribeLobby(lobbyCode, (lobbyData) => {
         window._lastLobbyData = lobbyData;
-        render(lobbyData, playerData);
+        render(lobbyData, playerData, matchData, tournamentData);
       });
     }
 

@@ -90,12 +90,12 @@ export function totalPicks(numPlayers) {
 // Valorant-specific scoring weights
 export const SCORING = {
   weights: {
-    rating: 40,   // e.g. 1.33 → 53.2 pts
-    kd:     25,   // e.g. 1.41 → 35.3 pts
-    acs:    0.15, // e.g. 275  → 41.3 pts
-    adr:    0.10, // e.g. 175  → 17.5 pts
-    kpr:    10,   // e.g. 0.90 → 9.0 pts
-    cl:     0.20, // e.g. 58%  → 11.6 pts
+    rating: 40,
+    kd:     25,
+    acs:    0.15,
+    adr:    0.10,
+    kpr:    10,
+    cl:     0.20,
   },
   calculate(stats = {}) {
     return Object.entries(this.weights).reduce((total, [key, weight]) => {
@@ -109,16 +109,42 @@ export const SCORING = {
       points: +((stats[key] ?? 0) * weight).toFixed(1),
     }));
   },
+  // Calculate total points for a playerId from matches, filtered to a tournament
+  // matches: full matches array, tournamentId: string or null (null = all matches)
+  totalFromMatches(playerId, matches, tournamentId = null) {
+    const filtered = matches.filter(m =>
+      m.status === "completed" &&
+      (!tournamentId || m.tournamentId === tournamentId)
+    );
+    return +filtered.reduce((total, m) => {
+      const stats = m.playerStats?.find(s => s.playerId === playerId);
+      return total + (stats ? this.calculate(stats) : 0);
+    }, 0).toFixed(1);
+  },
+  // Per-match breakdown for a player filtered to a tournament
+  matchHistory(playerId, matches, tournamentId = null) {
+    return matches
+      .filter(m =>
+        m.status === "completed" &&
+        (!tournamentId || m.tournamentId === tournamentId) &&
+        m.playerStats?.some(s => s.playerId === playerId)
+      )
+      .map(m => {
+        const stats = m.playerStats.find(s => s.playerId === playerId);
+        return { match: m, stats, pts: +this.calculate(stats).toFixed(1) };
+      });
+  },
 };
 
 // ── Firebase Lobby Helpers ───────────────────────────────────
 
 // Create a new lobby in Firebase
-export async function createLobby({ code, hostUid, hostName, format }) {
+export async function createLobby({ code, hostUid, hostName, format, tournamentId }) {
   const lobbyRef = ref(db, `lobbies/${code}`);
   await set(lobbyRef, {
     code,
     format,
+    tournamentId:     tournamentId || null,
     status:           "waiting",
     hostId:           hostUid,
     createdAt:        Date.now(),

@@ -396,6 +396,7 @@
     <nav>
       <a href="home.html"      class="nav-link">Home</a>
       <a href="stats.html"     class="nav-link">Stats</a>
+      <a href="matches.html"   class="nav-link">Matches</a>
       <a href="index.html"     class="nav-link">Draft</a>
       <a href="dashboard.html" class="nav-link active">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
@@ -423,16 +424,18 @@
 
     const { uid: myUid, name: myName, lobbyCode } = session;
 
-    // ── Load players.json ──────────────────────────────
-    async function loadPlayerData() {
-      try {
-        const res = await fetch("data/players.json");
-        return await res.json();
-      } catch { return []; }
+    // ── Load data ──────────────────────────────────────
+    async function loadData() {
+      const [playerData, matchData, tournamentData] = await Promise.all([
+        fetch("data/players.json").then(r => r.json()).catch(() => []),
+        fetch("data/matches.json").then(r => r.json()).catch(() => []),
+        fetch("data/tournaments.json").then(r => r.json()).catch(() => []),
+      ]);
+      return { playerData, matchData, tournamentData };
     }
 
     // ── Render ─────────────────────────────────────────
-    function render(lobbyData, playerData) {
+    function render(lobbyData, playerData, matchData, tournamentData) {
       const content = document.getElementById("content");
 
       if (!lobbyData) {
@@ -445,23 +448,31 @@
         return;
       }
 
-      const picks      = lobbyData.picks || {};
-      const myPicks    = Object.values(picks).filter(p => p.byUid === myUid);
-      const playerMap  = Object.fromEntries(playerData.map(p => [p.id, p]));
-      const format     = lobbyData.format;
-      const budgets    = lobbyData.budgets || {};
-      const spent      = budgets[myUid] || 0;
-      const remaining  = CONFIG.AUCTION_BUDGET - spent;
+      const picks        = lobbyData.picks || {};
+      const myPicks      = Object.values(picks).filter(p => p.byUid === myUid);
+      const playerMap    = Object.fromEntries(playerData.map(p => [p.id, p]));
+      const format       = lobbyData.format;
+      const tournamentId = lobbyData.tournamentId || null;
+      const budgets      = lobbyData.budgets || {};
+      const spent        = budgets[myUid] || 0;
+      const remaining    = CONFIG.AUCTION_BUDGET - spent;
 
-      // Calculate total score
+      // Tournament name
+      const tournament   = tournamentData.find(t => t.id === tournamentId);
+      const tournamentLabel = tournament
+        ? `<span style="color:var(--accent); font-family:var(--font-mono); font-size:0.8rem;">📋 ${tournament.name}</span>`
+        : `<span style="color:var(--muted); font-size:0.8rem;">No tournament selected</span>`;
+
+      // Enrich picks with tournament-scoped match points
       let totalScore = 0;
       const enriched = myPicks.map(pick => {
-        const pData  = playerMap[pick.playerId] || {};
-        const stats  = pData.stats || {};
-        const pts    = +SCORING.calculate(stats).toFixed(1);
+        const pData     = playerMap[pick.playerId] || {};
+        const stats     = pData.stats || {};
+        const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
         const breakdown = SCORING.breakdown(stats);
-        totalScore  += pts;
-        return { ...pick, pData, stats, pts, breakdown };
+        const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
+        totalScore     += pts;
+        return { ...pick, pData, stats, pts, breakdown, history };
       });
 
       totalScore = +totalScore.toFixed(1);
@@ -480,7 +491,7 @@
 
       content.innerHTML = `
         <div class="page-title">${myName}'s Team</div>
-        <div class="page-sub">Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span> · ${statusBadge}</div>
+        <div class="page-sub">Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span> · ${statusBadge} · ${tournamentLabel}</div>
 
         <div class="score-hero">
           <div class="score-main">
@@ -570,10 +581,10 @@
     // ── Init ───────────────────────────────────────────
     async function init() {
       await ensureAuth();
-      const playerData = await loadPlayerData();
+      const { playerData, matchData, tournamentData } = await loadData();
 
       subscribeLobby(lobbyCode, (lobbyData) => {
-        render(lobbyData, playerData);
+        render(lobbyData, playerData, matchData, tournamentData);
       });
     }
 
