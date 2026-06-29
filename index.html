@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    // If user lands on the root URL with no active session, redirect to homepage.
+    // If they have a session (rejoining a lobby) let index.html load normally.
+    try {
+      const session = JSON.parse(localStorage.getItem("session"));
+      if (!session) window.location.replace("home.html");
+    } catch {
+      window.location.replace("home.html");
+    }
+  </script>
   <title>Esports Fantasy Draft</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
