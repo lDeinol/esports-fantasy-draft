@@ -366,7 +366,7 @@
       padding: 14px;
       flex-shrink: 0;
       display: none;
-      max-height: 280px;
+      max-height: 360px;
       overflow-y: auto;
     }
 
@@ -407,7 +407,7 @@
 
     .detail-stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 8px;
       margin-bottom: 14px;
     }
@@ -701,11 +701,15 @@
 
   <!-- ── Header ──────────────────────────────────────── -->
   <header>
-    <div class="logo">Draft<span>Zone</span></div>
+    <a href="home.html" style="text-decoration:none;"><div class="logo">Draft<span>Zone</span></div></a>
     <div class="header-divider"></div>
     <div class="pick-status" id="pick-status">Loading draft…</div>
     <div class="round-badge" id="round-badge">Round —</div>
     <div class="format-badge" id="format-badge">—</div>
+    <div style="margin-left:auto; display:flex; gap:4px;">
+      <a href="dashboard.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">My Team</a>
+      <a href="standings.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">Standings</a>
+    </div>
   </header>
 
   <!-- ── Host Controls Bar (host only) ───────────────── -->
@@ -810,6 +814,7 @@
       <div class="complete-btns">
         <a href="dashboard.html" class="complete-btn primary">My Team</a>
         <a href="standings.html" class="complete-btn ghost">Standings</a>
+        <a href="home.html"      class="complete-btn ghost">Home</a>
       </div>
     </div>
   </div>
@@ -859,46 +864,36 @@
     }
 
     // ─────────────────────────────────────────────────────
-    //  Dummy players (used until real data/players.json exists)
+    //  Dummy players fallback (mirrors data/players.json)
     // ─────────────────────────────────────────────────────
     function getDummyPlayers() {
       return [
-        { id: "s1mple",   name: "s1mple",   team: "NAVI",        game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.35, kd: 1.42, adr: 89.3, kpr: 0.88 } },
-        { id: "ZywOo",    name: "ZywOo",    team: "Vitality",    game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.30, kd: 1.38, adr: 85.1, kpr: 0.83 } },
-        { id: "NiKo",     name: "NiKo",     team: "G2",          game: "Valorant",      role: "Rifler",  region: "EU", stats: { rating: 1.25, kd: 1.29, adr: 82.7, kpr: 0.80 } },
-        { id: "device",   name: "device",   team: "Astralis",    game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.20, kd: 1.24, adr: 78.4, kpr: 0.76 } },
-        { id: "sh1ro",    name: "sh1ro",    team: "Cloud9",      game: "Valorant",      role: "AWPer",   region: "CIS",stats: { rating: 1.22, kd: 1.27, adr: 80.1, kpr: 0.79 } },
-        { id: "broky",    name: "broky",    team: "FaZe",        game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.18, kd: 1.21, adr: 76.5, kpr: 0.74 } },
-        { id: "Faker",    name: "Faker",    team: "T1",          game: "LoL",      role: "Mid",     region: "KR", stats: { rating: 9.4,  kd: 4.8,  adr: 0,    kpr: 0    } },
-        { id: "Chovy",    name: "Chovy",    team: "Gen.G",       game: "LoL",      role: "Mid",     region: "KR", stats: { rating: 9.1,  kd: 5.1,  adr: 0,    kpr: 0    } },
-        { id: "Ruler",    name: "Ruler",    team: "Gen.G",       game: "LoL",      role: "ADC",     region: "KR", stats: { rating: 8.9,  kd: 4.6,  adr: 0,    kpr: 0    } },
-        { id: "Caps",     name: "Caps",     team: "G2",          game: "LoL",      role: "Mid",     region: "EU", stats: { rating: 8.7,  kd: 4.2,  adr: 0,    kpr: 0    } },
-        { id: "TenZ",     name: "TenZ",     team: "Sentinels",   game: "Valorant", role: "Duelist", region: "NA", stats: { rating: 1.28, kd: 1.35, adr: 168,  kpr: 0.86 } },
-        { id: "yay",      name: "yay",      team: "NRG",         game: "Valorant", role: "Operator",region: "NA", stats: { rating: 1.31, kd: 1.40, adr: 172,  kpr: 0.89 } },
-        { id: "cNed",     name: "cNed",     team: "Fnatic",      game: "Valorant", role: "Operator",region: "EU", stats: { rating: 1.26, kd: 1.33, adr: 165,  kpr: 0.85 } },
-        { id: "Aspas",    name: "Aspas",    team: "LOUD",        game: "Valorant", role: "Duelist", region: "BR", stats: { rating: 1.33, kd: 1.41, adr: 175,  kpr: 0.90 } },
-        { id: "ScreaM",   name: "ScreaM",   team: "Karmine",     game: "Valorant", role: "Duelist", region: "EU", stats: { rating: 1.24, kd: 1.29, adr: 161,  kpr: 0.82 } },
-        { id: "Showmaker", name:"Showmaker",team: "KT",          game: "LoL",      role: "Mid",     region: "KR", stats: { rating: 8.8,  kd: 4.5,  adr: 0,    kpr: 0    } },
-        { id: "Keria",    name: "Keria",    team: "T1",          game: "LoL",      role: "Support", region: "KR", stats: { rating: 8.6,  kd: 5.3,  adr: 0,    kpr: 0    } },
-        { id: "ropz",     name: "ropz",     team: "FaZe",        game: "Valorant",      role: "Rifler",  region: "EU", stats: { rating: 1.16, kd: 1.20, adr: 75.2, kpr: 0.73 } },
-        { id: "Derke",    name: "Derke",    team: "Fnatic",      game: "Valorant", role: "Duelist", region: "EU", stats: { rating: 1.22, kd: 1.28, adr: 159,  kpr: 0.81 } },
-        { id: "Chronicle",name:"Chronicle", team: "Fnatic",      game: "Valorant", role: "Sentinel",region: "EU", stats: { rating: 1.19, kd: 1.24, adr: 155,  kpr: 0.78 } },
+        { id: "aspas",     name: "aspas",     team: "LOUD",         role: "Duelist",   region: "Americas", stats: { rating: 1.33, kd: 1.41, acs: 275, adr: 175, kpr: 0.90, cl: 58 } },
+        { id: "yay",       name: "yay",       team: "NRG",          role: "Operator",  region: "Americas", stats: { rating: 1.31, kd: 1.40, acs: 268, adr: 172, kpr: 0.89, cl: 61 } },
+        { id: "TenZ",      name: "TenZ",      team: "Sentinels",    role: "Duelist",   region: "Americas", stats: { rating: 1.28, kd: 1.35, acs: 261, adr: 168, kpr: 0.86, cl: 55 } },
+        { id: "Demon1",    name: "Demon1",    team: "EG",           role: "Duelist",   region: "Americas", stats: { rating: 1.26, kd: 1.32, acs: 258, adr: 165, kpr: 0.84, cl: 53 } },
+        { id: "cNed",      name: "cNed",      team: "Fnatic",       role: "Operator",  region: "EMEA",     stats: { rating: 1.30, kd: 1.38, acs: 267, adr: 170, kpr: 0.88, cl: 60 } },
+        { id: "Derke",     name: "Derke",     team: "Fnatic",       role: "Duelist",   region: "EMEA",     stats: { rating: 1.27, kd: 1.33, acs: 260, adr: 166, kpr: 0.85, cl: 56 } },
+        { id: "ScreaM",    name: "ScreaM",    team: "Karmine Corp", role: "Duelist",   region: "EMEA",     stats: { rating: 1.24, kd: 1.29, acs: 253, adr: 161, kpr: 0.82, cl: 52 } },
+        { id: "Rb",        name: "Rb",        team: "Paper Rex",    role: "Duelist",   region: "Pacific",  stats: { rating: 1.29, kd: 1.36, acs: 263, adr: 168, kpr: 0.87, cl: 57 } },
+        { id: "f0rsakeN",  name: "f0rsakeN",  team: "Paper Rex",    role: "Duelist",   region: "Pacific",  stats: { rating: 1.25, kd: 1.31, acs: 255, adr: 163, kpr: 0.83, cl: 54 } },
+        { id: "BuZz",      name: "BuZz",      team: "DRX",          role: "Duelist",   region: "Pacific",  stats: { rating: 1.24, kd: 1.30, acs: 252, adr: 161, kpr: 0.82, cl: 53 } },
       ];
     }
 
     // ─────────────────────────────────────────────────────
-    //  Game filter buttons
+    //  Region filter buttons
     // ─────────────────────────────────────────────────────
     function renderGameFilters() {
-      const games = ["all", ...new Set(players.map(p => p.region))];
-      const wrap  = document.getElementById("game-filters");
+      const regions = ["all", ...new Set(players.map(p => p.region))];
+      const wrap    = document.getElementById("game-filters");
       wrap.innerHTML = "";
-      games.forEach(g => {
+      regions.forEach(r => {
         const btn = document.createElement("button");
-        btn.className = "filter-btn" + (g === activeFilter ? " active" : "");
-        btn.textContent = g === "all" ? "All" : g;
+        btn.className = "filter-btn" + (r === activeFilter ? " active" : "");
+        btn.textContent = r === "all" ? "All" : r;
         btn.addEventListener("click", () => {
-          activeFilter = g;
+          activeFilter = r;
           document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
           renderPlayerPool();
@@ -912,11 +907,12 @@
     // ─────────────────────────────────────────────────────
     function renderPlayerPool() {
       const query    = document.getElementById("search-input").value.toLowerCase();
-      const drafted  = new Set(lobbyData?.draftedPlayerIds || []);
+      const rawDrafted = lobbyData?.draftedPlayerIds || [];
+      const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
       const filtered = players.filter(p => {
-        const matchGame = activeFilter === "all" || p.region === activeFilter;
+        const matchRegion = activeFilter === "all" || p.region === activeFilter;
         const matchSearch = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
-        return matchGame && matchSearch;
+        return matchRegion && matchSearch;
       });
 
       const pool = document.getElementById("player-pool");
@@ -928,11 +924,11 @@
         div.innerHTML = `
           <div class="player-card-top">
             <div class="player-card-name">${p.name}</div>
-            <div class="player-card-game">${p.game}</div>
+            <div class="player-card-game">${p.team}</div>
           </div>
-          <div class="player-card-meta">${p.team} · ${p.role} · ${p.region}</div>
+          <div class="player-card-meta">${p.role} · ${p.region}</div>
           <div class="player-stats-row">
-            ${Object.entries(p.stats).filter(([,v]) => v > 0).map(([k,v]) =>
+            ${Object.entries(p.stats).map(([k, v]) =>
               `<div class="stat-pill">${k.toUpperCase()} <span>${v}</span></div>`
             ).join("")}
           </div>
@@ -956,7 +952,7 @@
       const detail = document.getElementById("player-detail");
       detail.classList.add("show");
       document.getElementById("detail-name").textContent = p.name;
-      document.getElementById("detail-meta").textContent = `${p.team} · ${p.role} · ${p.region} · ${p.game}`;
+      document.getElementById("detail-meta").textContent = `${p.team} · ${p.role} · ${p.region}`;
 
       const statsDiv = document.getElementById("detail-stats");
       statsDiv.innerHTML = Object.entries(p.stats).map(([k, v]) => `
@@ -1018,29 +1014,33 @@
     // ─────────────────────────────────────────────────────
     async function makePick(player) {
       if (!isItMyTurn()) return toast("It's not your turn!", "error");
-      const drafted = new Set(lobbyData.draftedPlayerIds || []);
+
+      // Firebase may return draftedPlayerIds as an object or array — normalise to Set
+      const rawDrafted = lobbyData.draftedPlayerIds || [];
+      const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
       if (drafted.has(player.id)) return toast("Player already drafted!", "error");
 
-      const picks     = lobbyData.picks || {};
-      const pickIndex = Object.keys(picks).length;
-      const numP      = lobbyData.pickOrder.length;
-      const round     = Math.floor(pickIndex / numP) + 1;
+      const picks       = lobbyData.picks || {};
+      const pickIndex   = Object.keys(picks).length;
+      const numP        = lobbyData.pickOrder.length;
+      const round       = Math.floor(pickIndex / numP) + 1;
       const pickInRound = (pickIndex % numP) + 1;
 
       const updates = {};
       updates[`lobbies/${lobbyCode}/picks/${pickIndex}`] = {
-        byUid:   myUid,
-        byName:  myName,
-        playerId: player.id,
+        byUid:      myUid,
+        byName:     myName,
+        playerId:   player.id,
         playerName: player.name,
         playerTeam: player.team,
-        playerGame: player.game,
         playerRole: player.role,
         round,
-        pick: pickInRound,
+        pick:  pickInRound,
         label: `${round}.${pickInRound}`,
       };
-      updates[`lobbies/${lobbyCode}/draftedPlayerIds`] = [...drafted, player.id];
+
+      drafted.add(player.id);
+      updates[`lobbies/${lobbyCode}/draftedPlayerIds`] = [...drafted];
 
       // Check if draft complete
       const total = totalPicks(lobbyData.pickOrder.length);
@@ -1401,7 +1401,8 @@
     async function skipCurrentPick() {
       if (!lobbyData) return;
       const { pickOrder, picks = {}, players: lobbyPlayers = {}, format, auctionState } = lobbyData;
-      const drafted  = new Set(lobbyData.draftedPlayerIds || []);
+      const rawDrafted = lobbyData.draftedPlayerIds || [];
+      const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
       const doneCount = Object.keys(picks).length;
 
       // Who is on the clock?
@@ -1542,7 +1543,8 @@
 
     // Snake or Auction nominate pick button
     document.getElementById("btn-pick").addEventListener("click", () => {
-      if (!selectedPlayer) return;
+      if (!selectedPlayer) return toast("No player selected.", "error");
+      if (!lobbyData)      return toast("Draft not loaded yet.", "error");
       if (lobbyData.format === "snake") {
         makePick(selectedPlayer);
       } else {

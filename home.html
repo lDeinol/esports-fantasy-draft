@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DraftZone — Valorant Fantasy Draft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0b0f;
+      --surface:  #13151c;
+      --surface2: #1c1f2b;
+      --border:   #2a2d3a;
+      --accent:   #00e5ff;
+      --accent2:  #7c3aed;
+      --text:     #e8eaf0;
+      --muted:    #6b7280;
+      --success:  #10b981;
+
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100vh; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    header {
+      height: 52px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      background: var(--surface);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo span { color: var(--accent); }
+
+    .header-divider { width: 1px; height: 24px; background: var(--border); }
+
+    nav { display: flex; gap: 4px; }
+
+    .nav-link {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover  { color: var(--text); background: var(--surface2); }
+    .nav-link.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+    /* ── Hero ────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:hover  { opacity: 0.87; }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary { background: var(--accent);  color: var(--bg); }
+    .btn-ghost   { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+    /* ── Feature Cards ───────────────────────────────── */
+    .features {
+      display: flex;
+      gap: 16px;
+      margin-top: 72px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 800px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+      flex: 1;
+      min-width: 200px;
+      max-width: 240px;
+    }
+
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Session Banner (if active lobby) ────────────── */
+    .session-banner {
+      display: none;
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+      border-radius: 10px;
+      padding: 16px 24px;
+      margin-bottom: 32px;
+      align-items: center;
+      gap: 16px;
+      max-width: 480px;
+      width: 100%;
+    }
+    .session-banner.show { display: flex; }
+
+    .session-text { flex: 1; font-size: 0.875rem; }
+    .session-code { font-family: var(--font-mono); color: var(--accent); font-weight: 600; }
+
+    .btn-sm {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-sm:hover { opacity: 0.85; }
+    .btn-sm-primary { background: var(--accent); color: var(--bg); }
+    .btn-sm-ghost   { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <div class="header-divider"></div>
+    <nav>
+      <a href="home.html"       class="nav-link active">Home</a>
+      <a href="stats.html"      class="nav-link">Stats</a>
+      <a href="index.html"      class="nav-link">Draft</a>
+      <a href="dashboard.html"  class="nav-link">My Team</a>
+      <a href="standings.html"  class="nav-link">Standings</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Active session banner -->
+    <div class="session-banner" id="session-banner">
+      <div class="session-text">
+        You have an active lobby: <span class="session-code" id="session-code">—</span>
+      </div>
+      <a href="draft.html" class="btn-sm btn-sm-primary" id="rejoin-btn">Rejoin Draft</a>
+      <button class="btn-sm btn-sm-ghost" id="clear-session-btn">Leave</button>
+    </div>
+
+    <div class="hero-eyebrow">Valorant Fantasy Draft</div>
+
+    <h1 class="hero-title">
+      Draft.<br><span>Compete.</span><br>Win.
+    </h1>
+
+    <p class="hero-sub">
+      Pick your dream Valorant roster from the world's best pro players.
+      Live snake and auction drafts with friends — no account needed.
+    </p>
+
+    <div class="hero-btns">
+      <a href="index.html" class="btn btn-primary">Start a Draft</a>
+      <a href="stats.html" class="btn btn-ghost">Browse Players</a>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🐍</div>
+        <div class="feature-title">Snake Draft</div>
+        <div class="feature-desc">Classic reversing pick order. First overall to last, then back again.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷</div>
+        <div class="feature-title">Auction Draft</div>
+        <div class="feature-desc">$200 budget. Nominate players and outbid your friends for the best roster.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Live & Real-Time</div>
+        <div class="feature-desc">All picks sync instantly. Everyone sees the board update as it happens.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Fantasy Scoring</div>
+        <div class="feature-desc">Rating, K/D, ACS, ADR, KPR and CL% all count toward your team score.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { LS } from "./app.js";
+
+    // Show rejoin banner if there's an active session
+    const session = LS.getSession();
+    if (session?.lobbyCode) {
+      const banner = document.getElementById("session-banner");
+      banner.classList.add("show");
+      document.getElementById("session-code").textContent = session.lobbyCode;
+
+      // Rejoin goes to draft if in progress, otherwise index
+      document.getElementById("rejoin-btn").href = `draft.html?code=${session.lobbyCode}`;
+
+      document.getElementById("clear-session-btn").addEventListener("click", () => {
+        LS.clearSession();
+        banner.classList.remove("show");
+      });
+    }
+  </script>
+
+</body>
+</html>

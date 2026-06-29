@@ -87,19 +87,27 @@ export function totalPicks(numPlayers) {
 }
 
 // ── Scoring Engine ───────────────────────────────────────────
-// Adjust weights here to change how fantasy points are calculated.
-// stats object should match the shape in players.json
+// Valorant-specific scoring weights
 export const SCORING = {
   weights: {
-    rating: 30,   // e.g. 1.35 rating → 1.35 * 30 = 40.5 pts
-    kd:     20,
-    adr:    0.2,  // e.g. 89 ADR → 89 * 0.2 = 17.8 pts
-    kpr:    15,
+    rating: 40,   // e.g. 1.33 → 53.2 pts
+    kd:     25,   // e.g. 1.41 → 35.3 pts
+    acs:    0.15, // e.g. 275  → 41.3 pts
+    adr:    0.10, // e.g. 175  → 17.5 pts
+    kpr:    10,   // e.g. 0.90 → 9.0 pts
+    cl:     0.20, // e.g. 58%  → 11.6 pts
   },
   calculate(stats = {}) {
     return Object.entries(this.weights).reduce((total, [key, weight]) => {
       return total + (stats[key] ?? 0) * weight;
     }, 0);
+  },
+  breakdown(stats = {}) {
+    return Object.entries(this.weights).map(([key, weight]) => ({
+      stat:   key.toUpperCase(),
+      value:  stats[key] ?? 0,
+      points: +((stats[key] ?? 0) * weight).toFixed(1),
+    }));
   },
 };
 
