@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Draft Room — DraftZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0b0f;
+      --surface:  #13151c;
+      --surface2: #1c1f2b;
+      --surface3: #22263a;
+      --border:   #2a2d3a;
+      --accent:   #00e5ff;
+      --accent2:  #7c3aed;
+      --danger:   #ff4757;
+      --text:     #e8eaf0;
+      --muted:    #6b7280;
+      --success:  #10b981;
+      --warn:     #f59e0b;
+
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    header {
+      height: 52px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .logo span { color: var(--accent); }
+
+    .header-divider { width: 1px; height: 24px; background: var(--border); }
+
+    .pick-status {
+      flex: 1;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .pick-status .on-clock  { color: var(--accent); }
+    .pick-status .waiting   { color: var(--muted); }
+    .pick-status .your-turn { color: var(--warn); }
+
+    .round-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+
+    .format-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: color-mix(in srgb, var(--accent2) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent2) 30%, transparent);
+      border-radius: 4px;
+      padding: 3px 9px;
+    }
+
+    /* ── 3-Column Layout ─────────────────────────────── */
+    .draft-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 220px 1fr 300px;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* ── Panel Shared ────────────────────────────────── */
+    .panel {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel:last-child { border-right: none; }
+
+    .panel-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+    }
+
+    .panel-body::-webkit-scrollbar { width: 4px; }
+    .panel-body::-webkit-scrollbar-track { background: transparent; }
+    .panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ── LEFT: My Team ───────────────────────────────── */
+    .my-team-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .roster-slot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      min-height: 52px;
+      transition: border-color 0.15s;
+    }
+
+    .roster-slot.filled { border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); }
+
+    .slot-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      width: 18px;
+      flex-shrink: 0;
+    }
+
+    .slot-player { flex: 1; }
+    .slot-player-name { font-size: 0.9rem; font-weight: 600; }
+    .slot-player-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+    .slot-empty { font-size: 0.8rem; color: var(--border); font-style: italic; }
+
+    /* Auction budget display */
+    .budget-bar {
+      margin-bottom: 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    .budget-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .budget-amount { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 600; color: var(--success); }
+    .budget-track { height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; }
+    .budget-fill  { height: 4px; background: var(--success); border-radius: 2px; transition: width 0.3s; }
+
+    /* ── CENTER: Draft Grid ──────────────────────────── */
+    .grid-scroll { overflow-x: auto; overflow-y: auto; flex: 1; }
+
+    .draft-table {
+      border-collapse: collapse;
+      min-width: 100%;
+    }
+
+    .draft-table th {
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 10px 14px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: left;
+      z-index: 1;
+    }
+
+    .draft-table th.round-col {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      width: 60px;
+      background: var(--surface);
+    }
+
+    .draft-table td {
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 10px 14px;
+      vertical-align: top;
+      min-width: 140px;
+    }
+
+    .draft-table td.round-label {
+      position: sticky;
+      left: 0;
+      background: var(--surface);
+      z-index: 1;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .pick-cell { min-height: 48px; }
+
+    .pick-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .pick-cell-player { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .pick-cell-by     { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+    .pick-cell.active-pick {
+      background: color-mix(in srgb, var(--warn) 8%, transparent);
+    }
+
+    .pick-cell.your-active {
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+    }
+
+    .pick-cell.empty-future { opacity: 0.3; }
+
+    /* ── RIGHT: Player Pool ──────────────────────────── */
+    .search-wrap {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+
+    .filter-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .filter-btn {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 4px;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .filter-btn.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface2)); }
+
+    /* Player cards */
+    .player-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      position: relative;
+    }
+
+    .player-card:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 5%, var(--surface2)); }
+    .player-card.drafted { opacity: 0.35; pointer-events: none; }
+    .player-card.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface2)); }
+
+    .player-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .player-card-name { font-size: 0.9rem; font-weight: 600; flex: 1; }
+    .player-card-game {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface3);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+
+    .player-card-meta { font-size: 0.72rem; color: var(--muted); }
+
+    .player-stats-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: var(--surface3);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+    .stat-pill span { color: var(--text); font-weight: 600; }
+
+    /* ── Player Detail Panel (bottom of right col) ───── */
+    .player-detail {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 14px;
+      flex-shrink: 0;
+      display: none;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .player-detail.show { display: block; }
+
+    /* Right panel needs explicit flex column with constrained pool */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-left: 1px solid var(--border);
+    }
+
+    .right-panel .search-wrap {
+      flex-shrink: 0;
+    }
+
+    #player-pool {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      min-height: 0;
+    }
+
+    #player-pool::-webkit-scrollbar { width: 4px; }
+    #player-pool::-webkit-scrollbar-track { background: transparent; }
+    #player-pool::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .detail-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 2px;
+    }
+
+    .detail-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+
+    .detail-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .detail-stat {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .detail-stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .detail-stat-val   { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-top: 2px; }
+
+    .btn-pick {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-pick:hover    { opacity: 0.85; }
+    .btn-pick:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ── Auction Panel (center, replaces grid during active bid) */
+    .auction-banner {
+      background: color-mix(in srgb, var(--accent2) 10%, var(--surface));
+      border-bottom: 1px solid color-mix(in srgb, var(--accent2) 30%, var(--border));
+      padding: 14px 20px;
+      display: none;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .auction-banner.show { display: flex; }
+
+    .auction-player-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      flex: 1;
+    }
+
+    .auction-bid-display {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent2);
+    }
+
+    .auction-bidder { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+    .auction-controls { display: flex; gap: 8px; align-items: center; }
+
+    .bid-input {
+      width: 80px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      text-align: center;
+      outline: none;
+    }
+    .bid-input:focus { border-color: var(--accent2); }
+
+    .btn-bid {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: var(--accent2);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-bid:hover    { opacity: 0.85; }
+    .btn-bid:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .btn-nominate {
+      padding: 8px 14px;
+      border: 1px solid var(--accent2);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--accent2);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: none;
+    }
+    .btn-nominate:hover { background: color-mix(in srgb, var(--accent2) 15%, transparent); }
+    .btn-nominate.show  { display: inline-block; }
+    .btn-nominate:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ── Toast ───────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: transform 0.25s ease;
+      z-index: 100;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+    #toast.success { border-color: var(--success); color: var(--success); }
+    #toast.error   { border-color: var(--danger);  color: var(--danger);  }
+
+    /* ── Draft Complete Banner ───────────────────────── */
+    #draft-complete {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 11, 15, 0.85);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+    }
+    #draft-complete.show { display: flex; }
+
+    .complete-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      max-width: 380px;
+    }
+    .complete-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .complete-sub { color: var(--muted); margin-bottom: 24px; }
+    .complete-btns { display: flex; gap: 10px; }
+    .complete-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .complete-btn.primary  { background: var(--accent); color: var(--bg); }
+    .complete-btn.ghost    { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    /* ── Spinner ─────────────────────────────────────── */
+    .spinner {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Avatar Colors ───────────────────────────────── */
+    .av-0 { background: #1a3a4a; color: #00e5ff; }
+    .av-1 { background: #2d1f4e; color: #a78bfa; }
+    .av-2 { background: #1a3a2a; color: #10b981; }
+    .av-3 { background: #3a2a1a; color: #f59e0b; }
+    .av-4 { background: #3a1a2a; color: #ec4899; }
+    .av-5 { background: #1a2a3a; color: #60a5fa; }
+    .av-6 { background: #2a1a1a; color: #f87171; }
+    .av-7 { background: #2a2a1a; color: #d4d40a; }
+
+    /* ── Host Controls Bar ───────────────────────────── */
+    #host-controls {
+      display: none;
+      padding: 8px 20px;
+      background: color-mix(in srgb, var(--warn) 6%, var(--surface));
+      border-bottom: 1px solid color-mix(in srgb, var(--warn) 20%, var(--border));
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    #host-controls.show { display: flex; }
+
+    .host-controls-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--warn);
+      margin-right: 4px;
+    }
+
+    .btn-host {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      border: none;
+    }
+    .btn-host:hover    { opacity: 0.82; }
+    .btn-host:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .btn-host-skip { background: var(--warn);   color: var(--bg); }
+    .btn-host-end  { background: var(--danger);  color: white; margin-left: auto; }
+
+    /* ── Confirm Modal ───────────────────────────────── */
+    #confirm-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 11, 15, 0.8);
+      z-index: 60;
+      align-items: center;
+      justify-content: center;
+    }
+    #confirm-modal.show { display: flex; }
+
+    .confirm-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 360px;
+      width: 100%;
+    }
+    .confirm-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .confirm-body  { color: var(--muted); font-size: 0.875rem; margin-bottom: 24px; line-height: 1.5; }
+    .confirm-btns  { display: flex; gap: 10px; }
+    .confirm-btn   {
+      flex: 1; padding: 11px; border-radius: 8px; border: none;
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .confirm-btn:hover { opacity: 0.85; }
+    .confirm-btn.danger { background: var(--danger); color: white; }
+    .confirm-btn.ghost  { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    /* Skipped pick indicator in grid */
+    .pick-cell.skipped { background: color-mix(in srgb, var(--warn) 6%, transparent); }
+    .pick-cell-skipped-label { font-size: 0.7rem; color: var(--warn); margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────── -->
+  <header>
+    <div class="logo">Draft<span>Zone</span></div>
+    <div class="header-divider"></div>
+    <div class="pick-status" id="pick-status">Loading draft…</div>
+    <div class="round-badge" id="round-badge">Round —</div>
+    <div class="format-badge" id="format-badge">—</div>
+  </header>
+
+  <!-- ── Host Controls Bar (host only) ───────────────── -->
+  <div id="host-controls">
+    <span class="host-controls-label">⚙ Host</span>
+    <button class="btn-host btn-host-skip" id="btn-skip">Skip Current Pick</button>
+    <button class="btn-host btn-host-end"  id="btn-end-draft">End Draft</button>
+  </div>
+
+  <!-- ── Confirm Modal ─────────────────────────────────── -->
+  <div id="confirm-modal">
+    <div class="confirm-card">
+      <div class="confirm-title" id="confirm-title">Are you sure?</div>
+      <div class="confirm-body"  id="confirm-body">This action cannot be undone.</div>
+      <div class="confirm-btns">
+        <button class="confirm-btn ghost"  id="confirm-cancel">Cancel</button>
+        <button class="confirm-btn danger" id="confirm-ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Auction Banner (shown during active bid) ─────── -->
+  <div class="auction-banner" id="auction-banner">
+    <div>
+      <div class="auction-player-name" id="auction-player-name">—</div>
+      <div class="auction-bidder" id="auction-bidder-info">Nominated by —</div>
+    </div>
+    <div>
+      <div class="auction-bid-display" id="auction-bid-display">$0</div>
+      <div class="auction-bidder" id="auction-current-bidder">No bids yet</div>
+    </div>
+    <div class="auction-controls">
+      <input class="bid-input" id="bid-input" type="number" min="1" placeholder="$" />
+      <button class="btn-bid" id="btn-bid">Bid</button>
+      <button class="btn-bid" id="btn-win" style="background:var(--success); display:none;">Award Win</button>
+    </div>
+  </div>
+
+  <!-- ── 3-Column Layout ─────────────────────────────── -->
+  <div class="draft-layout">
+
+    <!-- LEFT: My Team -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>My Team</span>
+        <span id="my-pick-label" style="color:var(--accent); font-size:0.7rem;"></span>
+      </div>
+      <div class="panel-body">
+        <div class="my-team-name" id="my-team-name">—</div>
+        <div id="budget-bar" class="budget-bar" style="display:none">
+          <div class="budget-label">Budget Remaining</div>
+          <div class="budget-amount" id="budget-display">$200</div>
+          <div class="budget-track"><div class="budget-fill" id="budget-fill" style="width:100%"></div></div>
+        </div>
+        <div id="my-roster"></div>
+      </div>
+    </div>
+
+    <!-- CENTER: Draft Grid -->
+    <div class="panel" style="border-right:none;">
+      <div class="panel-header">Draft Board</div>
+      <div class="grid-scroll panel-body" style="padding:0;">
+        <table class="draft-table" id="draft-table">
+          <thead id="draft-thead"></thead>
+          <tbody id="draft-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Nominate button for auction (shown in center panel when no active bid) -->
+      <div style="padding:14px; border-top:1px solid var(--border); flex-shrink:0;" id="nominate-wrap">
+        <button class="btn-nominate show" id="btn-nominate" style="width:100%; display:none;">+ Nominate a Player</button>
+        <div id="center-status" style="text-align:center; color:var(--muted); font-size:0.85rem;"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Player Pool -->
+    <div class="right-panel">
+      <div class="panel-header">Player Pool</div>
+      <div class="search-wrap">
+        <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
+        <div class="filter-row" id="game-filters"></div>
+      </div>
+      <div id="player-pool"></div>
+      <div class="player-detail" id="player-detail">
+        <div class="detail-name" id="detail-name">—</div>
+        <div class="detail-meta" id="detail-meta">—</div>
+        <div class="detail-stats" id="detail-stats"></div>
+        <button class="btn-pick" id="btn-pick">Draft Player</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Toast ─────────────────────────────────────────── -->
+  <div id="toast"></div>
+
+  <!-- ── Draft Complete ────────────────────────────────── -->
+  <div id="draft-complete">
+    <div class="complete-card">
+      <div class="complete-title">Draft Complete!</div>
+      <div class="complete-sub">All picks are in. Head to your dashboard or check the standings.</div>
+      <div class="complete-btns">
+        <a href="dashboard.html" class="complete-btn primary">My Team</a>
+        <a href="standings.html" class="complete-btn ghost">Standings</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      db, auth, ref, set, get, update, onValue, push,
+      ensureAuth, LS, CONFIG, getPickerUid, totalPicks, SCORING, subscribeLobby
+    } from "./app.js";
+
+    // ─────────────────────────────────────────────────────
+    //  State
+    // ─────────────────────────────────────────────────────
+    const params    = new URLSearchParams(location.search);
+    const lobbyCode = params.get("code") || LS.getSession()?.lobbyCode;
+
+    let session       = LS.getSession();
+    let myUid         = session?.uid;
+    let myName        = session?.name;
+    let lobbyData     = null;
+    let players       = [];       // from players.json
+    let selectedPlayer= null;
+    let activeFilter  = "all";
+
+    // ─────────────────────────────────────────────────────
+    //  Toast helper
+    // ─────────────────────────────────────────────────────
+    function toast(msg, type = "") {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.className = `show ${type}`;
+      setTimeout(() => { t.className = ""; }, 2500);
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Load player pool
+    // ─────────────────────────────────────────────────────
+    async function loadPlayers() {
+      try {
+        const res = await fetch("data/players.json");
+        players = await res.json();
+      } catch {
+        players = getDummyPlayers();
+      }
+      renderGameFilters();
+      renderPlayerPool();
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Dummy players (used until real data/players.json exists)
+    // ─────────────────────────────────────────────────────
+    function getDummyPlayers() {
+      return [
+        { id: "s1mple",   name: "s1mple",   team: "NAVI",        game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.35, kd: 1.42, adr: 89.3, kpr: 0.88 } },
+        { id: "ZywOo",    name: "ZywOo",    team: "Vitality",    game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.30, kd: 1.38, adr: 85.1, kpr: 0.83 } },
+        { id: "NiKo",     name: "NiKo",     team: "G2",          game: "Valorant",      role: "Rifler",  region: "EU", stats: { rating: 1.25, kd: 1.29, adr: 82.7, kpr: 0.80 } },
+        { id: "device",   name: "device",   team: "Astralis",    game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.20, kd: 1.24, adr: 78.4, kpr: 0.76 } },
+        { id: "sh1ro",    name: "sh1ro",    team: "Cloud9",      game: "Valorant",      role: "AWPer",   region: "CIS",stats: { rating: 1.22, kd: 1.27, adr: 80.1, kpr: 0.79 } },
+        { id: "broky",    name: "broky",    team: "FaZe",        game: "Valorant",      role: "AWPer",   region: "EU", stats: { rating: 1.18, kd: 1.21, adr: 76.5, kpr: 0.74 } },
+        { id: "Faker",    name: "Faker",    team: "T1",          game: "LoL",      role: "Mid",     region: "KR", stats: { rating: 9.4,  kd: 4.8,  adr: 0,    kpr: 0    } },
+        { id: "Chovy",    name: "Chovy",    team: "Gen.G",       game: "LoL",      role: "Mid",     region: "KR", stats: { rating: 9.1,  kd: 5.1,  adr: 0,    kpr: 0    } },
+        { id: "Ruler",    name: "Ruler",    team: "Gen.G",       game: "LoL",      role: "ADC",     region: "KR", stats: { rating: 8.9,  kd: 4.6,  adr: 0,    kpr: 0    } },
+        { id: "Caps",     name: "Caps",     team: "G2",          game: "LoL",      role: "Mid",     region: "EU", stats: { rating: 8.7,  kd: 4.2,  adr: 0,    kpr: 0    } },
+        { id: "TenZ",     name: "TenZ",     team: "Sentinels",   game: "Valorant", role: "Duelist", region: "NA", stats: { rating: 1.28, kd: 1.35, adr: 168,  kpr: 0.86 } },
+        { id: "yay",      name: "yay",      team: "NRG",         game: "Valorant", role: "Operator",region: "NA", stats: { rating: 1.31, kd: 1.40, adr: 172,  kpr: 0.89 } },
+        { id: "cNed",     name: "cNed",     team: "Fnatic",      game: "Valorant", role: "Operator",region: "EU", stats: { rating: 1.26, kd: 1.33, adr: 165,  kpr: 0.85 } },
+        { id: "Aspas",    name: "Aspas",    team: "LOUD",        game: "Valorant", role: "Duelist", region: "BR", stats: { rating: 1.33, kd: 1.41, adr: 175,  kpr: 0.90 } },
+        { id: "ScreaM",   name: "ScreaM",   team: "Karmine",     game: "Valorant", role: "Duelist", region: "EU", stats: { rating: 1.24, kd: 1.29, adr: 161,  kpr: 0.82 } },
+        { id: "Showmaker", name:"Showmaker",team: "KT",          game: "LoL",      role: "Mid",     region: "KR", stats: { rating: 8.8,  kd: 4.5,  adr: 0,    kpr: 0    } },
+        { id: "Keria",    name: "Keria",    team: "T1",          game: "LoL",      role: "Support", region: "KR", stats: { rating: 8.6,  kd: 5.3,  adr: 0,    kpr: 0    } },
+        { id: "ropz",     name: "ropz",     team: "FaZe",        game: "Valorant",      role: "Rifler",  region: "EU", stats: { rating: 1.16, kd: 1.20, adr: 75.2, kpr: 0.73 } },
+        { id: "Derke",    name: "Derke",    team: "Fnatic",      game: "Valorant", role: "Duelist", region: "EU", stats: { rating: 1.22, kd: 1.28, adr: 159,  kpr: 0.81 } },
+        { id: "Chronicle",name:"Chronicle", team: "Fnatic",      game: "Valorant", role: "Sentinel",region: "EU", stats: { rating: 1.19, kd: 1.24, adr: 155,  kpr: 0.78 } },
+      ];
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Game filter buttons
+    // ─────────────────────────────────────────────────────
+    function renderGameFilters() {
+      const games = ["all", ...new Set(players.map(p => p.game))];
+      const wrap  = document.getElementById("game-filters");
+      wrap.innerHTML = "";
+      games.forEach(g => {
+        const btn = document.createElement("button");
+        btn.className = "filter-btn" + (g === activeFilter ? " active" : "");
+        btn.textContent = g === "all" ? "All" : g;
+        btn.addEventListener("click", () => {
+          activeFilter = g;
+          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderPlayerPool();
+        });
+        wrap.appendChild(btn);
+      });
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Player pool rendering
+    // ─────────────────────────────────────────────────────
+    function renderPlayerPool() {
+      const query    = document.getElementById("search-input").value.toLowerCase();
+      const drafted  = new Set(lobbyData?.draftedPlayerIds || []);
+      const filtered = players.filter(p => {
+        const matchGame = activeFilter === "all" || p.game === activeFilter;
+        const matchSearch = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
+        return matchGame && matchSearch;
+      });
+
+      const pool = document.getElementById("player-pool");
+      pool.innerHTML = "";
+
+      filtered.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "player-card" + (drafted.has(p.id) ? " drafted" : "") + (selectedPlayer?.id === p.id ? " selected" : "");
+        div.innerHTML = `
+          <div class="player-card-top">
+            <div class="player-card-name">${p.name}</div>
+            <div class="player-card-game">${p.game}</div>
+          </div>
+          <div class="player-card-meta">${p.team} · ${p.role} · ${p.region}</div>
+          <div class="player-stats-row">
+            ${Object.entries(p.stats).filter(([,v]) => v > 0).map(([k,v]) =>
+              `<div class="stat-pill">${k.toUpperCase()} <span>${v}</span></div>`
+            ).join("")}
+          </div>
+        `;
+        div.addEventListener("click", () => selectPlayer(p));
+        pool.appendChild(div);
+      });
+
+      if (filtered.length === 0) {
+        pool.innerHTML = `<div style="color:var(--muted); font-size:0.85rem; padding:12px 0;">No players found.</div>`;
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Select a player (show detail pane)
+    // ─────────────────────────────────────────────────────
+    function selectPlayer(p) {
+      selectedPlayer = p;
+      renderPlayerPool();
+
+      const detail = document.getElementById("player-detail");
+      detail.classList.add("show");
+      document.getElementById("detail-name").textContent = p.name;
+      document.getElementById("detail-meta").textContent = `${p.team} · ${p.role} · ${p.region} · ${p.game}`;
+
+      const statsDiv = document.getElementById("detail-stats");
+      statsDiv.innerHTML = Object.entries(p.stats).map(([k, v]) => `
+        <div class="detail-stat">
+          <div class="detail-stat-label">${k.toUpperCase()}</div>
+          <div class="detail-stat-val">${v}</div>
+        </div>
+      `).join("");
+
+      updatePickButton();
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Update pick button state
+    // ─────────────────────────────────────────────────────
+    function updatePickButton() {
+      if (!lobbyData || !selectedPlayer) return;
+      const btn      = document.getElementById("btn-pick");
+      const isMyTurn = isItMyTurn();
+      const drafted  = new Set(lobbyData.draftedPlayerIds || []);
+      const isDrafted= drafted.has(selectedPlayer.id);
+
+      if (lobbyData.format === "snake") {
+        btn.disabled   = !isMyTurn || isDrafted;
+        btn.textContent = isDrafted ? "Already Drafted"
+                        : isMyTurn  ? `Draft ${selectedPlayer.name}`
+                        : "Not Your Turn";
+      } else {
+        // Auction: button nominates the player
+        btn.textContent = "Nominate for Auction";
+        btn.disabled = isDrafted || !isNominationTurn() || !!lobbyData.auctionState?.activePlayer;
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Snake: is it my turn?
+    // ─────────────────────────────────────────────────────
+    function isItMyTurn() {
+      if (!lobbyData) return false;
+      const { pickOrder, currentPickIndex, picks } = lobbyData;
+      const doneCount = Object.keys(picks || {}).length;
+      const uid = getPickerUid(pickOrder, doneCount);
+      return uid === myUid;
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Auction: is it my nomination turn?
+    // ─────────────────────────────────────────────────────
+    function isNominationTurn() {
+      if (!lobbyData) return false;
+      const { pickOrder, picks } = lobbyData;
+      const doneCount = Object.keys(picks || {}).length;
+      const uid = getPickerUid(pickOrder, doneCount);
+      return uid === myUid;
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Snake: make a pick
+    // ─────────────────────────────────────────────────────
+    async function makePick(player) {
+      if (!isItMyTurn()) return toast("It's not your turn!", "error");
+      const drafted = new Set(lobbyData.draftedPlayerIds || []);
+      if (drafted.has(player.id)) return toast("Player already drafted!", "error");
+
+      const picks     = lobbyData.picks || {};
+      const pickIndex = Object.keys(picks).length;
+      const numP      = lobbyData.pickOrder.length;
+      const round     = Math.floor(pickIndex / numP) + 1;
+      const pickInRound = (pickIndex % numP) + 1;
+
+      const updates = {};
+      updates[`lobbies/${lobbyCode}/picks/${pickIndex}`] = {
+        byUid:   myUid,
+        byName:  myName,
+        playerId: player.id,
+        playerName: player.name,
+        playerTeam: player.team,
+        playerGame: player.game,
+        playerRole: player.role,
+        round,
+        pick: pickInRound,
+        label: `${round}.${pickInRound}`,
+      };
+      updates[`lobbies/${lobbyCode}/draftedPlayerIds`] = [...drafted, player.id];
+
+      // Check if draft complete
+      const total = totalPicks(lobbyData.pickOrder.length);
+      if (pickIndex + 1 >= total) {
+        updates[`lobbies/${lobbyCode}/status`] = "complete";
+      }
+
+      await update(ref(db), updates);
+      toast(`Drafted ${player.name}!`, "success");
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Auction: nominate a player
+    // ─────────────────────────────────────────────────────
+    async function nominatePlayer(player) {
+      if (!isNominationTurn()) return toast("It's not your turn to nominate!", "error");
+      if (lobbyData.auctionState?.activePlayer) return toast("A player is already up for bid!", "error");
+
+      await update(ref(db, `lobbies/${lobbyCode}/auctionState`), {
+        activePlayer:  player.id,
+        playerName:    player.name,
+        playerTeam:    player.team,
+        playerGame:    player.game,
+        playerRole:    player.role,
+        activeBid:     CONFIG.MIN_BID,
+        activeBidder:  myUid,
+        activeBidderName: myName,
+        nominatedBy:   myUid,
+        nominatedByName: myName,
+        startedAt:     Date.now(),
+      });
+
+      toast(`Nominated ${player.name}!`);
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Auction: place a bid
+    // ─────────────────────────────────────────────────────
+    async function placeBid() {
+      const amount = parseInt(document.getElementById("bid-input").value);
+      if (!amount || isNaN(amount)) return toast("Enter a valid bid.", "error");
+
+      const state = lobbyData.auctionState;
+      if (!state?.activePlayer) return toast("No active auction.", "error");
+
+      const myBudget = getMyBudget();
+      if (amount > myBudget) return toast(`Not enough budget! You have $${myBudget}.`, "error");
+      if (amount <= state.activeBid) return toast(`Bid must be higher than $${state.activeBid}.`, "error");
+
+      await update(ref(db, `lobbies/${lobbyCode}/auctionState`), {
+        activeBid: amount,
+        activeBidder: myUid,
+        activeBidderName: myName,
+      });
+
+      document.getElementById("bid-input").value = "";
+      toast(`Bid $${amount}!`, "success");
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Auction: host awards win (since no timer, manual trigger)
+    // ─────────────────────────────────────────────────────
+    async function awardWin() {
+      const state = lobbyData.auctionState;
+      if (!state?.activePlayer) return;
+
+      const picks     = lobbyData.picks || {};
+      const pickIndex = Object.keys(picks).length;
+      const numP      = lobbyData.pickOrder.length;
+      const round     = Math.floor(pickIndex / numP) + 1;
+      const pickInRound = (pickIndex % numP) + 1;
+
+      const updates = {};
+      updates[`lobbies/${lobbyCode}/picks/${pickIndex}`] = {
+        byUid:        state.activeBidder,
+        byName:       state.activeBidderName,
+        playerId:     state.activePlayer,
+        playerName:   state.playerName,
+        playerTeam:   state.playerTeam,
+        playerGame:   state.playerGame,
+        playerRole:   state.playerRole,
+        price:        state.activeBid,
+        round,
+        pick:         pickInRound,
+        label:        `${round}.${pickInRound}`,
+      };
+
+      const draftedIds = [...(lobbyData.draftedPlayerIds || []), state.activePlayer];
+      updates[`lobbies/${lobbyCode}/draftedPlayerIds`] = draftedIds;
+      updates[`lobbies/${lobbyCode}/auctionState`]     = null;
+
+      // Deduct budget
+      const spentKey = `lobbies/${lobbyCode}/budgets/${state.activeBidder}`;
+      const currentSpent = (lobbyData.budgets?.[state.activeBidder]) || 0;
+      updates[spentKey] = currentSpent + state.activeBid;
+
+      // Check complete
+      const total = totalPicks(lobbyData.pickOrder.length);
+      if (pickIndex + 1 >= total) {
+        updates[`lobbies/${lobbyCode}/status`] = "complete";
+      }
+
+      await update(ref(db), updates);
+      toast(`${state.activeBidderName} wins ${state.playerName} for $${state.activeBid}!`, "success");
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Budget helper
+    // ─────────────────────────────────────────────────────
+    function getMyBudget() {
+      const spent = lobbyData.budgets?.[myUid] || 0;
+      return CONFIG.AUCTION_BUDGET - spent;
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Render left panel: My Team
+    // ─────────────────────────────────────────────────────
+    function renderMyTeam() {
+      const picks   = lobbyData?.picks || {};
+      const myPicks = Object.values(picks).filter(p => p.byUid === myUid);
+
+      document.getElementById("my-team-name").textContent = myName || "My Team";
+
+      // Budget bar (auction only)
+      if (lobbyData?.format === "auction") {
+        const budget   = getMyBudget();
+        const pct      = (budget / CONFIG.AUCTION_BUDGET) * 100;
+        document.getElementById("budget-bar").style.display   = "block";
+        document.getElementById("budget-display").textContent = `$${budget}`;
+        document.getElementById("budget-fill").style.width    = `${pct}%`;
+        document.getElementById("budget-fill").style.background =
+          pct < 25 ? "var(--danger)" : pct < 50 ? "var(--warn)" : "var(--success)";
+      }
+
+      const roster = document.getElementById("my-roster");
+      roster.innerHTML = "";
+
+      for (let i = 0; i < CONFIG.ROSTER_SIZE; i++) {
+        const pick = myPicks[i];
+        const div  = document.createElement("div");
+        div.className = "roster-slot" + (pick ? " filled" : "");
+        div.innerHTML = pick
+          ? `<div class="slot-num">${i + 1}</div>
+             <div class="slot-player">
+               <div class="slot-player-name">${pick.playerName}</div>
+               <div class="slot-player-meta">${pick.playerTeam} · ${pick.playerRole || ""} · ${pick.playerGame}</div>
+             </div>`
+          : `<div class="slot-num">${i + 1}</div><div class="slot-empty">Empty</div>`;
+        roster.appendChild(div);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Render center: Draft Grid
+    // ─────────────────────────────────────────────────────
+    function renderDraftGrid() {
+      if (!lobbyData) return;
+      const { pickOrder, picks = {}, players: lobbyPlayers = {} } = lobbyData;
+      const numPlayers = pickOrder.length;
+      const numRounds  = CONFIG.ROSTER_SIZE;
+      const picksArr   = Object.values(picks);
+
+      // Build header: Round | Player1 | Player2 ...
+      const thead = document.getElementById("draft-thead");
+      thead.innerHTML = "";
+      const headerRow = document.createElement("tr");
+
+      const roundTh = document.createElement("th");
+      roundTh.className = "round-col";
+      roundTh.textContent = "Round";
+      headerRow.appendChild(roundTh);
+
+      pickOrder.forEach((uid, i) => {
+        const name = lobbyPlayers[uid]?.name || `Player ${i + 1}`;
+        const th   = document.createElement("th");
+        th.textContent = name + (uid === myUid ? " (You)" : "");
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+
+      // Build rows
+      const tbody = document.getElementById("draft-tbody");
+      tbody.innerHTML = "";
+
+      for (let r = 0; r < numRounds; r++) {
+        const tr = document.createElement("tr");
+
+        const roundTd = document.createElement("td");
+        roundTd.className = "round-label";
+        roundTd.textContent = `R${r + 1}`;
+        tr.appendChild(roundTd);
+
+        for (let p = 0; p < numPlayers; p++) {
+          // In a snake draft, even rounds go L→R, odd go R→L
+          const colIndex  = r % 2 === 0 ? p : numPlayers - 1 - p;
+          const pickIndex = r * numPlayers + p;
+          const pick      = picksArr[pickIndex];
+          const ownerUid  = getPickerUid(pickOrder, pickIndex);
+          const isActive  = pickIndex === picksArr.length;
+          const isMyActive= isActive && ownerUid === myUid;
+          const isFuture  = pickIndex > picksArr.length;
+
+          const td = document.createElement("td");
+          const div = document.createElement("div");
+          div.className = "pick-cell" +
+            (isMyActive ? " your-active" : isActive ? " active-pick" : "") +
+            (isFuture   ? " empty-future" : "");
+
+          const label = `${r + 1}.${colIndex + 1}`;
+          div.innerHTML = pick
+            ? `<div class="pick-cell-label">${label}</div>
+               <div class="pick-cell-player">${pick.playerName}</div>
+               <div class="pick-cell-by">${pick.byName}${pick.price ? ` · $${pick.price}` : ""}${pick.skipped ? ' · <span style="color:var(--warn)">auto</span>' : ""}</div>`
+            : `<div class="pick-cell-label">${label}</div>
+               ${isActive ? `<div style="color:var(--warn);font-size:0.75rem;">${ownerUid === myUid ? "YOUR PICK" : "On the clock…"}</div>` : ""}`;
+
+          td.appendChild(div);
+          tr.appendChild(td);
+        }
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Update header status
+    // ─────────────────────────────────────────────────────
+    function updateHeader() {
+      if (!lobbyData) return;
+      const { pickOrder, picks = {}, players: lobbyPlayers = {}, format, status } = lobbyData;
+      const doneCount = Object.keys(picks).length;
+      const total     = totalPicks(pickOrder.length);
+      const round     = Math.floor(doneCount / pickOrder.length) + 1;
+
+      document.getElementById("round-badge").textContent  = `Round ${Math.min(round, CONFIG.ROSTER_SIZE)} / ${CONFIG.ROSTER_SIZE}`;
+      document.getElementById("format-badge").textContent = format === "auction" ? "🏷 Auction" : "🐍 Snake";
+
+      const statusEl = document.getElementById("pick-status");
+      const myPickLabel = document.getElementById("my-pick-label");
+
+      if (status === "complete") {
+        statusEl.innerHTML = `<span class="on-clock">Draft Complete!</span>`;
+        myPickLabel.textContent = "";
+        return;
+      }
+
+      if (format === "snake") {
+        const onClockUid  = getPickerUid(pickOrder, doneCount);
+        const onClockName = lobbyPlayers[onClockUid]?.name || "Someone";
+        if (onClockUid === myUid) {
+          statusEl.innerHTML = `<span class="your-turn">⚡ Your pick!</span>`;
+          myPickLabel.textContent = "On the clock";
+        } else {
+          statusEl.innerHTML = `<span class="waiting">Waiting on </span><span class="on-clock">${onClockName}</span>`;
+          myPickLabel.textContent = "";
+        }
+      } else {
+        const state = lobbyData.auctionState;
+        if (state?.activePlayer) {
+          statusEl.innerHTML = `<span class="on-clock">${state.playerName}</span> <span class="waiting">— bidding open</span>`;
+        } else {
+          const nominatorUid  = getPickerUid(pickOrder, doneCount);
+          const nominatorName = lobbyPlayers[nominatorUid]?.name || "Someone";
+          statusEl.innerHTML = nominatorUid === myUid
+            ? `<span class="your-turn">⚡ Your turn to nominate!</span>`
+            : `<span class="waiting">Waiting for </span><span class="on-clock">${nominatorName}</span><span class="waiting"> to nominate</span>`;
+        }
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Update auction UI
+    // ─────────────────────────────────────────────────────
+    function updateAuctionUI() {
+      if (!lobbyData || lobbyData.format !== "auction") return;
+      const state   = lobbyData.auctionState;
+      const banner  = document.getElementById("auction-banner");
+      const nominateWrap = document.getElementById("nominate-wrap");
+      const btnNominate  = document.getElementById("btn-nominate");
+      const btnWin       = document.getElementById("btn-win");
+
+      if (state?.activePlayer) {
+        banner.classList.add("show");
+        document.getElementById("auction-player-name").textContent = state.playerName;
+        document.getElementById("auction-bidder-info").textContent = `Nominated by ${state.nominatedByName} · ${state.playerTeam} · ${state.playerGame}`;
+        document.getElementById("auction-bid-display").textContent = `$${state.activeBid}`;
+        document.getElementById("auction-current-bidder").textContent = `Leading: ${state.activeBidderName}`;
+
+        const myBudget = getMyBudget();
+        document.getElementById("bid-input").min   = state.activeBid + 1;
+        document.getElementById("bid-input").max   = myBudget;
+        document.getElementById("bid-input").placeholder = `$${state.activeBid + 1}+`;
+
+        // Show Award Win to host only
+        btnWin.style.display = lobbyData.hostId === myUid ? "inline-block" : "none";
+        nominateWrap.style.display = "none";
+      } else {
+        banner.classList.remove("show");
+        nominateWrap.style.display = "block";
+        btnWin.style.display = "none";
+
+        const canNominate = isNominationTurn();
+        btnNominate.style.display  = "block";
+        btnNominate.disabled       = !canNominate;
+        btnNominate.textContent    = canNominate ? "+ Nominate a Player" : "Waiting for nomination…";
+
+        const centerStatus = document.getElementById("center-status");
+        centerStatus.textContent = canNominate ? "Select a player from the pool, then click Nominate." : "";
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Full render
+    // ─────────────────────────────────────────────────────
+    function render() {
+      renderMyTeam();
+      renderDraftGrid();
+      renderPlayerPool();
+      updateHeader();
+      updatePickButton();
+      updateHostControls();
+      if (lobbyData?.format === "auction") updateAuctionUI();
+
+      if (lobbyData?.status === "complete") {
+        document.getElementById("draft-complete").classList.add("show");
+      }
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Confirm modal helper
+    // ─────────────────────────────────────────────────────
+    function showConfirm({ title, body, onConfirm }) {
+      document.getElementById("confirm-title").textContent = title;
+      document.getElementById("confirm-body").textContent  = body;
+      document.getElementById("confirm-modal").classList.add("show");
+
+      const ok     = document.getElementById("confirm-ok");
+      const cancel = document.getElementById("confirm-cancel");
+
+      const cleanup = () => {
+        document.getElementById("confirm-modal").classList.remove("show");
+        ok.replaceWith(ok.cloneNode(true));
+        cancel.replaceWith(cancel.cloneNode(true));
+      };
+
+      document.getElementById("confirm-ok").addEventListener("click", () => {
+        cleanup(); onConfirm();
+      }, { once: true });
+
+      document.getElementById("confirm-cancel").addEventListener("click", cleanup, { once: true });
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Skip current pick (host only)
+    //  Finds highest-rated available player and auto-picks
+    //  for whoever is currently on the clock.
+    // ─────────────────────────────────────────────────────
+    async function skipCurrentPick() {
+      if (!lobbyData) return;
+      const { pickOrder, picks = {}, players: lobbyPlayers = {}, format, auctionState } = lobbyData;
+      const drafted  = new Set(lobbyData.draftedPlayerIds || []);
+      const doneCount = Object.keys(picks).length;
+
+      // Who is on the clock?
+      let onClockUid, onClockName;
+      if (format === "auction" && auctionState?.activePlayer) {
+        // In auction mid-bid: the nominator is "on clock"; auto-award to current high bidder or nominator
+        onClockUid  = auctionState.activeBidder  || auctionState.nominatedBy;
+        onClockName = auctionState.activeBidderName || auctionState.nominatedByName;
+      } else {
+        onClockUid  = getPickerUid(pickOrder, doneCount);
+        onClockName = lobbyPlayers[onClockUid]?.name || "Unknown";
+      }
+
+      // Find highest-rated available player
+      // Rating is used as the primary sort key across all games
+      const available = players
+        .filter(p => !drafted.has(p.id))
+        .sort((a, b) => (b.stats?.rating ?? 0) - (a.stats?.rating ?? 0));
+
+      if (available.length === 0) {
+        toast("No players left to assign!", "error");
+        return;
+      }
+
+      const bestPlayer = available[0];
+      const numP       = pickOrder.length;
+      const round      = Math.floor(doneCount / numP) + 1;
+      const pickInRound = (doneCount % numP) + 1;
+
+      const updates = {};
+
+      if (format === "auction" && auctionState?.activePlayer) {
+        // Close the active auction first, awarding to current high bidder
+        const price = auctionState.activeBid || CONFIG.MIN_BID;
+        updates[`lobbies/${lobbyCode}/picks/${doneCount}`] = {
+          byUid: onClockUid, byName: onClockName,
+          playerId: auctionState.activePlayer, playerName: auctionState.playerName,
+          playerTeam: auctionState.playerTeam, playerGame: auctionState.playerGame,
+          playerRole: auctionState.playerRole, price,
+          round, pick: pickInRound, label: `${round}.${pickInRound}`, skipped: false,
+        };
+        drafted.add(auctionState.activePlayer);
+        updates[`lobbies/${lobbyCode}/auctionState`] = null;
+
+        const spentSoFar = lobbyData.budgets?.[onClockUid] || 0;
+        updates[`lobbies/${lobbyCode}/budgets/${onClockUid}`] = spentSoFar + price;
+
+        // Now assign best available to the NEXT pick owner
+        const nextDone    = doneCount + 1;
+        const nextUid     = getPickerUid(pickOrder, nextDone);
+        const nextName    = lobbyPlayers[nextUid]?.name || "Unknown";
+        const nextRound   = Math.floor(nextDone / numP) + 1;
+        const nextPick    = (nextDone % numP) + 1;
+
+        updates[`lobbies/${lobbyCode}/picks/${nextDone}`] = {
+          byUid: nextUid, byName: nextName,
+          playerId: bestPlayer.id, playerName: bestPlayer.name,
+          playerTeam: bestPlayer.team, playerGame: bestPlayer.game,
+          playerRole: bestPlayer.role, price: CONFIG.MIN_BID,
+          round: nextRound, pick: nextPick,
+          label: `${nextRound}.${nextPick}`, skipped: true,
+        };
+        drafted.add(bestPlayer.id);
+        updates[`lobbies/${lobbyCode}/draftedPlayerIds`] = [...drafted];
+
+        const total = totalPicks(numP);
+        if (nextDone + 1 >= total) updates[`lobbies/${lobbyCode}/status`] = "complete";
+
+      } else {
+        // Snake or auction (no active bid): assign best player to current on-clock person
+        updates[`lobbies/${lobbyCode}/picks/${doneCount}`] = {
+          byUid: onClockUid, byName: onClockName,
+          playerId: bestPlayer.id, playerName: bestPlayer.name,
+          playerTeam: bestPlayer.team, playerGame: bestPlayer.game,
+          playerRole: bestPlayer.role,
+          round, pick: pickInRound,
+          label: `${round}.${pickInRound}`, skipped: true,
+        };
+        updates[`lobbies/${lobbyCode}/draftedPlayerIds`] = [...drafted, bestPlayer.id];
+
+        const total = totalPicks(numP);
+        if (doneCount + 1 >= total) updates[`lobbies/${lobbyCode}/status`] = "complete";
+      }
+
+      await update(ref(db), updates);
+      toast(`Skipped — assigned ${bestPlayer.name} to ${onClockName}`, "success");
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  End draft early (host only)
+    // ─────────────────────────────────────────────────────
+    async function endDraftEarly() {
+      await update(ref(db, `lobbies/${lobbyCode}`), { status: "complete" });
+      toast("Draft ended by host.", "success");
+    }
+
+    // ─────────────────────────────────────────────────────
+    //  Show / hide host controls
+    // ─────────────────────────────────────────────────────
+    function updateHostControls() {
+      if (!lobbyData) return;
+      const isHost   = lobbyData.hostId === myUid;
+      const isActive = lobbyData.status === "drafting";
+      const bar      = document.getElementById("host-controls");
+
+      if (isHost && isActive) {
+        bar.classList.add("show");
+      } else {
+        bar.classList.remove("show");
+      }
+    }
+
+    // Host button listeners (wired once)
+    document.getElementById("btn-skip").addEventListener("click", () => {
+      if (!lobbyData) return;
+      const picks    = lobbyData.picks || {};
+      const doneCount = Object.keys(picks).length;
+      const onClockUid = getPickerUid(lobbyData.pickOrder, doneCount);
+      const onClockName = lobbyData.players?.[onClockUid]?.name || "this player";
+
+      showConfirm({
+        title: "Skip Pick?",
+        body:  `This will auto-assign the highest-rated available player to ${onClockName} and advance to the next pick.`,
+        onConfirm: skipCurrentPick,
+      });
+    });
+
+    document.getElementById("btn-end-draft").addEventListener("click", () => {
+      showConfirm({
+        title: "End Draft?",
+        body:  "This will immediately end the draft for everyone. Picks already made are kept. This cannot be undone.",
+        onConfirm: endDraftEarly,
+      });
+    });
+
+
+    document.getElementById("search-input").addEventListener("input", renderPlayerPool);
+
+    // Snake or Auction nominate pick button
+    document.getElementById("btn-pick").addEventListener("click", () => {
+      if (!selectedPlayer) return;
+      if (lobbyData.format === "snake") {
+        makePick(selectedPlayer);
+      } else {
+        nominatePlayer(selectedPlayer);
+      }
+    });
+
+    // Nominate button in center panel
+    document.getElementById("btn-nominate").addEventListener("click", () => {
+      if (!selectedPlayer) return toast("Select a player from the pool first.", "error");
+      nominatePlayer(selectedPlayer);
+    });
+
+    // Bid button
+    document.getElementById("btn-bid").addEventListener("click", placeBid);
+
+    // Bid on Enter key
+    document.getElementById("bid-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") placeBid();
+    });
+
+    // Award Win (host only, no timer)
+    document.getElementById("btn-win").addEventListener("click", awardWin);
+
+    // ─────────────────────────────────────────────────────
+    //  Init
+    // ─────────────────────────────────────────────────────
+    async function init() {
+      if (!lobbyCode) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      session = LS.getSession();
+      myUid   = session?.uid;
+      myName  = session?.name;
+
+      if (!myUid) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      await ensureAuth();
+      await loadPlayers();
+
+      // Subscribe to live lobby updates
+      subscribeLobby(lobbyCode, (data) => {
+        if (!data) { window.location.href = "index.html"; return; }
+        lobbyData = data;
+        render();
+      });
+    }
+
+    init();
+  </script>
+
+</body>
+</html>

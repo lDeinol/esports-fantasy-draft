@@ -1,0 +1,22 @@
+[
+  { "id": "s1mple",    "name": "s1mple",    "team": "NAVI",      "game": "Valorant",      "role": "AWPer",    "region": "EU",  "stats": { "rating": 1.35, "kd": 1.42, "adr": 89.3, "kpr": 0.88 } },
+  { "id": "ZywOo",    "name": "ZywOo",     "team": "Vitality",  "game": "Valorant",      "role": "AWPer",    "region": "EU",  "stats": { "rating": 1.30, "kd": 1.38, "adr": 85.1, "kpr": 0.83 } },
+  { "id": "NiKo",     "name": "NiKo",      "team": "G2",        "game": "Valorant",      "role": "Rifler",   "region": "EU",  "stats": { "rating": 1.25, "kd": 1.29, "adr": 82.7, "kpr": 0.80 } },
+  { "id": "device",   "name": "device",    "team": "Astralis",  "game": "Valorant",      "role": "AWPer",    "region": "EU",  "stats": { "rating": 1.20, "kd": 1.24, "adr": 78.4, "kpr": 0.76 } },
+  { "id": "sh1ro",    "name": "sh1ro",     "team": "Cloud9",    "game": "Valorant",      "role": "AWPer",    "region": "CIS", "stats": { "rating": 1.22, "kd": 1.27, "adr": 80.1, "kpr": 0.79 } },
+  { "id": "broky",    "name": "broky",     "team": "FaZe",      "game": "Valorant",      "role": "AWPer",    "region": "EU",  "stats": { "rating": 1.18, "kd": 1.21, "adr": 76.5, "kpr": 0.74 } },
+  { "id": "ropz",     "name": "ropz",      "team": "FaZe",      "game": "Valorant",      "role": "Rifler",   "region": "EU",  "stats": { "rating": 1.16, "kd": 1.20, "adr": 75.2, "kpr": 0.73 } },
+  { "id": "Faker",    "name": "Faker",     "team": "T1",        "game": "LoL",      "role": "Mid",      "region": "KR",  "stats": { "rating": 9.4,  "kd": 4.8,  "adr": 0,    "kpr": 0    } },
+  { "id": "Chovy",    "name": "Chovy",     "team": "Gen.G",     "game": "LoL",      "role": "Mid",      "region": "KR",  "stats": { "rating": 9.1,  "kd": 5.1,  "adr": 0,    "kpr": 0    } },
+  { "id": "Ruler",    "name": "Ruler",     "team": "Gen.G",     "game": "LoL",      "role": "ADC",      "region": "KR",  "stats": { "rating": 8.9,  "kd": 4.6,  "adr": 0,    "kpr": 0    } },
+  { "id": "Caps",     "name": "Caps",      "team": "G2",        "game": "LoL",      "role": "Mid",      "region": "EU",  "stats": { "rating": 8.7,  "kd": 4.2,  "adr": 0,    "kpr": 0    } },
+  { "id": "Showmaker","name": "Showmaker", "team": "KT",        "game": "LoL",      "role": "Mid",      "region": "KR",  "stats": { "rating": 8.8,  "kd": 4.5,  "adr": 0,    "kpr": 0    } },
+  { "id": "Keria",    "name": "Keria",     "team": "T1",        "game": "LoL",      "role": "Support",  "region": "KR",  "stats": { "rating": 8.6,  "kd": 5.3,  "adr": 0,    "kpr": 0    } },
+  { "id": "TenZ",     "name": "TenZ",      "team": "Sentinels", "game": "Valorant", "role": "Duelist",  "region": "NA",  "stats": { "rating": 1.28, "kd": 1.35, "adr": 168,  "kpr": 0.86 } },
+  { "id": "yay",      "name": "yay",       "team": "NRG",       "game": "Valorant", "role": "Operator", "region": "NA",  "stats": { "rating": 1.31, "kd": 1.40, "adr": 172,  "kpr": 0.89 } },
+  { "id": "cNed",     "name": "cNed",      "team": "Fnatic",    "game": "Valorant", "role": "Operator", "region": "EU",  "stats": { "rating": 1.26, "kd": 1.33, "adr": 165,  "kpr": 0.85 } },
+  { "id": "Aspas",    "name": "Aspas",     "team": "LOUD",      "game": "Valorant", "role": "Duelist",  "region": "BR",  "stats": { "rating": 1.33, "kd": 1.41, "adr": 175,  "kpr": 0.90 } },
+  { "id": "ScreaM",   "name": "ScreaM",    "team": "Karmine",   "game": "Valorant", "role": "Duelist",  "region": "EU",  "stats": { "rating": 1.24, "kd": 1.29, "adr": 161,  "kpr": 0.82 } },
+  { "id": "Derke",    "name": "Derke",     "team": "Fnatic",    "game": "Valorant", "role": "Duelist",  "region": "EU",  "stats": { "rating": 1.22, "kd": 1.28, "adr": 159,  "kpr": 0.81 } },
+  { "id": "Chronicle","name": "Chronicle", "team": "Fnatic",    "game": "Valorant", "role": "Sentinel", "region": "EU",  "stats": { "rating": 1.19, "kd": 1.24, "adr": 155,  "kpr": 0.78 } }
+]
