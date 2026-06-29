@@ -540,56 +540,6 @@
     #toast.success { border-color: var(--success); color: var(--success); }
     #toast.error   { border-color: var(--danger);  color: var(--danger);  }
 
-    /* ── Draft Complete Banner ───────────────────────── */
-    #draft-complete {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10, 11, 15, 0.85);
-      z-index: 50;
-      align-items: center;
-      justify-content: center;
-    }
-    #draft-complete.show { display: flex; }
-
-    .complete-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 40px;
-      text-align: center;
-      max-width: 380px;
-    }
-    .complete-title {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .complete-sub { color: var(--muted); margin-bottom: 24px; }
-    .complete-btns { display: flex; gap: 10px; }
-    .complete-btn {
-      flex: 1;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .complete-btn.primary  { background: var(--accent); color: var(--bg); }
-    .complete-btn.ghost    { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-
     /* ── Spinner ─────────────────────────────────────── */
     .spinner {
       display: inline-block;
@@ -708,6 +658,7 @@
     <div class="format-badge" id="format-badge">—</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <div style="margin-left:auto; display:flex; gap:4px;">
+      <a href="matches.html"    style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">Matches</a>
       <a href="dashboard.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">My Team</a>
       <a href="standings.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">Standings</a>
     </div>
@@ -807,17 +758,13 @@
   <!-- ── Toast ─────────────────────────────────────────── -->
   <div id="toast"></div>
 
-  <!-- ── Draft Complete ────────────────────────────────── -->
-  <div id="draft-complete">
-    <div class="complete-card">
-      <div class="complete-title">Draft Complete!</div>
-      <div class="complete-sub">All picks are in. Head to your dashboard or check the standings.</div>
-      <div class="complete-btns">
-        <a href="dashboard.html" class="complete-btn primary">My Team</a>
-        <a href="standings.html" class="complete-btn ghost">Standings</a>
-        <a href="home.html"      class="complete-btn ghost">Home</a>
-      </div>
-    </div>
+  <!-- ── Draft Complete Banner (non-blocking) ──────────── -->
+  <div id="draft-complete-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--accent); padding:12px 24px; display:none; align-items:center; gap:16px; z-index:50;">
+    <span style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; letter-spacing:0.04em; color:var(--accent);">✓ Draft Complete</span>
+    <span style="font-size:0.85rem; color:var(--muted); flex:1;">All picks are in. Take your time reviewing the board.</span>
+    <a href="dashboard.html" style="padding:7px 16px; background:var(--accent); color:var(--bg); border-radius:6px; font-family:var(--font-display); font-size:0.85rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none;">My Team</a>
+    <a href="standings.html" style="padding:7px 16px; background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:6px; font-family:var(--font-display); font-size:0.85rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none;">Standings</a>
+    <a href="home.html"      style="padding:7px 16px; background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:6px; font-family:var(--font-display); font-size:0.85rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none;">Home</a>
   </div>
 
   <script type="module">
@@ -1373,7 +1320,7 @@
       if (lobbyData?.format === "auction") updateAuctionUI();
 
       if (lobbyData?.status === "complete") {
-        document.getElementById("draft-complete").classList.add("show");
+        document.getElementById("draft-complete-banner").style.display = "flex";
       }
     }
 

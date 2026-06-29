@@ -247,7 +247,8 @@
     .tc-meta { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
     .tc-teams { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
     .tc-prize { font-family: var(--font-mono); font-size: 0.8rem; color: var(--success); margin-top: 8px; }
-  </style>
+
+    /* ── Session Banner ──────────────────────────────── */
     .session-banner {
       display: none;
       background: color-mix(in srgb, var(--accent) 8%, var(--surface));
@@ -261,22 +262,12 @@
       width: 100%;
     }
     .session-banner.show { display: flex; }
-
     .session-text { flex: 1; font-size: 0.875rem; }
     .session-code { font-family: var(--font-mono); color: var(--accent); font-weight: 600; }
-
     .btn-sm {
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-family: var(--font-display);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: opacity 0.15s;
+      padding: 8px 16px; border-radius: 6px; font-family: var(--font-display);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer; transition: opacity 0.15s;
     }
     .btn-sm:hover { opacity: 0.85; }
     .btn-sm-primary { background: var(--accent); color: var(--bg); }
@@ -300,14 +291,8 @@
 
   <main>
 
-    <!-- Active session banner -->
-    <div class="session-banner" id="session-banner">
-      <div class="session-text">
-        You have an active lobby: <span class="session-code" id="session-code">—</span>
-      </div>
-      <a href="draft.html" class="btn-sm btn-sm-primary" id="rejoin-btn">Rejoin Draft</a>
-      <button class="btn-sm btn-sm-ghost" id="clear-session-btn">Leave</button>
-    </div>
+    <!-- Active session banner — injected by JS only if session exists -->
+    <div id="session-banner-wrap"></div>
 
     <div class="hero-eyebrow">Valorant Fantasy Draft</div>
 
@@ -364,13 +349,19 @@
     // ── Session banner ─────────────────────────────────
     const session = LS.getSession();
     if (session?.lobbyCode) {
-      const banner = document.getElementById("session-banner");
-      banner.classList.add("show");
-      document.getElementById("session-code").textContent = session.lobbyCode;
-      document.getElementById("rejoin-btn").href = `draft.html?code=${session.lobbyCode}`;
+      const wrap = document.getElementById("session-banner-wrap");
+      wrap.innerHTML = `
+        <div class="session-banner show">
+          <div class="session-text">
+            You have an active lobby: <span class="session-code">${session.lobbyCode}</span>
+          </div>
+          <a href="draft.html?code=${session.lobbyCode}" class="btn-sm btn-sm-primary">Rejoin Draft</a>
+          <button class="btn-sm btn-sm-ghost" id="clear-session-btn">Leave</button>
+        </div>
+      `;
       document.getElementById("clear-session-btn").addEventListener("click", () => {
         LS.clearSession();
-        banner.classList.remove("show");
+        wrap.innerHTML = "";
       });
     }
 
