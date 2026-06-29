@@ -914,7 +914,7 @@
       const query    = document.getElementById("search-input").value.toLowerCase();
       const drafted  = new Set(lobbyData?.draftedPlayerIds || []);
       const filtered = players.filter(p => {
-        const matchGame = activeFilter === "all" || p.game === activeFilter;
+        const matchGame = activeFilter === "all" || p.region === activeFilter;
         const matchSearch = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
         return matchGame && matchSearch;
       });
