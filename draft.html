@@ -798,35 +798,14 @@
     }
 
     // ─────────────────────────────────────────────────────
-    //  Load player pool
+    //  Load player pool — only from players.json, no fallback
     // ─────────────────────────────────────────────────────
     async function loadPlayers() {
-      try {
-        const res = await fetch("data/players.json");
-        players = await res.json();
-      } catch {
-        players = getDummyPlayers();
-      }
+      const res = await fetch("data/players.json");
+      if (!res.ok) throw new Error("Failed to load players.json");
+      players = await res.json();
       renderGameFilters();
       renderPlayerPool();
-    }
-
-    // ─────────────────────────────────────────────────────
-    //  Dummy players fallback (mirrors data/players.json)
-    // ─────────────────────────────────────────────────────
-    function getDummyPlayers() {
-      return [
-        { id: "aspas",     name: "aspas",     team: "LOUD",         role: "Duelist",   region: "Americas", stats: { rating: 1.33, kd: 1.41, acs: 275, adr: 175, kpr: 0.90, cl: 58 } },
-        { id: "yay",       name: "yay",       team: "NRG",          role: "Operator",  region: "Americas", stats: { rating: 1.31, kd: 1.40, acs: 268, adr: 172, kpr: 0.89, cl: 61 } },
-        { id: "TenZ",      name: "TenZ",      team: "Sentinels",    role: "Duelist",   region: "Americas", stats: { rating: 1.28, kd: 1.35, acs: 261, adr: 168, kpr: 0.86, cl: 55 } },
-        { id: "Demon1",    name: "Demon1",    team: "EG",           role: "Duelist",   region: "Americas", stats: { rating: 1.26, kd: 1.32, acs: 258, adr: 165, kpr: 0.84, cl: 53 } },
-        { id: "cNed",      name: "cNed",      team: "Fnatic",       role: "Operator",  region: "EMEA",     stats: { rating: 1.30, kd: 1.38, acs: 267, adr: 170, kpr: 0.88, cl: 60 } },
-        { id: "Derke",     name: "Derke",     team: "Fnatic",       role: "Duelist",   region: "EMEA",     stats: { rating: 1.27, kd: 1.33, acs: 260, adr: 166, kpr: 0.85, cl: 56 } },
-        { id: "ScreaM",    name: "ScreaM",    team: "Karmine Corp", role: "Duelist",   region: "EMEA",     stats: { rating: 1.24, kd: 1.29, acs: 253, adr: 161, kpr: 0.82, cl: 52 } },
-        { id: "Rb",        name: "Rb",        team: "Paper Rex",    role: "Duelist",   region: "Pacific",  stats: { rating: 1.29, kd: 1.36, acs: 263, adr: 168, kpr: 0.87, cl: 57 } },
-        { id: "f0rsakeN",  name: "f0rsakeN",  team: "Paper Rex",    role: "Duelist",   region: "Pacific",  stats: { rating: 1.25, kd: 1.31, acs: 255, adr: 163, kpr: 0.83, cl: 54 } },
-        { id: "BuZz",      name: "BuZz",      team: "DRX",          role: "Duelist",   region: "Pacific",  stats: { rating: 1.24, kd: 1.30, acs: 252, adr: 161, kpr: 0.82, cl: 53 } },
-      ];
     }
 
     // ─────────────────────────────────────────────────────
@@ -1134,7 +1113,7 @@
           ? `<div class="slot-num">${i + 1}</div>
              <div class="slot-player">
                <div class="slot-player-name">${pick.playerName}</div>
-               <div class="slot-player-meta">${pick.playerTeam} · ${pick.playerRole || ""} · ${pick.playerGame}</div>
+               <div class="slot-player-meta">${pick.playerTeam} · ${pick.playerRole || ""}</div>
              </div>`
           : `<div class="slot-num">${i + 1}</div><div class="slot-empty">Empty</div>`;
         roster.appendChild(div);
@@ -1143,6 +1122,8 @@
 
     // ─────────────────────────────────────────────────────
     //  Render center: Draft Grid
+    //  Columns = pick slots 1..N (participants in pick order)
+    //  Rows    = rounds 1..ROSTER_SIZE
     // ─────────────────────────────────────────────────────
     function renderDraftGrid() {
       if (!lobbyData) return;
@@ -1151,45 +1132,46 @@
       const numRounds  = CONFIG.ROSTER_SIZE;
       const picksArr   = Object.values(picks);
 
-      // Build header: Round | Player1 | Player2 ...
+      // Header: blank corner + Pick 1 .. Pick N
       const thead = document.getElementById("draft-thead");
       thead.innerHTML = "";
       const headerRow = document.createElement("tr");
 
-      const roundTh = document.createElement("th");
-      roundTh.className = "round-col";
-      roundTh.textContent = "Round";
-      headerRow.appendChild(roundTh);
+      const cornerTh = document.createElement("th");
+      cornerTh.className = "round-col";
+      cornerTh.textContent = "Round";
+      headerRow.appendChild(cornerTh);
 
-      pickOrder.forEach((uid, i) => {
-        const name = lobbyPlayers[uid]?.name || `Player ${i + 1}`;
-        const th   = document.createElement("th");
-        th.textContent = name + (uid === myUid ? " (You)" : "");
+      for (let p = 0; p < numPlayers; p++) {
+        const th = document.createElement("th");
+        th.textContent = `Pick ${p + 1}`;
         headerRow.appendChild(th);
-      });
+      }
       thead.appendChild(headerRow);
 
-      // Build rows
+      // Rows: one per round
       const tbody = document.getElementById("draft-tbody");
       tbody.innerHTML = "";
 
       for (let r = 0; r < numRounds; r++) {
         const tr = document.createElement("tr");
 
+        // Row header: Round N
         const roundTd = document.createElement("td");
         roundTd.className = "round-label";
         roundTd.textContent = `R${r + 1}`;
         tr.appendChild(roundTd);
 
         for (let p = 0; p < numPlayers; p++) {
-          // In a snake draft, even rounds go L→R, odd go R→L
-          const colIndex  = r % 2 === 0 ? p : numPlayers - 1 - p;
           const pickIndex = r * numPlayers + p;
-          const pick      = picksArr[pickIndex];
-          const ownerUid  = getPickerUid(pickOrder, pickIndex);
-          const isActive  = pickIndex === picksArr.length;
-          const isMyActive= isActive && ownerUid === myUid;
-          const isFuture  = pickIndex > picksArr.length;
+          // Snake: even rounds left→right, odd rounds right→left
+          // The participant who picks at this slot:
+          const ownerUid   = getPickerUid(pickOrder, pickIndex);
+          const ownerName  = lobbyPlayers[ownerUid]?.name || "?";
+          const pick        = picksArr[pickIndex];
+          const isActive    = pickIndex === picksArr.length;
+          const isMyActive  = isActive && ownerUid === myUid;
+          const isFuture    = pickIndex > picksArr.length;
 
           const td = document.createElement("td");
           const div = document.createElement("div");
@@ -1197,13 +1179,16 @@
             (isMyActive ? " your-active" : isActive ? " active-pick" : "") +
             (isFuture   ? " empty-future" : "");
 
-          const label = `${r + 1}.${colIndex + 1}`;
+          // Label format: round.pick e.g. 1.1, 1.2, 2.3
+          const label = `${r + 1}.${p + 1}`;
+
           div.innerHTML = pick
             ? `<div class="pick-cell-label">${label}</div>
                <div class="pick-cell-player">${pick.playerName}</div>
                <div class="pick-cell-by">${pick.byName}${pick.price ? ` · $${pick.price}` : ""}${pick.skipped ? ' · <span style="color:var(--warn)">auto</span>' : ""}</div>`
             : `<div class="pick-cell-label">${label}</div>
-               ${isActive ? `<div style="color:var(--warn);font-size:0.75rem;">${ownerUid === myUid ? "YOUR PICK" : "On the clock…"}</div>` : ""}`;
+               <div style="font-size:0.7rem; color:var(--muted);">${ownerName}${ownerUid === myUid ? " (You)" : ""}</div>
+               ${isActive ? `<div style="color:var(--warn);font-size:0.72rem; margin-top:2px;">${ownerUid === myUid ? "⚡ YOUR PICK" : "On clock…"}</div>` : ""}`;
 
           td.appendChild(div);
           tr.appendChild(td);
@@ -1390,12 +1375,11 @@
       const updates = {};
 
       if (format === "auction" && auctionState?.activePlayer) {
-        // Close the active auction first, awarding to current high bidder
         const price = auctionState.activeBid || CONFIG.MIN_BID;
         updates[`lobbies/${lobbyCode}/picks/${doneCount}`] = {
           byUid: onClockUid, byName: onClockName,
           playerId: auctionState.activePlayer, playerName: auctionState.playerName,
-          playerTeam: auctionState.playerTeam, playerGame: auctionState.playerGame,
+          playerTeam: auctionState.playerTeam,
           playerRole: auctionState.playerRole, price,
           round, pick: pickInRound, label: `${round}.${pickInRound}`, skipped: false,
         };
@@ -1405,7 +1389,6 @@
         const spentSoFar = lobbyData.budgets?.[onClockUid] || 0;
         updates[`lobbies/${lobbyCode}/budgets/${onClockUid}`] = spentSoFar + price;
 
-        // Now assign best available to the NEXT pick owner
         const nextDone    = doneCount + 1;
         const nextUid     = getPickerUid(pickOrder, nextDone);
         const nextName    = lobbyPlayers[nextUid]?.name || "Unknown";
@@ -1415,7 +1398,7 @@
         updates[`lobbies/${lobbyCode}/picks/${nextDone}`] = {
           byUid: nextUid, byName: nextName,
           playerId: bestPlayer.id, playerName: bestPlayer.name,
-          playerTeam: bestPlayer.team, playerGame: bestPlayer.game,
+          playerTeam: bestPlayer.team,
           playerRole: bestPlayer.role, price: CONFIG.MIN_BID,
           round: nextRound, pick: nextPick,
           label: `${nextRound}.${nextPick}`, skipped: true,
@@ -1427,11 +1410,10 @@
         if (nextDone + 1 >= total) updates[`lobbies/${lobbyCode}/status`] = "complete";
 
       } else {
-        // Snake or auction (no active bid): assign best player to current on-clock person
         updates[`lobbies/${lobbyCode}/picks/${doneCount}`] = {
           byUid: onClockUid, byName: onClockName,
           playerId: bestPlayer.id, playerName: bestPlayer.name,
-          playerTeam: bestPlayer.team, playerGame: bestPlayer.game,
+          playerTeam: bestPlayer.team,
           playerRole: bestPlayer.role,
           round, pick: pickInRound,
           label: `${round}.${pickInRound}`, skipped: true,
