@@ -800,21 +800,31 @@
     // ─────────────────────────────────────────────────────
     //  Load player pool — only from players.json, no fallback
     // ─────────────────────────────────────────────────────
+    let tournaments = [];
+
     async function loadPlayers() {
-      const res = await fetch("data/players.json");
-      if (!res.ok) throw new Error("Failed to load players.json");
-      players = await res.json();
-      renderGameFilters();
-      renderPlayerPool();
+      const [playersRes, tournamentsRes] = await Promise.all([
+        fetch("data/players.json"),
+        fetch("data/tournaments.json"),
+      ]);
+      if (!playersRes.ok) throw new Error("Failed to load players.json");
+      players     = await playersRes.json();
+      tournaments = tournamentsRes.ok ? await tournamentsRes.json() : [];
+    }
+
+    // Returns a Set of team names allowed by the current tournament, or null if no filter
+    function getTournamentTeams() {
+      const tid = lobbyData?.tournamentId;
+      if (!tid) return null;
+      const tournament = tournaments.find(t => t.id === tid);
+      return tournament?.teams ? new Set(tournament.teams) : null;
     }
 
     // ─────────────────────────────────────────────────────
     //  Region filter buttons
     // ─────────────────────────────────────────────────────
     function renderGameFilters() {
-      const tournamentTeams = lobbyData?.tournamentTeams
-        ? new Set(lobbyData.tournamentTeams)
-        : null;
+      const tournamentTeams = getTournamentTeams();
       const visiblePlayers = tournamentTeams
         ? players.filter(p => tournamentTeams.has(p.team))
         : players;
@@ -843,10 +853,8 @@
       const rawDrafted = lobbyData?.draftedPlayerIds || [];
       const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
 
-      // Only show players whose team is in the tournament (lobbyData.tournamentTeams if set)
-      const tournamentTeams = lobbyData?.tournamentTeams
-        ? new Set(lobbyData.tournamentTeams)
-        : null;
+      // Only show players whose team is in the tournament
+      const tournamentTeams = getTournamentTeams();
 
       const filtered = players.filter(p => {
         const matchRegion = activeFilter === "all" || p.region === activeFilter;
@@ -1311,6 +1319,7 @@
     function render() {
       renderMyTeam();
       renderDraftGrid();
+      renderGameFilters();
       renderPlayerPool();
       updateHeader();
       updatePickButton();
