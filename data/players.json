@@ -298,5 +298,1205 @@
       "kpr": 0.66,
       "cl": 0.0
     }
+  },
+  {
+    "id": "xeus",
+    "name": "xeus",
+    "team": "FUT Esports",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.04,
+      "kd": 1.08,
+      "acs": 216.2,
+      "adr": 145.9,
+      "kpr": 0.8,
+      "cl": 20.0
+    }
+  },
+  {
+    "id": "s0pp",
+    "name": "s0pp",
+    "team": "FUT Esports",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.04,
+      "kd": 1.03,
+      "acs": 224.7,
+      "adr": 142.5,
+      "kpr": 0.78,
+      "cl": 20.0
+    }
+  },
+  {
+    "id": "d4v41",
+    "name": "d4v41",
+    "team": "Paper Rex",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.09,
+      "acs": 189.5,
+      "adr": 129.9,
+      "kpr": 0.69,
+      "cl": 16.0
+    }
+  },
+  {
+    "id": "CHICHOO",
+    "name": "CHICHOO",
+    "team": "EDward Gaming",
+    "role": "Controller",
+    "region": "China",
+    "stats": {
+      "rating": 1.02,
+      "kd": 0.97,
+      "acs": 178.3,
+      "adr": 127.5,
+      "kpr": 0.64,
+      "cl": 20.0
+    }
+  },
+  {
+    "id": "yetujey",
+    "name": "yetujey",
+    "team": "FUT Esports",
+    "role": "Sentinel",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.01,
+      "kd": 0.98,
+      "acs": 194.4,
+      "adr": 134.7,
+      "kpr": 0.68,
+      "cl": 16.0
+    }
+  },
+  {
+    "id": "kiNgg",
+    "name": "kiNgg",
+    "team": "Leviatan",
+    "role": "Flex",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.0,
+      "kd": 1.04,
+      "acs": 168.5,
+      "adr": 110.5,
+      "kpr": 0.6,
+      "cl": 11.0
+    }
+  },
+  {
+    "id": "sociablEE",
+    "name": "sociablEE",
+    "team": "FUT Esports",
+    "role": "Controller",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.99,
+      "kd": 0.97,
+      "acs": 185.2,
+      "adr": 117.3,
+      "kpr": 0.64,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "Sayonara",
+    "name": "Sayonara",
+    "team": "Team Vitality",
+    "role": "Flex",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.98,
+      "kd": 1.03,
+      "acs": 205.7,
+      "adr": 134.7,
+      "kpr": 0.72,
+      "cl": 11.0
+    }
+  },
+  {
+    "id": "KROSTALY",
+    "name": "KROSTALY",
+    "team": "FUT Esports",
+    "role": "Initiator",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.97,
+      "kd": 0.92,
+      "acs": 176.5,
+      "adr": 119.1,
+      "kpr": 0.6,
+      "cl": 15.0
+    }
+  },
+  {
+    "id": "ZmjjKK",
+    "name": "ZmjjKK",
+    "team": "EDward Gaming",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.97,
+      "kd": 1.01,
+      "acs": 218.5,
+      "adr": 137.9,
+      "kpr": 0.74,
+      "cl": 23.0
+    }
+  },
+  {
+    "id": "brawk",
+    "name": "brawk",
+    "team": "NRG",
+    "role": "Initiator",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.96,
+      "kd": 0.88,
+      "acs": 118.5,
+      "adr": 130.6,
+      "kpr": 0.7,
+      "cl": 23.0
+    }
+  },
+  {
+    "id": "BABYBAY",
+    "name": "BABYBAY",
+    "team": "G2 Esports",
+    "role": "Sentinel",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.95,
+      "kd": 0.95,
+      "acs": 211.8,
+      "adr": 137.8,
+      "kpr": 0.7,
+      "cl": 8.0
+    }
+  },
+  {
+    "id": "koshmaras",
+    "name": "koshmaras",
+    "team": "Team Heretics",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.94,
+      "kd": 0.86,
+      "acs": 201.0,
+      "adr": 138.1,
+      "kpr": 0.66,
+      "cl": 11.0
+    }
+  },
+  {
+    "id": "jawgemo",
+    "name": "jawgemo",
+    "team": "G2 Esports",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.94,
+      "kd": 0.88,
+      "acs": 179.0,
+      "adr": 124.5,
+      "kpr": 0.64,
+      "cl": 9.0
+    }
+  },
+  {
+    "id": "Rarga",
+    "name": "Rarga",
+    "team": "Xi Lai Gaming",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.93,
+      "kd": 0.94,
+      "acs": 191.0,
+      "adr": 125.3,
+      "kpr": 0.68,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "Lysoar",
+    "name": "Lysoar",
+    "team": "Xi Lai Gaming",
+    "role": "Controller",
+    "region": "China",
+    "stats": {
+      "rating": 0.93,
+      "kd": 0.9,
+      "acs": 182.4,
+      "adr": 118.8,
+      "kpr": 0.65,
+      "cl": 8.0
+    }
+  },
+  {
+    "id": "Ethan",
+    "name": "Ethan",
+    "team": "NRG",
+    "role": "Initiator",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.92,
+      "kd": 0.83,
+      "acs": 188.3,
+      "adr": 127.8,
+      "kpr": 0.6,
+      "cl": 13.0
+    }
+  },
+  {
+    "id": "Autumn",
+    "name": "Autumn",
+    "team": "Global Esports",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.92,
+      "kd": 1.02,
+      "acs": 185.3,
+      "adr": 117.6,
+      "kpr": 0.68,
+      "cl": 25.0
+    }
+  },
+  {
+    "id": "Smoggy",
+    "name": "Smoggy",
+    "team": "Edward Gaming",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.981,
+      "kd": 0.88,
+      "acs": 196.8,
+      "adr": 135.1,
+      "kpr": 0.66,
+      "cl": 11.0
+    }
+  },
+  {
+    "id": "nobody",
+    "name": "nobody",
+    "team": "Edward Gaming",
+    "role": "Initiator",
+    "region": "China",
+    "stats": {
+      "rating": 0.91,
+      "kd": 0.88,
+      "acs": 183.4,
+      "adr": 117.2,
+      "kpr": 0.63,
+      "cl": 19.0
+    }
+  },
+  {
+    "id": "Jieni7",
+    "name": "Jieni7",
+    "team": "Edward Gaming",
+    "role": "Flex",
+    "region": "China",
+    "stats": {
+      "rating": 0.91,
+      "kd": 0.93,
+      "acs": 178.8,
+      "adr": 119.1,
+      "kpr": 0.65,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "valyn",
+    "name": "valyn",
+    "team": "G2 Esports",
+    "role": "Controller",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.91,
+      "kd": 0.92,
+      "acs": 181.2,
+      "adr": 124.9,
+      "kpr": 0.68,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "f0rsakeN",
+    "name": "f0rsakeN",
+    "team": "Paper Rex",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.9,
+      "kd": 0.85,
+      "acs": 194.6,
+      "adr": 130.0,
+      "kpr": 0.65,
+      "cl": 20.0
+    }
+  },
+  {
+    "id": "benjyfishy",
+    "name": "benjyfishy",
+    "team": "Team Heretics",
+    "role": "Sentinel",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.89,
+      "kd": 0.81,
+      "acs": 181.0,
+      "adr": 119.7,
+      "kpr": 0.6,
+      "cl": 21.0
+    }
+  },
+  {
+    "id": "Jamppi",
+    "name": "Jamppi",
+    "team": "Team Vitality",
+    "role": "Initiator",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.87,
+      "kd": 0.87,
+      "acs": 167.9,
+      "adr": 109.0,
+      "kpr": 0.61,
+      "cl": 24.0
+    }
+  },
+  {
+    "id": "NoMan",
+    "name": "NoMan",
+    "team": "Xi Lai Gaming",
+    "role": "Flex",
+    "region": "China",
+    "stats": {
+      "rating": 0.86,
+      "kd": 0.84,
+      "acs": 171.5,
+      "adr": 114.7,
+      "kpr": 0.6,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "WsLeo",
+    "name": "WsLeo",
+    "team": "Xi Lai Gaming",
+    "role": "Initiator",
+    "region": "China",
+    "stats": {
+      "rating": 0.84,
+      "kd": 0.77,
+      "acs": 168.3,
+      "adr": 112.5,
+      "kpr": 0.55,
+      "cl": 15.0
+    }
+  },
+  {
+    "id": "SpiritZ1",
+    "name": "SpiritZ1",
+    "team": "Dragon Ranger Gaming",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.84,
+      "kd": 0.85,
+      "acs": 193.4,
+      "adr": 130.3,
+      "kpr": 0.66,
+      "cl": 13.0
+    }
+  },
+  {
+    "id": "RieNs",
+    "name": "RieNs",
+    "team": "Team Heretics",
+    "role": "Initiator",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.84,
+      "kd": 0.79,
+      "acs": 174.2,
+      "adr": 111.6,
+      "kpr": 0.6,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "xavi8k",
+    "name": "xavi8k",
+    "team": "Global Esports",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.83,
+      "kd": 0.82,
+      "acs": 156.2,
+      "adr": 103.4,
+      "kpr": 0.55,
+      "cl": 17.0
+    }
+  },
+  {
+    "id": "Crws",
+    "name": "Crws",
+    "team": "FULL SENSE",
+    "role": "Controller",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.82,
+      "kd": 0.69,
+      "acs": 159.8,
+      "adr": 113.7,
+      "kpr": 0.52,
+      "cl": 19.0
+    }
+  },
+  {
+    "id": "mada",
+    "name": "mada",
+    "team": "NRG",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.8,
+      "kd": 0.9,
+      "acs": 188.0,
+      "adr": 118.4,
+      "kpr": 0.68,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Flex1n",
+    "name": "Flex1n",
+    "team": "Dragon Ranger Gaming",
+    "role": "Controller",
+    "region": "China",
+    "stats": {
+      "rating": 0.8,
+      "kd": 0.65,
+      "acs": 149.4,
+      "adr": 97.3,
+      "kpr": 0.48,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "PatMen",
+    "name": "PatMen",
+    "team": "Global Esports",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.75,
+      "kd": 0.8,
+      "acs": 178.1,
+      "adr": 119.5,
+      "kpr": 0.6,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Killua",
+    "name": "Killua",
+    "team": "FULL SENSE",
+    "role": "Initiator",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.75,
+      "kd": 0.72,
+      "acs": 150.4,
+      "adr": 99.0,
+      "kpr": 0.53,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Life",
+    "name": "Life",
+    "team": "Dragon Ranger Gaming",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.75,
+      "kd": 0.77,
+      "acs": 174.2,
+      "adr": 110.3,
+      "kpr": 0.61,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "JitBoyS",
+    "name": "JitBoyS",
+    "team": "FULL SENSE",
+    "role": "Duelist",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.71,
+      "kd": 0.7,
+      "acs": 154.6,
+      "adr": 110.1,
+      "kpr": 0.53,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Boo",
+    "name": "Boo",
+    "team": "Team Heretics",
+    "role": "Controller",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.71,
+      "kd": 0.62,
+      "acs": 132.0,
+      "adr": 85.8,
+      "kpr": 0.47,
+      "cl": 8.0
+    }
+  },
+  {
+    "id": "Wo0t",
+    "name": "Wo0t",
+    "team": "Team Heretics",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.67,
+      "kd": 0.67,
+      "acs": 158.4,
+      "adr": 112.1,
+      "kpr": 0.54,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Leviathan",
+    "name": "Leviathan",
+    "team": "FULL SENSE",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.65,
+      "kd": 0.6,
+      "acs": 145.2,
+      "adr": 97.8,
+      "kpr": 0.48,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "starxo",
+    "name": "starxo",
+    "team": "Gentle Mates",
+    "role": "Initiator",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.97,
+      "kd": 1.03,
+      "acs": 195.8,
+      "adr": 124.8,
+      "kpr": 0.66,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "marteen",
+    "name": "marteen",
+    "team": "Gentle Mates",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.28,
+      "kd": 1.3,
+      "acs": 241.0,
+      "adr": 170.2,
+      "kpr": 0.85,
+      "cl": 27.0
+    }
+  },
+  {
+    "id": "bipo",
+    "name": "bipo",
+    "team": "Gentle Mates",
+    "role": "Sentinel",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.09,
+      "kd": 1.15,
+      "acs": 205.4,
+      "adr": 130.1,
+      "kpr": 0.74,
+      "cl": 31.0
+    }
+  },
+  {
+    "id": "Minny",
+    "name": "Minny",
+    "team": "Gentle Mates",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.14,
+      "acs": 219.0,
+      "adr": 140.7,
+      "kpr": 0.8,
+      "cl": 29.0
+    }
+  },
+  {
+    "id": "GLYPH",
+    "name": "GLYPH",
+    "team": "Gentle Mates",
+    "role": "Controller",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.92,
+      "kd": 0.81,
+      "acs": 157.8,
+      "adr": 102.4,
+      "kpr": 0.51,
+      "cl": 45.0
+    }
+  },
+  {
+    "id": "N4RRATE",
+    "name": "N4RRATE",
+    "team": "Karmine Corp",
+    "role": "Duelist",
+    "region": "]EMEA",
+    "stats": {
+      "rating": 1.18,
+      "kd": 1.22,
+      "acs": 226.1,
+      "adr": 156.0,
+      "kpr": 0.79,
+      "cl": 32.0
+    }
+  },
+  {
+    "id": "LewN",
+    "name": "LewN",
+    "team": "Karmine Corp",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.04,
+      "kd": 1.12,
+      "acs": 225.1,
+      "adr": 138.2,
+      "kpr": 0.8,
+      "cl": 5.0
+    }
+  },
+  {
+    "id": "SUYGETSU",
+    "name": "SUYGETSU",
+    "team": "Karmine Corp",
+    "role": "Sentinel",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.11,
+      "acs": 197.0,
+      "adr": 136.6,
+      "kpr": 0.72,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "dos9",
+    "name": "dos9",
+    "team": "Karmine Corp",
+    "role": "Controller",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.02,
+      "kd": 1.02,
+      "acs": 179.0,
+      "adr": 118.0,
+      "kpr": 0.64,
+      "cl": 12.0
+    }
+  },
+  {
+    "id": "Avez",
+    "name": "Avez",
+    "team": "Karmine Corp",
+    "role": "Initiator",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.01,
+      "kd": 1.09,
+      "acs": 188.6,
+      "adr": 128.3,
+      "kpr": 0.71,
+      "cl": 16.0
+    }
+  },
+  {
+    "id": "lvoers_rock",
+    "name": "lvoers rock",
+    "team": "BBL Esports",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.17,
+      "kd": 1.27,
+      "acs": 231.1,
+      "adr": 143.9,
+      "kpr": 0.83,
+      "cl": 15.0
+    }
+  },
+  {
+    "id": "Loita",
+    "name": "Loita",
+    "team": "BBL Esports",
+    "role": "Controller",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.07,
+      "kd": 1.05,
+      "acs": 190.4,
+      "adr": 127.5,
+      "kpr": 0.69,
+      "cl": 19.0
+    }
+  },
+  {
+    "id": "Lar0k",
+    "name": "Lar0k",
+    "team": "BBL Esports",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.99,
+      "kd": 0.96,
+      "acs": 202.0,
+      "adr": 131.3,
+      "kpr": 0.68,
+      "cl": 10.0
+    }
+  },
+  {
+    "id": "Crewen",
+    "name": "Crewen",
+    "team": "BBL Esports",
+    "role": "Sentinel",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.97,
+      "kd": 0.97,
+      "acs": 182.0,
+      "adr": 120.1,
+      "kpr": 0.64,
+      "cl": 17.0
+    }
+  },
+  {
+    "id": "Rose",
+    "name": "Rose",
+    "team": "BBL Esports",
+    "role": "Initiator",
+    "region": "EMEA",
+    "stats": {
+      "rating": 0.92,
+      "kd": 0.95,
+      "acs": 197.4,
+      "adr": 131.4,
+      "kpr": 0.71,
+      "cl": 13.0
+    }
+  },
+  {
+    "id": "Verno",
+    "name": "Verno",
+    "team": "MIBR",
+    "role": "Initiator",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.37,
+      "kd": 1.41,
+      "acs": 235.4,
+      "adr": 156.5,
+      "kpr": 0.77,
+      "cl": 23.0
+    }
+  },
+  {
+    "id": "aspas",
+    "name": "aspas",
+    "team": "MIBR",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.22,
+      "kd": 1.37,
+      "acs": 258.6,
+      "adr": 168.5,
+      "kpr": 0.93,
+      "cl": 15.0
+    }
+  },
+  {
+    "id": "Mazino",
+    "name": "Mazino",
+    "team": "MIBR",
+    "role": "Controller",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.15,
+      "kd": 1.22,
+      "acs": 184.8,
+      "adr": 128.4,
+      "kpr": 0.68,
+      "cl": 22.0
+    }
+  },
+  {
+    "id": "zekken",
+    "name": "zekken",
+    "team": "MIBR",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.08,
+      "kd": 1.23,
+      "acs": 214.4,
+      "adr": 132.5,
+      "kpr": 0.81,
+      "cl": 17.0
+    }
+  },
+  {
+    "id": "tex",
+    "name": "tex",
+    "team": "MIBR",
+    "role": "Sentinel",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.07,
+      "kd": 1.14,
+      "acs": 197.8,
+      "adr": 124.1,
+      "kpr": 0.69,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "Asuna",
+    "name": "Asuna",
+    "team": "100 Thieves",
+    "role": "Flex",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.25,
+      "kd": 1.4,
+      "acs": 254.2,
+      "adr": 171.0,
+      "kpr": 0.91,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "bang",
+    "name": "bang",
+    "team": "100 Thieves",
+    "role": "Controller",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.19,
+      "kd": 1.35,
+      "acs": 190.4,
+      "adr": 120.4,
+      "kpr": 0.73,
+      "cl": 9.0
+    }
+  },
+  {
+    "id": "Cryocells",
+    "name": "Cryocells",
+    "team": "100 Thieves",
+    "role": "Sentinel",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.19,
+      "kd": 1.36,
+      "acs": 216.2,
+      "adr": 139.1,
+      "kpr": 0.83,
+      "cl": 29.0
+    }
+  },
+  {
+    "id": "vora",
+    "name": "vora",
+    "team": "100 Thieves",
+    "role": "Initiator",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.09,
+      "acs": 181.0,
+      "adr": 121.8,
+      "kpr": 0.6,
+      "cl": 40.0
+    }
+  },
+  {
+    "id": "Timotino",
+    "name": "Timotino",
+    "team": "100 Thieves",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 0.93,
+      "kd": 0.97,
+      "acs": 198.8,
+      "adr": 121.8,
+      "kpr": 0.7,
+      "cl": 67.0
+    }
+  },
+  {
+    "id": "xffero",
+    "name": "xffero",
+    "team": "Rex Regum Qeon",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.13,
+      "kd": 1.15,
+      "acs": 204.3,
+      "adr": 135.4,
+      "kpr": 0.7,
+      "cl": 12.0
+    }
+  },
+  {
+    "id": "crazyguy",
+    "name": "crazyguy",
+    "team": "Rex Regum Qeon",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.11,
+      "kd": 1.01,
+      "acs": 198.4,
+      "adr": 129.7,
+      "kpr": 0.64,
+      "cl": 9.0
+    }
+  },
+  {
+    "id": "Monyet",
+    "name": "Monyet",
+    "team": "Rex Regum Qeon",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.07,
+      "kd": 1.01,
+      "acs": 188.7,
+      "adr": 125.5,
+      "kpr": 0.66,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Kushy",
+    "name": "Kushy",
+    "team": "Rex Regum Qeon",
+    "role": "Initiator",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.06,
+      "kd": 1.07,
+      "acs": 198.3,
+      "adr": 126.1,
+      "kpr": 0.73,
+      "cl": 20.0
+    }
+  },
+  {
+    "id": "Jemkin",
+    "name": "Jemkin",
+    "team": "Rex Regum Qeon",
+    "role": "Duelist",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.92,
+      "kd": 0.92,
+      "acs": 207.4,
+      "adr": 136.2,
+      "kpr": 0.72,
+      "cl": 25.0
+    }
+  },
+  {
+    "id": "Ivy",
+    "name": "Ivy",
+    "team": "Nongshim RedForce",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.07,
+      "kd": 1.2,
+      "acs": 195.4,
+      "adr": 130.0,
+      "kpr": 0.75,
+      "cl": 7.0
+    }
+  },
+  {
+    "id": "Xross",
+    "name": "Xross",
+    "team": "Nongshim RedForce",
+    "role": "Duelist",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.05,
+      "kd": 1.0,
+      "acs": 210.2,
+      "adr": 142.5,
+      "kpr": 0.71,
+      "cl": 14.0
+    }
+  },
+  {
+    "id": "Francis",
+    "name": "Francis",
+    "team": "Nongshim RedForce",
+    "role": "Initiator",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.02,
+      "kd": 0.99,
+      "acs": 188.6,
+      "adr": 132.5,
+      "kpr": 0.68,
+      "cl": 12.0
+    }
+  },
+  {
+    "id": "Dambi",
+    "name": "Dambi",
+    "team": "Nongshim RedForce",
+    "role": "Duelist",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.99,
+      "kd": 1.05,
+      "acs": 227.0,
+      "adr": 144.3,
+      "kpr": 0.81,
+      "cl": 18.0
+    }
+  },
+  {
+    "id": "Rb",
+    "name": "Rb",
+    "team": "Nongshim RedForce",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 0.98,
+      "kd": 0.88,
+      "acs": 172.8,
+      "adr": 114.1,
+      "kpr": 0.58,
+      "cl": 19.0
+    }
+  },
+  {
+    "id": "K1ra",
+    "name": "K1ra",
+    "team": "All Gamers",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.0,
+      "kd": 1.16,
+      "acs": 236.5,
+      "adr": 0.0,
+      "kpr": 0.8,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Bai",
+    "name": "Bai",
+    "team": "All Gamers",
+    "role": "Sentinel",
+    "region": "China",
+    "stats": {
+      "rating": 0.0,
+      "kd": 1.05,
+      "acs": 194.0,
+      "adr": 0.0,
+      "kpr": 0.68,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Youze",
+    "name": "Youze",
+    "team": "All Gamers",
+    "role": "Duelist",
+    "region": "China",
+    "stats": {
+      "rating": 0.0,
+      "kd": 1.21,
+      "acs": 219.4,
+      "adr": 0.0,
+      "kpr": 0.78,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "iamgrq",
+    "name": "iamgrq",
+    "team": "All Gamers",
+    "role": "Controller",
+    "region": "China",
+    "stats": {
+      "rating": 0.0,
+      "kd": 1.23,
+      "acs": 205.9,
+      "adr": 0.0,
+      "kpr": 0.75,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Shr1mp",
+    "name": "Shr1mp",
+    "team": "All Gamers",
+    "role": "Initiator",
+    "region": "China",
+    "stats": {
+      "rating": 0.0,
+      "kd": 1.14,
+      "acs": 187.5,
+      "adr": 0.0,
+      "kpr": 0.68,
+      "cl": 0.0
+    }
   }
 ]

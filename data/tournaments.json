@@ -22,5 +22,33 @@
       "Paper Rex"
     ],
     "logoColor": "#00e5ff"
+  },
+  {
+    "id": "esports-world-cup-2026",
+    "name": "Esports World Cup 2026",
+    "region": "International",
+    "status": "upcoming",
+    "startDate": "2026-07-02",
+    "endDate": "2026-07-12",
+    "prizePool": "$2,000,000",
+    "teams": [
+      "Team Heretics",
+      "Team Vitality",
+      "G2 Esports",
+      "Paper Rex",
+      "EDward Gaming",
+      "Gentle Mates",
+      "Karmine Corp",
+      "BBL Esports",
+      "MIBR",
+      "100 Thieves",
+      "NRG",
+      "Rex Regum Qeon",
+      "Global Esports",
+      "Nongshim RedForce",
+      "Xi Lai Gaming",
+      "All Gamers"
+    ],
+    "logoColor": "#00e5ff"
   }
 ]
