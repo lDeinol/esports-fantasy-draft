@@ -98,8 +98,8 @@ def main():
 
         print("\n  Enter season average stats:")
         rating = prompt_float("  Rating")
-        kd     = prompt_float("  K/D")
         acs    = prompt_float("  ACS")
+        kd     = prompt_float("  K/D")
         adr    = prompt_float("  ADR")
         kpr    = prompt_float("  KPR")
         cl     = prompt_float("  CL% (just the number, e.g. 55)")

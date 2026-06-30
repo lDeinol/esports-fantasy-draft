@@ -43,5 +43,260 @@
       "kpr": 0.88,
       "cl": 26.0
     }
+  },
+  {
+    "id": "Neon",
+    "name": "Neon",
+    "team": "Leviatan",
+    "role": "Flex",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.21,
+      "kd": 1.37,
+      "acs": 223.4,
+      "adr": 147.5,
+      "kpr": 0.81,
+      "cl": 10.0
+    }
+  },
+  {
+    "id": "Derke",
+    "name": "Derke",
+    "team": "Team Vitality",
+    "role": "Duelist",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.21,
+      "kd": 1.27,
+      "acs": 254.1,
+      "adr": 168.5,
+      "kpr": 0.89,
+      "cl": 9.0
+    }
+  },
+  {
+    "id": "vo0kashu",
+    "name": "vo0kashu",
+    "team": "Dragon Ranger Gaming",
+    "role": "Sentinel",
+    "region": "China",
+    "stats": {
+      "rating": 1.21,
+      "kd": 1.13,
+      "acs": 245.4,
+      "adr": 166.8,
+      "kpr": 0.81,
+      "cl": 0.0
+    }
+  },
+  {
+    "id": "Jinggg",
+    "name": "Jinggg",
+    "team": "Paper Rex",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.15,
+      "kd": 1.19,
+      "acs": 225.8,
+      "adr": 153.8,
+      "kpr": 0.81,
+      "cl": 25.0
+    }
+  },
+  {
+    "id": "something",
+    "name": "something",
+    "team": "Paper Rex",
+    "role": "Duelist",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.15,
+      "kd": 1.23,
+      "acs": 226.5,
+      "adr": 145.4,
+      "kpr": 0.8,
+      "cl": 13.0
+    }
+  },
+  {
+    "id": "spike",
+    "name": "spike",
+    "team": "Leviatan",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.15,
+      "kd": 1.21,
+      "acs": 235.5,
+      "adr": 151.8,
+      "kpr": 0.85,
+      "cl": 10.0
+    }
+  },
+  {
+    "id": "Kr1stal",
+    "name": "Kr1stal",
+    "team": "Global Esports",
+    "role": "Flex",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.13,
+      "kd": 1.19,
+      "acs": 212.2,
+      "adr": 135.6,
+      "kpr": 0.72,
+      "cl": 28.0
+    }
+  },
+  {
+    "id": "leaf",
+    "name": "leaf",
+    "team": "G2 Esports",
+    "role": "Flex",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.11,
+      "kd": 0.97,
+      "acs": 221.6,
+      "adr": 144.5,
+      "kpr": 0.73,
+      "cl": 27.0
+    }
+  },
+  {
+    "id": "blowz",
+    "name": "blowz",
+    "team": "Leviatan",
+    "role": "Initiator",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.1,
+      "kd": 1.09,
+      "acs": 181.4,
+      "adr": 123.3,
+      "kpr": 0.64,
+      "cl": 12.0
+    }
+  },
+  {
+    "id": "Sato",
+    "name": "Sato",
+    "team": "Leviatan",
+    "role": "Duelist",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.1,
+      "kd": 1.16,
+      "acs": 229.4,
+      "adr": 151.0,
+      "kpr": 0.8,
+      "cl": 20.0
+    }
+  },
+  {
+    "id": "happywei",
+    "name": "happywei",
+    "team": "Xi Lai Gaming",
+    "role": "Sentinel",
+    "region": "China",
+    "stats": {
+      "rating": 1.09,
+      "kd": 1.07,
+      "acs": 213.4,
+      "adr": 146.8,
+      "kpr": 0.76,
+      "cl": 7.0
+    }
+  },
+  {
+    "id": "Nicc",
+    "name": "Nicc",
+    "team": "Dragon Ranger Gaming",
+    "role": "Initiator",
+    "region": "China",
+    "stats": {
+      "rating": 1.08,
+      "kd": 1.06,
+      "acs": 192.4,
+      "adr": 127.1,
+      "kpr": 0.71,
+      "cl": 29.0
+    }
+  },
+  {
+    "id": "Chronicle",
+    "name": "Chronicle",
+    "team": "Team Vitality",
+    "role": "Sentinel",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.07,
+      "kd": 1.17,
+      "acs": 211.1,
+      "adr": 141.7,
+      "kpr": 0.75,
+      "cl": 16.0
+    }
+  },
+  {
+    "id": "skuba",
+    "name": "skuba",
+    "team": "NRG",
+    "role": "Sentinel",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.07,
+      "kd": 1.06,
+      "acs": 182.8,
+      "adr": 118.1,
+      "kpr": 0.65,
+      "cl": 15.0
+    }
+  },
+  {
+    "id": "PROFEK",
+    "name": "PROFEK",
+    "team": "Team Vitality",
+    "role": "Controller",
+    "region": "EMEA",
+    "stats": {
+      "rating": 1.06,
+      "kd": 1.09,
+      "acs": 185.0,
+      "adr": 118.1,
+      "kpr": 0.68,
+      "cl": 13.0
+    }
+  },
+  {
+    "id": "UdoTan",
+    "name": "UdoTan",
+    "team": "Global Esports",
+    "role": "Duelist",
+    "region": "Pacific",
+    "stats": {
+      "rating": 1.05,
+      "kd": 1.11,
+      "acs": 232.7,
+      "adr": 147.7,
+      "kpr": 0.8,
+      "cl": 29.0
+    }
+  },
+  {
+    "id": "trent",
+    "name": "trent",
+    "team": "G2 Esports",
+    "role": "Initiator",
+    "region": "Americas",
+    "stats": {
+      "rating": 1.05,
+      "kd": 0.91,
+      "acs": 201.8,
+      "adr": 141.3,
+      "kpr": 0.66,
+      "cl": 0.0
+    }
   }
 ]
