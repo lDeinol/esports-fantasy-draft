@@ -561,9 +561,9 @@
                 </div>
               </div>
               <div class="stat-chips">
-                ${p.breakdown.filter(b => b.value > 0).map(b => `
+                ${p.breakdown.map(b => `
                   <div class="stat-chip">
-                    <div class="stat-chip-val">${b.value}</div>
+                    <div class="stat-chip-val">${b.stat === 'CL' ? `${b.value}%` : b.value}</div>
                     <div class="stat-chip-label">${b.stat}</div>
                   </div>
                 `).join("")}

@@ -494,9 +494,9 @@
             </div>
           </div>
           <div class="expand-stat-chips">
-            ${p.breakdown.filter(b => b.value > 0).map(b => `
+            ${p.breakdown.map(b => `
               <div class="expand-chip">
-                <div class="expand-chip-val">${b.value}</div>
+                <div class="expand-chip-val">${b.stat === 'CL' ? `${b.value}%` : b.value}</div>
                 <div class="expand-chip-label">${b.stat}<br><span style="color:var(--accent); font-size:0.65rem;">${b.points}pt</span></div>
               </div>
             `).join("")}
