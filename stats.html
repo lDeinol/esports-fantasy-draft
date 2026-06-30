@@ -186,6 +186,7 @@
     <button class="filter-btn" data-region="Americas">Americas</button>
     <button class="filter-btn" data-region="EMEA">EMEA</button>
     <button class="filter-btn" data-region="Pacific">Pacific</button>
+    <button class="filter-btn" data-region="China">China</button>
     <span class="sort-label">Sort by</span>
     <select class="sort-select" id="sort-select">
       <option value="totalPts">Total Pts</option>
@@ -269,7 +270,20 @@
       const totalPts   = +matchHistory.reduce((s, h) => s + h.pts, 0).toFixed(1);
       const matchCount = matchHistory.length;
 
-      return { ...p, matchHistory, totalPts, matchCount };
+      // If matches exist, compute averages from match history; otherwise use players.json stats as filler
+      let displayStats;
+      if (matchCount > 0) {
+        const keys = ["rating", "kd", "acs", "adr", "kpr", "cl"];
+        displayStats = {};
+        for (const key of keys) {
+          const avg = matchHistory.reduce((sum, h) => sum + (h.stats[key] ?? 0), 0) / matchCount;
+          displayStats[key] = +avg.toFixed(2);
+        }
+      } else {
+        displayStats = { ...p.stats };
+      }
+
+      return { ...p, stats: displayStats, matchHistory, totalPts, matchCount };
     });
   }
 

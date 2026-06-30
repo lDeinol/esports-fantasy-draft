@@ -812,7 +812,13 @@
     //  Region filter buttons
     // ─────────────────────────────────────────────────────
     function renderGameFilters() {
-      const regions = ["all", ...new Set(players.map(p => p.region))];
+      const tournamentTeams = lobbyData?.tournamentTeams
+        ? new Set(lobbyData.tournamentTeams)
+        : null;
+      const visiblePlayers = tournamentTeams
+        ? players.filter(p => tournamentTeams.has(p.team))
+        : players;
+      const regions = ["all", ...new Set(visiblePlayers.map(p => p.region))];
       const wrap    = document.getElementById("game-filters");
       wrap.innerHTML = "";
       regions.forEach(r => {
@@ -836,10 +842,17 @@
       const query    = document.getElementById("search-input").value.toLowerCase();
       const rawDrafted = lobbyData?.draftedPlayerIds || [];
       const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
+
+      // Only show players whose team is in the tournament (lobbyData.tournamentTeams if set)
+      const tournamentTeams = lobbyData?.tournamentTeams
+        ? new Set(lobbyData.tournamentTeams)
+        : null;
+
       const filtered = players.filter(p => {
         const matchRegion = activeFilter === "all" || p.region === activeFilter;
         const matchSearch = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
-        return matchRegion && matchSearch;
+        const matchTournament = !tournamentTeams || tournamentTeams.has(p.team);
+        return matchRegion && matchSearch && matchTournament;
       });
 
       const pool = document.getElementById("player-pool");
