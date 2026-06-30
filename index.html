@@ -394,6 +394,27 @@
     .av-6 { background: #2a1a1a; color: #f87171; }
     .av-7 { background: #2a2a1a; color: #d4d40a; }
 
+    /* ── Rejoin Banner ────────────────────────────────── */
+    .rejoin-banner {
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .rejoin-banner.show { display: block; }
+    .rejoin-banner-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .rejoin-banner-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 14px; }
+
     /* ── Spinner ──────────────────────────────────────── */
     .spinner {
       display: inline-block;
@@ -433,6 +454,18 @@
       <div class="card">
         <div class="card-title">Esports Fantasy Draft</div>
         <div class="card-sub">Create a lobby or join with a code</div>
+
+        <!-- Rejoin Banner (shown when ?code= is in URL and no session) -->
+        <div class="rejoin-banner" id="rejoin-banner">
+          <div class="rejoin-banner-title">⚡ Rejoin Draft</div>
+          <div class="rejoin-banner-sub" id="rejoin-banner-sub">A draft is in progress. Enter the name you used to rejoin your spot.</div>
+          <div class="field" style="margin-bottom:12px;">
+            <label>Your Name</label>
+            <input id="rejoin-name" type="text" placeholder="Enter your original name" maxlength="24" />
+          </div>
+          <div id="rejoin-error" class="error-msg"></div>
+          <button class="btn btn-primary" id="btn-rejoin" style="font-size:0.95rem; padding:11px;">Rejoin Draft</button>
+        </div>
 
         <div class="tabs">
           <button class="tab active" data-tab="create">Create</button>
@@ -802,26 +835,153 @@
       }
     });
 
-    // ── Rejoin on page load ────────────────────────────
-    (async () => {
-      const session = LS.getSession();
-      if (!session) return;
+    // ── Rejoin helpers ─────────────────────────────────
+    // Finds a player in the lobby whose name matches (case-insensitive)
+    function findPlayerByName(lobbyPlayers, name) {
+      const lower = name.toLowerCase();
+      return Object.entries(lobbyPlayers || {}).find(
+        ([uid, p]) => p.name?.toLowerCase() === lower
+      );
+    }
+
+    async function doRejoin(code, name) {
+      const lobby = await lobbyExists(code);
+      if (!lobby) throw new Error("Lobby not found. Check the code.");
+
+      const match = findPlayerByName(lobby.players, name);
+      if (!match) throw new Error(`No player named "${name}" found in this lobby.`);
+
+      const [oldUid, playerData] = match;
+      const user = await ensureAuth();
+      currentUid = user.uid;
+
+      // If their UID didn't change (storage wasn't cleared), just go straight in
+      if (oldUid === currentUid) {
+        LS.saveSession({ uid: currentUid, name: playerData.name, lobbyCode: code, isHost: lobby.hostId === currentUid });
+        if (lobby.status === "drafting") {
+          window.location.href = `draft.html?code=${code}`;
+        } else {
+          enterLobby(code, lobby.hostId === currentUid, lobby);
+        }
+        return;
+      }
+
+      // Re-map old UID → new UID in Firebase
+      const updates = {};
+      updates[`lobbies/${code}/players/${oldUid}`]     = null;
+      updates[`lobbies/${code}/players/${currentUid}`] = { ...playerData, rejoinedAt: Date.now() };
+
+      // If they were the host, update hostId too
+      if (lobby.hostId === oldUid) {
+        updates[`lobbies/${code}/hostId`] = currentUid;
+      }
+
+      // Re-map any picks they made to the new UID
+      Object.entries(lobby.picks || {}).forEach(([idx, pick]) => {
+        if (pick.byUid === oldUid) {
+          updates[`lobbies/${code}/picks/${idx}/byUid`] = currentUid;
+        }
+      });
+
+      // Re-map pick order slot
+      if (Array.isArray(lobby.pickOrder)) {
+        const newOrder = lobby.pickOrder.map(uid => uid === oldUid ? currentUid : uid);
+        updates[`lobbies/${code}/pickOrder`] = newOrder;
+      }
+
+      // Re-map auction budget if present
+      if (lobby.budgets?.[oldUid] !== undefined) {
+        updates[`lobbies/${code}/budgets/${oldUid}`]     = null;
+        updates[`lobbies/${code}/budgets/${currentUid}`] = lobby.budgets[oldUid];
+      }
+
+      await update(ref(db), updates);
+
+      const isHost = lobby.hostId === oldUid;
+      LS.saveSession({ uid: currentUid, name: playerData.name, lobbyCode: code, isHost });
+
+      if (lobby.status === "drafting") {
+        window.location.href = `draft.html?code=${code}`;
+      } else {
+        enterLobby(code, isHost, lobby);
+      }
+    }
+
+    // ── Rejoin button ──────────────────────────────────
+    document.getElementById("btn-rejoin").addEventListener("click", async () => {
+      clearError("rejoin-error");
+      const name = document.getElementById("rejoin-name").value.trim();
+      const code = new URLSearchParams(location.search).get("code")?.toUpperCase();
+      if (!name) return showError("rejoin-error", "Enter your name.");
+      if (!code) return showError("rejoin-error", "No lobby code in URL.");
+
+      const btn = document.getElementById("btn-rejoin");
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Rejoining…';
 
       try {
-        const user  = await ensureAuth();
-        currentUid  = user.uid;
-        const lobby = await lobbyExists(session.lobbyCode);
-        if (!lobby) { LS.clearSession(); return; }
-
-        if (lobby.status === "drafting") {
-          window.location.href = `draft.html?code=${session.lobbyCode}`;
-          return;
-        }
-
-        enterLobby(session.lobbyCode, session.isHost, lobby);
+        await doRejoin(code, name);
       } catch (err) {
-        console.error("Rejoin failed:", err);
-        LS.clearSession();
+        showError("rejoin-error", err.message || "Failed to rejoin.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Rejoin Draft";
+      }
+    });
+
+    // ── Rejoin on page load ────────────────────────────
+    (async () => {
+      const params  = new URLSearchParams(location.search);
+      const urlCode = params.get("code")?.toUpperCase();
+      const session = LS.getSession();
+
+      // Case 1: valid session exists — try to resume it
+      if (session) {
+        try {
+          const user  = await ensureAuth();
+          currentUid  = user.uid;
+          const lobby = await lobbyExists(session.lobbyCode);
+          if (!lobby) { LS.clearSession(); return; }
+
+          // Check their UID is still in the lobby
+          const stillIn = lobby.players?.[currentUid];
+          if (!stillIn) {
+            // UID changed (storage cleared) but session name survived — try name match
+            const match = findPlayerByName(lobby.players, session.name);
+            if (match) {
+              await doRejoin(session.lobbyCode, session.name);
+              return;
+            }
+            LS.clearSession();
+            return;
+          }
+
+          if (lobby.status === "drafting") {
+            window.location.href = `draft.html?code=${session.lobbyCode}`;
+            return;
+          }
+          enterLobby(session.lobbyCode, session.isHost, lobby);
+        } catch (err) {
+          console.error("Rejoin failed:", err);
+          LS.clearSession();
+        }
+        return;
+      }
+
+      // Case 2: no session but ?code= in URL — show rejoin banner
+      if (urlCode) {
+        try {
+          const lobby = await lobbyExists(urlCode);
+          if (lobby) {
+            const banner = document.getElementById("rejoin-banner");
+            const sub    = document.getElementById("rejoin-banner-sub");
+            const statusLabel = lobby.status === "drafting" ? "is live" : "is in the lobby";
+            sub.textContent = `Lobby ${urlCode} ${statusLabel}. Enter the name you used to rejoin your spot.`;
+            banner.classList.add("show");
+          }
+        } catch (err) {
+          console.error("Could not check lobby:", err);
+        }
       }
     })();
 

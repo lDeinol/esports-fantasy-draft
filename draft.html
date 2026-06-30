@@ -658,6 +658,7 @@
     <div class="format-badge" id="format-badge">—</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <div style="margin-left:auto; display:flex; gap:4px;">
+      <a id="rejoin-link" href="#" style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none;">🔗 Rejoin Link</a>
       <a href="matches.html"    style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">Matches</a>
       <a href="dashboard.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">My Team</a>
       <a href="standings.html"  style="padding:5px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid var(--border);">Standings</a>
@@ -1548,6 +1549,19 @@
 
       await ensureAuth();
       await loadPlayers();
+
+      // Set up the rejoin link so players can bookmark it
+      const rejoinLink = document.getElementById("rejoin-link");
+      if (rejoinLink && lobbyCode) {
+        rejoinLink.href = `index.html?code=${lobbyCode}`;
+        rejoinLink.style.display = "inline-block";
+        rejoinLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          navigator.clipboard.writeText(window.location.origin + window.location.pathname.replace("draft.html", "") + `index.html?code=${lobbyCode}`)
+            .then(() => { rejoinLink.textContent = "✓ Copied!"; setTimeout(() => { rejoinLink.textContent = "🔗 Rejoin Link"; }, 1500); })
+            .catch(() => { window.open(rejoinLink.href, "_blank"); });
+        });
+      }
 
       // Subscribe to live lobby updates
       subscribeLobby(lobbyCode, (data) => {
