@@ -415,6 +415,104 @@
     }
     .rejoin-banner-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 14px; }
 
+    /* ── Draft Settings Panel (host only) ────────────── */
+    .draft-settings {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .draft-settings-title {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .setting-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .setting-row:last-child { margin-bottom: 0; }
+    .setting-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      min-width: 90px;
+    }
+    .setting-toggle {
+      display: flex;
+      gap: 6px;
+    }
+    .setting-btn {
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .setting-btn.active {
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .timer-custom {
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+    .timer-custom.show { display: flex; }
+    .timer-custom input {
+      width: 72px;
+      padding: 5px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .timer-custom span { font-size: 0.82rem; color: var(--muted); }
+
+    /* drag-to-reorder pick order list */
+    .order-list {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .order-list.show { display: flex; }
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 8px 12px;
+      cursor: grab;
+      user-select: none;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .order-item:active { cursor: grabbing; }
+    .order-item.drag-over { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+    .order-pos {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      width: 18px;
+    }
+    .order-name { font-size: 0.88rem; font-weight: 500; flex: 1; }
+    .order-handle { color: var(--muted); font-size: 0.9rem; }
+
     /* ── Spinner ──────────────────────────────────────── */
     .spinner {
       display: inline-block;
@@ -549,6 +647,36 @@
 
         <div id="lobby-error" class="error-msg"></div>
 
+        <!-- Host-only draft settings -->
+        <div class="draft-settings" id="draft-settings" style="display:none;">
+          <div class="draft-settings-title">⚙ Draft Settings</div>
+
+          <!-- Timer -->
+          <div class="setting-row">
+            <div class="setting-label">Pick Timer</div>
+            <div class="setting-toggle">
+              <button class="setting-btn active" data-timer="none">None</button>
+              <button class="setting-btn" data-timer="custom">Custom</button>
+            </div>
+            <div class="timer-custom" id="timer-custom">
+              <input id="timer-seconds" type="number" min="10" max="300" value="60" />
+              <span>sec</span>
+            </div>
+          </div>
+
+          <!-- Pick Order -->
+          <div class="setting-row" id="order-setting-row">
+            <div class="setting-label">Pick Order</div>
+            <div class="setting-toggle">
+              <button class="setting-btn active" data-order="random">Random</button>
+              <button class="setting-btn" data-order="choose">Choose</button>
+            </div>
+          </div>
+
+          <!-- Drag-to-reorder list (shown when Choose is selected) -->
+          <div class="order-list" id="order-list"></div>
+        </div>
+
         <!-- Host sees Start Draft; others see waiting message -->
         <div class="lobby-actions">
           <button class="btn btn-primary" id="btn-start" style="display:none">Start Draft</button>
@@ -628,6 +756,89 @@
       document.getElementById(id).classList.remove("show");
     }
 
+    // ── Draft Settings State ───────────────────────────
+    let timerMode  = "none";   // "none" | "custom"
+    let orderMode  = "random"; // "random" | "choose"
+    let manualOrder = [];      // array of UIDs in chosen order
+
+    // Timer toggle
+    document.querySelectorAll("[data-timer]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-timer]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        timerMode = btn.dataset.timer;
+        const custom = document.getElementById("timer-custom");
+        timerMode === "custom" ? custom.classList.add("show") : custom.classList.remove("show");
+      });
+    });
+
+    // Order toggle
+    document.querySelectorAll("[data-order]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-order]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        orderMode = btn.dataset.order;
+        const list = document.getElementById("order-list");
+        if (orderMode === "choose") {
+          // Reset manualOrder so buildOrderList pulls fresh from current players
+          manualOrder = [];
+          // Get latest player data from the live lobby subscription
+          const session = LS.getSession();
+          if (session?.lobbyCode) {
+            get(ref(db, `lobbies/${session.lobbyCode}/players`)).then(snap => {
+              const players = snap.val() || {};
+              buildOrderList(players, Object.entries(players).find(([,p]) => p.isHost)?.[0]);
+              list.classList.add("show");
+            });
+          } else {
+            list.classList.add("show");
+          }
+        } else {
+          list.classList.remove("show");
+        }
+      });
+    });
+
+    // Drag-to-reorder logic
+    let dragSrc = null;
+    function buildOrderList(players, hostId) {
+      const list = document.getElementById("order-list");
+      // Build from current manualOrder or default to current player order
+      const entries = Object.entries(players || {});
+      if (manualOrder.length === 0 || !manualOrder.every(uid => players[uid])) {
+        manualOrder = entries.map(([uid]) => uid);
+      }
+      list.innerHTML = "";
+      manualOrder.forEach((uid, i) => {
+        const p = players[uid];
+        if (!p) return;
+        const item = document.createElement("div");
+        item.className = "order-item";
+        item.dataset.uid = uid;
+        item.draggable = true;
+        item.innerHTML = `
+          <span class="order-pos">${i + 1}</span>
+          <span class="order-name">${p.name}${uid === hostId ? " 👑" : ""}</span>
+          <span class="order-handle">⠿</span>
+        `;
+        item.addEventListener("dragstart", () => { dragSrc = item; item.style.opacity = "0.4"; });
+        item.addEventListener("dragend",   () => { item.style.opacity = "1"; list.querySelectorAll(".order-item").forEach(i => i.classList.remove("drag-over")); });
+        item.addEventListener("dragover",  e => { e.preventDefault(); item.classList.add("drag-over"); });
+        item.addEventListener("dragleave", () => item.classList.remove("drag-over"));
+        item.addEventListener("drop", e => {
+          e.preventDefault();
+          if (dragSrc === item) return;
+          const allItems = [...list.querySelectorAll(".order-item")];
+          const fromIdx = allItems.indexOf(dragSrc);
+          const toIdx   = allItems.indexOf(item);
+          manualOrder.splice(toIdx, 0, manualOrder.splice(fromIdx, 1)[0]);
+          buildOrderList(players, hostId);
+          if (orderMode === "choose") list.classList.add("show");
+        });
+        list.appendChild(item);
+      });
+    }
+
     // ── Avatar color helper ────────────────────────────
     const avatarClass = (i) => `av-${i % 8}`;
 
@@ -642,7 +853,6 @@
       entries.forEach(([uid, p], i) => {
         const li = document.createElement("li");
         li.className = "player-item";
-
         const initial = (p.name || "?")[0].toUpperCase();
         li.innerHTML = `
           <div class="player-avatar ${avatarClass(i)}">${initial}</div>
@@ -652,6 +862,9 @@
         `;
         list.appendChild(li);
       });
+
+      // Rebuild drag-order list whenever players change
+      if (myUid === hostId) buildOrderList(players, hostId);
     }
 
     // ── Enter lobby view ───────────────────────────────
@@ -671,11 +884,13 @@
 
       // Host controls vs non-host
       if (isHost) {
-        document.getElementById("btn-start").style.display  = "block";
-        document.getElementById("waiting-msg").style.display = "none";
+        document.getElementById("btn-start").style.display   = "block";
+        document.getElementById("waiting-msg").style.display  = "none";
+        document.getElementById("draft-settings").style.display = "block";
       } else {
-        document.getElementById("btn-start").style.display  = "none";
-        document.getElementById("waiting-msg").style.display = "block";
+        document.getElementById("btn-start").style.display   = "none";
+        document.getElementById("waiting-msg").style.display  = "block";
+        document.getElementById("draft-settings").style.display = "none";
       }
 
       // Copy code button
@@ -812,21 +1027,40 @@
       if (!session) return;
       const { lobbyCode } = session;
 
+      // Validate timer if custom
+      let pickTimer = null;
+      if (timerMode === "custom") {
+        const secs = parseInt(document.getElementById("timer-seconds").value, 10);
+        if (!secs || secs < 10 || secs > 300) {
+          return showError("lobby-error", "Pick timer must be between 10 and 300 seconds.");
+        }
+        pickTimer = secs;
+      }
+
       const btn = document.getElementById("btn-start");
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span> Starting…';
 
       try {
-        // Build randomised pick order from current player list
         const snap = await get(ref(db, `lobbies/${lobbyCode}/players`));
-        const uids = Object.keys(snap.val() || {});
-        const shuffled = uids.sort(() => Math.random() - 0.5);
+        const players = snap.val() || {};
+        const uids    = Object.keys(players);
+
+        let finalOrder;
+        if (orderMode === "choose" && manualOrder.length > 0) {
+          // Use the manually set order, filtered to current players
+          finalOrder = manualOrder.filter(uid => players[uid]);
+          // Append any players not in manualOrder (joined after panel was built)
+          uids.forEach(uid => { if (!finalOrder.includes(uid)) finalOrder.push(uid); });
+        } else {
+          finalOrder = uids.sort(() => Math.random() - 0.5);
+        }
 
         await update(ref(db, `lobbies/${lobbyCode}`), {
           status:    "drafting",
-          pickOrder: shuffled,
+          pickOrder: finalOrder,
+          pickTimer: pickTimer,
         });
-        // onValue listener above will redirect everyone to draft.html
       } catch (err) {
         console.error(err);
         showError("lobby-error", "Failed to start draft.");

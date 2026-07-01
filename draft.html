@@ -1220,6 +1220,62 @@
       }
     }
 
+
+    // ─────────────────────────────────────────────────────
+    //  Pick Timer Skips 1s after 0:00
+    // ─────────────────────────────────────────────────────
+    let _timerInterval  = null;
+    let _timerPickIndex = -1;
+
+    function startPickTimer(pickIndex, seconds) {
+      if (_timerInterval && _timerPickIndex === pickIndex) return;
+      clearInterval(_timerInterval);
+      _timerPickIndex = pickIndex;
+      let remaining = seconds;
+      _renderTimer(remaining, seconds);
+      _timerInterval = setInterval(() => {
+        remaining--;
+        _renderTimer(remaining, seconds);
+        if (remaining <= 0) {
+          clearInterval(_timerInterval);
+          _timerInterval = null;
+          // Only the host triggers auto-skip to prevent multiple clients firing at once
+          if (myUid === lobbyData?.hostId) {
+            setTimeout(() => skipCurrentPick(), 1000);
+          }
+        }
+      }, 1000);
+    }
+
+    function stopPickTimer() {
+      clearInterval(_timerInterval);
+      _timerInterval  = null;
+      _timerPickIndex = -1;
+      const el = document.getElementById("pick-timer-display");
+      if (el) el.style.display = "none";
+    }
+
+    function _renderTimer(remaining, total) {
+      let el = document.getElementById("pick-timer-display");
+      if (!el) {
+        el = document.createElement("div");
+        el.id = "pick-timer-display";
+        el.style.cssText = "display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.85rem; margin-top:6px;";
+        document.getElementById("pick-status")?.insertAdjacentElement("afterend", el);
+      }
+      el.style.display = "flex";
+      const pct   = remaining / total;
+      const color = pct > 0.5 ? "var(--success)" : pct > 0.25 ? "#f59e0b" : "var(--danger)";
+      const mm    = String(Math.floor(remaining / 60)).padStart(2, "0");
+      const ss    = String(remaining % 60).padStart(2, "0");
+      el.innerHTML = `
+        <div style="flex:1; height:4px; background:var(--border); border-radius:2px; overflow:hidden;">
+          <div style="height:100%; width:${pct * 100}%; background:${color}; border-radius:2px; transition:width 0.9s linear;"></div>
+        </div>
+        <span style="color:${color}; min-width:38px; text-align:right;">${mm}:${ss}</span>
+      `;
+    }
+
     // ─────────────────────────────────────────────────────
     //  Update header status
     // ─────────────────────────────────────────────────────
@@ -1246,6 +1302,7 @@
       if (status === "complete") {
         statusEl.innerHTML = `<span class="on-clock">Draft Complete!</span>`;
         myPickLabel.textContent = "";
+        stopPickTimer();
         return;
       }
 
@@ -1258,6 +1315,12 @@
         } else {
           statusEl.innerHTML = `<span class="waiting">Waiting on </span><span class="on-clock">${onClockName}</span>`;
           myPickLabel.textContent = "";
+        }
+        // Start per-pick timer if configured
+        if (lobbyData.pickTimer) {
+          startPickTimer(doneCount, lobbyData.pickTimer);
+        } else {
+          stopPickTimer();
         }
       } else {
         const state = lobbyData.auctionState;
@@ -1361,12 +1424,26 @@
     //  Finds highest-rated available player and auto-picks
     //  for whoever is currently on the clock.
     // ─────────────────────────────────────────────────────
+    let _skipInFlight = false;
     async function skipCurrentPick() {
       if (!lobbyData) return;
+      // Guard: prevent double-fire (e.g. timer + manual skip firing close together)
+      if (_skipInFlight) return;
+      _skipInFlight = true;
+
+      // Re-read pick count from Firebase to make sure we're acting on the current pick
+      const freshSnap  = await get(ref(db, `lobbies/${lobbyCode}/picks`));
+      const freshPicks = freshSnap.val() || {};
       const { pickOrder, picks = {}, players: lobbyPlayers = {}, format, auctionState } = lobbyData;
       const rawDrafted = lobbyData.draftedPlayerIds || [];
       const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
-      const doneCount = Object.keys(picks).length;
+      const doneCount  = Object.keys(freshPicks).length;
+
+      // If pick count already advanced (someone else picked), bail out
+      if (doneCount !== Object.keys(picks).length) {
+        _skipInFlight = false;
+        return;
+      }
 
       // Who is on the clock?
       let onClockUid, onClockName;
@@ -1379,10 +1456,10 @@
         onClockName = lobbyPlayers[onClockUid]?.name || "Unknown";
       }
 
-      // Find highest-rated available player
-      // Rating is used as the primary sort key across all games
+      // Find highest-rated available player from tournament teams only
+      const tournamentTeams = getTournamentTeams();
       const available = players
-        .filter(p => !drafted.has(p.id))
+        .filter(p => !drafted.has(p.id) && (!tournamentTeams || tournamentTeams.has(p.team)))
         .sort((a, b) => (b.stats?.rating ?? 0) - (a.stats?.rating ?? 0));
 
       if (available.length === 0) {
@@ -1448,6 +1525,7 @@
       }
 
       await update(ref(db), updates);
+      _skipInFlight = false;
       toast(`Skipped — assigned ${bestPlayer.name} to ${onClockName}`, "success");
     }
 

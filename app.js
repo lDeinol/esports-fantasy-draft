@@ -144,6 +144,7 @@ export async function createLobby({ code, hostUid, hostName, format, tournamentI
     code,
     format,
     tournamentId:     tournamentId || null,
+    pickTimer:        null,
     status:           "waiting",
     hostId:           hostUid,
     createdAt:        Date.now(),
