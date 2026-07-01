@@ -176,8 +176,7 @@
     <span class="legend-item">ACS <span>×0.15</span></span>
     <span class="legend-item">ADR <span>×0.10</span></span>
     <span class="legend-item">KPR <span>×10</span></span>
-    <span class="legend-item">CL% <span>×0.20</span></span>
-    <span style="font-size:0.75rem; color:var(--muted); margin-left:auto;">Points are summed across all completed matches</span>
+    <span style="font-size:0.75rem; color:var(--muted); margin-left:auto;">●LIVE = avg of matches played · SEASON = no matches yet · CL% shown but not scored</span>
   </div>
 
   <div class="controls">
@@ -253,9 +252,11 @@
     return +SCORING.calculate(stats).toFixed(1);
   }
 
-  // Build enriched player list with match history and total pts
+  // Build enriched player list with match history, total pts, and
+  // displayed stats (averaged from matches if any exist, else season stats from players.json)
   function buildPlayerData() {
     const completedMatches = matches.filter(m => m.status === "completed");
+    const statKeys = ["rating", "kd", "acs", "adr", "kpr", "cl"];
 
     return players.map(p => {
       const matchHistory = completedMatches
@@ -270,15 +271,14 @@
       const totalPts   = +matchHistory.reduce((s, h) => s + h.pts, 0).toFixed(1);
       const matchCount = matchHistory.length;
 
-      // If matches exist, compute averages from match history; otherwise use players.json stats as filler
+      // Displayed stats: average across matches played, or fall back to players.json
       let displayStats;
       if (matchCount > 0) {
-        const keys = ["rating", "kd", "acs", "adr", "kpr", "cl"];
         displayStats = {};
-        for (const key of keys) {
-          const avg = matchHistory.reduce((sum, h) => sum + (h.stats[key] ?? 0), 0) / matchCount;
-          displayStats[key] = +avg.toFixed(2);
-        }
+        statKeys.forEach(key => {
+          const sum = matchHistory.reduce((s, h) => s + (h.stats[key] ?? 0), 0);
+          displayStats[key] = +(sum / matchCount).toFixed(2);
+        });
       } else {
         displayStats = { ...p.stats };
       }
@@ -314,7 +314,7 @@
       if (isExpanded) tr.classList.add("expanded");
       tr.innerHTML = `
         <td class="td-rank">${i + 1}</td>
-        <td class="td-name">${p.name}</td>
+        <td class="td-name">${p.name}${p.matchCount > 0 ? ' <span style="font-size:0.62rem; color:var(--success); font-weight:600;">●LIVE</span>' : ' <span style="font-size:0.62rem; color:var(--muted); font-weight:600;">SEASON</span>'}</td>
         <td class="td-team">${p.team}</td>
         <td><span class="td-role">${p.role}</span></td>
         <td class="td-region">${p.region}</td>

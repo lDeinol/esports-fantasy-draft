@@ -54,6 +54,17 @@ def prompt_float(label, required=True):
             print("  Please enter a valid number.")
 
 
+def prompt_int(label, required=True):
+    while True:
+        val = prompt(label, required=required)
+        if val == "" and not required:
+            return None
+        try:
+            return int(val)
+        except ValueError:
+            print("  Please enter a whole number.")
+
+
 def prompt_choice(label, options, required=True):
     print(f"  Options: {', '.join(options)}")
     while True:
@@ -80,7 +91,7 @@ def find_player(players, query):
     return None
 
 
-def prompt_player_stats(players, team_name):
+def prompt_player_stats(players, team_name, rounds):
     print(f"\n  --- Player stats for {team_name} ---")
     print("  (Enter player name/ID, or leave blank to stop)")
     stats_list = []
@@ -95,11 +106,15 @@ def prompt_player_stats(players, team_name):
 
         print(f"  Found: {player['name']} ({player['team']}) — entering match stats:")
         rating = prompt_float("    Rating")
-        kd     = prompt_float("    K/D")
         acs    = prompt_float("    ACS")
+        kills  = prompt_int("    Kills")
+        deaths = prompt_int("    Deaths")
         adr    = prompt_float("    ADR")
-        kpr    = prompt_float("    KPR")
-        cl     = prompt_float("    CL%")
+
+        kd  = round(kills / deaths, 2) if deaths > 0 else kills
+        kpr = round(kills / rounds, 2) if rounds > 0 else 0
+
+        print(f"    → K/D: {kd}  KPR: {kpr}")
 
         stats_list.append({
             "playerId": player["id"],
@@ -109,7 +124,6 @@ def prompt_player_stats(players, team_name):
             "acs": acs,
             "adr": adr,
             "kpr": kpr,
-            "cl": cl,
         })
         print(f"  ✓ Added stats for {player['name']}\n")
 
@@ -157,6 +171,7 @@ def main():
     if new_status == "completed":
         score  = prompt(f"Score (e.g. 2-1, {target['team1']} first)")
         winner = prompt_choice("Winner", [target["team1"], target["team2"]], required=True)
+        rounds = prompt_int("Total rounds played")
         target["score"]  = score
         target["winner"] = winner
 
@@ -166,8 +181,8 @@ def main():
 
         if replace_stats.lower() == "y":
             print("\nEnter player stats for this match.")
-            team1_stats = prompt_player_stats(players, target["team1"])
-            team2_stats = prompt_player_stats(players, target["team2"])
+            team1_stats = prompt_player_stats(players, target["team1"], rounds)
+            team2_stats = prompt_player_stats(players, target["team2"], rounds)
             target["playerStats"] = team1_stats + team2_stats
 
     # Write back

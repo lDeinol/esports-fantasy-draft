@@ -87,7 +87,7 @@ export function totalPicks(numPlayers) {
 }
 
 // ── Scoring Engine ───────────────────────────────────────────
-// Valorant-specific scoring weights
+// Valorant-specific scoring weights (CL% excluded — calculated end of tournament only)
 export const SCORING = {
   weights: {
     rating: 40,
@@ -95,7 +95,6 @@ export const SCORING = {
     acs:    0.15,
     adr:    0.10,
     kpr:    10,
-    cl:     0.20,
   },
   calculate(stats = {}) {
     return Object.entries(this.weights).reduce((total, [key, weight]) => {
