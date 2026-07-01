@@ -1,6 +1,6 @@
 [
   {
-    "id": "m001",
+    "id": "vlr-684613",
     "tournamentId": "vct-masters-london-2026",
     "team1": "Xi Lai Gaming",
     "team2": "NRG",
@@ -17,18 +17,16 @@
         "kd": 1.03,
         "acs": 210.0,
         "adr": 137.0,
-        "kpr": 0.79,
-        "cl": 0.0
+        "kpr": 0.79
       },
       {
         "playerId": "NoMan",
         "team": "Xi Lai Gaming",
-        "rating": 0.85,
+        "rating": 0.89,
         "kd": 0.9,
         "acs": 192.0,
         "adr": 111.0,
-        "kpr": 0.63,
-        "cl": 1.0
+        "kpr": 0.63
       },
       {
         "playerId": "Lysoar",
@@ -37,8 +35,7 @@
         "kd": 0.79,
         "acs": 167.0,
         "adr": 113.0,
-        "kpr": 0.6,
-        "cl": 1.0
+        "kpr": 0.6
       },
       {
         "playerId": "WsLeo",
@@ -47,8 +44,7 @@
         "kd": 0.76,
         "acs": 191.0,
         "adr": 133.0,
-        "kpr": 0.6,
-        "cl": 0.0
+        "kpr": 0.6
       },
       {
         "playerId": "Rarga",
@@ -57,8 +53,7 @@
         "kd": 0.81,
         "acs": 160.0,
         "adr": 101.0,
-        "kpr": 0.58,
-        "cl": 2.0
+        "kpr": 0.58
       },
       {
         "playerId": "keiko",
@@ -67,8 +62,7 @@
         "kd": 2.07,
         "acs": 370.0,
         "adr": 230.0,
-        "kpr": 1.4,
-        "cl": 1.0
+        "kpr": 1.4
       },
       {
         "playerId": "brawk",
@@ -77,8 +71,7 @@
         "kd": 0.92,
         "acs": 194.0,
         "adr": 143.0,
-        "kpr": 0.55,
-        "cl": 2.0
+        "kpr": 0.56
       },
       {
         "playerId": "skuba",
@@ -87,8 +80,7 @@
         "kd": 0.8,
         "acs": 145.0,
         "adr": 101.0,
-        "kpr": 0.47,
-        "cl": 2.0
+        "kpr": 0.47
       },
       {
         "playerId": "mada",
@@ -97,8 +89,7 @@
         "kd": 1.11,
         "acs": 184.0,
         "adr": 122.0,
-        "kpr": 0.7,
-        "cl": 0.0
+        "kpr": 0.7
       },
       {
         "playerId": "Ethan",
@@ -107,13 +98,13 @@
         "kd": 0.87,
         "acs": 184.0,
         "adr": 117.0,
-        "kpr": 0.63,
-        "cl": 1.0
+        "kpr": 0.63
       }
-    ]
+    ],
+    "vlrId": "684613"
   },
   {
-    "id": "m002",
+    "id": "vlr-684610",
     "tournamentId": "vct-masters-london-2026",
     "team1": "Team Vitality",
     "team2": "Dragon Ranger Gaming",
@@ -135,7 +126,7 @@
       {
         "playerId": "Sayonara",
         "team": "Team Vitality",
-        "rating": 1.27,
+        "rating": 1.37,
         "kd": 1.71,
         "acs": 302.0,
         "adr": 193.0,
@@ -148,7 +139,7 @@
         "kd": 1.75,
         "acs": 201.0,
         "adr": 130.0,
-        "kpr": 0.76
+        "kpr": 0.82
       },
       {
         "playerId": "Chronicle",
@@ -213,14 +204,15 @@
         "adr": 70.0,
         "kpr": 0.26
       }
-    ]
+    ],
+    "vlrId": "684610"
   },
   {
-    "id": "m003",
+    "id": "vlr-684611",
     "tournamentId": "vct-masters-london-2026",
     "team1": "FULL SENSE",
     "team2": "FUT Esports",
-    "score": "2-0",
+    "score": "0-2",
     "winner": "FUT Esports",
     "format": "BO3",
     "date": "2026-06-07",
@@ -316,22 +308,23 @@
         "adr": 120.0,
         "kpr": 0.61
       }
-    ]
+    ],
+    "vlrId": "684611"
   },
   {
-    "id": "m004",
+    "id": "vlr-684612",
     "tournamentId": "vct-masters-london-2026",
-    "team1": "Leviatan",
+    "team1": "LEVIATÁN",
     "team2": "Global Esports",
     "score": "2-1",
-    "winner": "Leviatan",
+    "winner": "LEVIATÁN",
     "format": "BO3",
     "date": "2026-06-07",
     "status": "completed",
     "playerStats": [
       {
         "playerId": "Sato",
-        "team": "Leviatan",
+        "team": "LEVIATÁN",
         "rating": 1.27,
         "kd": 1.26,
         "acs": 244.0,
@@ -340,7 +333,7 @@
       },
       {
         "playerId": "Neon",
-        "team": "Leviatan",
+        "team": "LEVIATÁN",
         "rating": 1.22,
         "kd": 1.38,
         "acs": 227.0,
@@ -349,7 +342,7 @@
       },
       {
         "playerId": "kiNgg",
-        "team": "Leviatan",
+        "team": "LEVIATÁN",
         "rating": 1.13,
         "kd": 1.21,
         "acs": 179.0,
@@ -358,7 +351,7 @@
       },
       {
         "playerId": "blowz",
-        "team": "Leviatan",
+        "team": "LEVIATÁN",
         "rating": 0.92,
         "kd": 0.77,
         "acs": 123.0,
@@ -367,7 +360,7 @@
       },
       {
         "playerId": "spike",
-        "team": "Leviatan",
+        "team": "LEVIATÁN",
         "rating": 0.87,
         "kd": 0.86,
         "acs": 204.0,
@@ -378,19 +371,19 @@
         "playerId": "UdoTan",
         "team": "Global Esports",
         "rating": 1.14,
-        "kd": 0.95,
+        "kd": 1.33,
         "acs": 252.0,
         "adr": 163.0,
-        "kpr": 0.6
+        "kpr": 0.89
       },
       {
         "playerId": "Kr1stal",
         "team": "Global Esports",
         "rating": 0.97,
-        "kd": 1.4,
+        "kd": 0.95,
         "acs": 191.0,
         "adr": 112.0,
-        "kpr": 0.89
+        "kpr": 0.6
       },
       {
         "playerId": "Autumn",
@@ -419,10 +412,11 @@
         "adr": 110.0,
         "kpr": 0.51
       }
-    ]
+    ],
+    "vlrId": "684612"
   },
   {
-    "id": "m005",
+    "id": "vlr-684614",
     "tournamentId": "vct-masters-london-2026",
     "team1": "Team Vitality",
     "team2": "FUT Esports",
@@ -522,6 +516,1983 @@
         "adr": 107.0,
         "kpr": 0.61
       }
-    ]
+    ],
+    "vlrId": "684614"
+  },
+  {
+    "id": "vlr-684615",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "NRG",
+    "team2": "LEVIATÁN",
+    "score": "1-2",
+    "winner": "LEVIATÁN",
+    "format": "BO3",
+    "date": "2026-06-08",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.12,
+        "kd": 1.11,
+        "acs": 194.0,
+        "adr": 125.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.07,
+        "kd": 0.93,
+        "acs": 200.0,
+        "adr": 148.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 0.88,
+        "kd": 0.85,
+        "acs": 181.0,
+        "adr": 120.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 0.87,
+        "kd": 0.74,
+        "acs": 185.0,
+        "adr": 133.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.65,
+        "kd": 0.73,
+        "acs": 175.0,
+        "adr": 108.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.13,
+        "kd": 1.24,
+        "acs": 227.0,
+        "adr": 145.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.12,
+        "kd": 1.18,
+        "acs": 212.0,
+        "adr": 139.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 1.09,
+        "kd": 1.14,
+        "acs": 190.0,
+        "adr": 132.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 1.06,
+        "kd": 1.21,
+        "acs": 178.0,
+        "adr": 116.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 1.01,
+        "kd": 1.05,
+        "acs": 198.0,
+        "adr": 141.0,
+        "kpr": 0.71
+      }
+    ],
+    "vlrId": "684615"
+  },
+  {
+    "id": "vlr-684616",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Dragon Ranger Gaming",
+    "team2": "Xi Lai Gaming",
+    "score": "1-2",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-06-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.39,
+        "kd": 1.46,
+        "acs": 276.0,
+        "adr": 183.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.2,
+        "kd": 1.26,
+        "acs": 220.0,
+        "adr": 140.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Flex1n",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.04,
+        "kd": 0.93,
+        "acs": 188.0,
+        "adr": 112.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.01,
+        "kd": 1.07,
+        "acs": 220.0,
+        "adr": 143.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.65,
+        "kd": 0.7,
+        "acs": 152.0,
+        "adr": 105.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 1.55,
+        "kd": 1.6,
+        "acs": 274.0,
+        "adr": 197.0,
+        "kpr": 1.02
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.92,
+        "kd": 0.96,
+        "acs": 204.0,
+        "adr": 131.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.92,
+        "kd": 0.91,
+        "acs": 181.0,
+        "adr": 121.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.73,
+        "kd": 0.62,
+        "acs": 159.0,
+        "adr": 104.0,
+        "kpr": 0.48
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.72,
+        "kd": 0.69,
+        "acs": 156.0,
+        "adr": 115.0,
+        "kpr": 0.52
+      }
+    ],
+    "vlrId": "684616"
+  },
+  {
+    "id": "vlr-684617",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Global Esports",
+    "team2": "FULL SENSE",
+    "score": "2-1",
+    "winner": "Global Esports",
+    "format": "BO3",
+    "date": "2026-06-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.36,
+        "kd": 1.56,
+        "acs": 242.0,
+        "adr": 152.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 1.0,
+        "kd": 1.1,
+        "acs": 191.0,
+        "adr": 126.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 0.89,
+        "kd": 0.94,
+        "acs": 217.0,
+        "adr": 136.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 0.86,
+        "kd": 0.87,
+        "acs": 158.0,
+        "adr": 101.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 0.79,
+        "kd": 0.77,
+        "acs": 181.0,
+        "adr": 119.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "primmie",
+        "team": "FULL SENSE",
+        "rating": 1.57,
+        "kd": 1.87,
+        "acs": 299.0,
+        "adr": 178.0,
+        "kpr": 1.14
+      },
+      {
+        "playerId": "JitBoyS",
+        "team": "FULL SENSE",
+        "rating": 0.96,
+        "kd": 0.93,
+        "acs": 196.0,
+        "adr": 133.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Crws",
+        "team": "FULL SENSE",
+        "rating": 0.89,
+        "kd": 0.8,
+        "acs": 178.0,
+        "adr": 129.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Killua",
+        "team": "FULL SENSE",
+        "rating": 0.76,
+        "kd": 0.74,
+        "acs": 149.0,
+        "adr": 101.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "Leviathan",
+        "team": "FULL SENSE",
+        "rating": 0.72,
+        "kd": 0.67,
+        "acs": 153.0,
+        "adr": 99.0,
+        "kpr": 0.52
+      }
+    ],
+    "vlrId": "684617"
+  },
+  {
+    "id": "vlr-684619",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "FUT Esports",
+    "team2": "NRG",
+    "score": "2-1",
+    "winner": "FUT Esports",
+    "format": "BO3",
+    "date": "2026-06-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "xeus",
+        "team": "FUT Esports",
+        "rating": 1.11,
+        "kd": 1.25,
+        "acs": 235.0,
+        "adr": 157.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "sociablEE",
+        "team": "FUT Esports",
+        "rating": 1.11,
+        "kd": 1.04,
+        "acs": 197.0,
+        "adr": 126.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "KROSTALY",
+        "team": "FUT Esports",
+        "rating": 1.01,
+        "kd": 1.02,
+        "acs": 159.0,
+        "adr": 116.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "yetujey",
+        "team": "FUT Esports",
+        "rating": 0.97,
+        "kd": 0.92,
+        "acs": 195.0,
+        "adr": 135.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "s0pp",
+        "team": "FUT Esports",
+        "rating": 0.84,
+        "kd": 0.86,
+        "acs": 189.0,
+        "adr": 122.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.15,
+        "kd": 1.2,
+        "acs": 201.0,
+        "adr": 141.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.12,
+        "kd": 1.16,
+        "acs": 197.0,
+        "adr": 122.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 0.99,
+        "kd": 0.98,
+        "acs": 189.0,
+        "adr": 122.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.86,
+        "kd": 0.93,
+        "acs": 204.0,
+        "adr": 125.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.85,
+        "kd": 0.73,
+        "acs": 179.0,
+        "adr": 118.0,
+        "kpr": 0.54
+      }
+    ],
+    "vlrId": "684619"
+  },
+  {
+    "id": "vlr-684618",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Global Esports",
+    "team2": "Xi Lai Gaming",
+    "score": "1-2",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-06-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 1.11,
+        "kd": 1.11,
+        "acs": 229.0,
+        "adr": 145.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.07,
+        "kd": 1.1,
+        "acs": 204.0,
+        "adr": 142.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.88,
+        "kd": 0.98,
+        "acs": 184.0,
+        "adr": 109.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 0.83,
+        "kd": 0.84,
+        "acs": 173.0,
+        "adr": 116.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 0.82,
+        "kd": 0.96,
+        "acs": 201.0,
+        "adr": 128.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 1.22,
+        "kd": 1.2,
+        "acs": 224.0,
+        "adr": 142.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 1.12,
+        "kd": 1.06,
+        "acs": 228.0,
+        "adr": 153.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 1.04,
+        "kd": 1.04,
+        "acs": 207.0,
+        "adr": 139.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.96,
+        "kd": 0.85,
+        "acs": 159.0,
+        "adr": 112.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.89,
+        "kd": 0.88,
+        "acs": 176.0,
+        "adr": 120.0,
+        "kpr": 0.63
+      }
+    ],
+    "vlrId": "684618"
+  },
+  {
+    "id": "vlr-670466",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Paper Rex",
+    "team2": "LEVIATÁN",
+    "score": "2-0",
+    "winner": "Paper Rex",
+    "format": "BO3",
+    "date": "2026-06-12",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 1.4,
+        "kd": 1.75,
+        "acs": 241.0,
+        "adr": 156.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 1.27,
+        "kd": 1.28,
+        "acs": 268.0,
+        "adr": 175.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 1.25,
+        "kd": 1.36,
+        "acs": 239.0,
+        "adr": 157.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 1.05,
+        "kd": 1.17,
+        "acs": 191.0,
+        "adr": 131.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.94,
+        "kd": 0.93,
+        "acs": 193.0,
+        "adr": 119.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.16,
+        "kd": 1.17,
+        "acs": 224.0,
+        "adr": 167.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.1,
+        "kd": 1.03,
+        "acs": 227.0,
+        "adr": 153.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 0.81,
+        "kd": 0.62,
+        "acs": 152.0,
+        "adr": 114.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 0.67,
+        "kd": 0.55,
+        "acs": 135.0,
+        "adr": 97.0,
+        "kpr": 0.43
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 0.61,
+        "kd": 0.55,
+        "acs": 146.0,
+        "adr": 95.0,
+        "kpr": 0.46
+      }
+    ],
+    "vlrId": "670466"
+  },
+  {
+    "id": "vlr-670467",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Team Heretics",
+    "team2": "Team Vitality",
+    "score": "0-2",
+    "winner": "Team Vitality",
+    "format": "BO3",
+    "date": "2026-06-12",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "koshmaras",
+        "team": "Team Heretics",
+        "rating": 1.0,
+        "kd": 0.93,
+        "acs": 222.0,
+        "adr": 147.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Wo0t",
+        "team": "Team Heretics",
+        "rating": 0.8,
+        "kd": 0.84,
+        "acs": 193.0,
+        "adr": 125.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Boo",
+        "team": "Team Heretics",
+        "rating": 0.79,
+        "kd": 0.72,
+        "acs": 158.0,
+        "adr": 101.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "RieNs",
+        "team": "Team Heretics",
+        "rating": 0.7,
+        "kd": 0.69,
+        "acs": 156.0,
+        "adr": 97.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "benjyfishy",
+        "team": "Team Heretics",
+        "rating": 0.65,
+        "kd": 0.62,
+        "acs": 156.0,
+        "adr": 104.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.57,
+        "kd": 1.69,
+        "acs": 329.0,
+        "adr": 214.0,
+        "kpr": 1.13
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 1.21,
+        "kd": 1.23,
+        "acs": 177.0,
+        "adr": 116.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 1.16,
+        "kd": 1.38,
+        "acs": 251.0,
+        "adr": 163.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 1.03,
+        "kd": 1.1,
+        "acs": 152.0,
+        "adr": 98.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.02,
+        "kd": 1.09,
+        "acs": 172.0,
+        "adr": 123.0,
+        "kpr": 0.64
+      }
+    ],
+    "vlrId": "670467"
+  },
+  {
+    "id": "vlr-670465",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "EDward Gaming",
+    "team2": "FUT Esports",
+    "score": "2-1",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-06-13",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.2,
+        "kd": 1.4,
+        "acs": 274.0,
+        "adr": 166.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.11,
+        "kd": 1.21,
+        "acs": 176.0,
+        "adr": 124.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.95,
+        "kd": 1.02,
+        "acs": 204.0,
+        "adr": 124.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.94,
+        "kd": 1.0,
+        "acs": 172.0,
+        "adr": 117.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.9,
+        "kd": 0.85,
+        "acs": 196.0,
+        "adr": 144.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "xeus",
+        "team": "FUT Esports",
+        "rating": 1.12,
+        "kd": 1.13,
+        "acs": 219.0,
+        "adr": 145.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "s0pp",
+        "team": "FUT Esports",
+        "rating": 1.08,
+        "kd": 0.96,
+        "acs": 235.0,
+        "adr": 152.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "yetujey",
+        "team": "FUT Esports",
+        "rating": 0.93,
+        "kd": 0.86,
+        "acs": 181.0,
+        "adr": 131.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "KROSTALY",
+        "team": "FUT Esports",
+        "rating": 0.93,
+        "kd": 0.75,
+        "acs": 157.0,
+        "adr": 110.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "sociablEE",
+        "team": "FUT Esports",
+        "rating": 0.91,
+        "kd": 0.88,
+        "acs": 186.0,
+        "adr": 118.0,
+        "kpr": 0.61
+      }
+    ],
+    "vlrId": "670465"
+  },
+  {
+    "id": "vlr-670464",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "G2 Esports",
+    "team2": "Xi Lai Gaming",
+    "score": "1-2",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-06-13",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.17,
+        "kd": 1.0,
+        "acs": 223.0,
+        "adr": 146.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 1.09,
+        "kd": 1.02,
+        "acs": 215.0,
+        "adr": 145.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.04,
+        "kd": 0.88,
+        "acs": 196.0,
+        "adr": 145.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.92,
+        "kd": 0.83,
+        "acs": 173.0,
+        "adr": 122.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.91,
+        "kd": 0.98,
+        "acs": 182.0,
+        "adr": 119.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 1.22,
+        "kd": 1.25,
+        "acs": 245.0,
+        "adr": 166.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 1.06,
+        "kd": 1.3,
+        "acs": 218.0,
+        "adr": 137.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.96,
+        "kd": 1.0,
+        "acs": 194.0,
+        "adr": 125.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.92,
+        "kd": 0.95,
+        "acs": 177.0,
+        "adr": 114.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.72,
+        "kd": 0.81,
+        "acs": 163.0,
+        "adr": 107.0,
+        "kpr": 0.58
+      }
+    ],
+    "vlrId": "670464"
+  },
+  {
+    "id": "vlr-670473",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "LEVIATÁN",
+    "team2": "Team Heretics",
+    "score": "2-1",
+    "winner": "LEVIATÁN",
+    "format": "BO3",
+    "date": "2026-06-14",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.36,
+        "kd": 1.67,
+        "acs": 234.0,
+        "adr": 151.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 1.34,
+        "kd": 1.67,
+        "acs": 273.0,
+        "adr": 174.0,
+        "kpr": 1.02
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.16,
+        "kd": 1.33,
+        "acs": 230.0,
+        "adr": 146.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 1.07,
+        "kd": 1.13,
+        "acs": 178.0,
+        "adr": 106.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 0.94,
+        "kd": 0.97,
+        "acs": 166.0,
+        "adr": 104.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "benjyfishy",
+        "team": "Team Heretics",
+        "rating": 1.05,
+        "kd": 0.95,
+        "acs": 198.0,
+        "adr": 130.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "RieNs",
+        "team": "Team Heretics",
+        "rating": 0.93,
+        "kd": 0.85,
+        "acs": 186.0,
+        "adr": 121.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "koshmaras",
+        "team": "Team Heretics",
+        "rating": 0.9,
+        "kd": 0.8,
+        "acs": 187.0,
+        "adr": 132.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Boo",
+        "team": "Team Heretics",
+        "rating": 0.65,
+        "kd": 0.56,
+        "acs": 115.0,
+        "adr": 76.0,
+        "kpr": 0.42
+      },
+      {
+        "playerId": "Wo0t",
+        "team": "Team Heretics",
+        "rating": 0.59,
+        "kd": 0.56,
+        "acs": 136.0,
+        "adr": 104.0,
+        "kpr": 0.46
+      }
+    ],
+    "vlrId": "670473"
+  },
+  {
+    "id": "vlr-670472",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "G2 Esports",
+    "team2": "FUT Esports",
+    "score": "0-2",
+    "winner": "FUT Esports",
+    "format": "BO3",
+    "date": "2026-06-14",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.06,
+        "kd": 0.94,
+        "acs": 211.0,
+        "adr": 136.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.03,
+        "kd": 0.94,
+        "acs": 220.0,
+        "adr": 143.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.96,
+        "kd": 0.94,
+        "acs": 189.0,
+        "adr": 127.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.9,
+        "kd": 0.86,
+        "acs": 181.0,
+        "adr": 132.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.77,
+        "kd": 0.86,
+        "acs": 207.0,
+        "adr": 129.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "sociablEE",
+        "team": "FUT Esports",
+        "rating": 1.22,
+        "kd": 1.32,
+        "acs": 226.0,
+        "adr": 135.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "yetujey",
+        "team": "FUT Esports",
+        "rating": 1.12,
+        "kd": 1.16,
+        "acs": 233.0,
+        "adr": 152.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "xeus",
+        "team": "FUT Esports",
+        "rating": 1.05,
+        "kd": 0.97,
+        "acs": 211.0,
+        "adr": 157.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "s0pp",
+        "team": "FUT Esports",
+        "rating": 1.01,
+        "kd": 1.03,
+        "acs": 200.0,
+        "adr": 137.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "KROSTALY",
+        "team": "FUT Esports",
+        "rating": 0.95,
+        "kd": 1.06,
+        "acs": 195.0,
+        "adr": 120.0,
+        "kpr": 0.7
+      }
+    ],
+    "vlrId": "670472"
+  },
+  {
+    "id": "vlr-670468",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Xi Lai Gaming",
+    "team2": "EDward Gaming",
+    "score": "1-2",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-06-15",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 1.11,
+        "kd": 1.07,
+        "acs": 213.0,
+        "adr": 142.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 1.0,
+        "kd": 1.08,
+        "acs": 187.0,
+        "adr": 128.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.81,
+        "kd": 0.74,
+        "acs": 151.0,
+        "adr": 103.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.8,
+        "kd": 0.82,
+        "acs": 166.0,
+        "adr": 103.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.76,
+        "kd": 0.66,
+        "acs": 145.0,
+        "adr": 91.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 1.21,
+        "kd": 1.35,
+        "acs": 222.0,
+        "adr": 149.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.2,
+        "kd": 1.26,
+        "acs": 193.0,
+        "adr": 131.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.07,
+        "kd": 1.15,
+        "acs": 219.0,
+        "adr": 142.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 1.01,
+        "kd": 0.95,
+        "acs": 175.0,
+        "adr": 116.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 1.0,
+        "kd": 1.06,
+        "acs": 177.0,
+        "adr": 111.0,
+        "kpr": 0.61
+      }
+    ],
+    "vlrId": "670468"
+  },
+  {
+    "id": "vlr-670469",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Paper Rex",
+    "team2": "Team Vitality",
+    "score": "2-1",
+    "winner": "Paper Rex",
+    "format": "BO3",
+    "date": "2026-06-15",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 1.22,
+        "kd": 1.31,
+        "acs": 201.0,
+        "adr": 133.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 1.21,
+        "kd": 1.31,
+        "acs": 225.0,
+        "adr": 157.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 1.17,
+        "kd": 1.32,
+        "acs": 243.0,
+        "adr": 164.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 1.12,
+        "kd": 1.24,
+        "acs": 206.0,
+        "adr": 143.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.94,
+        "kd": 0.83,
+        "acs": 204.0,
+        "adr": 144.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.07,
+        "kd": 1.05,
+        "acs": 244.0,
+        "adr": 169.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.98,
+        "kd": 0.95,
+        "acs": 191.0,
+        "adr": 126.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 0.97,
+        "kd": 0.9,
+        "acs": 196.0,
+        "adr": 126.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 0.68,
+        "kd": 0.67,
+        "acs": 157.0,
+        "adr": 105.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 0.66,
+        "kd": 0.68,
+        "acs": 152.0,
+        "adr": 95.0,
+        "kpr": 0.56
+      }
+    ],
+    "vlrId": "670469"
+  },
+  {
+    "id": "vlr-670475",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Xi Lai Gaming",
+    "team2": "LEVIATÁN",
+    "score": "0-2",
+    "winner": "LEVIATÁN",
+    "format": "BO3",
+    "date": "2026-06-16",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.89,
+        "kd": 0.83,
+        "acs": 196.0,
+        "adr": 119.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.69,
+        "kd": 0.61,
+        "acs": 122.0,
+        "adr": 93.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.67,
+        "kd": 0.65,
+        "acs": 161.0,
+        "adr": 100.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.56,
+        "kd": 0.52,
+        "acs": 138.0,
+        "adr": 96.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.55,
+        "kd": 0.41,
+        "acs": 141.0,
+        "adr": 94.0,
+        "kpr": 0.39
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.65,
+        "kd": 2.05,
+        "acs": 326.0,
+        "adr": 213.0,
+        "kpr": 1.19
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 1.35,
+        "kd": 1.71,
+        "acs": 181.0,
+        "adr": 131.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 1.27,
+        "kd": 1.35,
+        "acs": 257.0,
+        "adr": 173.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.26,
+        "kd": 1.78,
+        "acs": 239.0,
+        "adr": 153.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 1.18,
+        "kd": 1.53,
+        "acs": 178.0,
+        "adr": 116.0,
+        "kpr": 0.64
+      }
+    ],
+    "vlrId": "670475"
+  },
+  {
+    "id": "vlr-670474",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Team Vitality",
+    "team2": "FUT Esports",
+    "score": "2-0",
+    "winner": "Team Vitality",
+    "format": "BO3",
+    "date": "2026-06-16",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.71,
+        "kd": 2.35,
+        "acs": 318.0,
+        "adr": 215.0,
+        "kpr": 1.14
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 1.43,
+        "kd": 2.13,
+        "acs": 240.0,
+        "adr": 143.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 1.17,
+        "kd": 1.36,
+        "acs": 240.0,
+        "adr": 161.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.09,
+        "kd": 1.42,
+        "acs": 203.0,
+        "adr": 122.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 1.09,
+        "kd": 1.24,
+        "acs": 194.0,
+        "adr": 127.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "KROSTALY",
+        "team": "FUT Esports",
+        "rating": 0.86,
+        "kd": 0.77,
+        "acs": 214.0,
+        "adr": 143.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "s0pp",
+        "team": "FUT Esports",
+        "rating": 0.77,
+        "kd": 0.68,
+        "acs": 170.0,
+        "adr": 116.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "yetujey",
+        "team": "FUT Esports",
+        "rating": 0.71,
+        "kd": 0.55,
+        "acs": 163.0,
+        "adr": 126.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "xeus",
+        "team": "FUT Esports",
+        "rating": 0.5,
+        "kd": 0.52,
+        "acs": 144.0,
+        "adr": 93.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "sociablEE",
+        "team": "FUT Esports",
+        "rating": 0.5,
+        "kd": 0.5,
+        "acs": 137.0,
+        "adr": 80.0,
+        "kpr": 0.43
+      }
+    ],
+    "vlrId": "670474"
+  },
+  {
+    "id": "vlr-670470",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "EDward Gaming",
+    "team2": "Paper Rex",
+    "score": "1-2",
+    "winner": "Paper Rex",
+    "format": "BO3",
+    "date": "2026-06-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 1.03,
+        "kd": 0.98,
+        "acs": 225.0,
+        "adr": 151.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.02,
+        "kd": 0.93,
+        "acs": 207.0,
+        "adr": 145.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.84,
+        "kd": 0.82,
+        "acs": 182.0,
+        "adr": 121.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.76,
+        "kd": 0.69,
+        "acs": 151.0,
+        "adr": 103.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.73,
+        "kd": 0.65,
+        "acs": 170.0,
+        "adr": 115.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 1.32,
+        "kd": 1.42,
+        "acs": 256.0,
+        "adr": 175.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 1.23,
+        "kd": 1.35,
+        "acs": 218.0,
+        "adr": 145.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 1.16,
+        "kd": 1.29,
+        "acs": 228.0,
+        "adr": 146.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 1.11,
+        "kd": 1.23,
+        "acs": 193.0,
+        "adr": 132.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.97,
+        "kd": 0.93,
+        "acs": 215.0,
+        "adr": 139.0,
+        "kpr": 0.71
+      }
+    ],
+    "vlrId": "670470"
+  },
+  {
+    "id": "vlr-670476",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Team Vitality",
+    "team2": "LEVIATÁN",
+    "score": "0-2",
+    "winner": "LEVIATÁN",
+    "format": "BO3",
+    "date": "2026-06-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 0.83,
+        "kd": 0.74,
+        "acs": 176.0,
+        "adr": 120.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 0.82,
+        "kd": 0.82,
+        "acs": 202.0,
+        "adr": 134.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.79,
+        "kd": 0.88,
+        "acs": 202.0,
+        "adr": 128.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 0.61,
+        "kd": 0.54,
+        "acs": 132.0,
+        "adr": 77.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 0.45,
+        "kd": 0.42,
+        "acs": 118.0,
+        "adr": 74.0,
+        "kpr": 0.38
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 1.42,
+        "kd": 1.6,
+        "acs": 247.0,
+        "adr": 148.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 1.36,
+        "kd": 1.79,
+        "acs": 274.0,
+        "adr": 179.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.3,
+        "kd": 1.67,
+        "acs": 230.0,
+        "adr": 143.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.28,
+        "kd": 1.53,
+        "acs": 205.0,
+        "adr": 135.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 0.92,
+        "kd": 0.9,
+        "acs": 153.0,
+        "adr": 106.0,
+        "kpr": 0.53
+      }
+    ],
+    "vlrId": "670476"
+  },
+  {
+    "id": "vlr-670477",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "EDward Gaming",
+    "team2": "LEVIATÁN",
+    "score": "0-3",
+    "winner": "LEVIATÁN",
+    "format": "BO5",
+    "date": "2026-06-20",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.94,
+        "kd": 0.92,
+        "acs": 204.0,
+        "adr": 128.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.92,
+        "kd": 0.98,
+        "acs": 211.0,
+        "adr": 133.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.77,
+        "kd": 0.63,
+        "acs": 138.0,
+        "adr": 108.0,
+        "kpr": 0.45
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.72,
+        "kd": 0.69,
+        "acs": 189.0,
+        "adr": 131.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.69,
+        "kd": 0.68,
+        "acs": 139.0,
+        "adr": 90.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 1.43,
+        "kd": 1.89,
+        "acs": 219.0,
+        "adr": 151.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.25,
+        "kd": 1.43,
+        "acs": 228.0,
+        "adr": 148.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.18,
+        "kd": 1.16,
+        "acs": 268.0,
+        "adr": 171.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 1.12,
+        "kd": 1.15,
+        "acs": 236.0,
+        "adr": 149.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 1.07,
+        "kd": 1.0,
+        "acs": 165.0,
+        "adr": 113.0,
+        "kpr": 0.58
+      }
+    ],
+    "vlrId": "670477"
+  },
+  {
+    "id": "vlr-670471",
+    "tournamentId": "vct-masters-london-2026",
+    "team1": "Paper Rex",
+    "team2": "LEVIATÁN",
+    "score": "2-3",
+    "winner": "LEVIATÁN",
+    "format": "BO5",
+    "date": "2026-06-21",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 1.28,
+        "kd": 1.24,
+        "acs": 217.0,
+        "adr": 150.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 1.13,
+        "kd": 1.14,
+        "acs": 233.0,
+        "adr": 142.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 1.04,
+        "kd": 0.97,
+        "acs": 211.0,
+        "adr": 141.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.81,
+        "kd": 0.77,
+        "acs": 178.0,
+        "adr": 120.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 0.73,
+        "kd": 0.71,
+        "acs": 146.0,
+        "adr": 104.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 1.16,
+        "kd": 1.19,
+        "acs": 210.0,
+        "adr": 147.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 1.14,
+        "kd": 1.23,
+        "acs": 221.0,
+        "adr": 142.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.08,
+        "kd": 1.12,
+        "acs": 213.0,
+        "adr": 141.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 0.94,
+        "kd": 0.97,
+        "acs": 214.0,
+        "adr": 141.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 0.75,
+        "kd": 0.72,
+        "acs": 144.0,
+        "adr": 90.0,
+        "kpr": 0.49
+      }
+    ],
+    "vlrId": "670471"
   }
 ]
