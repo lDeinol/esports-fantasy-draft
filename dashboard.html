@@ -425,7 +425,25 @@
     const { uid: myUid, name: myName, lobbyCode } = session;
 
     // ── Load data ──────────────────────────────────────
-    async function loadData() {
+    // Returns averaged stats from tournament matches if any exist,
+    // otherwise falls back to seeded stats from players.json
+    function resolveStats(playerId, pData, matchData, tournamentId) {
+      const statKeys = ["rating", "kd", "acs", "adr", "kpr"];
+      const tournamentMatches = matchData.filter(m =>
+        m.status === "completed" && m.tournamentId === tournamentId &&
+        m.playerStats?.some(s => s.playerId === playerId)
+      );
+      if (tournamentMatches.length > 0) {
+        const history = tournamentMatches.map(m => m.playerStats.find(s => s.playerId === playerId));
+        const avg = {};
+        statKeys.forEach(key => {
+          avg[key] = +(history.reduce((s, h) => s + (h[key] ?? 0), 0) / history.length).toFixed(2);
+        });
+        return { stats: avg, tracked: true, matchCount: tournamentMatches.length };
+      }
+      const { cl: _cl, ...baseStats } = pData.stats || {};
+      return { stats: baseStats, tracked: false, matchCount: 0 };
+    }
       const [playerData, matchData, tournamentData] = await Promise.all([
         fetch("data/players.json").then(r => r.json()).catch(() => []),
         fetch("data/matches.json").then(r => r.json()).catch(() => []),
@@ -467,12 +485,12 @@
       let totalScore = 0;
       const enriched = myPicks.map(pick => {
         const pData     = playerMap[pick.playerId] || {};
-        const stats     = pData.stats || {};
+        const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
         const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
         const breakdown = SCORING.breakdown(stats);
         const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
         totalScore     += pts;
-        return { ...pick, pData, stats, pts, breakdown, history };
+        return { ...pick, pData, stats, pts, breakdown, history, tracked, matchCount };
       });
 
       totalScore = +totalScore.toFixed(1);
@@ -558,6 +576,9 @@
                   ${p.pData.region || "—"}
                   ${p.skipped ? ' · <span class="skipped-badge">Auto-pick</span>' : ""}
                   ${p.price    ? ` · <span class="price-badge">$${p.price}</span>` : ""}
+                  · ${p.tracked
+                    ? `<span style="font-size:0.65rem; color:var(--success); font-weight:700;">●Tracked (${p.matchCount})</span>`
+                    : `<span style="font-size:0.65rem; color:var(--muted); font-weight:700;">Seeded</span>`}
                 </div>
               </div>
               <div class="stat-chips">

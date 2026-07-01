@@ -804,13 +804,36 @@
     let tournaments = [];
 
     async function loadPlayers() {
-      const [playersRes, tournamentsRes] = await Promise.all([
+      const [playersRes, tournamentsRes, matchesRes] = await Promise.all([
         fetch("data/players.json"),
         fetch("data/tournaments.json"),
+        fetch("data/matches.json"),
       ]);
       if (!playersRes.ok) throw new Error("Failed to load players.json");
       players     = await playersRes.json();
       tournaments = tournamentsRes.ok ? await tournamentsRes.json() : [];
+      const allMatches = matchesRes.ok ? await matchesRes.json() : [];
+
+      // Enrich players with Tracked stats (averaged from completed matches)
+      // Falls back to Seeded (players.json stats) if no matches played
+      const statKeys = ["rating", "kd", "acs", "adr", "kpr"];
+      const completed = allMatches.filter(m => m.status === "completed");
+
+      players = players.map(p => {
+        const history = completed
+          .filter(m => m.playerStats?.some(s => s.playerId === p.id))
+          .map(m => m.playerStats.find(s => s.playerId === p.id));
+
+        if (history.length > 0) {
+          const displayStats = {};
+          statKeys.forEach(key => {
+            const sum = history.reduce((s, h) => s + (h[key] ?? 0), 0);
+            displayStats[key] = +(sum / history.length).toFixed(2);
+          });
+          return { ...p, stats: displayStats, matchCount: history.length, tracked: true };
+        }
+        return { ...p, matchCount: 0, tracked: false };
+      });
     }
 
     // Returns a Set of team names allowed by the current tournament, or null if no filter
@@ -872,7 +895,10 @@
         div.className = "player-card" + (drafted.has(p.id) ? " drafted" : "") + (selectedPlayer?.id === p.id ? " selected" : "");
         div.innerHTML = `
           <div class="player-card-top">
-            <div class="player-card-name">${p.name}</div>
+            <div class="player-card-name">${p.name} ${p.tracked
+              ? '<span style="font-size:0.58rem; color:var(--success); font-weight:700; letter-spacing:0.04em;">●TRACKED</span>'
+              : '<span style="font-size:0.58rem; color:var(--muted); font-weight:700; letter-spacing:0.04em;">SEEDED</span>'
+            }</div>
             <div class="player-card-game">${p.team}</div>
           </div>
           <div class="player-card-meta">${p.role} · ${p.region}</div>
@@ -903,13 +929,20 @@
       document.getElementById("detail-name").textContent = p.name;
       document.getElementById("detail-meta").textContent = `${p.team} · ${p.role} · ${p.region}`;
 
+      const trackedBadge = p.tracked
+        ? `<span style="font-size:0.7rem; color:var(--success); font-weight:700;">●Tracked</span> <span style="font-size:0.7rem; color:var(--muted);">(${p.matchCount} match${p.matchCount !== 1 ? "es" : ""})</span>`
+        : `<span style="font-size:0.7rem; color:var(--muted); font-weight:700;">Seeded</span> <span style="font-size:0.7rem; color:var(--muted);">(no match data)</span>`;
+
       const statsDiv = document.getElementById("detail-stats");
-      statsDiv.innerHTML = Object.entries(p.stats).map(([k, v]) => `
-        <div class="detail-stat">
-          <div class="detail-stat-label">${k.toUpperCase()}</div>
-          <div class="detail-stat-val">${v}</div>
-        </div>
-      `).join("");
+      statsDiv.innerHTML = `
+        <div style="margin-bottom:8px;">${trackedBadge}</div>
+        ${Object.entries(p.stats).map(([k, v]) => `
+          <div class="detail-stat">
+            <div class="detail-stat-label">${k.toUpperCase()}</div>
+            <div class="detail-stat-val">${v}</div>
+          </div>
+        `).join("")}
+      `;
 
       updatePickButton();
     }
@@ -1222,7 +1255,7 @@
 
 
     // ─────────────────────────────────────────────────────
-    //  Pick Timer Skips 1s after 0:00
+    //  Pick Timer
     // ─────────────────────────────────────────────────────
     let _timerInterval  = null;
     let _timerPickIndex = -1;
@@ -1241,7 +1274,7 @@
           _timerInterval = null;
           // Only the host triggers auto-skip to prevent multiple clients firing at once
           if (myUid === lobbyData?.hostId) {
-            setTimeout(() => skipCurrentPick(), 1000);
+            setTimeout(() => skipCurrentPick(), 1500);
           }
         }
       }, 1000);
@@ -1427,11 +1460,10 @@
     let _skipInFlight = false;
     async function skipCurrentPick() {
       if (!lobbyData) return;
-      // Guard: prevent double-fire (e.g. timer + manual skip firing close together)
       if (_skipInFlight) return;
       _skipInFlight = true;
 
-      // Re-read pick count from Firebase to make sure we're acting on the current pick
+      // Re-read pick count from Firebase to confirm we're acting on the current pick
       const freshSnap  = await get(ref(db, `lobbies/${lobbyCode}/picks`));
       const freshPicks = freshSnap.val() || {};
       const { pickOrder, picks = {}, players: lobbyPlayers = {}, format, auctionState } = lobbyData;
@@ -1439,7 +1471,7 @@
       const drafted    = new Set(Array.isArray(rawDrafted) ? rawDrafted : Object.values(rawDrafted));
       const doneCount  = Object.keys(freshPicks).length;
 
-      // If pick count already advanced (someone else picked), bail out
+      // If pick already advanced (someone picked while timer was expiring), bail
       if (doneCount !== Object.keys(picks).length) {
         _skipInFlight = false;
         return;
