@@ -424,7 +424,7 @@
         const team2Stats = match.playerStats.filter(s => s.team === match.team2);
 
         const renderTeamRows = (teamStats, teamName) => {
-          const divider = `<tr class="team-divider"><td colspan="9">${teamName}</td></tr>`;
+          const divider = `<tr class="team-divider"><td colspan="8">${teamName}</td></tr>`;
           const rows = teamStats.map(s => `
             <tr>
               <td class="td-player">${playerName(s.playerId)}</td>
@@ -433,7 +433,6 @@
               <td class="td-num">${s.acs}</td>
               <td class="td-num">${s.adr}</td>
               <td class="td-num">${s.kpr}</td>
-              <td class="td-num">${s.cl}%</td>
               <td class="td-pts-col">${matchPts(s)}</td>
             </tr>
           `).join("");
@@ -448,7 +447,7 @@
                 <tr>
                   <th>Player</th>
                   <th>Rating</th><th>K/D</th><th>ACS</th>
-                  <th>ADR</th><th>KPR</th><th>CL%</th>
+                  <th>ADR</th><th>KPR</th>
                   <th>Pts</th>
                 </tr>
               </thead>

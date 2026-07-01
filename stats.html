@@ -41,7 +41,7 @@
     .nav-link:hover { color: var(--text); background: var(--surface2); }
     .nav-link.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
-    main { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 32px 24px; }
+    main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 32px 24px; }
 
     .page-title { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
     .page-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 24px; }
@@ -84,11 +84,11 @@
     /* ── Table ──────────────────────────────────────── */
     .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
 
-    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    table { width: 100%; border-collapse: collapse; min-width: 1000px; }
 
     thead th {
-      background: var(--surface); padding: 11px 14px; text-align: left;
-      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
+      background: var(--surface); padding: 13px 18px; text-align: left;
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
       border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer;
       user-select: none; transition: color 0.15s;
@@ -102,19 +102,19 @@
     tbody tr:hover { background: var(--surface2); }
     tbody tr.expanded { background: var(--surface2); }
 
-    td { padding: 12px 14px; font-size: 0.875rem; white-space: nowrap; }
+    td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 
-    .td-rank { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); width: 36px; }
+    .td-rank { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); width: 36px; }
     .td-name { font-weight: 600; }
-    .td-team { color: var(--muted); font-size: 0.8rem; }
+    .td-team { color: var(--muted); font-size: 0.85rem; }
     .td-role {
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
       background: var(--surface3); border-radius: 4px; padding: 2px 7px; color: var(--muted);
     }
-    .td-region { font-size: 0.78rem; color: var(--muted); }
-    .td-stat { font-family: var(--font-mono); font-size: 0.85rem; }
-    .td-pts { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; color: var(--accent); }
-    .td-matches { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+    .td-region { font-size: 0.82rem; color: var(--muted); }
+    .td-stat { font-family: var(--font-mono); font-size: 0.925rem; }
+    .td-pts { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+    .td-matches { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
 
     /* ── Expanded match history ─────────────────────── */
     .expand-row { display: none; }
@@ -176,7 +176,7 @@
     <span class="legend-item">ACS <span>×0.15</span></span>
     <span class="legend-item">ADR <span>×0.10</span></span>
     <span class="legend-item">KPR <span>×10</span></span>
-    <span style="font-size:0.75rem; color:var(--muted); margin-left:auto;">●LIVE = avg of matches played · SEASON = no matches yet · CL% shown but not scored</span>
+    <span style="font-size:0.75rem; color:var(--muted); margin-left:auto;">●Tracked = avg of matches played · Seeded = no match data</span>
   </div>
 
   <div class="controls">
@@ -194,7 +194,7 @@
       <option value="kd">K/D</option>
       <option value="adr">ADR</option>
       <option value="kpr">KPR</option>
-      <option value="cl">CL%</option>
+      <option value="matchCount">Matches</option>
     </select>
   </div>
 
@@ -212,7 +212,6 @@
           <th data-col="acs">ACS</th>
           <th data-col="adr">ADR</th>
           <th data-col="kpr">KPR</th>
-          <th data-col="cl">CL%</th>
           <th data-col="totalPts" class="sorted">Pts <span class="sort-arrow">▼</span></th>
           <th>Matches</th>
         </tr>
@@ -256,7 +255,7 @@
   // displayed stats (averaged from matches if any exist, else season stats from players.json)
   function buildPlayerData() {
     const completedMatches = matches.filter(m => m.status === "completed");
-    const statKeys = ["rating", "kd", "acs", "adr", "kpr", "cl"];
+    const statKeys = ["rating", "kd", "acs", "adr", "kpr"];
 
     return players.map(p => {
       const matchHistory = completedMatches
@@ -296,7 +295,8 @@
         return matchRegion && matchSearch;
       })
       .sort((a, b) => {
-        if (sortCol === "totalPts") return b.totalPts - a.totalPts;
+        if (sortCol === "totalPts")    return b.totalPts - a.totalPts;
+        if (sortCol === "matchCount")  return b.matchCount - a.matchCount;
         return (b.stats?.[sortCol] ?? 0) - (a.stats?.[sortCol] ?? 0);
       });
   }
@@ -314,7 +314,7 @@
       if (isExpanded) tr.classList.add("expanded");
       tr.innerHTML = `
         <td class="td-rank">${i + 1}</td>
-        <td class="td-name">${p.name}${p.matchCount > 0 ? ' <span style="font-size:0.62rem; color:var(--success); font-weight:600;">●LIVE</span>' : ' <span style="font-size:0.62rem; color:var(--muted); font-weight:600;">SEASON</span>'}</td>
+        <td class="td-name">${p.name}${p.matchCount > 0 ? ' <span style="font-size:0.62rem; color:var(--success); font-weight:600;">●Tracked</span>' : ' <span style="font-size:0.62rem; color:var(--muted); font-weight:600;">Seeded</span>'}</td>
         <td class="td-team">${p.team}</td>
         <td><span class="td-role">${p.role}</span></td>
         <td class="td-region">${p.region}</td>
@@ -323,7 +323,6 @@
         <td class="td-stat">${p.stats.acs}</td>
         <td class="td-stat">${p.stats.adr}</td>
         <td class="td-stat">${p.stats.kpr}</td>
-        <td class="td-stat">${p.stats.cl}%</td>
         <td class="td-pts">${p.totalPts}</td>
         <td class="td-matches">${p.matchCount} ${isExpanded ? "▲" : "▼"}</td>
       `;
@@ -354,7 +353,6 @@
               <div class="mh-chip">ACS <span>${h.stats.acs}</span></div>
               <div class="mh-chip">ADR <span>${h.stats.adr}</span></div>
               <div class="mh-chip">KPR <span>${h.stats.kpr}</span></div>
-              <div class="mh-chip">CL <span>${h.stats.cl}%</span></div>
             </div>
             <div class="mh-pts">${h.pts} pts</div>
           </div>

@@ -102,7 +102,6 @@ def main():
         kd     = prompt_float("  K/D")
         adr    = prompt_float("  ADR")
         kpr    = prompt_float("  KPR")
-        cl     = prompt_float("  CL% (just the number, e.g. 55)")
 
         new_player = {
             "id": player_id,
@@ -116,7 +115,6 @@ def main():
                 "acs": acs,
                 "adr": adr,
                 "kpr": kpr,
-                "cl": cl,
             },
         }
 

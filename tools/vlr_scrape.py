@@ -19,6 +19,7 @@ import sys
 import re
 import argparse
 import time
+from datetime import date
 
 try:
     import requests
@@ -79,6 +80,48 @@ def safe_int(val, fallback=0):
         return fallback
 
 
+def resolve_team_name(raw_name):
+    """If team name contains a parenthetical e.g. 'AG.AL (All Gamers)', prompt to choose."""
+    m = re.match(r"^(.+?)\s*\((.+?)\)\s*$", raw_name.strip())
+    if not m:
+        return raw_name
+    short_name = m.group(1).strip()
+    full_name  = m.group(2).strip()
+    print(f"\n  Team name has two parts: '{raw_name}'")
+    print(f"    1. {short_name}  (abbreviated)")
+    print(f"    2. {full_name}  (full name in parentheses)")
+    print(f"    3. Keep as-is: {raw_name}")
+    while True:
+        choice = input("  Which name to use? [1/2/3, default=2]: ").strip() or "2"
+        if choice == "1": return short_name
+        if choice == "2": return full_name
+        if choice == "3": return raw_name
+        print("  Enter 1, 2, or 3.")
+
+
+def resolve_status(date_str, has_score):
+    """Return 'upcoming' or 'completed' based on date vs today and whether a score exists."""
+    if not date_str:
+        return "completed" if has_score else "upcoming"
+    try:
+        match_date = date.fromisoformat(date_str)
+        if match_date > date.today():
+            return "upcoming"
+    except ValueError:
+        pass
+    return "completed" if has_score else "upcoming"
+    """Return 'upcoming', or 'completed' based on date vs today and whether a score exists."""
+    if not date_str:
+        return "completed" if has_score else "upcoming"
+    try:
+        match_date = date.fromisoformat(date_str)
+        if match_date > date.today():
+            return "upcoming"
+    except ValueError:
+        pass
+    return "completed" if has_score else "upcoming"
+
+
 # ── Fetch page ─────────────────────────────────────────────
 def fetch_page(url):
     print(f"  Fetching {url} …")
@@ -110,6 +153,9 @@ def parse_match(html, match_id):
     if len(teams) < 2:
         print("  ⚠ Could not find team names.")
         teams = ["Team 1", "Team 2"]
+
+    # Resolve any "Short (Full Name)" format for each team
+    teams = [resolve_team_name(t) for t in teams]
 
     # ── Score ──────────────────────────────────────────────
     score_el = soup.select(".match-header-vs-score .js-spoiler span")
@@ -159,14 +205,11 @@ def parse_match(html, match_id):
         game_all = soup.select_one(".vm-stats-game")
 
     player_stats = []
-    rounds_total = int(input("Enter Total Rounds:"))
+    rounds_total = 0
 
-    if game_all:
-        # Round count from score row
-        score_rows = game_all.select(".mod-rnd")
-        if score_rows:
-            # Sum all round numbers shown in the score header
-            rounds_total = int(input("Enter Total Rounds:"))
+    if game_all and score_str:
+        # Only prompt for rounds and parse stats if the match has a score
+        rounds_total = int(input("Enter Total Rounds: "))
 
         rows = game_all.select("tbody tr")
         current_team_idx = 0
@@ -360,26 +403,24 @@ def main():
     # ── Match ID ───────────────────────────────────────────
     default_match_id = f"vlr-{vlr_id}"
     match_id = prompt(f"Match ID for matches.json", default=default_match_id)
-    if match_id in existing_ids:
-        overwrite = prompt(f"ID '{match_id}' already exists. Overwrite? (y/n)", default="n")
-        if overwrite.lower() != "y":
-            print("Cancelled.")
-            sys.exit(0)
-        matches = [m for m in matches if m["id"] != match_id]
 
-    # ── Build final match object ───────────────────────────
-    # Strip playerName field (only needed during scraping)
+    # ── Auto-determine status from date ───────────────────
+    status = resolve_status(data["date"], bool(data["score"]))
+    print(f"  → Status set to: {status}  (match date: {data['date'] or 'unknown'})")
+
+    # ── Build clean stats (skip if upcoming) ──────────────
     clean_stats = []
-    for p in data["playerStats"]:
-        clean_stats.append({
-            "playerId": p["playerId"],
-            "team":     p["team"],
-            "rating":   p["rating"],
-            "kd":       p["kd"],
-            "acs":      p["acs"],
-            "adr":      p["adr"],
-            "kpr":      p["kpr"],
-        })
+    if status != "upcoming":
+        for p in data["playerStats"]:
+            clean_stats.append({
+                "playerId": p["playerId"],
+                "team":     p["team"],
+                "rating":   p["rating"],
+                "kd":       p["kd"],
+                "acs":      p["acs"],
+                "adr":      p["adr"],
+                "kpr":      p["kpr"],
+            })
 
     new_match = {
         "id":           match_id,
@@ -390,14 +431,23 @@ def main():
         "winner":       data["winner"],
         "format":       data["format"],
         "date":         data["date"],
-        "status":       "completed",
+        "status":       status,
         "playerStats":  clean_stats,
         "vlrId":        vlr_id,
     }
 
-    matches.append(new_match)
+    # ── Update in place if ID exists, otherwise append ────
+    existing_idx = next((i for i, m in enumerate(matches) if m["id"] == match_id), None)
+    if existing_idx is not None:
+        old = matches[existing_idx]
+        matches[existing_idx] = new_match
+        print(f"\n✓ Updated existing match '{data['teams'][0]} vs {data['teams'][1]}' ({match_id})")
+        print(f"  Status: {old.get('status', '?')} → {status}")
+    else:
+        matches.append(new_match)
+        print(f"\n✓ Saved new match '{data['teams'][0]} vs {data['teams'][1]}' ({match_id})")
+
     save_json(args.matches_file, matches)
-    print(f"\n✓ Saved match '{data['teams'][0]} vs {data['teams'][1]}' ({match_id})")
     print(f"  Total matches in {args.matches_file}: {len(matches)}")
 
 
