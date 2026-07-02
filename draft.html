@@ -1274,7 +1274,7 @@
           _timerInterval = null;
           // Only the host triggers auto-skip to prevent multiple clients firing at once
           if (myUid === lobbyData?.hostId) {
-            setTimeout(() => skipCurrentPick(), 1500);
+            setTimeout(() => skipCurrentPick(), 1000);
           }
         }
       }, 1000);
