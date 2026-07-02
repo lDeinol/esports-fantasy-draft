@@ -6,149 +6,7 @@
   <title>Stats — DraftZone</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg:       #0a0b0f;
-      --surface:  #13151c;
-      --surface2: #1c1f2b;
-      --surface3: #22263a;
-      --border:   #2a2d3a;
-      --accent:   #00e5ff;
-      --accent2:  #7c3aed;
-      --danger:   #ff4757;
-      --text:     #e8eaf0;
-      --muted:    #6b7280;
-      --success:  #10b981;
-      --warn:     #f59e0b;
-      --font-display: 'Barlow Condensed', sans-serif;
-      --font-body:    'Inter', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { min-height: 100vh; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-body); display: flex; flex-direction: column; }
-
-    header {
-      height: 52px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; padding: 0 24px; gap: 16px;
-      background: var(--surface); flex-shrink: 0;
-    }
-    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; color: var(--text); }
-    .logo span { color: var(--accent); }
-    .header-divider { width: 1px; height: 24px; background: var(--border); }
-    nav { display: flex; gap: 4px; }
-    .nav-link { padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; color: var(--muted); transition: color 0.15s, background 0.15s; }
-    .nav-link:hover { color: var(--text); background: var(--surface2); }
-    .nav-link.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
-
-    main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 32px 24px; }
-
-    .page-title { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
-    .page-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 24px; }
-
-    /* ── Controls ───────────────────────────────────── */
-    .controls {
-      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;
-    }
-
-    .search-input {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 9px 14px; color: var(--text); font-family: var(--font-body); font-size: 0.875rem;
-      outline: none; transition: border-color 0.15s; width: 220px;
-    }
-    .search-input:focus { border-color: var(--accent); }
-
-    .filter-btn {
-      padding: 7px 14px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; color: var(--muted); font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
-    }
-    .filter-btn.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
-
-    .sort-label { font-size: 0.75rem; color: var(--muted); margin-left: auto; }
-    .sort-select {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 8px 12px; color: var(--text); font-size: 0.8rem; outline: none; cursor: pointer;
-    }
-    .sort-select option { background: var(--surface2); }
-
-    /* ── Scoring legend ─────────────────────────────── */
-    .scoring-legend {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 14px 20px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
-    }
-    .legend-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
-    .legend-item { font-size: 0.78rem; color: var(--text); }
-    .legend-item span { font-family: var(--font-mono); color: var(--accent); }
-
-    /* ── Table ──────────────────────────────────────── */
-    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
-
-    table { width: 100%; border-collapse: collapse; min-width: 1000px; }
-
-    thead th {
-      background: var(--surface); padding: 13px 18px; text-align: left;
-      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
-      border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer;
-      user-select: none; transition: color 0.15s;
-    }
-    thead th:hover { color: var(--accent); }
-    thead th.sorted { color: var(--accent); }
-    thead th .sort-arrow { margin-left: 4px; font-size: 0.6rem; }
-
-    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; cursor: pointer; }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: var(--surface2); }
-    tbody tr.expanded { background: var(--surface2); }
-
-    td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
-
-    .td-rank { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); width: 36px; }
-    .td-name { font-weight: 600; }
-    .td-team { color: var(--muted); font-size: 0.85rem; }
-    .td-role {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-      background: var(--surface3); border-radius: 4px; padding: 2px 7px; color: var(--muted);
-    }
-    .td-region { font-size: 0.82rem; color: var(--muted); }
-    .td-stat { font-family: var(--font-mono); font-size: 0.925rem; }
-    .td-pts { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
-    .td-matches { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
-
-    /* ── Expanded match history ─────────────────────── */
-    .expand-row { display: none; }
-    .expand-row.show { display: table-row; }
-
-    .expand-cell {
-      padding: 0 14px 16px 50px; background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .expand-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; padding-top: 12px; }
-
-    .match-history-row {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--surface3); border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 14px; margin-bottom: 6px;
-    }
-
-    .mh-tournament { font-size: 0.72rem; color: var(--muted); flex: 1; min-width: 160px; }
-    .mh-match { font-size: 0.82rem; font-weight: 600; min-width: 120px; }
-    .mh-result { font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
-    .mh-result.win  { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); border: 1px solid color-mix(in srgb, var(--success) 25%, transparent); }
-    .mh-result.loss { color: var(--danger);  background: color-mix(in srgb, var(--danger)  12%, transparent); border: 1px solid color-mix(in srgb, var(--danger)  25%, transparent); }
-
-    .mh-stats { display: flex; gap: 8px; flex-wrap: wrap; }
-    .mh-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
-    .mh-chip span { color: var(--text); font-weight: 600; }
-    .mh-pts { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
-
-    /* ── Loading ────────────────────────────────────── */
-    .loading-wrap { display: flex; align-items: center; justify-content: center; padding: 80px; }
-    .spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -186,16 +44,18 @@
     <button class="filter-btn" data-region="EMEA">EMEA</button>
     <button class="filter-btn" data-region="Pacific">Pacific</button>
     <button class="filter-btn" data-region="China">China</button>
-    <span class="sort-label">Sort by</span>
-    <select class="sort-select" id="sort-select">
-      <option value="totalPts">Total Pts</option>
-      <option value="rating">Rating</option>
-      <option value="acs">ACS</option>
-      <option value="kd">K/D</option>
-      <option value="adr">ADR</option>
-      <option value="kpr">KPR</option>
-      <option value="matchCount">Matches</option>
-    </select>
+    <div class="sort-control">
+      <span class="sort-label">Sort by</span>
+      <select class="sort-select" id="sort-select">
+        <option value="totalPts">Total Pts</option>
+        <option value="rating">Rating</option>
+        <option value="acs">ACS</option>
+        <option value="kd">K/D</option>
+        <option value="adr">ADR</option>
+        <option value="kpr">KPR</option>
+        <option value="matchCount">Matches</option>
+      </select>
+    </div>
   </div>
 
   <div class="table-wrap">
