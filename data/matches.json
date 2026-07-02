@@ -2500,12 +2500,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "Rex Regum Qeon",
     "team2": "100 Thieves",
-    "score": null,
-    "winner": null,
+    "score": "0-2",
+    "winner": "100 Thieves",
     "format": "BO3",
     "date": "2026-07-02",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "xffero",
+        "team": "Rex Regum Qeon",
+        "rating": 1.02,
+        "kd": 0.94,
+        "acs": 194.0,
+        "adr": 145.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Jemkin",
+        "team": "Rex Regum Qeon",
+        "rating": 0.87,
+        "kd": 0.88,
+        "acs": 190.0,
+        "adr": 129.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "crazyguy",
+        "team": "Rex Regum Qeon",
+        "rating": 0.87,
+        "kd": 0.77,
+        "acs": 161.0,
+        "adr": 111.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Xan",
+        "team": "Rex Regum Qeon",
+        "rating": 0.82,
+        "kd": 0.77,
+        "acs": 200.0,
+        "adr": 121.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Kushy",
+        "team": "Rex Regum Qeon",
+        "rating": 0.77,
+        "kd": 0.66,
+        "acs": 169.0,
+        "adr": 119.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.37,
+        "kd": 1.5,
+        "acs": 292.0,
+        "adr": 195.0,
+        "kpr": 1.02
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.2,
+        "kd": 1.32,
+        "acs": 221.0,
+        "adr": 153.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.19,
+        "kd": 1.41,
+        "acs": 260.0,
+        "adr": 171.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.1,
+        "kd": 1.14,
+        "acs": 173.0,
+        "adr": 116.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 0.97,
+        "kd": 0.85,
+        "acs": 168.0,
+        "adr": 103.0,
+        "kpr": 0.56
+      }
+    ],
     "vlrId": "706754"
   },
   {
@@ -2513,12 +2604,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "BBL Esports",
     "team2": "EDward Gaming",
-    "score": null,
-    "winner": null,
+    "score": "2-1",
+    "winner": "BBL Esports",
     "format": "BO3",
     "date": "2026-07-02",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Lar0k",
+        "team": "BBL Esports",
+        "rating": 1.4,
+        "kd": 1.63,
+        "acs": 305.0,
+        "adr": 188.0,
+        "kpr": 1.07
+      },
+      {
+        "playerId": "Loita",
+        "team": "BBL Esports",
+        "rating": 1.4,
+        "kd": 1.36,
+        "acs": 260.0,
+        "adr": 164.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "lovers_rock",
+        "team": "BBL Esports",
+        "rating": 1.07,
+        "kd": 1.2,
+        "acs": 200.0,
+        "adr": 122.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Crewen",
+        "team": "BBL Esports",
+        "rating": 0.97,
+        "kd": 0.91,
+        "acs": 182.0,
+        "adr": 131.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Rosé",
+        "team": "BBL Esports",
+        "rating": 0.9,
+        "kd": 0.96,
+        "acs": 224.0,
+        "adr": 129.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.93,
+        "kd": 0.98,
+        "acs": 205.0,
+        "adr": 139.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.92,
+        "kd": 0.8,
+        "acs": 185.0,
+        "adr": 115.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "signed",
+        "team": "EDward Gaming",
+        "rating": 0.88,
+        "kd": 0.9,
+        "acs": 178.0,
+        "adr": 120.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.83,
+        "kd": 0.75,
+        "acs": 146.0,
+        "adr": 104.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.75,
+        "kd": 0.7,
+        "acs": 167.0,
+        "adr": 126.0,
+        "kpr": 0.61
+      }
+    ],
     "vlrId": "706755"
   },
   {
@@ -2526,12 +2708,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "Team Vitality",
     "team2": "Karmine Corp",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "Team Vitality",
     "format": "BO3",
     "date": "2026-07-02",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.28,
+        "kd": 1.48,
+        "acs": 291.0,
+        "adr": 190.0,
+        "kpr": 1.07
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.21,
+        "kd": 1.36,
+        "acs": 251.0,
+        "adr": 180.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 1.08,
+        "kd": 1.2,
+        "acs": 180.0,
+        "adr": 125.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 1.06,
+        "kd": 1.17,
+        "acs": 166.0,
+        "adr": 113.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.91,
+        "kd": 0.92,
+        "acs": 164.0,
+        "adr": 120.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 1.04,
+        "kd": 1.0,
+        "acs": 200.0,
+        "adr": 124.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 0.94,
+        "kd": 0.84,
+        "acs": 190.0,
+        "adr": 124.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 0.86,
+        "kd": 0.81,
+        "acs": 184.0,
+        "adr": 117.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 0.8,
+        "kd": 0.71,
+        "acs": 168.0,
+        "adr": 117.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 0.72,
+        "kd": 0.69,
+        "acs": 138.0,
+        "adr": 99.0,
+        "kpr": 0.51
+      }
+    ],
     "vlrId": "706759"
   },
   {
@@ -2539,12 +2812,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "NRG",
     "team2": "Paper Rex",
-    "score": null,
-    "winner": null,
+    "score": "2-1",
+    "winner": "NRG",
     "format": "BO3",
     "date": "2026-07-02",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.22,
+        "kd": 1.35,
+        "acs": 220.0,
+        "adr": 142.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.15,
+        "kd": 1.1,
+        "acs": 213.0,
+        "adr": 141.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.07,
+        "kd": 1.02,
+        "acs": 202.0,
+        "adr": 134.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.01,
+        "kd": 1.02,
+        "acs": 178.0,
+        "adr": 121.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.86,
+        "kd": 0.88,
+        "acs": 163.0,
+        "adr": 103.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 1.17,
+        "kd": 1.15,
+        "acs": 199.0,
+        "adr": 134.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 1.15,
+        "kd": 1.22,
+        "acs": 227.0,
+        "adr": 154.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 0.88,
+        "kd": 0.88,
+        "acs": 160.0,
+        "adr": 108.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.75,
+        "kd": 0.8,
+        "acs": 154.0,
+        "adr": 108.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 0.67,
+        "kd": 0.67,
+        "acs": 160.0,
+        "adr": 108.0,
+        "kpr": 0.52
+      }
+    ],
     "vlrId": "706760"
   },
   {
