@@ -1859,15 +1859,15 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   /* Draft room header: keep only pick status + round.
      Format, tournament, and nav links live in the Info tab instead,
      so they aren't shown in both places at once. */
-  header:has(.pick-status) {
+  .draft-header {
     padding: 0 12px;
     gap: 10px;
   }
   .pick-status { font-size: 0.85rem; }
   #round-badge { font-size: 0.65rem; padding: 3px 8px; }
-  #format-badge,
-  #tournament-badge,
-  header:has(.pick-status) .draft-nav { display: none !important; }
+  #format-badge    { display: none !important; }
+  #tournament-badge { display: none !important; }
+  .draft-header .draft-nav { display: none !important; }
 }
 
 /* ── Phone: compact header, stacked hero/cards ────────── */
