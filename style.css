@@ -1867,7 +1867,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   #round-badge { font-size: 0.65rem; padding: 3px 8px; }
   #format-badge,
   #tournament-badge,
-  header:has(.pick-status) .draft-nav { display: none; }
+  header:has(.pick-status) .draft-nav { display: none !important; }
 }
 
 /* ── Phone: compact header, stacked hero/cards ────────── */
