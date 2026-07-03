@@ -1763,6 +1763,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 
 /* ── Mobile Draft Room Tabs (hidden on desktop) ───────── */
 .mobile-tabs { display: none; }
+.mobile-info-panel { display: none; }
 .mobile-tab-btn {
   flex: 1;
   padding: 12px 8px;
@@ -1824,7 +1825,8 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   .draft-layout > .panel,
   .draft-layout > .right-panel { display: none; border: none; }
   .draft-layout > .panel.active-tab,
-  .draft-layout > .right-panel.active-tab { display: flex; }
+  .draft-layout > .right-panel.active-tab,
+  .draft-layout > .mobile-info-panel.active-tab { display: flex; flex-direction: column; }
 
   .panel-body { overflow-y: visible; max-height: none; }
   #player-pool { overflow-y: visible; max-height: none; }
@@ -1867,27 +1869,17 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   nav::-webkit-scrollbar { display: none; }
   .nav-link { padding: 6px 10px; font-size: 0.7rem; white-space: nowrap; }
 
-  /* Draft room header: wrap status badges instead of overflowing offscreen */
+  /* Draft room header: keep only pick status + round on mobile.
+     Format, tournament, and nav links move into the Info tab. */
   header:has(.pick-status) {
-    height: auto;
-    min-height: 52px;
-    flex-wrap: wrap;
-    row-gap: 6px;
-    padding: 8px 12px;
+    padding: 0 12px;
+    gap: 10px;
   }
-  .pick-status { flex: 1 1 100%; order: 1; font-size: 0.9rem; }
-  #round-badge { order: 2; font-size: 0.65rem; padding: 3px 8px; }
-  #format-badge { order: 3; font-size: 0.65rem; padding: 3px 8px; }
-  #tournament-badge {
-    order: 4;
-    max-width: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 0.65rem;
-    padding: 3px 8px;
-  }
-  .draft-nav { margin-left: 0; width: 100%; order: 5; }
+  .pick-status { font-size: 0.85rem; }
+  #round-badge { font-size: 0.65rem; padding: 3px 8px; }
+  #format-badge,
+  #tournament-badge,
+  header:has(.pick-status) .draft-nav { display: none; }
 
   main { padding: 20px 14px; }
 

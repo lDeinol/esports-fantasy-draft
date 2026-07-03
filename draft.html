@@ -25,7 +25,7 @@
     <div class="format-badge" id="format-badge">—</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <nav class="draft-nav">
-      <a id="rejoin-link" href="#" class="nav-link" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none;">🔗 Rejoin Link</a>
+      <a id="rejoin-link" href="#" class="nav-link rejoin-link" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none;">🔗 Rejoin Link</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
@@ -68,8 +68,9 @@
     </div>
   </div>
 
-  <!-- ── Mobile Tabs (Pool / Board / My Team) ──────────── -->
+  <!-- ── Mobile Tabs (Info / Pool / Board / My Team) ───── -->
   <div class="mobile-tabs" id="mobile-tabs">
+    <button class="mobile-tab-btn" data-tab="info">Info</button>
     <button class="mobile-tab-btn" data-tab="pool">Pool <span class="tab-turn-dot" id="tab-turn-dot"></span></button>
     <button class="mobile-tab-btn" data-tab="board">Board</button>
     <button class="mobile-tab-btn" data-tab="team">My Team</button>
@@ -77,6 +78,23 @@
 
   <!-- ── 3-Column Layout ─────────────────────────────── -->
   <div class="draft-layout">
+
+    <!-- INFO (mobile only): format, tournament, rejoin link, page links -->
+    <div class="mobile-info-panel" data-tab="info">
+      <div class="panel-header">Draft Info</div>
+      <div class="panel-body">
+        <div class="info-pill" style="margin-bottom:10px;">Format: <strong id="info-format-value">—</strong></div>
+        <div class="info-pill" id="info-tournament-row" style="display:none; margin-bottom:16px;">Tournament: <strong id="info-tournament-value">—</strong></div>
+
+        <a href="#" class="nav-link rejoin-link" id="rejoin-link-info" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none; text-align:center; margin-bottom:16px;">🔗 Rejoin Link</a>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="matches.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Matches</div></a>
+          <a href="dashboard.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">My Team</div></a>
+          <a href="standings.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Standings</div></a>
+        </div>
+      </div>
+    </div>
 
     <!-- LEFT: My Team -->
     <div class="panel" data-tab="team">
@@ -715,11 +733,21 @@
       document.getElementById("round-badge").textContent  = `Round ${Math.min(round, CONFIG.ROSTER_SIZE)} / ${CONFIG.ROSTER_SIZE}`;
       document.getElementById("format-badge").textContent = format === "auction" ? "🏷 Auction" : "🐍 Snake";
 
+      const infoFormatValue = document.getElementById("info-format-value");
+      if (infoFormatValue) infoFormatValue.textContent = format === "auction" ? "Auction" : "Snake";
+
       // Show tournament name in header if available
       const tournamentBadge = document.getElementById("tournament-badge");
       if (tournamentBadge && lobbyData.tournamentId) {
         tournamentBadge.textContent = `📋 ${lobbyData.tournamentId}`;
         tournamentBadge.style.display = "inline-block";
+
+        const infoTournamentRow   = document.getElementById("info-tournament-row");
+        const infoTournamentValue = document.getElementById("info-tournament-value");
+        if (infoTournamentRow && infoTournamentValue) {
+          infoTournamentValue.textContent = lobbyData.tournamentId;
+          infoTournamentRow.style.display = "block";
+        }
       }
 
       const statusEl = document.getElementById("pick-status");
@@ -1065,16 +1093,18 @@
       await ensureAuth();
       await loadPlayers();
 
-      // Set up the rejoin link so players can bookmark it
-      const rejoinLink = document.getElementById("rejoin-link");
-      if (rejoinLink && lobbyCode) {
-        rejoinLink.href = `index.html?code=${lobbyCode}`;
-        rejoinLink.style.display = "inline-block";
-        rejoinLink.addEventListener("click", (e) => {
-          e.preventDefault();
-          navigator.clipboard.writeText(window.location.origin + window.location.pathname.replace("draft.html", "") + `index.html?code=${lobbyCode}`)
-            .then(() => { rejoinLink.textContent = "✓ Copied!"; setTimeout(() => { rejoinLink.textContent = "🔗 Rejoin Link"; }, 1500); })
-            .catch(() => { window.open(rejoinLink.href, "_blank"); });
+      // Set up the rejoin link(s) so players can bookmark it
+      const rejoinLinks = document.querySelectorAll(".rejoin-link");
+      if (rejoinLinks.length && lobbyCode) {
+        rejoinLinks.forEach(rejoinLink => {
+          rejoinLink.href = `index.html?code=${lobbyCode}`;
+          rejoinLink.style.display = "inline-block";
+          rejoinLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText(window.location.origin + window.location.pathname.replace("draft.html", "") + `index.html?code=${lobbyCode}`)
+              .then(() => { rejoinLink.textContent = "✓ Copied!"; setTimeout(() => { rejoinLink.textContent = "🔗 Rejoin Link"; }, 1500); })
+              .catch(() => { window.open(rejoinLink.href, "_blank"); });
+          });
         });
       }
 
