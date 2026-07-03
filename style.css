@@ -1855,6 +1855,19 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   .page-layout { flex-direction: column; overflow: visible; }
   .sidebar { width: 100%; max-height: 260px; border-right: none; border-bottom: 1px solid var(--border); }
   .match-panel { overflow: visible; }
+
+  /* Draft room header: keep only pick status + round.
+     Format, tournament, and nav links live in the Info tab instead,
+     so they aren't shown in both places at once. */
+  header:has(.pick-status) {
+    padding: 0 12px;
+    gap: 10px;
+  }
+  .pick-status { font-size: 0.85rem; }
+  #round-badge { font-size: 0.65rem; padding: 3px 8px; }
+  #format-badge,
+  #tournament-badge,
+  header:has(.pick-status) .draft-nav { display: none; }
 }
 
 /* ── Phone: compact header, stacked hero/cards ────────── */
@@ -1868,18 +1881,6 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   }
   nav::-webkit-scrollbar { display: none; }
   .nav-link { padding: 6px 10px; font-size: 0.7rem; white-space: nowrap; }
-
-  /* Draft room header: keep only pick status + round on mobile.
-     Format, tournament, and nav links move into the Info tab. */
-  header:has(.pick-status) {
-    padding: 0 12px;
-    gap: 10px;
-  }
-  .pick-status { font-size: 0.85rem; }
-  #round-badge { font-size: 0.65rem; padding: 3px 8px; }
-  #format-badge,
-  #tournament-badge,
-  header:has(.pick-status) .draft-nav { display: none; }
 
   main { padding: 20px 14px; }
 
