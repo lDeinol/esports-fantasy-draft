@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     html, body { height: 100vh; overflow: hidden; }
+    @media (max-width: 900px) {
+      html, body { height: auto; overflow: visible; }
+    }
   </style>
 </head>
 <body>
@@ -65,11 +68,18 @@
     </div>
   </div>
 
+  <!-- ── Mobile Tabs (Pool / Board / My Team) ──────────── -->
+  <div class="mobile-tabs" id="mobile-tabs">
+    <button class="mobile-tab-btn" data-tab="pool">Pool <span class="tab-turn-dot" id="tab-turn-dot"></span></button>
+    <button class="mobile-tab-btn" data-tab="board">Board</button>
+    <button class="mobile-tab-btn" data-tab="team">My Team</button>
+  </div>
+
   <!-- ── 3-Column Layout ─────────────────────────────── -->
   <div class="draft-layout">
 
     <!-- LEFT: My Team -->
-    <div class="panel">
+    <div class="panel" data-tab="team">
       <div class="panel-header">
         <span>My Team</span>
         <span id="my-pick-label" style="color:var(--accent); font-size:0.7rem;"></span>
@@ -86,7 +96,7 @@
     </div>
 
     <!-- CENTER: Draft Grid -->
-    <div class="panel" style="border-right:none;">
+    <div class="panel" data-tab="board" style="border-right:none;">
       <div class="panel-header">Draft Board</div>
       <div class="grid-scroll panel-body" style="padding:0;">
         <table class="draft-table" id="draft-table">
@@ -103,7 +113,7 @@
     </div>
 
     <!-- RIGHT: Player Pool -->
-    <div class="right-panel">
+    <div class="right-panel" data-tab="pool">
       <div class="panel-header">Player Pool</div>
       <div class="search-wrap">
         <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
@@ -111,6 +121,7 @@
       </div>
       <div id="player-pool"></div>
       <div class="player-detail" id="player-detail">
+        <button class="player-detail-close" id="player-detail-close" aria-label="Close">✕</button>
         <div class="detail-name" id="detail-name">—</div>
         <div class="detail-meta" id="detail-meta">—</div>
         <div class="detail-stats" id="detail-stats"></div>
@@ -151,6 +162,9 @@
     let players       = [];       // from players.json
     let selectedPlayer= null;
     let activeFilter  = "all";
+    let activeMobileTab = "pool";
+    let wasMyTurn       = false;
+    let mobileTabInitialized = false;
 
     // ─────────────────────────────────────────────────────
     //  Toast helper
@@ -282,6 +296,19 @@
     }
 
     // ─────────────────────────────────────────────────────
+    //  Mobile tabs (Pool / Board / My Team)
+    // ─────────────────────────────────────────────────────
+    function setMobileTab(tab) {
+      activeMobileTab = tab;
+      document.querySelectorAll(".draft-layout > [data-tab]").forEach(panel => {
+        panel.classList.toggle("active-tab", panel.dataset.tab === tab);
+      });
+      document.querySelectorAll(".mobile-tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tab);
+      });
+    }
+
+    // ─────────────────────────────────────────────────────
     //  Select a player (show detail pane)
     // ─────────────────────────────────────────────────────
     function selectPlayer(p) {
@@ -396,6 +423,8 @@
 
       await update(ref(db), updates);
       toast(`Drafted ${player.name}!`, "success");
+      selectedPlayer = null;
+      document.getElementById("player-detail").classList.remove("show");
     }
 
     // ─────────────────────────────────────────────────────
@@ -787,6 +816,18 @@
       updateHostControls();
       if (lobbyData?.format === "auction") updateAuctionUI();
 
+      // Default/auto-switch the mobile tab: start on Pool, and jump back to
+      // Pool whenever it newly becomes this player's turn.
+      const myTurnNow = isItMyTurn() || isNominationTurn();
+      if (!mobileTabInitialized) {
+        mobileTabInitialized = true;
+        setMobileTab(myTurnNow ? "pool" : "board");
+      } else if (myTurnNow && !wasMyTurn) {
+        setMobileTab("pool");
+      }
+      wasMyTurn = myTurnNow;
+      document.getElementById("tab-turn-dot").classList.toggle("show", myTurnNow);
+
       if (lobbyData?.status === "complete") {
         document.getElementById("draft-complete-banner").style.display = "flex";
       }
@@ -1036,6 +1077,16 @@
             .catch(() => { window.open(rejoinLink.href, "_blank"); });
         });
       }
+
+      // Mobile tab buttons
+      document.querySelectorAll(".mobile-tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => setMobileTab(btn.dataset.tab));
+      });
+
+      // Close button for the mobile bottom-sheet player detail
+      document.getElementById("player-detail-close").addEventListener("click", () => {
+        document.getElementById("player-detail").classList.remove("show");
+      });
 
       // Subscribe to live lobby updates
       subscribeLobby(lobbyCode, (data) => {

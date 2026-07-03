@@ -1760,15 +1760,87 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
    RESPONSIVE — Tablet & Mobile
    ════════════════════════════════════════════════════════ */
 
-/* ── Tablet: stack the multi-column app layouts ───────── */
+/* ── Mobile Draft Room Tabs (hidden on desktop) ───────── */
+.mobile-tabs { display: none; }
+.mobile-tab-btn {
+  flex: 1;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.mobile-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-turn-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--warn); box-shadow: 0 0 6px var(--warn);
+  display: none;
+}
+.tab-turn-dot.show { display: inline-block; }
+
+.player-detail-close {
+  display: none;
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet & Mobile
+   ════════════════════════════════════════════════════════ */
+
+/* ── Tablet & Mobile: draft room becomes a tabbed layout ─ */
 @media (max-width: 900px) {
-  .draft-layout {
-    grid-template-columns: 1fr;
-    grid-auto-rows: minmax(0, auto);
-    overflow: visible;
+  .mobile-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
   }
-  .panel { border-right: none; border-bottom: 1px solid var(--border); }
+
+  .draft-layout {
+    display: block;
+    overflow: visible;
+    flex: none;
+  }
+  .draft-layout > .panel,
+  .draft-layout > .right-panel { display: none; border: none; }
+  .draft-layout > .panel.active-tab,
+  .draft-layout > .right-panel.active-tab { display: flex; }
+
   .panel-body { overflow-y: visible; max-height: none; }
+  #player-pool { overflow-y: visible; max-height: none; }
+
+  /* Player detail becomes a bottom sheet instead of an inline panel */
+  .player-detail {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    max-height: 75vh;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -12px 30px rgba(0,0,0,0.45);
+    z-index: 70;
+    padding-right: 44px;
+  }
+  .player-detail-close {
+    display: block;
+  }
 
   .page-layout { flex-direction: column; overflow: visible; }
   .sidebar { width: 100%; max-height: 260px; border-right: none; border-bottom: 1px solid var(--border); }
