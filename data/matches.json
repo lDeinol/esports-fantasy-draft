@@ -2916,12 +2916,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "MIBR",
     "team2": "Global Esports",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "MIBR",
     "format": "BO3",
     "date": "2026-07-03",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Verno",
+        "team": "MIBR",
+        "rating": 2.04,
+        "kd": 3.27,
+        "acs": 310.0,
+        "adr": 208.0,
+        "kpr": 1.16
+      },
+      {
+        "playerId": "aspas",
+        "team": "MIBR",
+        "rating": 1.56,
+        "kd": 2.14,
+        "acs": 263.0,
+        "adr": 191.0,
+        "kpr": 0.97
+      },
+      {
+        "playerId": "zekken",
+        "team": "MIBR",
+        "rating": 1.27,
+        "kd": 1.67,
+        "acs": 215.0,
+        "adr": 134.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Mazino",
+        "team": "MIBR",
+        "rating": 1.17,
+        "kd": 1.29,
+        "acs": 247.0,
+        "adr": 150.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "tex",
+        "team": "MIBR",
+        "rating": 0.89,
+        "kd": 1.11,
+        "acs": 165.0,
+        "adr": 112.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 0.88,
+        "kd": 0.69,
+        "acs": 183.0,
+        "adr": 128.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 0.73,
+        "kd": 0.71,
+        "acs": 186.0,
+        "adr": 118.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 0.69,
+        "kd": 0.61,
+        "acs": 170.0,
+        "adr": 113.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 0.56,
+        "kd": 0.5,
+        "acs": 127.0,
+        "adr": 84.0,
+        "kpr": 0.45
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.38,
+        "kd": 0.36,
+        "acs": 131.0,
+        "adr": 89.0,
+        "kpr": 0.32
+      }
+    ],
     "vlrId": "706769"
   },
   {
@@ -2929,12 +3020,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "All Gamers",
     "team2": "Team Heretics",
-    "score": null,
-    "winner": null,
+    "score": "1-2",
+    "winner": "Team Heretics",
     "format": "BO3",
     "date": "2026-07-03",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.15,
+        "kd": 1.29,
+        "acs": 206.0,
+        "adr": 142.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 1.06,
+        "kd": 1.09,
+        "acs": 211.0,
+        "adr": 127.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.95,
+        "kd": 0.96,
+        "acs": 207.0,
+        "adr": 136.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.92,
+        "kd": 1.07,
+        "acs": 183.0,
+        "adr": 126.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.89,
+        "kd": 0.88,
+        "acs": 194.0,
+        "adr": 128.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Wo0t",
+        "team": "Team Heretics",
+        "rating": 1.25,
+        "kd": 1.24,
+        "acs": 255.0,
+        "adr": 163.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "RieNs",
+        "team": "Team Heretics",
+        "rating": 1.13,
+        "kd": 1.09,
+        "acs": 214.0,
+        "adr": 135.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Boo",
+        "team": "Team Heretics",
+        "rating": 0.94,
+        "kd": 0.8,
+        "acs": 157.0,
+        "adr": 109.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "benjyfishy",
+        "team": "Team Heretics",
+        "rating": 0.91,
+        "kd": 0.91,
+        "acs": 172.0,
+        "adr": 112.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "koshmaras",
+        "team": "Team Heretics",
+        "rating": 0.88,
+        "kd": 0.76,
+        "acs": 189.0,
+        "adr": 137.0,
+        "kpr": 0.58
+      }
+    ],
     "vlrId": "706770"
   },
   {
@@ -2942,12 +3124,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "Gentle Mates",
     "team2": "Xi Lai Gaming",
-    "score": null,
-    "winner": null,
+    "score": "2-1",
+    "winner": "Gentle Mates",
     "format": "BO3",
     "date": "2026-07-03",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "marteen",
+        "team": "Gentle Mates",
+        "rating": 1.48,
+        "kd": 1.9,
+        "acs": 295.0,
+        "adr": 186.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "starxo",
+        "team": "Gentle Mates",
+        "rating": 1.4,
+        "kd": 1.86,
+        "acs": 273.0,
+        "adr": 157.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "bipo",
+        "team": "Gentle Mates",
+        "rating": 1.14,
+        "kd": 1.36,
+        "acs": 173.0,
+        "adr": 124.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Minny",
+        "team": "Gentle Mates",
+        "rating": 0.87,
+        "kd": 0.92,
+        "acs": 203.0,
+        "adr": 122.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Proxh",
+        "team": "Gentle Mates",
+        "rating": 0.75,
+        "kd": 0.77,
+        "acs": 121.0,
+        "adr": 78.0,
+        "kpr": 0.42
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 1.24,
+        "kd": 1.14,
+        "acs": 240.0,
+        "adr": 157.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.84,
+        "kd": 0.8,
+        "acs": 176.0,
+        "adr": 119.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.82,
+        "kd": 0.68,
+        "acs": 148.0,
+        "adr": 99.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.69,
+        "kd": 0.47,
+        "acs": 124.0,
+        "adr": 96.0,
+        "kpr": 0.33
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.68,
+        "kd": 0.65,
+        "acs": 138.0,
+        "adr": 99.0,
+        "kpr": 0.47
+      }
+    ],
     "vlrId": "706764"
   },
   {
@@ -2955,12 +3228,103 @@
     "tournamentId": "esports-world-cup-2026",
     "team1": "Nongshim RedForce",
     "team2": "G2 Esports",
-    "score": null,
-    "winner": null,
+    "score": "2-1",
+    "winner": "Nongshim RedForce",
     "format": "BO3",
     "date": "2026-07-03",
-    "status": "upcoming",
-    "playerStats": [],
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.36,
+        "kd": 1.64,
+        "acs": 248.0,
+        "adr": 162.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.1,
+        "kd": 1.1,
+        "acs": 220.0,
+        "adr": 142.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 1.08,
+        "kd": 1.02,
+        "acs": 236.0,
+        "adr": 158.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 0.87,
+        "kd": 0.9,
+        "acs": 167.0,
+        "adr": 109.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 0.73,
+        "kd": 0.72,
+        "acs": 160.0,
+        "adr": 109.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.13,
+        "kd": 1.21,
+        "acs": 226.0,
+        "adr": 148.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 1.1,
+        "kd": 1.02,
+        "acs": 233.0,
+        "adr": 161.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.0,
+        "kd": 0.93,
+        "acs": 181.0,
+        "adr": 124.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.86,
+        "kd": 0.84,
+        "acs": 184.0,
+        "adr": 130.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.85,
+        "kd": 0.8,
+        "acs": 183.0,
+        "adr": 119.0,
+        "kpr": 0.61
+      }
+    ],
     "vlrId": "706765"
   }
 ]
