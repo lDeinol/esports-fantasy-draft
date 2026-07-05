@@ -1,0 +1,94 @@
+name: Scrape Ongoing Tournament
+
+# ─────────────────────────────────────────────────────────────
+#  WHEN THIS RUNS
+# ─────────────────────────────────────────────────────────────
+#  1) On a schedule, twice a day.
+#  2) Manually, any time, via the "Run workflow" button on the
+#     Actions tab (that's what `workflow_dispatch` below enables).
+#
+#  ⚠ GitHub Actions cron schedules always run in UTC — there's no
+#  way to give it a US timezone directly. The two lines below are
+#  set for 1:00 AM and 1:00 PM US Central Time (Houston), converted
+#  to UTC for you:
+#
+#      1:00 AM CDT  ->  06:00 UTC   (cron: "0 6 * * *")
+#      1:00 PM CDT  ->  18:00 UTC   (cron: "0 18 * * *")
+#
+#  ┌───────────────────────────────────────────────────────────┐
+#  │  TO CHANGE THE SCHEDULE: edit the two "cron:" lines below. │
+#  │  Format is: minute hour day month weekday (all in UTC).    │
+#  │  Example — to run at 3:00 AM and 3:00 PM UTC instead:      │
+#  │      - cron: "0 3 * * *"                                   │
+#  │      - cron: "0 15 * * *"                                  │
+#  └───────────────────────────────────────────────────────────┘
+#
+#  ⚠ DST NOTE: Central Time flips between CDT (UTC-5, roughly
+#  March–November) and CST (UTC-6, roughly November–March). The
+#  cron times above are set for CDT. During CST months this will
+#  actually fire at 12:00 AM / 12:00 PM Central instead of 1:00 —
+#  a 1-hour drift. If that matters to you, swap to "0 7 * * *" and
+#  "0 19 * * *" for the CST months, or just leave it — either way
+#  you're at most an hour off for part of the year.
+on:
+  schedule:
+    - cron: "0 6 * * *"   # 1:00 AM CDT / 12:00 AM CST
+    - cron: "0 18 * * *"  # 1:00 PM CDT / 12:00 PM CST
+  workflow_dispatch:
+    inputs:
+      tournament_id:
+        description: "Force a specific tournament ID (leave blank to auto-detect the 'ongoing' one)"
+        required: false
+        default: ""
+      unattended:
+        description: "Skip matches where total rounds can't be auto-detected, instead of prompting"
+        type: boolean
+        required: false
+        default: true
+
+# Needed so the job can commit the updated matches.json back to the repo
+permissions:
+  contents: write
+
+# Don't let two runs step on each other (e.g. a manual run during a scheduled one)
+concurrency:
+  group: scrape-tournament
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run scraper
+        run: |
+          ARGS="--tournament-id ${{ github.event.inputs.tournament_id }}"
+          if [ -z "${{ github.event.inputs.tournament_id }}" ]; then
+            ARGS=""
+          fi
+          if [ "${{ github.event.inputs.unattended }}" != "false" ]; then
+            ARGS="$ARGS --unattended"
+          fi
+          python tools/scrape_tournament.py $ARGS
+
+      - name: Commit and push updated matches.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/matches.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-update matches.json [skip ci]"
+            git push
+          fi
