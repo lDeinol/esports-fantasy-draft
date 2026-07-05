@@ -965,7 +965,7 @@
     "team": "Gentle Mates",
     "role": "Controller",
     "region": "EMEA",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 0.92,
       "kd": 0.81,
@@ -1310,7 +1310,7 @@
     "team": "Rex Regum Qeon",
     "role": "Flex",
     "region": "Pacific",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 1.07,
       "kd": 1.01,
@@ -1460,7 +1460,7 @@
     "team": "All Gamers",
     "role": "Duelist",
     "region": "China",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 0.0,
       "kd": 1.21,
