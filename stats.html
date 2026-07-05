@@ -99,6 +99,9 @@
       fetch("data/matches.json").then(r => r.json()),
       fetch("data/tournaments.json").then(r => r.json()),
     ]);
+    // Only ever browse active players. Missing status is treated as
+    // active for backwards-compatibility with older players.json entries.
+    players = players.filter(p => p.status !== "inactive");
   }
 
   // Build tournament lookup

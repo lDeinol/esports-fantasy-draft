@@ -109,6 +109,7 @@ def main():
             "team": team,
             "role": role,
             "region": region,
+            "status": "active",
             "stats": {
                 "rating": rating,
                 "kd": kd,

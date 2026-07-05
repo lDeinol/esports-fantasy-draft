@@ -45,7 +45,16 @@ def load_json(path):
     if not os.path.exists(path):
         return []
     with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        content = f.read().strip()
+    if not content:
+        print(f"  ⚠ {path} exists but is empty — treating it as an empty list.")
+        return []
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError as e:
+        print(f"  ⚠ {path} contains invalid JSON ({e}). Treating it as an empty list.")
+        print(f"    Check that this is really the file you meant to point at.")
+        return []
 
 
 def save_json(path, data):
@@ -81,22 +90,14 @@ def safe_int(val, fallback=0):
 
 
 def resolve_team_name(raw_name):
-    """If team name contains a parenthetical e.g. 'AG.AL (All Gamers)', prompt to choose."""
+    """If team name contains a parenthetical e.g. 'AG.AL (All Gamers)',
+    automatically use the full name in parentheses — no prompt."""
     m = re.match(r"^(.+?)\s*\((.+?)\)\s*$", raw_name.strip())
     if not m:
         return raw_name
-    short_name = m.group(1).strip()
-    full_name  = m.group(2).strip()
-    print(f"\n  Team name has two parts: '{raw_name}'")
-    print(f"    1. {short_name}  (abbreviated)")
-    print(f"    2. {full_name}  (full name in parentheses)")
-    print(f"    3. Keep as-is: {raw_name}")
-    while True:
-        choice = input("  Which name to use? [1/2/3, default=2]: ").strip() or "2"
-        if choice == "1": return short_name
-        if choice == "2": return full_name
-        if choice == "3": return raw_name
-        print("  Enter 1, 2, or 3.")
+    full_name = m.group(2).strip()
+    print(f"  Team name '{raw_name}' -> using '{full_name}'")
+    return full_name
 
 
 def resolve_status(date_str, has_score):
@@ -138,6 +139,46 @@ def fetch_page(url):
     except requests.exceptions.Timeout:
         print("  Request timed out.")
         return None
+
+
+# ── Auto-detect total rounds played ─────────────────────────
+def auto_total_rounds(soup):
+    """
+    Sum the final round score of every played map to get the series
+    total rounds (used for KPR). Each map is a '.vm-stats-game'
+    container with its own data-game-id; the aggregate 'all' tab is
+    skipped since it isn't an individual map.
+    Returns 0 if it can't confidently determine this (caller should
+    fall back to asking the user).
+    """
+    total = 0
+    found_any_map = False
+
+    for game in soup.select(".vm-stats-game"):
+        gid = game.get("data-game-id", "")
+        if gid == "all":
+            continue
+
+        score_els = game.select(".vm-stats-game-header .team .score")
+        if len(score_els) < 2:
+            continue
+
+        map_scores = []
+        for el in score_els[:2]:
+            text = el.get_text(strip=True)
+            if text.isdigit():
+                map_scores.append(int(text))
+
+        if len(map_scores) == 2:
+            # Skip maps that were never played (both scores 0 with no
+            # winner indicator) — e.g. a decider map when the series
+            # already ended 2-0.
+            if map_scores[0] == 0 and map_scores[1] == 0:
+                continue
+            total += map_scores[0] + map_scores[1]
+            found_any_map = True
+
+    return total if found_any_map else 0
 
 
 # ── Parse match ────────────────────────────────────────────
@@ -208,8 +249,14 @@ def parse_match(html, match_id):
     rounds_total = 0
 
     if game_all and score_str:
-        # Only prompt for rounds and parse stats if the match has a score
-        rounds_total = int(input("Enter Total Rounds: "))
+        # Only parse stats if the match has a score.
+        # Try to auto-derive total rounds from the per-map scores first.
+        rounds_total = auto_total_rounds(soup)
+        if rounds_total > 0:
+            print(f"  Auto-detected total rounds: {rounds_total}")
+        else:
+            print("  ⚠ Could not auto-detect total rounds from the page.")
+            rounds_total = int(input("Enter Total Rounds: "))
 
         rows = game_all.select("tbody tr")
         current_team_idx = 0
@@ -401,7 +448,7 @@ def main():
     tournament_id = pick_tournament(tournaments)
 
     # ── Match ID ───────────────────────────────────────────
-    default_match_id = f"vlr-{vlr_id}"
+    default_match_id = vlr_id
     match_id = prompt(f"Match ID for matches.json", default=default_match_id)
 
     # ── Auto-determine status from date ───────────────────

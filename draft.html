@@ -207,6 +207,9 @@
       ]);
       if (!playersRes.ok) throw new Error("Failed to load players.json");
       players     = await playersRes.json();
+      // Only ever show/draft active players. Missing status is treated
+      // as active for backwards-compatibility with older players.json entries.
+      players     = players.filter(p => p.status !== "inactive");
       tournaments = tournamentsRes.ok ? await tournamentsRes.json() : [];
       const allMatches = matchesRes.ok ? await matchesRes.json() : [];
 

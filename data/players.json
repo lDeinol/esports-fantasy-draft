@@ -5,6 +5,7 @@
     "team": "FULL SENSE",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.4,
       "kd": 1.51,
@@ -19,6 +20,7 @@
     "team": "Paper Rex",
     "role": "Initiator",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.25,
       "kd": 1.29,
@@ -33,6 +35,7 @@
     "team": "NRG",
     "role": "Flex",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.23,
       "kd": 1.27,
@@ -47,6 +50,7 @@
     "team": "Leviatan",
     "role": "Flex",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.21,
       "kd": 1.37,
@@ -61,6 +65,7 @@
     "team": "Team Vitality",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.21,
       "kd": 1.27,
@@ -75,6 +80,7 @@
     "team": "Dragon Ranger Gaming",
     "role": "Sentinel",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 1.21,
       "kd": 1.13,
@@ -89,6 +95,7 @@
     "team": "Paper Rex",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.15,
       "kd": 1.19,
@@ -103,6 +110,7 @@
     "team": "Paper Rex",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.15,
       "kd": 1.23,
@@ -117,6 +125,7 @@
     "team": "Leviatan",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.15,
       "kd": 1.21,
@@ -131,6 +140,7 @@
     "team": "Global Esports",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.13,
       "kd": 1.19,
@@ -145,6 +155,7 @@
     "team": "G2 Esports",
     "role": "Flex",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.11,
       "kd": 0.97,
@@ -159,6 +170,7 @@
     "team": "Leviatan",
     "role": "Initiator",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.1,
       "kd": 1.09,
@@ -173,6 +185,7 @@
     "team": "Leviatan",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.1,
       "kd": 1.16,
@@ -187,6 +200,7 @@
     "team": "Xi Lai Gaming",
     "role": "Sentinel",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 1.09,
       "kd": 1.07,
@@ -201,6 +215,7 @@
     "team": "Dragon Ranger Gaming",
     "role": "Initiator",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 1.08,
       "kd": 1.06,
@@ -215,6 +230,7 @@
     "team": "Team Vitality",
     "role": "Sentinel",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.17,
@@ -229,6 +245,7 @@
     "team": "NRG",
     "role": "Sentinel",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.06,
@@ -243,6 +260,7 @@
     "team": "Team Vitality",
     "role": "Controller",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.06,
       "kd": 1.09,
@@ -257,6 +275,7 @@
     "team": "Global Esports",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.05,
       "kd": 1.11,
@@ -271,6 +290,7 @@
     "team": "G2 Esports",
     "role": "Initiator",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.05,
       "kd": 0.91,
@@ -285,6 +305,7 @@
     "team": "FUT Esports",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.04,
       "kd": 1.08,
@@ -299,6 +320,7 @@
     "team": "FUT Esports",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.04,
       "kd": 1.03,
@@ -313,6 +335,7 @@
     "team": "Paper Rex",
     "role": "Sentinel",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.03,
       "kd": 1.09,
@@ -327,6 +350,7 @@
     "team": "EDward Gaming",
     "role": "Controller",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 1.02,
       "kd": 0.97,
@@ -341,6 +365,7 @@
     "team": "FUT Esports",
     "role": "Sentinel",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.01,
       "kd": 0.98,
@@ -355,6 +380,7 @@
     "team": "Leviatan",
     "role": "Flex",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.0,
       "kd": 1.04,
@@ -369,6 +395,7 @@
     "team": "FUT Esports",
     "role": "Controller",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.99,
       "kd": 0.97,
@@ -383,6 +410,7 @@
     "team": "Team Vitality",
     "role": "Flex",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.98,
       "kd": 1.03,
@@ -397,6 +425,7 @@
     "team": "FUT Esports",
     "role": "Initiator",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.97,
       "kd": 0.92,
@@ -411,6 +440,7 @@
     "team": "EDward Gaming",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.97,
       "kd": 1.01,
@@ -425,6 +455,7 @@
     "team": "NRG",
     "role": "Initiator",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.96,
       "kd": 0.88,
@@ -439,6 +470,7 @@
     "team": "G2 Esports",
     "role": "Sentinel",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.95,
       "kd": 0.95,
@@ -453,6 +485,7 @@
     "team": "Team Heretics",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.94,
       "kd": 0.86,
@@ -467,6 +500,7 @@
     "team": "G2 Esports",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.94,
       "kd": 0.88,
@@ -481,6 +515,7 @@
     "team": "Xi Lai Gaming",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.93,
       "kd": 0.94,
@@ -495,6 +530,7 @@
     "team": "Xi Lai Gaming",
     "role": "Controller",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.93,
       "kd": 0.9,
@@ -509,6 +545,7 @@
     "team": "NRG",
     "role": "Initiator",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.92,
       "kd": 0.83,
@@ -523,6 +560,7 @@
     "team": "Global Esports",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.92,
       "kd": 1.02,
@@ -537,6 +575,7 @@
     "team": "EDward Gaming",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.981,
       "kd": 0.88,
@@ -551,6 +590,7 @@
     "team": "EDward Gaming",
     "role": "Initiator",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.91,
       "kd": 0.88,
@@ -565,6 +605,7 @@
     "team": "EDward Gaming",
     "role": "Flex",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.91,
       "kd": 0.93,
@@ -579,6 +620,7 @@
     "team": "G2 Esports",
     "role": "Controller",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.91,
       "kd": 0.92,
@@ -593,6 +635,7 @@
     "team": "Paper Rex",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.9,
       "kd": 0.85,
@@ -607,6 +650,7 @@
     "team": "Team Heretics",
     "role": "Sentinel",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.89,
       "kd": 0.81,
@@ -621,6 +665,7 @@
     "team": "Team Vitality",
     "role": "Initiator",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.87,
       "kd": 0.87,
@@ -635,6 +680,7 @@
     "team": "Xi Lai Gaming",
     "role": "Flex",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.86,
       "kd": 0.84,
@@ -649,6 +695,7 @@
     "team": "Xi Lai Gaming",
     "role": "Initiator",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.84,
       "kd": 0.77,
@@ -663,6 +710,7 @@
     "team": "Dragon Ranger Gaming",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.84,
       "kd": 0.85,
@@ -677,6 +725,7 @@
     "team": "Team Heretics",
     "role": "Initiator",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.84,
       "kd": 0.79,
@@ -691,6 +740,7 @@
     "team": "Global Esports",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.83,
       "kd": 0.82,
@@ -705,6 +755,7 @@
     "team": "FULL SENSE",
     "role": "Controller",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.82,
       "kd": 0.69,
@@ -719,6 +770,7 @@
     "team": "NRG",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.8,
       "kd": 0.9,
@@ -733,6 +785,7 @@
     "team": "Dragon Ranger Gaming",
     "role": "Controller",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.8,
       "kd": 0.65,
@@ -747,6 +800,7 @@
     "team": "Global Esports",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.75,
       "kd": 0.8,
@@ -761,6 +815,7 @@
     "team": "FULL SENSE",
     "role": "Initiator",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.75,
       "kd": 0.72,
@@ -775,6 +830,7 @@
     "team": "Dragon Ranger Gaming",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.75,
       "kd": 0.77,
@@ -789,6 +845,7 @@
     "team": "FULL SENSE",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.71,
       "kd": 0.7,
@@ -803,6 +860,7 @@
     "team": "Team Heretics",
     "role": "Controller",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.71,
       "kd": 0.62,
@@ -817,6 +875,7 @@
     "team": "Team Heretics",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.67,
       "kd": 0.67,
@@ -831,6 +890,7 @@
     "team": "FULL SENSE",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.65,
       "kd": 0.6,
@@ -845,6 +905,7 @@
     "team": "Gentle Mates",
     "role": "Initiator",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.97,
       "kd": 1.03,
@@ -859,6 +920,7 @@
     "team": "Gentle Mates",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.28,
       "kd": 1.3,
@@ -873,6 +935,7 @@
     "team": "Gentle Mates",
     "role": "Sentinel",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.09,
       "kd": 1.15,
@@ -887,6 +950,7 @@
     "team": "Gentle Mates",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.03,
       "kd": 1.14,
@@ -901,6 +965,7 @@
     "team": "Gentle Mates",
     "role": "Controller",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.92,
       "kd": 0.81,
@@ -915,6 +980,7 @@
     "team": "Karmine Corp",
     "role": "Duelist",
     "region": "]EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.18,
       "kd": 1.22,
@@ -929,6 +995,7 @@
     "team": "Karmine Corp",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.04,
       "kd": 1.12,
@@ -943,6 +1010,7 @@
     "team": "Karmine Corp",
     "role": "Sentinel",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.03,
       "kd": 1.11,
@@ -957,6 +1025,7 @@
     "team": "Karmine Corp",
     "role": "Controller",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.02,
       "kd": 1.02,
@@ -971,6 +1040,7 @@
     "team": "Karmine Corp",
     "role": "Initiator",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.01,
       "kd": 1.09,
@@ -985,6 +1055,7 @@
     "team": "BBL Esports",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.17,
       "kd": 1.27,
@@ -999,6 +1070,7 @@
     "team": "BBL Esports",
     "role": "Controller",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.05,
@@ -1013,6 +1085,7 @@
     "team": "BBL Esports",
     "role": "Duelist",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.99,
       "kd": 0.96,
@@ -1027,6 +1100,7 @@
     "team": "BBL Esports",
     "role": "Sentinel",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.97,
       "kd": 0.97,
@@ -1036,11 +1110,12 @@
     }
   },
   {
-    "id": "Rose",
-    "name": "Rose",
+    "id": "Rosé",
+    "name": "Rosé",
     "team": "BBL Esports",
     "role": "Initiator",
     "region": "EMEA",
+    "status": "active",
     "stats": {
       "rating": 0.92,
       "kd": 0.95,
@@ -1055,6 +1130,7 @@
     "team": "MIBR",
     "role": "Initiator",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.37,
       "kd": 1.41,
@@ -1069,6 +1145,7 @@
     "team": "MIBR",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.22,
       "kd": 1.37,
@@ -1083,6 +1160,7 @@
     "team": "MIBR",
     "role": "Controller",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.15,
       "kd": 1.22,
@@ -1097,6 +1175,7 @@
     "team": "MIBR",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.08,
       "kd": 1.23,
@@ -1111,6 +1190,7 @@
     "team": "MIBR",
     "role": "Sentinel",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.14,
@@ -1125,6 +1205,7 @@
     "team": "100 Thieves",
     "role": "Flex",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.25,
       "kd": 1.4,
@@ -1139,6 +1220,7 @@
     "team": "100 Thieves",
     "role": "Controller",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.19,
       "kd": 1.35,
@@ -1153,6 +1235,7 @@
     "team": "100 Thieves",
     "role": "Sentinel",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.19,
       "kd": 1.36,
@@ -1167,6 +1250,7 @@
     "team": "100 Thieves",
     "role": "Initiator",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 1.03,
       "kd": 1.09,
@@ -1181,6 +1265,7 @@
     "team": "100 Thieves",
     "role": "Duelist",
     "region": "Americas",
+    "status": "active",
     "stats": {
       "rating": 0.93,
       "kd": 0.97,
@@ -1195,6 +1280,7 @@
     "team": "Rex Regum Qeon",
     "role": "Sentinel",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.13,
       "kd": 1.15,
@@ -1209,6 +1295,7 @@
     "team": "Rex Regum Qeon",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.11,
       "kd": 1.01,
@@ -1223,6 +1310,7 @@
     "team": "Rex Regum Qeon",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.01,
@@ -1237,6 +1325,7 @@
     "team": "Rex Regum Qeon",
     "role": "Initiator",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.06,
       "kd": 1.07,
@@ -1251,6 +1340,7 @@
     "team": "Rex Regum Qeon",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.92,
       "kd": 0.92,
@@ -1265,6 +1355,7 @@
     "team": "Nongshim RedForce",
     "role": "Sentinel",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.2,
@@ -1279,6 +1370,7 @@
     "team": "Nongshim RedForce",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.05,
       "kd": 1.0,
@@ -1293,6 +1385,7 @@
     "team": "Nongshim RedForce",
     "role": "Initiator",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 1.02,
       "kd": 0.99,
@@ -1307,6 +1400,7 @@
     "team": "Nongshim RedForce",
     "role": "Duelist",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.99,
       "kd": 1.05,
@@ -1321,6 +1415,7 @@
     "team": "Nongshim RedForce",
     "role": "Flex",
     "region": "Pacific",
+    "status": "active",
     "stats": {
       "rating": 0.98,
       "kd": 0.88,
@@ -1335,6 +1430,7 @@
     "team": "All Gamers",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.0,
       "kd": 1.16,
@@ -1349,6 +1445,7 @@
     "team": "All Gamers",
     "role": "Sentinel",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.0,
       "kd": 1.05,
@@ -1363,6 +1460,7 @@
     "team": "All Gamers",
     "role": "Duelist",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.0,
       "kd": 1.21,
@@ -1377,6 +1475,7 @@
     "team": "All Gamers",
     "role": "Controller",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.0,
       "kd": 1.23,
@@ -1391,12 +1490,73 @@
     "team": "All Gamers",
     "role": "Initiator",
     "region": "China",
+    "status": "active",
     "stats": {
       "rating": 0.0,
       "kd": 1.14,
       "acs": 187.5,
       "adr": 0.0,
       "kpr": 0.68
+    }
+  },
+  {
+    "id": "Proxh",
+    "name": "Proxh",
+    "team": "Gentle Mates",
+    "role": "Controller",
+    "region": "EMEA",
+    "status": "active",
+    "stats": {
+      "rating": 0.92,
+      "kd": 0.93,
+      "acs": 146.2,
+      "adr": 95.0,
+      "kpr": 0.54
+    }
+  },
+  {
+    "id": "Xan",
+    "name": "Xan",
+    "team": "Rex Regum Qeon",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.71,
+      "kd": 0.65,
+      "acs": 164.5,
+      "adr": 102.1,
+      "kpr": 0.54
+    }
+  },
+  {
+    "id": "f4ngeer",
+    "name": "f4ngeer",
+    "team": "All Gamers",
+    "role": "Duelist",
+    "region": "China",
+    "status": "active",
+    "stats": {
+      "rating": 1.05,
+      "kd": 1.22,
+      "acs": 213.2,
+      "adr": 139.3,
+      "kpr": 0.77
+    }
+  },
+  {
+    "id": "signed",
+    "name": "signed",
+    "team": "Edward Gaming",
+    "role": "Flex",
+    "region": "China",
+    "status": "active",
+    "stats": {
+      "rating": 0.89,
+      "kd": 0.89,
+      "acs": 171.0,
+      "adr": 110.5,
+      "kpr": 0.6
     }
   }
 ]

@@ -1,7 +1,7 @@
 [
   {
-    "id": "vlr-684613",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684613",
+    "tournamentId": "2765",
     "team1": "Xi Lai Gaming",
     "team2": "NRG",
     "score": "0-2",
@@ -104,8 +104,8 @@
     "vlrId": "684613"
   },
   {
-    "id": "vlr-684610",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684610",
+    "tournamentId": "2765",
     "team1": "Team Vitality",
     "team2": "Dragon Ranger Gaming",
     "score": "2-0",
@@ -208,8 +208,8 @@
     "vlrId": "684610"
   },
   {
-    "id": "vlr-684611",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684611",
+    "tournamentId": "2765",
     "team1": "FULL SENSE",
     "team2": "FUT Esports",
     "score": "0-2",
@@ -312,8 +312,8 @@
     "vlrId": "684611"
   },
   {
-    "id": "vlr-684612",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684612",
+    "tournamentId": "2765",
     "team1": "LEVIATÁN",
     "team2": "Global Esports",
     "score": "2-1",
@@ -416,8 +416,8 @@
     "vlrId": "684612"
   },
   {
-    "id": "vlr-684614",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684614",
+    "tournamentId": "2765",
     "team1": "Team Vitality",
     "team2": "FUT Esports",
     "score": "2-1",
@@ -520,8 +520,8 @@
     "vlrId": "684614"
   },
   {
-    "id": "vlr-684615",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684615",
+    "tournamentId": "2765",
     "team1": "NRG",
     "team2": "LEVIATÁN",
     "score": "1-2",
@@ -624,8 +624,8 @@
     "vlrId": "684615"
   },
   {
-    "id": "vlr-684616",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684616",
+    "tournamentId": "2765",
     "team1": "Dragon Ranger Gaming",
     "team2": "Xi Lai Gaming",
     "score": "1-2",
@@ -728,8 +728,8 @@
     "vlrId": "684616"
   },
   {
-    "id": "vlr-684617",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684617",
+    "tournamentId": "2765",
     "team1": "Global Esports",
     "team2": "FULL SENSE",
     "score": "2-1",
@@ -832,8 +832,8 @@
     "vlrId": "684617"
   },
   {
-    "id": "vlr-684619",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684619",
+    "tournamentId": "2765",
     "team1": "FUT Esports",
     "team2": "NRG",
     "score": "2-1",
@@ -936,8 +936,8 @@
     "vlrId": "684619"
   },
   {
-    "id": "vlr-684618",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "684618",
+    "tournamentId": "2765",
     "team1": "Global Esports",
     "team2": "Xi Lai Gaming",
     "score": "1-2",
@@ -1040,8 +1040,8 @@
     "vlrId": "684618"
   },
   {
-    "id": "vlr-670466",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670466",
+    "tournamentId": "2765",
     "team1": "Paper Rex",
     "team2": "LEVIATÁN",
     "score": "2-0",
@@ -1144,8 +1144,8 @@
     "vlrId": "670466"
   },
   {
-    "id": "vlr-670467",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670467",
+    "tournamentId": "2765",
     "team1": "Team Heretics",
     "team2": "Team Vitality",
     "score": "0-2",
@@ -1248,8 +1248,8 @@
     "vlrId": "670467"
   },
   {
-    "id": "vlr-670465",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670465",
+    "tournamentId": "2765",
     "team1": "EDward Gaming",
     "team2": "FUT Esports",
     "score": "2-1",
@@ -1352,8 +1352,8 @@
     "vlrId": "670465"
   },
   {
-    "id": "vlr-670464",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670464",
+    "tournamentId": "2765",
     "team1": "G2 Esports",
     "team2": "Xi Lai Gaming",
     "score": "1-2",
@@ -1456,8 +1456,8 @@
     "vlrId": "670464"
   },
   {
-    "id": "vlr-670473",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670473",
+    "tournamentId": "2765",
     "team1": "LEVIATÁN",
     "team2": "Team Heretics",
     "score": "2-1",
@@ -1560,8 +1560,8 @@
     "vlrId": "670473"
   },
   {
-    "id": "vlr-670472",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670472",
+    "tournamentId": "2765",
     "team1": "G2 Esports",
     "team2": "FUT Esports",
     "score": "0-2",
@@ -1664,8 +1664,8 @@
     "vlrId": "670472"
   },
   {
-    "id": "vlr-670468",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670468",
+    "tournamentId": "2765",
     "team1": "Xi Lai Gaming",
     "team2": "EDward Gaming",
     "score": "1-2",
@@ -1768,8 +1768,8 @@
     "vlrId": "670468"
   },
   {
-    "id": "vlr-670469",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670469",
+    "tournamentId": "2765",
     "team1": "Paper Rex",
     "team2": "Team Vitality",
     "score": "2-1",
@@ -1872,8 +1872,8 @@
     "vlrId": "670469"
   },
   {
-    "id": "vlr-670475",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670475",
+    "tournamentId": "2765",
     "team1": "Xi Lai Gaming",
     "team2": "LEVIATÁN",
     "score": "0-2",
@@ -1976,8 +1976,8 @@
     "vlrId": "670475"
   },
   {
-    "id": "vlr-670474",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670474",
+    "tournamentId": "2765",
     "team1": "Team Vitality",
     "team2": "FUT Esports",
     "score": "2-0",
@@ -2080,8 +2080,8 @@
     "vlrId": "670474"
   },
   {
-    "id": "vlr-670470",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670470",
+    "tournamentId": "2765",
     "team1": "EDward Gaming",
     "team2": "Paper Rex",
     "score": "1-2",
@@ -2184,8 +2184,8 @@
     "vlrId": "670470"
   },
   {
-    "id": "vlr-670476",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670476",
+    "tournamentId": "2765",
     "team1": "Team Vitality",
     "team2": "LEVIATÁN",
     "score": "0-2",
@@ -2288,8 +2288,8 @@
     "vlrId": "670476"
   },
   {
-    "id": "vlr-670477",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670477",
+    "tournamentId": "2765",
     "team1": "EDward Gaming",
     "team2": "LEVIATÁN",
     "score": "0-3",
@@ -2392,8 +2392,8 @@
     "vlrId": "670477"
   },
   {
-    "id": "vlr-670471",
-    "tournamentId": "vct-masters-london-2026",
+    "id": "670471",
+    "tournamentId": "2765",
     "team1": "Paper Rex",
     "team2": "LEVIATÁN",
     "score": "2-3",
@@ -2496,8 +2496,8 @@
     "vlrId": "670471"
   },
   {
-    "id": "vlr-706754",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706754",
+    "tournamentId": "2952",
     "team1": "Rex Regum Qeon",
     "team2": "100 Thieves",
     "score": "0-2",
@@ -2600,8 +2600,8 @@
     "vlrId": "706754"
   },
   {
-    "id": "vlr-706755",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706755",
+    "tournamentId": "2952",
     "team1": "BBL Esports",
     "team2": "EDward Gaming",
     "score": "2-1",
@@ -2704,8 +2704,8 @@
     "vlrId": "706755"
   },
   {
-    "id": "vlr-706759",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706759",
+    "tournamentId": "2952",
     "team1": "Team Vitality",
     "team2": "Karmine Corp",
     "score": "2-0",
@@ -2808,8 +2808,8 @@
     "vlrId": "706759"
   },
   {
-    "id": "vlr-706760",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706760",
+    "tournamentId": "2952",
     "team1": "NRG",
     "team2": "Paper Rex",
     "score": "2-1",
@@ -2912,8 +2912,8 @@
     "vlrId": "706760"
   },
   {
-    "id": "vlr-706769",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706769",
+    "tournamentId": "2952",
     "team1": "MIBR",
     "team2": "Global Esports",
     "score": "2-0",
@@ -3016,8 +3016,8 @@
     "vlrId": "706769"
   },
   {
-    "id": "vlr-706770",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706770",
+    "tournamentId": "2952",
     "team1": "All Gamers",
     "team2": "Team Heretics",
     "score": "1-2",
@@ -3120,8 +3120,8 @@
     "vlrId": "706770"
   },
   {
-    "id": "vlr-706764",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706764",
+    "tournamentId": "2952",
     "team1": "Gentle Mates",
     "team2": "Xi Lai Gaming",
     "score": "2-1",
@@ -3224,8 +3224,8 @@
     "vlrId": "706764"
   },
   {
-    "id": "vlr-706765",
-    "tournamentId": "esports-world-cup-2026",
+    "id": "706765",
+    "tournamentId": "2952",
     "team1": "Nongshim RedForce",
     "team2": "G2 Esports",
     "score": "2-1",
@@ -3326,5 +3326,837 @@
       }
     ],
     "vlrId": "706765"
+  },
+  {
+    "id": "706756",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "BBL Esports",
+    "score": "2-1",
+    "winner": "100 Thieves",
+    "format": "BO3",
+    "date": "2026-07-04",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.18,
+        "kd": 1.23,
+        "acs": 202.0,
+        "adr": 134.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.09,
+        "kd": 1.1,
+        "acs": 179.0,
+        "adr": 116.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 0.96,
+        "kd": 1.04,
+        "acs": 214.0,
+        "adr": 154.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 0.87,
+        "kd": 0.95,
+        "acs": 181.0,
+        "adr": 122.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 0.83,
+        "kd": 0.83,
+        "acs": 181.0,
+        "adr": 127.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Lar0k",
+        "team": "BBL Esports",
+        "rating": 1.35,
+        "kd": 1.4,
+        "acs": 306.0,
+        "adr": 187.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "Loita",
+        "team": "BBL Esports",
+        "rating": 1.1,
+        "kd": 0.96,
+        "acs": 198.0,
+        "adr": 141.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Crewen",
+        "team": "BBL Esports",
+        "rating": 0.93,
+        "kd": 0.88,
+        "acs": 175.0,
+        "adr": 125.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Rosé",
+        "team": "BBL Esports",
+        "rating": 0.9,
+        "kd": 0.78,
+        "acs": 150.0,
+        "adr": 112.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "lovers_rock",
+        "team": "BBL Esports",
+        "rating": 0.89,
+        "kd": 0.83,
+        "acs": 178.0,
+        "adr": 114.0,
+        "kpr": 0.61
+      }
+    ],
+    "vlrId": "706756"
+  },
+  {
+    "id": "706757",
+    "tournamentId": "2952",
+    "team1": "Rex Regum Qeon",
+    "team2": "EDward Gaming",
+    "score": "0-2",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-07-04",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Jemkin",
+        "team": "Rex Regum Qeon",
+        "rating": 1.5,
+        "kd": 1.64,
+        "acs": 296.0,
+        "adr": 191.0,
+        "kpr": 1.1
+      },
+      {
+        "playerId": "Kushy",
+        "team": "Rex Regum Qeon",
+        "rating": 0.9,
+        "kd": 0.8,
+        "acs": 175.0,
+        "adr": 117.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "xffero",
+        "team": "Rex Regum Qeon",
+        "rating": 0.8,
+        "kd": 0.74,
+        "acs": 184.0,
+        "adr": 119.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "crazyguy",
+        "team": "Rex Regum Qeon",
+        "rating": 0.79,
+        "kd": 0.7,
+        "acs": 159.0,
+        "adr": 112.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "Xan",
+        "team": "Rex Regum Qeon",
+        "rating": 0.59,
+        "kd": 0.53,
+        "acs": 129.0,
+        "adr": 83.0,
+        "kpr": 0.43
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.24,
+        "kd": 1.37,
+        "acs": 211.0,
+        "adr": 136.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 1.23,
+        "kd": 1.15,
+        "acs": 229.0,
+        "adr": 143.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.11,
+        "kd": 1.32,
+        "acs": 240.0,
+        "adr": 168.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 1.04,
+        "kd": 1.07,
+        "acs": 199.0,
+        "adr": 136.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "signed",
+        "team": "EDward Gaming",
+        "rating": 0.9,
+        "kd": 0.88,
+        "acs": 161.0,
+        "adr": 95.0,
+        "kpr": 0.55
+      }
+    ],
+    "vlrId": "706757"
+  },
+  {
+    "id": "706761",
+    "tournamentId": "2952",
+    "team1": "Team Vitality",
+    "team2": "NRG",
+    "score": "2-1",
+    "winner": "Team Vitality",
+    "format": "BO3",
+    "date": "2026-07-04",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.16,
+        "kd": 1.13,
+        "acs": 197.0,
+        "adr": 149.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 1.06,
+        "kd": 1.02,
+        "acs": 199.0,
+        "adr": 132.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.06,
+        "kd": 1.15,
+        "acs": 248.0,
+        "adr": 160.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 0.91,
+        "kd": 0.94,
+        "acs": 167.0,
+        "adr": 111.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 0.68,
+        "kd": 0.63,
+        "acs": 133.0,
+        "adr": 92.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 1.27,
+        "kd": 1.35,
+        "acs": 262.0,
+        "adr": 174.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.12,
+        "kd": 1.06,
+        "acs": 207.0,
+        "adr": 134.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 1.07,
+        "acs": 180.0,
+        "adr": 121.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 0.89,
+        "kd": 0.88,
+        "acs": 159.0,
+        "adr": 104.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 0.87,
+        "kd": 0.81,
+        "acs": 193.0,
+        "adr": 130.0,
+        "kpr": 0.59
+      }
+    ],
+    "vlrId": "706761"
+  },
+  {
+    "id": "706762",
+    "tournamentId": "2952",
+    "team1": "Karmine Corp",
+    "team2": "Paper Rex",
+    "score": "2-1",
+    "winner": "Karmine Corp",
+    "format": "BO3",
+    "date": "2026-07-04",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 1.33,
+        "kd": 1.45,
+        "acs": 257.0,
+        "adr": 173.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 1.06,
+        "kd": 1.11,
+        "acs": 212.0,
+        "adr": 138.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 1.0,
+        "kd": 1.02,
+        "acs": 207.0,
+        "adr": 131.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 0.98,
+        "kd": 1.02,
+        "acs": 206.0,
+        "adr": 129.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 0.82,
+        "kd": 0.79,
+        "acs": 138.0,
+        "adr": 90.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 1.0,
+        "kd": 1.02,
+        "acs": 197.0,
+        "adr": 131.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 0.95,
+        "kd": 0.89,
+        "acs": 170.0,
+        "adr": 114.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 0.95,
+        "kd": 1.07,
+        "acs": 194.0,
+        "adr": 125.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 0.93,
+        "kd": 0.87,
+        "acs": 210.0,
+        "adr": 149.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.82,
+        "kd": 0.82,
+        "acs": 175.0,
+        "adr": 115.0,
+        "kpr": 0.64
+      }
+    ],
+    "vlrId": "706762"
+  },
+  {
+    "id": "706771",
+    "tournamentId": "2952",
+    "team1": "MIBR",
+    "team2": "Team Heretics",
+    "score": "0-2",
+    "winner": "Team Heretics",
+    "format": "BO3",
+    "date": "2026-07-05",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "zekken",
+        "team": "MIBR",
+        "rating": 0.87,
+        "kd": 0.8,
+        "acs": 179.0,
+        "adr": 132.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "aspas",
+        "team": "MIBR",
+        "rating": 0.85,
+        "kd": 0.82,
+        "acs": 180.0,
+        "adr": 126.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Verno",
+        "team": "MIBR",
+        "rating": 0.84,
+        "kd": 0.81,
+        "acs": 173.0,
+        "adr": 114.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Mazino",
+        "team": "MIBR",
+        "rating": 0.83,
+        "kd": 0.74,
+        "acs": 153.0,
+        "adr": 114.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "tex",
+        "team": "MIBR",
+        "rating": 0.57,
+        "kd": 0.54,
+        "acs": 129.0,
+        "adr": 86.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "Wo0t",
+        "team": "Team Heretics",
+        "rating": 1.29,
+        "kd": 1.41,
+        "acs": 262.0,
+        "adr": 172.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "RieNs",
+        "team": "Team Heretics",
+        "rating": 1.28,
+        "kd": 1.46,
+        "acs": 221.0,
+        "adr": 141.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Boo",
+        "team": "Team Heretics",
+        "rating": 1.24,
+        "kd": 1.29,
+        "acs": 195.0,
+        "adr": 116.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "benjyfishy",
+        "team": "Team Heretics",
+        "rating": 1.09,
+        "kd": 1.4,
+        "acs": 195.0,
+        "adr": 119.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "koshmaras",
+        "team": "Team Heretics",
+        "rating": 1.09,
+        "kd": 1.21,
+        "acs": 245.0,
+        "adr": 145.0,
+        "kpr": 0.78
+      }
+    ],
+    "vlrId": "706771"
+  },
+  {
+    "id": "706772",
+    "tournamentId": "2952",
+    "team1": "Global Esports",
+    "team2": "All Gamers",
+    "score": "0-2",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-07-05",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 1.17,
+        "kd": 1.18,
+        "acs": 229.0,
+        "adr": 144.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.14,
+        "kd": 1.16,
+        "acs": 205.0,
+        "adr": 140.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.99,
+        "kd": 0.97,
+        "acs": 184.0,
+        "adr": 126.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 0.81,
+        "kd": 0.82,
+        "acs": 185.0,
+        "adr": 119.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 0.61,
+        "kd": 0.59,
+        "acs": 146.0,
+        "adr": 98.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.23,
+        "kd": 1.41,
+        "acs": 259.0,
+        "adr": 157.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.1,
+        "kd": 1.16,
+        "acs": 197.0,
+        "adr": 123.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 1.01,
+        "kd": 0.97,
+        "acs": 196.0,
+        "adr": 135.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.98,
+        "kd": 1.0,
+        "acs": 208.0,
+        "adr": 137.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.87,
+        "kd": 0.87,
+        "acs": 151.0,
+        "adr": 98.0,
+        "kpr": 0.53
+      }
+    ],
+    "vlrId": "706772"
+  },
+  {
+    "id": "706766",
+    "tournamentId": "2952",
+    "team1": "Gentle Mates",
+    "team2": "Nongshim RedForce",
+    "score": "2-1",
+    "winner": "Gentle Mates",
+    "format": "BO3",
+    "date": "2026-07-05",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "starxo",
+        "team": "Gentle Mates",
+        "rating": 1.29,
+        "kd": 1.33,
+        "acs": 238.0,
+        "adr": 149.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "marteen",
+        "team": "Gentle Mates",
+        "rating": 1.26,
+        "kd": 1.33,
+        "acs": 266.0,
+        "adr": 181.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "bipo",
+        "team": "Gentle Mates",
+        "rating": 1.11,
+        "kd": 1.32,
+        "acs": 208.0,
+        "adr": 130.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Proxh",
+        "team": "Gentle Mates",
+        "rating": 1.05,
+        "kd": 1.05,
+        "acs": 171.0,
+        "adr": 108.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Minny",
+        "team": "Gentle Mates",
+        "rating": 0.81,
+        "kd": 0.9,
+        "acs": 188.0,
+        "adr": 125.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.12,
+        "kd": 1.07,
+        "acs": 235.0,
+        "adr": 154.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 0.97,
+        "kd": 0.83,
+        "acs": 177.0,
+        "adr": 118.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 0.92,
+        "kd": 0.92,
+        "acs": 189.0,
+        "adr": 127.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 0.89,
+        "kd": 0.82,
+        "acs": 167.0,
+        "adr": 113.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 0.75,
+        "kd": 0.61,
+        "acs": 161.0,
+        "adr": 125.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "706766"
+  },
+  {
+    "id": "706767",
+    "tournamentId": "2952",
+    "team1": "Xi Lai Gaming",
+    "team2": "G2 Esports",
+    "score": "0-2",
+    "winner": "G2 Esports",
+    "format": "BO3",
+    "date": "2026-07-05",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 1.14,
+        "kd": 1.06,
+        "acs": 228.0,
+        "adr": 150.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.98,
+        "kd": 0.97,
+        "acs": 215.0,
+        "adr": 147.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.89,
+        "kd": 0.82,
+        "acs": 208.0,
+        "adr": 138.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.86,
+        "kd": 0.91,
+        "acs": 189.0,
+        "adr": 116.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.4,
+        "kd": 0.3,
+        "acs": 87.0,
+        "adr": 71.0,
+        "kpr": 0.24
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.35,
+        "kd": 1.58,
+        "acs": 253.0,
+        "adr": 173.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.26,
+        "kd": 1.42,
+        "acs": 218.0,
+        "adr": 147.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 1.11,
+        "kd": 1.28,
+        "acs": 196.0,
+        "adr": 116.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 1.01,
+        "kd": 1.0,
+        "acs": 210.0,
+        "adr": 138.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.96,
+        "kd": 1.0,
+        "acs": 230.0,
+        "adr": 149.0,
+        "kpr": 0.76
+      }
+    ],
+    "vlrId": "706767"
   }
 ]
