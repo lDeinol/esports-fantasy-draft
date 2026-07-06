@@ -4158,5 +4158,213 @@
       }
     ],
     "vlrId": "706767"
+  },
+  {
+    "id": "706758",
+    "tournamentId": "2952",
+    "team1": "BBL Esports",
+    "team2": "EDward Gaming",
+    "score": "2-0",
+    "winner": "BBL Esports",
+    "format": "BO3",
+    "date": "2026-07-06",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Lar0k",
+        "team": "BBL Esports",
+        "rating": 1.73,
+        "kd": 2.15,
+        "acs": 338.0,
+        "adr": 220.0,
+        "kpr": 1.23
+      },
+      {
+        "playerId": "Loita",
+        "team": "BBL Esports",
+        "rating": 1.39,
+        "kd": 1.61,
+        "acs": 239.0,
+        "adr": 155.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "lovers_rock",
+        "team": "BBL Esports",
+        "rating": 1.16,
+        "kd": 1.39,
+        "acs": 193.0,
+        "adr": 121.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Crewen",
+        "team": "BBL Esports",
+        "rating": 1.13,
+        "kd": 1.42,
+        "acs": 191.0,
+        "adr": 125.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Rosé",
+        "team": "BBL Esports",
+        "rating": 0.89,
+        "kd": 1.04,
+        "acs": 186.0,
+        "adr": 111.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.01,
+        "kd": 0.93,
+        "acs": 246.0,
+        "adr": 151.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.85,
+        "kd": 0.72,
+        "acs": 182.0,
+        "adr": 126.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.81,
+        "kd": 0.75,
+        "acs": 168.0,
+        "adr": 103.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.59,
+        "kd": 0.48,
+        "acs": 140.0,
+        "adr": 100.0,
+        "kpr": 0.43
+      },
+      {
+        "playerId": "signed",
+        "team": "EDward Gaming",
+        "rating": 0.42,
+        "kd": 0.45,
+        "acs": 113.0,
+        "adr": 71.0,
+        "kpr": 0.4
+      }
+    ],
+    "vlrId": "706758"
+  },
+  {
+    "id": "706763",
+    "tournamentId": "2952",
+    "team1": "NRG",
+    "team2": "Karmine Corp",
+    "score": "2-1",
+    "winner": "NRG",
+    "format": "BO3",
+    "date": "2026-07-06",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.36,
+        "kd": 1.67,
+        "acs": 250.0,
+        "adr": 161.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.14,
+        "kd": 1.22,
+        "acs": 212.0,
+        "adr": 129.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.11,
+        "kd": 1.13,
+        "acs": 211.0,
+        "adr": 146.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.82,
+        "kd": 0.88,
+        "acs": 178.0,
+        "adr": 115.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.79,
+        "kd": 0.84,
+        "acs": 175.0,
+        "adr": 110.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 1.19,
+        "kd": 1.07,
+        "acs": 234.0,
+        "adr": 156.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 0.94,
+        "kd": 1.0,
+        "acs": 183.0,
+        "adr": 127.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 0.83,
+        "kd": 0.85,
+        "acs": 166.0,
+        "adr": 114.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 0.76,
+        "kd": 0.69,
+        "acs": 157.0,
+        "adr": 107.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 0.74,
+        "kd": 0.85,
+        "acs": 174.0,
+        "adr": 111.0,
+        "kpr": 0.66
+      }
+    ],
+    "vlrId": "706763"
   }
 ]
