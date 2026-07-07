@@ -4366,5 +4366,213 @@
       }
     ],
     "vlrId": "706763"
+  },
+  {
+    "id": "706773",
+    "tournamentId": "2952",
+    "team1": "MIBR",
+    "team2": "All Gamers",
+    "score": "2-1",
+    "winner": "MIBR",
+    "format": "BO3",
+    "date": "2026-07-07",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "tex",
+        "team": "MIBR",
+        "rating": 1.29,
+        "kd": 1.57,
+        "acs": 227.0,
+        "adr": 148.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "aspas",
+        "team": "MIBR",
+        "rating": 1.12,
+        "kd": 1.28,
+        "acs": 228.0,
+        "adr": 149.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Verno",
+        "team": "MIBR",
+        "rating": 1.11,
+        "kd": 1.15,
+        "acs": 184.0,
+        "adr": 108.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "zekken",
+        "team": "MIBR",
+        "rating": 1.07,
+        "kd": 1.15,
+        "acs": 210.0,
+        "adr": 143.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Mazino",
+        "team": "MIBR",
+        "rating": 0.96,
+        "kd": 1.02,
+        "acs": 209.0,
+        "adr": 129.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.15,
+        "kd": 1.19,
+        "acs": 237.0,
+        "adr": 151.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.85,
+        "kd": 0.76,
+        "acs": 174.0,
+        "adr": 115.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.84,
+        "kd": 0.83,
+        "acs": 160.0,
+        "adr": 104.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.83,
+        "kd": 0.76,
+        "acs": 166.0,
+        "adr": 113.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.65,
+        "kd": 0.57,
+        "acs": 150.0,
+        "adr": 100.0,
+        "kpr": 0.48
+      }
+    ],
+    "vlrId": "706773"
+  },
+  {
+    "id": "706768",
+    "tournamentId": "2952",
+    "team1": "Nongshim RedForce",
+    "team2": "G2 Esports",
+    "score": "2-1",
+    "winner": "Nongshim RedForce",
+    "format": "BO3",
+    "date": "2026-07-07",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 1.2,
+        "kd": 1.23,
+        "acs": 202.0,
+        "adr": 129.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.14,
+        "kd": 1.02,
+        "acs": 209.0,
+        "adr": 144.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 0.96,
+        "kd": 0.98,
+        "acs": 240.0,
+        "adr": 156.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 0.96,
+        "kd": 0.86,
+        "acs": 178.0,
+        "adr": 115.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 0.95,
+        "kd": 0.94,
+        "acs": 180.0,
+        "adr": 124.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.28,
+        "kd": 1.33,
+        "acs": 222.0,
+        "adr": 155.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.11,
+        "kd": 1.19,
+        "acs": 222.0,
+        "adr": 147.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.96,
+        "kd": 0.92,
+        "acs": 193.0,
+        "adr": 127.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.9,
+        "kd": 0.97,
+        "acs": 218.0,
+        "adr": 144.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.7,
+        "kd": 0.69,
+        "acs": 149.0,
+        "adr": 98.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "706768"
   }
 ]
