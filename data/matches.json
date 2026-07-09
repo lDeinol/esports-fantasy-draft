@@ -4574,5 +4574,213 @@
       }
     ],
     "vlrId": "706768"
+  },
+  {
+    "id": "708422",
+    "tournamentId": "2952",
+    "team1": "Team Heretics",
+    "team2": "BBL Esports",
+    "score": "1-2",
+    "winner": "BBL Esports",
+    "format": "BO3",
+    "date": "2026-07-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "RieNs",
+        "team": "Team Heretics",
+        "rating": 1.09,
+        "kd": 1.06,
+        "acs": 215.0,
+        "adr": 147.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Wo0t",
+        "team": "Team Heretics",
+        "rating": 1.06,
+        "kd": 1.06,
+        "acs": 222.0,
+        "adr": 146.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "benjyfishy",
+        "team": "Team Heretics",
+        "rating": 0.93,
+        "kd": 0.92,
+        "acs": 192.0,
+        "adr": 136.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "koshmaras",
+        "team": "Team Heretics",
+        "rating": 0.87,
+        "kd": 0.73,
+        "acs": 184.0,
+        "adr": 118.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Boo",
+        "team": "Team Heretics",
+        "rating": 0.85,
+        "kd": 0.78,
+        "acs": 156.0,
+        "adr": 104.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Loita",
+        "team": "BBL Esports",
+        "rating": 1.23,
+        "kd": 1.24,
+        "acs": 244.0,
+        "adr": 158.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Crewen",
+        "team": "BBL Esports",
+        "rating": 1.2,
+        "kd": 1.26,
+        "acs": 191.0,
+        "adr": 137.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Lar0k",
+        "team": "BBL Esports",
+        "rating": 1.0,
+        "kd": 1.15,
+        "acs": 229.0,
+        "adr": 143.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "lovers_rock",
+        "team": "BBL Esports",
+        "rating": 0.93,
+        "kd": 1.04,
+        "acs": 254.0,
+        "adr": 153.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Rosé",
+        "team": "BBL Esports",
+        "rating": 0.92,
+        "kd": 0.88,
+        "acs": 176.0,
+        "adr": 133.0,
+        "kpr": 0.65
+      }
+    ],
+    "vlrId": "708422"
+  },
+  {
+    "id": "708423",
+    "tournamentId": "2952",
+    "team1": "Gentle Mates",
+    "team2": "NRG",
+    "score": "1-2",
+    "winner": "NRG",
+    "format": "BO3",
+    "date": "2026-07-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "marteen",
+        "team": "Gentle Mates",
+        "rating": 1.23,
+        "kd": 1.17,
+        "acs": 241.0,
+        "adr": 170.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Proxh",
+        "team": "Gentle Mates",
+        "rating": 1.1,
+        "kd": 1.13,
+        "acs": 212.0,
+        "adr": 134.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "bipo",
+        "team": "Gentle Mates",
+        "rating": 0.9,
+        "kd": 0.78,
+        "acs": 157.0,
+        "adr": 106.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "Minny",
+        "team": "Gentle Mates",
+        "rating": 0.84,
+        "kd": 0.92,
+        "acs": 196.0,
+        "adr": 118.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "starxo",
+        "team": "Gentle Mates",
+        "rating": 0.67,
+        "kd": 0.56,
+        "acs": 150.0,
+        "adr": 107.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 1.23,
+        "kd": 1.3,
+        "acs": 269.0,
+        "adr": 174.0,
+        "kpr": 0.96
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.07,
+        "kd": 1.18,
+        "acs": 201.0,
+        "adr": 136.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 1.15,
+        "acs": 183.0,
+        "adr": 117.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.02,
+        "kd": 1.1,
+        "acs": 178.0,
+        "adr": 121.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.86,
+        "kd": 0.83,
+        "acs": 194.0,
+        "adr": 133.0,
+        "kpr": 0.65
+      }
+    ],
+    "vlrId": "708423"
   }
 ]
