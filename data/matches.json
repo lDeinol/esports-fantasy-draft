@@ -4782,5 +4782,213 @@
       }
     ],
     "vlrId": "708423"
+  },
+  {
+    "id": "708421",
+    "tournamentId": "2952",
+    "team1": "Team Vitality",
+    "team2": "Nongshim RedForce",
+    "score": "1-2",
+    "winner": "Nongshim RedForce",
+    "format": "BO3",
+    "date": "2026-07-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.02,
+        "kd": 0.98,
+        "acs": 195.0,
+        "adr": 135.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 0.86,
+        "kd": 0.78,
+        "acs": 153.0,
+        "adr": 103.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 0.81,
+        "kd": 0.76,
+        "acs": 184.0,
+        "adr": 130.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 0.79,
+        "kd": 0.81,
+        "acs": 154.0,
+        "adr": 102.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.67,
+        "kd": 0.67,
+        "acs": 160.0,
+        "adr": 120.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 1.23,
+        "kd": 1.45,
+        "acs": 194.0,
+        "adr": 129.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 1.2,
+        "kd": 1.18,
+        "acs": 193.0,
+        "adr": 125.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.16,
+        "kd": 1.14,
+        "acs": 205.0,
+        "adr": 129.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 1.14,
+        "kd": 1.32,
+        "acs": 249.0,
+        "adr": 160.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.1,
+        "kd": 1.23,
+        "acs": 222.0,
+        "adr": 144.0,
+        "kpr": 0.74
+      }
+    ],
+    "vlrId": "708421"
+  },
+  {
+    "id": "708420",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "MIBR",
+    "score": "2-1",
+    "winner": "100 Thieves",
+    "format": "BO3",
+    "date": "2026-07-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.31,
+        "kd": 1.36,
+        "acs": 267.0,
+        "adr": 170.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.21,
+        "kd": 1.25,
+        "acs": 207.0,
+        "adr": 146.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.02,
+        "kd": 1.12,
+        "acs": 176.0,
+        "adr": 114.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.01,
+        "kd": 1.0,
+        "acs": 174.0,
+        "adr": 117.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 0.99,
+        "kd": 1.08,
+        "acs": 223.0,
+        "adr": 125.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Verno",
+        "team": "MIBR",
+        "rating": 1.17,
+        "kd": 1.07,
+        "acs": 232.0,
+        "adr": 169.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "zekken",
+        "team": "MIBR",
+        "rating": 0.97,
+        "kd": 0.88,
+        "acs": 183.0,
+        "adr": 132.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Mazino",
+        "team": "MIBR",
+        "rating": 0.89,
+        "kd": 0.81,
+        "acs": 179.0,
+        "adr": 119.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "tex",
+        "team": "MIBR",
+        "rating": 0.74,
+        "kd": 0.76,
+        "acs": 159.0,
+        "adr": 111.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "aspas",
+        "team": "MIBR",
+        "rating": 0.71,
+        "kd": 0.78,
+        "acs": 147.0,
+        "adr": 102.0,
+        "kpr": 0.55
+      }
+    ],
+    "vlrId": "708420"
   }
 ]
