@@ -4990,5 +4990,213 @@
       }
     ],
     "vlrId": "708420"
+  },
+  {
+    "id": "708424",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "Nongshim RedForce",
+    "score": "2-1",
+    "winner": "100 Thieves",
+    "format": "BO3",
+    "date": "2026-07-11",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.3,
+        "kd": 1.27,
+        "acs": 223.0,
+        "adr": 144.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.15,
+        "kd": 1.2,
+        "acs": 221.0,
+        "adr": 135.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.06,
+        "kd": 1.07,
+        "acs": 219.0,
+        "adr": 154.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 0.82,
+        "kd": 0.73,
+        "acs": 175.0,
+        "adr": 125.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 0.69,
+        "kd": 0.72,
+        "acs": 153.0,
+        "adr": 107.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 1.11,
+        "kd": 1.11,
+        "acs": 248.0,
+        "adr": 165.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.08,
+        "kd": 1.09,
+        "acs": 203.0,
+        "adr": 134.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.08,
+        "kd": 1.0,
+        "acs": 210.0,
+        "adr": 144.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 1.07,
+        "kd": 1.09,
+        "acs": 203.0,
+        "adr": 139.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 0.76,
+        "kd": 0.76,
+        "acs": 140.0,
+        "adr": 97.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "708424"
+  },
+  {
+    "id": "708425",
+    "tournamentId": "2952",
+    "team1": "BBL Esports",
+    "team2": "NRG",
+    "score": "1-2",
+    "winner": "NRG",
+    "format": "BO3",
+    "date": "2026-07-11",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Loita",
+        "team": "BBL Esports",
+        "rating": 1.14,
+        "kd": 1.05,
+        "acs": 187.0,
+        "adr": 132.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Lar0k",
+        "team": "BBL Esports",
+        "rating": 1.12,
+        "kd": 1.07,
+        "acs": 236.0,
+        "adr": 157.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Crewen",
+        "team": "BBL Esports",
+        "rating": 1.06,
+        "kd": 1.05,
+        "acs": 201.0,
+        "adr": 130.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "lovers_rock",
+        "team": "BBL Esports",
+        "rating": 0.97,
+        "kd": 1.05,
+        "acs": 180.0,
+        "adr": 124.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Rosé",
+        "team": "BBL Esports",
+        "rating": 0.78,
+        "kd": 0.77,
+        "acs": 151.0,
+        "adr": 107.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 0.95,
+        "acs": 165.0,
+        "adr": 112.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.04,
+        "kd": 1.12,
+        "acs": 209.0,
+        "adr": 140.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.03,
+        "kd": 1.09,
+        "acs": 207.0,
+        "adr": 143.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.9,
+        "kd": 0.97,
+        "acs": 171.0,
+        "adr": 106.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.86,
+        "kd": 0.87,
+        "acs": 195.0,
+        "adr": 130.0,
+        "kpr": 0.65
+      }
+    ],
+    "vlrId": "708425"
   }
 ]
