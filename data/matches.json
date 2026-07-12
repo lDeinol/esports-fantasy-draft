@@ -5198,5 +5198,31 @@
       }
     ],
     "vlrId": "708425"
+  },
+  {
+    "id": "708427",
+    "tournamentId": "2952",
+    "team1": "Nongshim RedForce",
+    "team2": "BBL Esports",
+    "score": "2-0",
+    "winner": "Nongshim RedForce",
+    "format": "BO3",
+    "date": "2026-07-12",
+    "status": "completed",
+    "playerStats": [],
+    "vlrId": "708427"
+  },
+  {
+    "id": "708426",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "NRG",
+    "score": "3-1",
+    "winner": "100 Thieves",
+    "format": "BO5",
+    "date": "2026-07-12",
+    "status": "completed",
+    "playerStats": [],
+    "vlrId": "708426"
   }
 ]
