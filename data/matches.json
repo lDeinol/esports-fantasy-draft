@@ -4158,5 +4158,7025 @@
       }
     ],
     "vlrId": "706767"
+  },
+  {
+    "id": "706758",
+    "tournamentId": "2952",
+    "team1": "BBL Esports",
+    "team2": "EDward Gaming",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-06",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "706758"
+  },
+  {
+    "id": "706763",
+    "tournamentId": "2952",
+    "team1": "NRG",
+    "team2": "Karmine Corp",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-06",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "706763"
+  },
+  {
+    "id": "706773",
+    "tournamentId": "2952",
+    "team1": "MIBR",
+    "team2": "All Gamers",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-07",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "706773"
+  },
+  {
+    "id": "706768",
+    "tournamentId": "2952",
+    "team1": "Nongshim RedForce",
+    "team2": "G2 Esports",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-07",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "706768"
+  },
+  {
+    "id": "708422",
+    "tournamentId": "2952",
+    "team1": "Team Heretics",
+    "team2": "BBL Esports",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-09",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708422"
+  },
+  {
+    "id": "708423",
+    "tournamentId": "2952",
+    "team1": "Gentle Mates",
+    "team2": "NRG",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-09",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708423"
+  },
+  {
+    "id": "708421",
+    "tournamentId": "2952",
+    "team1": "Team Vitality",
+    "team2": "Nongshim RedForce",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-10",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708421"
+  },
+  {
+    "id": "708420",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "MIBR",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-10",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708420"
+  },
+  {
+    "id": "708424",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "Nongshim RedForce",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-11",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708424"
+  },
+  {
+    "id": "708425",
+    "tournamentId": "2952",
+    "team1": "BBL Esports",
+    "team2": "NRG",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-11",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708425"
+  },
+  {
+    "id": "708427",
+    "tournamentId": "2952",
+    "team1": "Nongshim RedForce",
+    "team2": "BBL Esports",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-12",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708427"
+  },
+  {
+    "id": "708426",
+    "tournamentId": "2952",
+    "team1": "100 Thieves",
+    "team2": "NRG",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-07-12",
+    "status": "upcoming",
+    "playerStats": [],
+    "vlrId": "708426"
+  },
+  {
+    "id": "701025",
+    "tournamentId": "2978",
+    "team1": "Wolves Esports",
+    "team2": "Titan Esports Club",
+    "score": "2-0",
+    "winner": "Wolves Esports",
+    "format": "BO3",
+    "date": "2026-07-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 1.54,
+        "kd": 1.96,
+        "acs": 296.0,
+        "adr": 174.0,
+        "kpr": 1.1
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 1.17,
+        "kd": 1.24,
+        "acs": 219.0,
+        "adr": 148.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 1.11,
+        "kd": 1.26,
+        "acs": 203.0,
+        "adr": 135.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 1.08,
+        "kd": 1.2,
+        "acs": 203.0,
+        "adr": 143.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.7,
+        "kd": 0.72,
+        "acs": 166.0,
+        "adr": 109.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Spitfires",
+        "team": "Titan Esports Club",
+        "rating": 0.95,
+        "kd": 0.86,
+        "acs": 231.0,
+        "adr": 152.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.93,
+        "kd": 0.88,
+        "acs": 195.0,
+        "adr": 118.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.9,
+        "kd": 0.73,
+        "acs": 181.0,
+        "adr": 133.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.86,
+        "kd": 0.9,
+        "acs": 183.0,
+        "adr": 115.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 0.86,
+        "kd": 0.68,
+        "acs": 162.0,
+        "adr": 98.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "701025"
+  },
+  {
+    "id": "701026",
+    "tournamentId": "2978",
+    "team1": "Dragon Ranger Gaming",
+    "team2": "Bilibili Gaming",
+    "score": "2-0",
+    "winner": "Dragon Ranger Gaming",
+    "format": "BO3",
+    "date": "2026-07-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.38,
+        "kd": 1.55,
+        "acs": 281.0,
+        "adr": 186.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.35,
+        "kd": 1.69,
+        "acs": 309.0,
+        "adr": 199.0,
+        "kpr": 1.12
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.0,
+        "kd": 0.89,
+        "acs": 160.0,
+        "adr": 92.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.98,
+        "kd": 1.0,
+        "acs": 160.0,
+        "adr": 101.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.85,
+        "kd": 0.94,
+        "acs": 181.0,
+        "adr": 128.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 1.0,
+        "kd": 0.89,
+        "acs": 204.0,
+        "adr": 135.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.98,
+        "kd": 0.86,
+        "acs": 188.0,
+        "adr": 112.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.94,
+        "kd": 0.87,
+        "acs": 195.0,
+        "adr": 120.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 0.84,
+        "kd": 0.7,
+        "acs": 165.0,
+        "adr": 115.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.81,
+        "kd": 0.76,
+        "acs": 154.0,
+        "adr": 109.0,
+        "kpr": 0.52
+      }
+    ],
+    "vlrId": "701026"
+  },
+  {
+    "id": "701027",
+    "tournamentId": "2978",
+    "team1": "FunPlus Phoenix",
+    "team2": "Trace Esports",
+    "score": "2-0",
+    "winner": "FunPlus Phoenix",
+    "format": "BO3",
+    "date": "2026-07-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 1.39,
+        "kd": 1.64,
+        "acs": 302.0,
+        "adr": 185.0,
+        "kpr": 1.08
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 1.36,
+        "kd": 1.53,
+        "acs": 236.0,
+        "adr": 176.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 1.29,
+        "kd": 1.44,
+        "acs": 275.0,
+        "adr": 169.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.99,
+        "kd": 0.91,
+        "acs": 153.0,
+        "adr": 100.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.81,
+        "kd": 0.88,
+        "acs": 158.0,
+        "adr": 109.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.09,
+        "kd": 1.04,
+        "acs": 206.0,
+        "adr": 128.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.84,
+        "kd": 0.75,
+        "acs": 185.0,
+        "adr": 108.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 0.81,
+        "kd": 0.63,
+        "acs": 157.0,
+        "adr": 120.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.75,
+        "kd": 0.76,
+        "acs": 177.0,
+        "adr": 112.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.75,
+        "kd": 0.71,
+        "acs": 167.0,
+        "adr": 100.0,
+        "kpr": 0.58
+      }
+    ],
+    "vlrId": "701027"
+  },
+  {
+    "id": "701028",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "TYLOO",
+    "score": "0-2",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-07-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.98,
+        "kd": 0.9,
+        "acs": 193.0,
+        "adr": 119.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.86,
+        "kd": 0.91,
+        "acs": 188.0,
+        "adr": 119.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.81,
+        "kd": 0.8,
+        "acs": 176.0,
+        "adr": 106.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.79,
+        "kd": 0.73,
+        "acs": 167.0,
+        "adr": 110.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.55,
+        "kd": 0.41,
+        "acs": 104.0,
+        "adr": 72.0,
+        "kpr": 0.32
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 1.36,
+        "kd": 1.63,
+        "acs": 195.0,
+        "adr": 113.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.33,
+        "kd": 1.68,
+        "acs": 258.0,
+        "adr": 161.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 1.23,
+        "kd": 1.35,
+        "acs": 224.0,
+        "adr": 136.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.16,
+        "kd": 1.32,
+        "acs": 256.0,
+        "adr": 179.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 0.89,
+        "kd": 0.77,
+        "acs": 139.0,
+        "adr": 99.0,
+        "kpr": 0.41
+      }
+    ],
+    "vlrId": "701028"
+  },
+  {
+    "id": "701029",
+    "tournamentId": "2978",
+    "team1": "Dragon Ranger Gaming",
+    "team2": "Titan Esports Club",
+    "score": "2-1",
+    "winner": "Dragon Ranger Gaming",
+    "format": "BO3",
+    "date": "2026-07-11",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.45,
+        "kd": 1.82,
+        "acs": 252.0,
+        "adr": 165.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.08,
+        "kd": 1.23,
+        "acs": 226.0,
+        "adr": 144.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.03,
+        "kd": 1.09,
+        "acs": 246.0,
+        "adr": 162.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.9,
+        "kd": 1.02,
+        "acs": 186.0,
+        "adr": 109.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.9,
+        "kd": 0.83,
+        "acs": 149.0,
+        "adr": 107.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 1.24,
+        "kd": 1.15,
+        "acs": 220.0,
+        "adr": 151.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 1.03,
+        "kd": 0.94,
+        "acs": 179.0,
+        "adr": 130.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 1.02,
+        "kd": 0.87,
+        "acs": 173.0,
+        "adr": 109.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.78,
+        "kd": 0.78,
+        "acs": 197.0,
+        "adr": 129.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Spitfires",
+        "team": "Titan Esports Club",
+        "rating": 0.65,
+        "kd": 0.62,
+        "acs": 145.0,
+        "adr": 105.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "701029"
+  },
+  {
+    "id": "701030",
+    "tournamentId": "2978",
+    "team1": "Bilibili Gaming",
+    "team2": "Wolves Esports",
+    "score": "2-1",
+    "winner": "Bilibili Gaming",
+    "format": "BO3",
+    "date": "2026-07-11",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 1.31,
+        "kd": 1.51,
+        "acs": 295.0,
+        "adr": 195.0,
+        "kpr": 1.04
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 1.15,
+        "kd": 1.28,
+        "acs": 220.0,
+        "adr": 136.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.89,
+        "kd": 1.0,
+        "acs": 189.0,
+        "adr": 117.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.86,
+        "kd": 0.84,
+        "acs": 170.0,
+        "adr": 115.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.81,
+        "kd": 0.77,
+        "acs": 145.0,
+        "adr": 86.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 1.25,
+        "kd": 1.11,
+        "acs": 267.0,
+        "adr": 172.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 1.09,
+        "kd": 1.08,
+        "acs": 206.0,
+        "adr": 122.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.96,
+        "kd": 0.88,
+        "acs": 210.0,
+        "adr": 138.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.94,
+        "kd": 0.85,
+        "acs": 160.0,
+        "adr": 110.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 0.83,
+        "kd": 0.7,
+        "acs": 151.0,
+        "adr": 102.0,
+        "kpr": 0.49
+      }
+    ],
+    "vlrId": "701030"
+  },
+  {
+    "id": "701031",
+    "tournamentId": "2978",
+    "team1": "Nova Esports",
+    "team2": "FunPlus Phoenix",
+    "score": "2-0",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-07-12",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 1.22,
+        "kd": 1.71,
+        "acs": 224.0,
+        "adr": 136.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 1.2,
+        "kd": 1.54,
+        "acs": 278.0,
+        "adr": 161.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 1.16,
+        "kd": 1.38,
+        "acs": 201.0,
+        "adr": 130.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 1.14,
+        "kd": 1.3,
+        "acs": 196.0,
+        "adr": 135.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 1.12,
+        "kd": 1.29,
+        "acs": 210.0,
+        "adr": 129.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 0.97,
+        "kd": 0.72,
+        "acs": 161.0,
+        "adr": 121.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.9,
+        "kd": 0.73,
+        "acs": 187.0,
+        "adr": 121.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.79,
+        "kd": 0.63,
+        "acs": 158.0,
+        "adr": 102.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 0.78,
+        "kd": 0.76,
+        "acs": 174.0,
+        "adr": 120.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 0.7,
+        "kd": 0.63,
+        "acs": 160.0,
+        "adr": 103.0,
+        "kpr": 0.54
+      }
+    ],
+    "vlrId": "701031"
+  },
+  {
+    "id": "701032",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "Trace Esports",
+    "score": "2-0",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-07-12",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 1.57,
+        "kd": 2.24,
+        "acs": 311.0,
+        "adr": 192.0,
+        "kpr": 1.12
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.57,
+        "kd": 2.38,
+        "acs": 296.0,
+        "adr": 185.0,
+        "kpr": 1.12
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.41,
+        "kd": 1.84,
+        "acs": 277.0,
+        "adr": 184.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.19,
+        "kd": 1.27,
+        "acs": 166.0,
+        "adr": 107.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 1.12,
+        "kd": 1.33,
+        "acs": 148.0,
+        "adr": 101.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.88,
+        "kd": 0.83,
+        "acs": 204.0,
+        "adr": 128.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.65,
+        "kd": 0.56,
+        "acs": 168.0,
+        "adr": 107.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 0.56,
+        "kd": 0.45,
+        "acs": 120.0,
+        "adr": 89.0,
+        "kpr": 0.38
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 0.49,
+        "kd": 0.48,
+        "acs": 109.0,
+        "adr": 70.0,
+        "kpr": 0.38
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.47,
+        "kd": 0.36,
+        "acs": 96.0,
+        "adr": 65.0,
+        "kpr": 0.29
+      }
+    ],
+    "vlrId": "701032"
+  },
+  {
+    "id": "701036",
+    "tournamentId": "2978",
+    "team1": "Wolves Esports",
+    "team2": "All Gamers",
+    "score": "0-2",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-07-14",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 1.1,
+        "kd": 1.0,
+        "acs": 181.0,
+        "adr": 113.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 1.09,
+        "kd": 1.1,
+        "acs": 225.0,
+        "adr": 152.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.94,
+        "kd": 0.77,
+        "acs": 177.0,
+        "adr": 121.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 0.87,
+        "kd": 0.79,
+        "acs": 188.0,
+        "adr": 127.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.74,
+        "kd": 0.71,
+        "acs": 171.0,
+        "adr": 120.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 1.34,
+        "kd": 1.39,
+        "acs": 260.0,
+        "adr": 185.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.12,
+        "kd": 1.15,
+        "acs": 209.0,
+        "adr": 121.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.0,
+        "kd": 1.12,
+        "acs": 248.0,
+        "adr": 136.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.94,
+        "kd": 1.11,
+        "acs": 198.0,
+        "adr": 130.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.92,
+        "kd": 1.0,
+        "acs": 211.0,
+        "adr": 143.0,
+        "kpr": 0.71
+      }
+    ],
+    "vlrId": "701036"
+  },
+  {
+    "id": "701037",
+    "tournamentId": "2978",
+    "team1": "Xi Lai Gaming",
+    "team2": "Titan Esports Club",
+    "score": "1-2",
+    "winner": "Titan Esports Club",
+    "format": "BO3",
+    "date": "2026-07-14",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 1.47,
+        "kd": 1.49,
+        "acs": 300.0,
+        "adr": 192.0,
+        "kpr": 1.06
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.96,
+        "kd": 0.98,
+        "acs": 185.0,
+        "adr": 116.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.94,
+        "kd": 0.91,
+        "acs": 174.0,
+        "adr": 115.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.84,
+        "kd": 0.8,
+        "acs": 167.0,
+        "adr": 116.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.77,
+        "kd": 0.84,
+        "acs": 174.0,
+        "adr": 114.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 1.3,
+        "kd": 1.33,
+        "acs": 241.0,
+        "adr": 144.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 1.25,
+        "kd": 1.36,
+        "acs": 222.0,
+        "adr": 149.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.96,
+        "kd": 0.86,
+        "acs": 188.0,
+        "adr": 121.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Spitfires",
+        "team": "Titan Esports Club",
+        "rating": 0.84,
+        "kd": 0.76,
+        "acs": 185.0,
+        "adr": 130.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.75,
+        "kd": 0.77,
+        "acs": 162.0,
+        "adr": 117.0,
+        "kpr": 0.58
+      }
+    ],
+    "vlrId": "701037"
+  },
+  {
+    "id": "701038",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "FunPlus Phoenix",
+    "score": "0-2",
+    "winner": "FunPlus Phoenix",
+    "format": "BO3",
+    "date": "2026-07-15",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 1.01,
+        "kd": 0.93,
+        "acs": 192.0,
+        "adr": 128.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.92,
+        "kd": 1.0,
+        "acs": 191.0,
+        "adr": 123.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.87,
+        "kd": 0.87,
+        "acs": 177.0,
+        "adr": 127.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.82,
+        "kd": 0.7,
+        "acs": 159.0,
+        "adr": 99.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.81,
+        "kd": 0.71,
+        "acs": 144.0,
+        "adr": 96.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 1.26,
+        "kd": 1.12,
+        "acs": 181.0,
+        "adr": 128.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 1.24,
+        "kd": 1.6,
+        "acs": 274.0,
+        "adr": 180.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 1.04,
+        "kd": 1.11,
+        "acs": 198.0,
+        "adr": 131.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.89,
+        "kd": 1.26,
+        "acs": 212.0,
+        "adr": 138.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.82,
+        "kd": 0.88,
+        "acs": 126.0,
+        "adr": 88.0,
+        "kpr": 0.49
+      }
+    ],
+    "vlrId": "701038"
+  },
+  {
+    "id": "701039",
+    "tournamentId": "2978",
+    "team1": "EDward Gaming",
+    "team2": "TYLOO",
+    "score": "1-2",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-07-15",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.16,
+        "kd": 1.15,
+        "acs": 222.0,
+        "adr": 153.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 1.04,
+        "kd": 0.89,
+        "acs": 216.0,
+        "adr": 133.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.95,
+        "kd": 1.0,
+        "acs": 217.0,
+        "adr": 125.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.88,
+        "kd": 0.78,
+        "acs": 169.0,
+        "adr": 123.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.56,
+        "kd": 0.56,
+        "acs": 146.0,
+        "adr": 96.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.35,
+        "kd": 1.51,
+        "acs": 261.0,
+        "adr": 160.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.21,
+        "kd": 1.32,
+        "acs": 296.0,
+        "adr": 194.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.14,
+        "kd": 1.13,
+        "acs": 219.0,
+        "adr": 129.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.96,
+        "kd": 1.0,
+        "acs": 166.0,
+        "adr": 113.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.82,
+        "kd": 0.78,
+        "acs": 148.0,
+        "adr": 105.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "701039"
+  },
+  {
+    "id": "701040",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "Bilibili Gaming",
+    "score": "1-2",
+    "winner": "Bilibili Gaming",
+    "format": "BO3",
+    "date": "2026-07-16",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 1.16,
+        "kd": 1.13,
+        "acs": 216.0,
+        "adr": 147.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 1.07,
+        "kd": 1.11,
+        "acs": 215.0,
+        "adr": 139.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.98,
+        "kd": 0.9,
+        "acs": 202.0,
+        "adr": 139.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.96,
+        "kd": 0.94,
+        "acs": 211.0,
+        "adr": 136.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.87,
+        "kd": 0.83,
+        "acs": 169.0,
+        "adr": 115.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 1.18,
+        "kd": 1.22,
+        "acs": 237.0,
+        "adr": 159.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 1.13,
+        "kd": 1.15,
+        "acs": 231.0,
+        "adr": 152.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 1.07,
+        "kd": 1.1,
+        "acs": 231.0,
+        "adr": 144.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 1.06,
+        "kd": 0.98,
+        "acs": 197.0,
+        "adr": 127.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.65,
+        "kd": 0.68,
+        "acs": 125.0,
+        "adr": 84.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "701040"
+  },
+  {
+    "id": "701041",
+    "tournamentId": "2978",
+    "team1": "Xi Lai Gaming",
+    "team2": "Dragon Ranger Gaming",
+    "score": "2-0",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-07-16",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 1.41,
+        "kd": 1.67,
+        "acs": 264.0,
+        "adr": 173.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 1.3,
+        "kd": 1.38,
+        "acs": 282.0,
+        "adr": 197.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 1.24,
+        "kd": 1.33,
+        "acs": 247.0,
+        "adr": 153.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 1.02,
+        "kd": 1.24,
+        "acs": 151.0,
+        "adr": 106.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.97,
+        "kd": 1.2,
+        "acs": 178.0,
+        "adr": 118.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.4,
+        "kd": 1.2,
+        "acs": 264.0,
+        "adr": 185.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.8,
+        "kd": 0.74,
+        "acs": 216.0,
+        "adr": 144.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.74,
+        "kd": 0.71,
+        "acs": 139.0,
+        "adr": 87.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.66,
+        "kd": 0.59,
+        "acs": 163.0,
+        "adr": 100.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.59,
+        "kd": 0.49,
+        "acs": 119.0,
+        "adr": 76.0,
+        "kpr": 0.4
+      }
+    ],
+    "vlrId": "701041"
+  },
+  {
+    "id": "701042",
+    "tournamentId": "2978",
+    "team1": "Nova Esports",
+    "team2": "JD Gaming",
+    "score": "2-1",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-07-17",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 1.66,
+        "kd": 1.7,
+        "acs": 323.0,
+        "adr": 219.0,
+        "kpr": 1.13
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 1.22,
+        "kd": 1.3,
+        "acs": 226.0,
+        "adr": 148.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 1.12,
+        "kd": 1.15,
+        "acs": 209.0,
+        "adr": 127.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 1.09,
+        "kd": 1.08,
+        "acs": 201.0,
+        "adr": 146.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.64,
+        "kd": 0.65,
+        "acs": 134.0,
+        "adr": 77.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 1.17,
+        "kd": 1.0,
+        "acs": 187.0,
+        "adr": 132.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 1.1,
+        "kd": 1.3,
+        "acs": 264.0,
+        "adr": 148.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.9,
+        "kd": 0.74,
+        "acs": 171.0,
+        "adr": 118.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.74,
+        "kd": 0.62,
+        "acs": 154.0,
+        "adr": 94.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.46,
+        "kd": 0.67,
+        "acs": 160.0,
+        "adr": 117.0,
+        "kpr": 0.57
+      }
+    ],
+    "vlrId": "701042"
+  },
+  {
+    "id": "701043",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "FunPlus Phoenix",
+    "score": "2-1",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-07-17",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 1.42,
+        "acs": 264.0,
+        "adr": 0.0,
+        "kpr": 0.96
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 1.04,
+        "acs": 202.0,
+        "adr": 0.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.91,
+        "acs": 167.0,
+        "adr": 0.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.88,
+        "acs": 162.0,
+        "adr": 0.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.71,
+        "acs": 128.0,
+        "adr": 0.0,
+        "kpr": 0.4
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.22,
+        "acs": 225.0,
+        "adr": 0.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.11,
+        "acs": 200.0,
+        "adr": 0.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.15,
+        "acs": 187.0,
+        "adr": 0.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.95,
+        "acs": 174.0,
+        "adr": 0.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.63,
+        "acs": 123.0,
+        "adr": 0.0,
+        "kpr": 0.43
+      }
+    ],
+    "vlrId": "701043"
+  },
+  {
+    "id": "701044",
+    "tournamentId": "2978",
+    "team1": "Trace Esports",
+    "team2": "EDward Gaming",
+    "score": "0-2",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-07-17",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 268.0,
+        "adr": 0.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.75,
+        "acs": 185.0,
+        "adr": 0.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.72,
+        "acs": 169.0,
+        "adr": 0.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.56,
+        "acs": 159.0,
+        "adr": 0.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 158.0,
+        "adr": 0.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 2.35,
+        "acs": 322.0,
+        "adr": 0.0,
+        "kpr": 1.18
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.25,
+        "acs": 301.0,
+        "adr": 0.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.41,
+        "acs": 205.0,
+        "adr": 0.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 179.0,
+        "adr": 0.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.05,
+        "acs": 143.0,
+        "adr": 0.0,
+        "kpr": 0.55
+      }
+    ],
+    "vlrId": "701044"
+  },
+  {
+    "id": "701045",
+    "tournamentId": "2978",
+    "team1": "Titan Esports Club",
+    "team2": "Bilibili Gaming",
+    "score": "1-2",
+    "winner": "Bilibili Gaming",
+    "format": "BO3",
+    "date": "2026-07-18",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.88,
+        "acs": 213.0,
+        "adr": 0.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.96,
+        "acs": 208.0,
+        "adr": 0.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Spitfires",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.9,
+        "acs": 203.0,
+        "adr": 0.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.79,
+        "acs": 176.0,
+        "adr": 0.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 146.0,
+        "adr": 0.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.35,
+        "acs": 249.0,
+        "adr": 0.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.55,
+        "acs": 242.0,
+        "adr": 0.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.02,
+        "acs": 226.0,
+        "adr": 0.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.02,
+        "acs": 209.0,
+        "adr": 0.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 0.7,
+        "acs": 129.0,
+        "adr": 0.0,
+        "kpr": 0.5
+      }
+    ],
+    "vlrId": "701045"
+  },
+  {
+    "id": "701046",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "Xi Lai Gaming",
+    "score": "0-2",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-07-18",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.16,
+        "acs": 266.0,
+        "adr": 0.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.06,
+        "acs": 212.0,
+        "adr": 0.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.91,
+        "acs": 186.0,
+        "adr": 0.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.68,
+        "acs": 165.0,
+        "adr": 0.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.59,
+        "acs": 115.0,
+        "adr": 0.0,
+        "kpr": 0.43
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.7,
+        "acs": 305.0,
+        "adr": 0.0,
+        "kpr": 1.09
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.38,
+        "acs": 239.0,
+        "adr": 0.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.07,
+        "acs": 194.0,
+        "adr": 0.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.97,
+        "acs": 192.0,
+        "adr": 0.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.68,
+        "acs": 153.0,
+        "adr": 0.0,
+        "kpr": 0.49
+      }
+    ],
+    "vlrId": "701046"
+  },
+  {
+    "id": "701047",
+    "tournamentId": "2978",
+    "team1": "Trace Esports",
+    "team2": "Nova Esports",
+    "score": "1-2",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-07-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.53,
+        "acs": 236.0,
+        "adr": 0.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.06,
+        "acs": 220.0,
+        "adr": 0.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.11,
+        "acs": 211.0,
+        "adr": 0.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.92,
+        "acs": 190.0,
+        "adr": 0.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.84,
+        "acs": 150.0,
+        "adr": 0.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.93,
+        "acs": 240.0,
+        "adr": 0.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.28,
+        "acs": 240.0,
+        "adr": 0.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.07,
+        "acs": 173.0,
+        "adr": 0.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.67,
+        "acs": 153.0,
+        "adr": 0.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.7,
+        "acs": 145.0,
+        "adr": 0.0,
+        "kpr": 0.47
+      }
+    ],
+    "vlrId": "701047"
+  },
+  {
+    "id": "701048",
+    "tournamentId": "2978",
+    "team1": "Dragon Ranger Gaming",
+    "team2": "Wolves Esports",
+    "score": "1-2",
+    "winner": "Wolves Esports",
+    "format": "BO3",
+    "date": "2026-07-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.09,
+        "acs": 227.0,
+        "adr": 0.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 0.93,
+        "acs": 223.0,
+        "adr": 0.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 0.94,
+        "acs": 202.0,
+        "adr": 0.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 193.0,
+        "adr": 0.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 0.83,
+        "acs": 186.0,
+        "adr": 0.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 1.33,
+        "acs": 287.0,
+        "adr": 0.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 1.09,
+        "acs": 212.0,
+        "adr": 0.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.98,
+        "acs": 196.0,
+        "adr": 0.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.98,
+        "acs": 188.0,
+        "adr": 0.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.85,
+        "acs": 167.0,
+        "adr": 0.0,
+        "kpr": 0.6
+      }
+    ],
+    "vlrId": "701048"
+  },
+  {
+    "id": "701049",
+    "tournamentId": "2978",
+    "team1": "EDward Gaming",
+    "team2": "JD Gaming",
+    "score": "2-0",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-07-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.29,
+        "acs": 280.0,
+        "adr": 0.0,
+        "kpr": 1.02
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.4,
+        "acs": 251.0,
+        "adr": 0.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.38,
+        "acs": 208.0,
+        "adr": 0.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.15,
+        "acs": 192.0,
+        "adr": 0.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.84,
+        "acs": 173.0,
+        "adr": 0.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.16,
+        "acs": 227.0,
+        "adr": 0.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.82,
+        "acs": 198.0,
+        "adr": 0.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 196.0,
+        "adr": 0.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.74,
+        "acs": 170.0,
+        "adr": 0.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.71,
+        "acs": 167.0,
+        "adr": 0.0,
+        "kpr": 0.56
+      }
+    ],
+    "vlrId": "701049"
+  },
+  {
+    "id": "701050",
+    "tournamentId": "2978",
+    "team1": "Titan Esports Club",
+    "team2": "All Gamers",
+    "score": "0-2",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-07-20",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 1.03,
+        "acs": 217.0,
+        "adr": 0.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.74,
+        "acs": 199.0,
+        "adr": 0.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.64,
+        "acs": 165.0,
+        "adr": 0.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.71,
+        "acs": 153.0,
+        "adr": 0.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.58,
+        "acs": 146.0,
+        "adr": 0.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.4,
+        "acs": 256.0,
+        "adr": 0.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.42,
+        "acs": 256.0,
+        "adr": 0.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.58,
+        "acs": 252.0,
+        "adr": 0.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.53,
+        "acs": 190.0,
+        "adr": 0.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.93,
+        "acs": 181.0,
+        "adr": 0.0,
+        "kpr": 0.61
+      }
+    ],
+    "vlrId": "701050"
+  },
+  {
+    "id": "701051",
+    "tournamentId": "2978",
+    "team1": "Bilibili Gaming",
+    "team2": "Xi Lai Gaming",
+    "score": "2-1",
+    "winner": "Bilibili Gaming",
+    "format": "BO3",
+    "date": "2026-07-20",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.12,
+        "acs": 248.0,
+        "adr": 0.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.21,
+        "acs": 222.0,
+        "adr": 0.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.21,
+        "acs": 215.0,
+        "adr": 0.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.38,
+        "acs": 209.0,
+        "adr": 0.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 0.89,
+        "acs": 201.0,
+        "adr": 0.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.02,
+        "acs": 214.0,
+        "adr": 0.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.85,
+        "acs": 199.0,
+        "adr": 0.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.1,
+        "acs": 192.0,
+        "adr": 0.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.86,
+        "acs": 187.0,
+        "adr": 0.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.7,
+        "acs": 159.0,
+        "adr": 0.0,
+        "kpr": 0.53
+      }
+    ],
+    "vlrId": "701051"
+  },
+  {
+    "id": "701052",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "Trace Esports",
+    "score": "2-0",
+    "winner": "JD Gaming",
+    "format": "BO3",
+    "date": "2026-07-21",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.67,
+        "acs": 289.0,
+        "adr": 172.0,
+        "kpr": 1.02
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.37,
+        "acs": 231.0,
+        "adr": 154.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.14,
+        "acs": 220.0,
+        "adr": 146.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 176.0,
+        "adr": 120.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 174.0,
+        "adr": 120.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.21,
+        "acs": 254.0,
+        "adr": 160.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.09,
+        "acs": 212.0,
+        "adr": 143.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.76,
+        "acs": 186.0,
+        "adr": 134.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.67,
+        "acs": 170.0,
+        "adr": 111.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.6,
+        "acs": 150.0,
+        "adr": 86.0,
+        "kpr": 0.48
+      }
+    ],
+    "vlrId": "701052"
+  },
+  {
+    "id": "701053",
+    "tournamentId": "2978",
+    "team1": "EDward Gaming",
+    "team2": "Nova Esports",
+    "score": "0-2",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-07-21",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.29,
+        "acs": 242.0,
+        "adr": 165.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.97,
+        "acs": 213.0,
+        "adr": 149.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.81,
+        "acs": 183.0,
+        "adr": 122.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.74,
+        "acs": 176.0,
+        "adr": 121.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 174.0,
+        "adr": 110.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.12,
+        "acs": 257.0,
+        "adr": 149.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.09,
+        "acs": 213.0,
+        "adr": 153.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.28,
+        "acs": 205.0,
+        "adr": 139.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.89,
+        "acs": 191.0,
+        "adr": 125.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.86,
+        "acs": 171.0,
+        "adr": 108.0,
+        "kpr": 0.59
+      }
+    ],
+    "vlrId": "701053"
+  },
+  {
+    "id": "701054",
+    "tournamentId": "2978",
+    "team1": "Xi Lai Gaming",
+    "team2": "Wolves Esports",
+    "score": "2-1",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-07-22",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.39,
+        "acs": 242.0,
+        "adr": 151.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.21,
+        "acs": 231.0,
+        "adr": 146.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 210.0,
+        "adr": 140.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.05,
+        "acs": 203.0,
+        "adr": 124.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.6,
+        "acs": 142.0,
+        "adr": 97.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 1.32,
+        "acs": 232.0,
+        "adr": 154.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 1.05,
+        "acs": 224.0,
+        "adr": 141.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.76,
+        "acs": 213.0,
+        "adr": 141.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.97,
+        "acs": 195.0,
+        "adr": 120.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.79,
+        "acs": 153.0,
+        "adr": 106.0,
+        "kpr": 0.55
+      }
+    ],
+    "vlrId": "701054"
+  },
+  {
+    "id": "701055",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "Dragon Ranger Gaming",
+    "score": "2-1",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-07-22",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.2,
+        "acs": 232.0,
+        "adr": 154.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.88,
+        "acs": 216.0,
+        "adr": 144.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.91,
+        "acs": 200.0,
+        "adr": 131.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.1,
+        "acs": 194.0,
+        "adr": 139.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.71,
+        "acs": 150.0,
+        "adr": 100.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.15,
+        "acs": 251.0,
+        "adr": 162.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.34,
+        "acs": 228.0,
+        "adr": 144.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.07,
+        "acs": 224.0,
+        "adr": 139.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 0.94,
+        "acs": 205.0,
+        "adr": 127.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 153.0,
+        "adr": 99.0,
+        "kpr": 0.54
+      }
+    ],
+    "vlrId": "701055"
+  },
+  {
+    "id": "701056",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "Nova Esports",
+    "score": "0-2",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-07-23",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 1.18,
+        "acs": 234.0,
+        "adr": 144.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 1.11,
+        "acs": 223.0,
+        "adr": 147.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.8,
+        "acs": 203.0,
+        "adr": 133.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.84,
+        "acs": 177.0,
+        "adr": 124.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.82,
+        "acs": 176.0,
+        "adr": 122.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.18,
+        "acs": 263.0,
+        "adr": 165.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.52,
+        "acs": 239.0,
+        "adr": 154.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.05,
+        "acs": 214.0,
+        "adr": 137.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.88,
+        "acs": 177.0,
+        "adr": 120.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 0.75,
+        "acs": 159.0,
+        "adr": 108.0,
+        "kpr": 0.54
+      }
+    ],
+    "vlrId": "701056"
+  },
+  {
+    "id": "701057",
+    "tournamentId": "2978",
+    "team1": "FunPlus Phoenix",
+    "team2": "EDward Gaming",
+    "score": "1-2",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-07-23",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.19,
+        "acs": 223.0,
+        "adr": 154.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.85,
+        "acs": 198.0,
+        "adr": 136.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.89,
+        "acs": 193.0,
+        "adr": 121.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.95,
+        "acs": 175.0,
+        "adr": 109.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.74,
+        "acs": 163.0,
+        "adr": 108.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.33,
+        "acs": 292.0,
+        "adr": 184.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.34,
+        "acs": 236.0,
+        "adr": 165.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.26,
+        "acs": 209.0,
+        "adr": 133.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.82,
+        "acs": 157.0,
+        "adr": 104.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.65,
+        "acs": 124.0,
+        "adr": 89.0,
+        "kpr": 0.42
+      }
+    ],
+    "vlrId": "701057"
+  },
+  {
+    "id": "701058",
+    "tournamentId": "2978",
+    "team1": "Trace Esports",
+    "team2": "Titan Esports Club",
+    "score": "2-0",
+    "winner": "Trace Esports",
+    "format": "BO3",
+    "date": "2026-07-24",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.82,
+        "acs": 338.0,
+        "adr": 213.0,
+        "kpr": 1.25
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 1.11,
+        "acs": 238.0,
+        "adr": 154.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.94,
+        "acs": 200.0,
+        "adr": 146.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.86,
+        "acs": 179.0,
+        "adr": 119.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.0,
+        "kd": 0.87,
+        "acs": 152.0,
+        "adr": 93.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 1.6,
+        "acs": 325.0,
+        "adr": 198.0,
+        "kpr": 1.17
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.65,
+        "acs": 176.0,
+        "adr": 117.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.81,
+        "acs": 175.0,
+        "adr": 106.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.81,
+        "acs": 172.0,
+        "adr": 114.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 0.0,
+        "kd": 0.69,
+        "acs": 160.0,
+        "adr": 119.0,
+        "kpr": 0.5
+      }
+    ],
+    "vlrId": "701058"
+  },
+  {
+    "id": "701059",
+    "tournamentId": "2978",
+    "team1": "EDward Gaming",
+    "team2": "All Gamers",
+    "score": "2-0",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-07-24",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.28,
+        "acs": 275.0,
+        "adr": 178.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.11,
+        "acs": 221.0,
+        "adr": 146.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 1.19,
+        "acs": 220.0,
+        "adr": 146.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.93,
+        "acs": 185.0,
+        "adr": 118.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.0,
+        "kd": 0.8,
+        "acs": 165.0,
+        "adr": 106.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.03,
+        "acs": 226.0,
+        "adr": 135.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 225.0,
+        "adr": 141.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 196.0,
+        "adr": 138.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.84,
+        "acs": 183.0,
+        "adr": 112.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.0,
+        "kd": 0.84,
+        "acs": 178.0,
+        "adr": 118.0,
+        "kpr": 0.64
+      }
+    ],
+    "vlrId": "701059"
+  },
+  {
+    "id": "701060",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "Dragon Ranger Gaming",
+    "score": "1-2",
+    "winner": "Dragon Ranger Gaming",
+    "format": "BO3",
+    "date": "2026-07-25",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.19,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 1.08,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.82,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.0,
+        "kd": 0.77,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.56,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.97
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.31,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.02,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 1.02,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.0,
+        "kd": 0.6,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.45
+      }
+    ],
+    "vlrId": "701060"
+  },
+  {
+    "id": "701061",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "Xi Lai Gaming",
+    "score": "0-2",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-07-25",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 1.08,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 1.0,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.82,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.97,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 0.0,
+        "kd": 0.61,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 2.04,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 1.13
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.15,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Sharks",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.89,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 1.14,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.0,
+        "kd": 0.63,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.47
+      }
+    ],
+    "vlrId": "701061"
+  },
+  {
+    "id": "701062",
+    "tournamentId": "2978",
+    "team1": "FunPlus Phoenix",
+    "team2": "Wolves Esports",
+    "score": "2-0",
+    "winner": "FunPlus Phoenix",
+    "format": "BO3",
+    "date": "2026-07-26",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.24,
+        "acs": 247.0,
+        "adr": 152.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.47,
+        "acs": 247.0,
+        "adr": 157.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 1.56,
+        "acs": 234.0,
+        "adr": 155.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.91,
+        "acs": 187.0,
+        "adr": 119.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 0.0,
+        "kd": 0.7,
+        "acs": 147.0,
+        "adr": 97.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 1.22,
+        "acs": 273.0,
+        "adr": 185.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.74,
+        "acs": 185.0,
+        "adr": 125.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.76,
+        "acs": 173.0,
+        "adr": 109.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.82,
+        "acs": 160.0,
+        "adr": 106.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 0.0,
+        "kd": 0.8,
+        "acs": 158.0,
+        "adr": 97.0,
+        "kpr": 0.6
+      }
+    ],
+    "vlrId": "701062"
+  },
+  {
+    "id": "701063",
+    "tournamentId": "2978",
+    "team1": "Nova Esports",
+    "team2": "Bilibili Gaming",
+    "score": "2-0",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-07-26",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.2,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.25,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.59,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.26,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 0.0,
+        "kd": 1.04,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 1.25,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 0.91,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 0.71,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 0.58,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 0.0,
+        "kd": 0.58,
+        "acs": 0.0,
+        "adr": 0.0,
+        "kpr": 0.46
+      }
+    ],
+    "vlrId": "701063"
+  },
+  {
+    "id": "724619",
+    "tournamentId": "2978",
+    "team1": "Trace Esports",
+    "team2": "A Team",
+    "score": "2-0",
+    "winner": "Trace Esports",
+    "format": "BO3",
+    "date": "2026-08-05",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.5,
+        "kd": 1.79,
+        "acs": 274.0,
+        "adr": 195.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 1.18,
+        "kd": 1.26,
+        "acs": 225.0,
+        "adr": 149.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 1.15,
+        "kd": 1.07,
+        "acs": 201.0,
+        "adr": 119.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.05,
+        "kd": 1.1,
+        "acs": 207.0,
+        "adr": 138.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.84,
+        "kd": 0.97,
+        "acs": 188.0,
+        "adr": 115.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Layla",
+        "team": "A Team",
+        "rating": 1.14,
+        "kd": 1.1,
+        "acs": 213.0,
+        "adr": 154.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Eren",
+        "team": "A Team",
+        "rating": 0.87,
+        "kd": 0.78,
+        "acs": 196.0,
+        "adr": 140.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "monk",
+        "team": "A Team",
+        "rating": 0.83,
+        "kd": 0.79,
+        "acs": 169.0,
+        "adr": 115.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Dingwei",
+        "team": "A Team",
+        "rating": 0.83,
+        "kd": 0.77,
+        "acs": 156.0,
+        "adr": 96.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "Folykiki",
+        "team": "A Team",
+        "rating": 0.7,
+        "kd": 0.69,
+        "acs": 176.0,
+        "adr": 112.0,
+        "kpr": 0.58
+      }
+    ],
+    "vlrId": "724619"
+  },
+  {
+    "id": "724620",
+    "tournamentId": "2978",
+    "team1": "Titan Esports Club",
+    "team2": "KeepBest Gaming",
+    "score": "2-1",
+    "winner": "Titan Esports Club",
+    "format": "BO3",
+    "date": "2026-08-05",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 1.1,
+        "kd": 1.43,
+        "acs": 242.0,
+        "adr": 146.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 1.04,
+        "kd": 0.96,
+        "acs": 215.0,
+        "adr": 152.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 1.04,
+        "kd": 1.09,
+        "acs": 198.0,
+        "adr": 133.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.95,
+        "kd": 1.1,
+        "acs": 249.0,
+        "adr": 163.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.78,
+        "kd": 0.88,
+        "acs": 173.0,
+        "adr": 110.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Krst1Ng",
+        "team": "KeepBest Gaming",
+        "rating": 1.13,
+        "kd": 0.88,
+        "acs": 168.0,
+        "adr": 119.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Akeman",
+        "team": "KeepBest Gaming",
+        "rating": 1.06,
+        "kd": 1.07,
+        "acs": 249.0,
+        "adr": 160.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "sibeastw0w",
+        "team": "KeepBest Gaming",
+        "rating": 1.04,
+        "kd": 0.84,
+        "acs": 183.0,
+        "adr": 143.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Tonk",
+        "team": "KeepBest Gaming",
+        "rating": 0.98,
+        "kd": 0.94,
+        "acs": 197.0,
+        "adr": 127.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Ying",
+        "team": "KeepBest Gaming",
+        "rating": 0.97,
+        "kd": 0.86,
+        "acs": 189.0,
+        "adr": 124.0,
+        "kpr": 0.62
+      }
+    ],
+    "vlrId": "724620"
+  },
+  {
+    "id": "724621",
+    "tournamentId": "2978",
+    "team1": "FunPlus Phoenix",
+    "team2": "JD Gaming",
+    "score": "1-2",
+    "winner": "JD Gaming",
+    "format": "BO3",
+    "date": "2026-08-06",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 1.22,
+        "kd": 1.33,
+        "acs": 242.0,
+        "adr": 160.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 1.19,
+        "kd": 1.15,
+        "acs": 220.0,
+        "adr": 145.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 1.15,
+        "kd": 1.31,
+        "acs": 222.0,
+        "adr": 142.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 0.97,
+        "kd": 1.08,
+        "acs": 202.0,
+        "adr": 130.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 0.78,
+        "kd": 0.87,
+        "acs": 194.0,
+        "adr": 118.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 1.16,
+        "kd": 1.17,
+        "acs": 230.0,
+        "adr": 149.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.92,
+        "kd": 0.98,
+        "acs": 200.0,
+        "adr": 140.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.92,
+        "kd": 0.87,
+        "acs": 186.0,
+        "adr": 124.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.89,
+        "kd": 0.85,
+        "acs": 191.0,
+        "adr": 131.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.68,
+        "kd": 0.52,
+        "acs": 120.0,
+        "adr": 83.0,
+        "kpr": 0.38
+      }
+    ],
+    "vlrId": "724621"
+  },
+  {
+    "id": "724622",
+    "tournamentId": "2978",
+    "team1": "Wolves Esports",
+    "team2": "Dragon Ranger Gaming",
+    "score": "1-2",
+    "winner": "Dragon Ranger Gaming",
+    "format": "BO3",
+    "date": "2026-08-06",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 1.18,
+        "kd": 1.15,
+        "acs": 235.0,
+        "adr": 146.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 1.03,
+        "kd": 1.12,
+        "acs": 232.0,
+        "adr": 147.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 1.02,
+        "kd": 0.98,
+        "acs": 207.0,
+        "adr": 136.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.91,
+        "kd": 0.87,
+        "acs": 158.0,
+        "adr": 103.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 0.62,
+        "kd": 0.55,
+        "acs": 127.0,
+        "adr": 87.0,
+        "kpr": 0.4
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.22,
+        "kd": 1.26,
+        "acs": 172.0,
+        "adr": 113.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.07,
+        "kd": 1.14,
+        "acs": 212.0,
+        "adr": 141.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.0,
+        "kd": 0.96,
+        "acs": 195.0,
+        "adr": 119.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.99,
+        "kd": 1.1,
+        "acs": 235.0,
+        "adr": 143.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.92,
+        "kd": 0.94,
+        "acs": 204.0,
+        "adr": 132.0,
+        "kpr": 0.75
+      }
+    ],
+    "vlrId": "724622"
+  },
+  {
+    "id": "724623",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "Trace Esports",
+    "score": "2-1",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-08-07",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.42,
+        "kd": 1.74,
+        "acs": 304.0,
+        "adr": 190.0,
+        "kpr": 1.09
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.21,
+        "kd": 1.31,
+        "acs": 227.0,
+        "adr": 139.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 1.02,
+        "kd": 1.0,
+        "acs": 161.0,
+        "adr": 111.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.96,
+        "kd": 1.05,
+        "acs": 227.0,
+        "adr": 142.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.91,
+        "kd": 0.87,
+        "acs": 189.0,
+        "adr": 123.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 1.15,
+        "kd": 1.1,
+        "acs": 231.0,
+        "adr": 149.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.04,
+        "kd": 1.02,
+        "acs": 228.0,
+        "adr": 146.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 0.89,
+        "kd": 0.84,
+        "acs": 159.0,
+        "adr": 98.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.81,
+        "kd": 0.76,
+        "acs": 160.0,
+        "adr": 108.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.56,
+        "kd": 0.54,
+        "acs": 152.0,
+        "adr": 104.0,
+        "kpr": 0.46
+      }
+    ],
+    "vlrId": "724623"
+  },
+  {
+    "id": "724624",
+    "tournamentId": "2978",
+    "team1": "EDward Gaming",
+    "team2": "Titan Esports Club",
+    "score": "1-2",
+    "winner": "Titan Esports Club",
+    "format": "BO3",
+    "date": "2026-08-07",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.25,
+        "kd": 1.3,
+        "acs": 244.0,
+        "adr": 170.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 1.12,
+        "kd": 0.98,
+        "acs": 231.0,
+        "adr": 169.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 1.11,
+        "kd": 1.02,
+        "acs": 206.0,
+        "adr": 134.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.06,
+        "kd": 0.96,
+        "acs": 234.0,
+        "adr": 140.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.82,
+        "kd": 0.76,
+        "acs": 130.0,
+        "adr": 81.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 1.42,
+        "kd": 1.31,
+        "acs": 317.0,
+        "adr": 185.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 1.02,
+        "kd": 1.11,
+        "acs": 216.0,
+        "adr": 138.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.93,
+        "kd": 1.05,
+        "acs": 145.0,
+        "adr": 91.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 0.75,
+        "kd": 0.69,
+        "acs": 152.0,
+        "adr": 109.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.7,
+        "kd": 0.81,
+        "acs": 132.0,
+        "adr": 85.0,
+        "kpr": 0.53
+      }
+    ],
+    "vlrId": "724624"
+  },
+  {
+    "id": "724625",
+    "tournamentId": "2978",
+    "team1": "A Team",
+    "team2": "Wolves Esports",
+    "score": "1-2",
+    "winner": "Wolves Esports",
+    "format": "BO3",
+    "date": "2026-08-08",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "monk",
+        "team": "A Team",
+        "rating": 1.12,
+        "kd": 1.11,
+        "acs": 201.0,
+        "adr": 126.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Eren",
+        "team": "A Team",
+        "rating": 1.04,
+        "kd": 1.06,
+        "acs": 220.0,
+        "adr": 146.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Layla",
+        "team": "A Team",
+        "rating": 1.01,
+        "kd": 1.11,
+        "acs": 222.0,
+        "adr": 128.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Folykiki",
+        "team": "A Team",
+        "rating": 0.98,
+        "kd": 1.0,
+        "acs": 214.0,
+        "adr": 138.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Dingwei",
+        "team": "A Team",
+        "rating": 0.79,
+        "kd": 0.78,
+        "acs": 147.0,
+        "adr": 106.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 1.26,
+        "kd": 1.31,
+        "acs": 251.0,
+        "adr": 161.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 1.12,
+        "kd": 1.18,
+        "acs": 253.0,
+        "adr": 164.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 1.06,
+        "kd": 0.96,
+        "acs": 181.0,
+        "adr": 127.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 0.94,
+        "kd": 0.91,
+        "acs": 195.0,
+        "adr": 128.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.77,
+        "kd": 0.63,
+        "acs": 154.0,
+        "adr": 101.0,
+        "kpr": 0.48
+      }
+    ],
+    "vlrId": "724625"
+  },
+  {
+    "id": "724626",
+    "tournamentId": "2978",
+    "team1": "KeepBest Gaming",
+    "team2": "FunPlus Phoenix",
+    "score": "0-2",
+    "winner": "FunPlus Phoenix",
+    "format": "BO3",
+    "date": "2026-08-08",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Ying",
+        "team": "KeepBest Gaming",
+        "rating": 1.18,
+        "kd": 1.06,
+        "acs": 247.0,
+        "adr": 156.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Tonk",
+        "team": "KeepBest Gaming",
+        "rating": 1.11,
+        "kd": 1.09,
+        "acs": 234.0,
+        "adr": 165.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "sibeastw0w",
+        "team": "KeepBest Gaming",
+        "rating": 0.97,
+        "kd": 0.87,
+        "acs": 167.0,
+        "adr": 113.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Krst1Ng",
+        "team": "KeepBest Gaming",
+        "rating": 0.73,
+        "kd": 0.6,
+        "acs": 137.0,
+        "adr": 94.0,
+        "kpr": 0.48
+      },
+      {
+        "playerId": "Akeman",
+        "team": "KeepBest Gaming",
+        "rating": 0.49,
+        "kd": 0.57,
+        "acs": 132.0,
+        "adr": 80.0,
+        "kpr": 0.48
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 1.45,
+        "kd": 1.79,
+        "acs": 300.0,
+        "adr": 208.0,
+        "kpr": 1.14
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 1.12,
+        "kd": 1.12,
+        "acs": 184.0,
+        "adr": 123.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 1.05,
+        "kd": 1.26,
+        "acs": 214.0,
+        "adr": 135.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 0.96,
+        "kd": 1.1,
+        "acs": 210.0,
+        "adr": 138.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 0.85,
+        "kd": 0.8,
+        "acs": 167.0,
+        "adr": 114.0,
+        "kpr": 0.55
+      }
+    ],
+    "vlrId": "724626"
+  },
+  {
+    "id": "724627",
+    "tournamentId": "2978",
+    "team1": "EDward Gaming",
+    "team2": "Wolves Esports",
+    "score": "2-1",
+    "winner": "EDward Gaming",
+    "format": "BO3",
+    "date": "2026-08-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 1.3,
+        "kd": 1.41,
+        "acs": 267.0,
+        "adr": 169.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 1.29,
+        "kd": 1.26,
+        "acs": 234.0,
+        "adr": 155.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 1.11,
+        "kd": 1.15,
+        "acs": 194.0,
+        "adr": 129.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.86,
+        "kd": 0.78,
+        "acs": 185.0,
+        "adr": 127.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.73,
+        "kd": 0.9,
+        "acs": 181.0,
+        "adr": 113.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "yosemite",
+        "team": "Wolves Esports",
+        "rating": 1.25,
+        "kd": 1.24,
+        "acs": 244.0,
+        "adr": 160.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "aluba",
+        "team": "Wolves Esports",
+        "rating": 0.97,
+        "kd": 0.85,
+        "acs": 182.0,
+        "adr": 132.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "glacier",
+        "team": "Wolves Esports",
+        "rating": 0.95,
+        "kd": 0.98,
+        "acs": 241.0,
+        "adr": 160.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Deryeon",
+        "team": "Wolves Esports",
+        "rating": 0.89,
+        "kd": 0.81,
+        "acs": 164.0,
+        "adr": 108.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Spring",
+        "team": "Wolves Esports",
+        "rating": 0.89,
+        "kd": 0.73,
+        "acs": 171.0,
+        "adr": 115.0,
+        "kpr": 0.55
+      }
+    ],
+    "vlrId": "724627"
+  },
+  {
+    "id": "724628",
+    "tournamentId": "2978",
+    "team1": "Trace Esports",
+    "team2": "FunPlus Phoenix",
+    "score": "2-0",
+    "winner": "Trace Esports",
+    "format": "BO3",
+    "date": "2026-08-09",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.42,
+        "kd": 2.0,
+        "acs": 257.0,
+        "adr": 168.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 1.2,
+        "kd": 1.58,
+        "acs": 257.0,
+        "adr": 159.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 1.1,
+        "kd": 1.19,
+        "acs": 233.0,
+        "adr": 147.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.05,
+        "kd": 1.09,
+        "acs": 186.0,
+        "adr": 135.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.97,
+        "kd": 1.0,
+        "acs": 167.0,
+        "adr": 102.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Xlele",
+        "team": "FunPlus Phoenix",
+        "rating": 1.03,
+        "kd": 0.9,
+        "acs": 206.0,
+        "adr": 139.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "coconut",
+        "team": "FunPlus Phoenix",
+        "rating": 1.03,
+        "kd": 0.93,
+        "acs": 210.0,
+        "adr": 132.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "KovaQ",
+        "team": "FunPlus Phoenix",
+        "rating": 0.83,
+        "kd": 0.74,
+        "acs": 173.0,
+        "adr": 113.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "AAAAY",
+        "team": "FunPlus Phoenix",
+        "rating": 0.78,
+        "kd": 0.6,
+        "acs": 147.0,
+        "adr": 108.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "Setrod",
+        "team": "FunPlus Phoenix",
+        "rating": 0.47,
+        "kd": 0.56,
+        "acs": 147.0,
+        "adr": 85.0,
+        "kpr": 0.5
+      }
+    ],
+    "vlrId": "724628"
+  },
+  {
+    "id": "724629",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "JD Gaming",
+    "score": "2-0",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-08-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.22,
+        "kd": 1.21,
+        "acs": 241.0,
+        "adr": 155.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.19,
+        "kd": 1.27,
+        "acs": 204.0,
+        "adr": 140.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 1.03,
+        "kd": 1.03,
+        "acs": 197.0,
+        "adr": 133.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 1.01,
+        "kd": 0.91,
+        "acs": 176.0,
+        "adr": 109.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.95,
+        "kd": 0.86,
+        "acs": 190.0,
+        "adr": 118.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 1.1,
+        "kd": 1.18,
+        "acs": 219.0,
+        "adr": 142.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.99,
+        "kd": 1.06,
+        "acs": 216.0,
+        "adr": 143.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.87,
+        "kd": 0.85,
+        "acs": 163.0,
+        "adr": 112.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.85,
+        "kd": 0.83,
+        "acs": 171.0,
+        "adr": 118.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.83,
+        "kd": 0.86,
+        "acs": 194.0,
+        "adr": 133.0,
+        "kpr": 0.64
+      }
+    ],
+    "vlrId": "724629"
+  },
+  {
+    "id": "724630",
+    "tournamentId": "2978",
+    "team1": "Titan Esports Club",
+    "team2": "Dragon Ranger Gaming",
+    "score": "2-1",
+    "winner": "Titan Esports Club",
+    "format": "BO3",
+    "date": "2026-08-10",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 1.24,
+        "kd": 1.17,
+        "acs": 244.0,
+        "adr": 162.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 1.23,
+        "kd": 1.23,
+        "acs": 230.0,
+        "adr": 148.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 1.08,
+        "kd": 1.13,
+        "acs": 239.0,
+        "adr": 171.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.79,
+        "kd": 0.78,
+        "acs": 151.0,
+        "adr": 103.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.68,
+        "kd": 0.59,
+        "acs": 148.0,
+        "adr": 109.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.2,
+        "kd": 1.23,
+        "acs": 236.0,
+        "adr": 148.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.15,
+        "kd": 1.16,
+        "acs": 209.0,
+        "adr": 132.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.95,
+        "kd": 1.02,
+        "acs": 239.0,
+        "adr": 155.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.94,
+        "kd": 0.89,
+        "acs": 235.0,
+        "adr": 144.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.87,
+        "kd": 0.82,
+        "acs": 140.0,
+        "adr": 90.0,
+        "kpr": 0.56
+      }
+    ],
+    "vlrId": "724630"
+  },
+  {
+    "id": "724631",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "EDward Gaming",
+    "score": "2-0",
+    "winner": "JD Gaming",
+    "format": "BO3",
+    "date": "2026-08-11",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 1.51,
+        "kd": 1.74,
+        "acs": 270.0,
+        "adr": 169.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 1.22,
+        "kd": 1.42,
+        "acs": 206.0,
+        "adr": 139.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 1.21,
+        "kd": 1.4,
+        "acs": 232.0,
+        "adr": 149.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 1.18,
+        "kd": 1.21,
+        "acs": 197.0,
+        "adr": 135.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.94,
+        "kd": 1.04,
+        "acs": 207.0,
+        "adr": 150.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.26,
+        "kd": 1.29,
+        "acs": 272.0,
+        "adr": 186.0,
+        "kpr": 0.98
+      },
+      {
+        "playerId": "Jieni7",
+        "team": "EDward Gaming",
+        "rating": 0.93,
+        "kd": 0.81,
+        "acs": 165.0,
+        "adr": 108.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.76,
+        "kd": 0.56,
+        "acs": 154.0,
+        "adr": 116.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.53,
+        "kd": 0.53,
+        "acs": 123.0,
+        "adr": 80.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.53,
+        "kd": 0.59,
+        "acs": 159.0,
+        "adr": 99.0,
+        "kpr": 0.56
+      }
+    ],
+    "vlrId": "724631"
+  },
+  {
+    "id": "724632",
+    "tournamentId": "2978",
+    "team1": "Dragon Ranger Gaming",
+    "team2": "Trace Esports",
+    "score": "1-2",
+    "winner": "Trace Esports",
+    "format": "BO3",
+    "date": "2026-08-11",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "vo0kashu",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.19,
+        "kd": 1.19,
+        "acs": 243.0,
+        "adr": 159.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Verse",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.1,
+        "kd": 1.06,
+        "acs": 224.0,
+        "adr": 149.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Nicc",
+        "team": "Dragon Ranger Gaming",
+        "rating": 1.04,
+        "kd": 1.02,
+        "acs": 196.0,
+        "adr": 129.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "SpiritZ1",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.85,
+        "kd": 0.96,
+        "acs": 191.0,
+        "adr": 135.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Life",
+        "team": "Dragon Ranger Gaming",
+        "rating": 0.67,
+        "kd": 0.71,
+        "acs": 150.0,
+        "adr": 104.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.1,
+        "kd": 1.1,
+        "acs": 180.0,
+        "adr": 128.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 1.09,
+        "kd": 0.98,
+        "acs": 237.0,
+        "adr": 150.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.07,
+        "kd": 1.09,
+        "acs": 237.0,
+        "adr": 144.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 1.01,
+        "kd": 0.96,
+        "acs": 179.0,
+        "adr": 108.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.96,
+        "kd": 0.96,
+        "acs": 224.0,
+        "adr": 146.0,
+        "kpr": 0.75
+      }
+    ],
+    "vlrId": "724632"
+  },
+  {
+    "id": "724633",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "Titan Esports Club",
+    "score": "1-2",
+    "winner": "Titan Esports Club",
+    "format": "BO3",
+    "date": "2026-08-12",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 1.21,
+        "kd": 1.32,
+        "acs": 246.0,
+        "adr": 165.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.14,
+        "kd": 1.23,
+        "acs": 196.0,
+        "adr": 129.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.05,
+        "kd": 1.17,
+        "acs": 243.0,
+        "adr": 154.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.8,
+        "kd": 0.65,
+        "acs": 139.0,
+        "adr": 89.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.8,
+        "kd": 0.75,
+        "acs": 164.0,
+        "adr": 113.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 1.22,
+        "kd": 1.17,
+        "acs": 210.0,
+        "adr": 136.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 1.08,
+        "kd": 1.09,
+        "acs": 177.0,
+        "adr": 119.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 1.07,
+        "kd": 1.0,
+        "acs": 208.0,
+        "adr": 138.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.93,
+        "kd": 0.94,
+        "acs": 178.0,
+        "adr": 112.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 0.78,
+        "kd": 0.81,
+        "acs": 203.0,
+        "adr": 141.0,
+        "kpr": 0.66
+      }
+    ],
+    "vlrId": "724633"
+  },
+  {
+    "id": "724634",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "Trace Esports",
+    "score": "0-2",
+    "winner": "Trace Esports",
+    "format": "BO3",
+    "date": "2026-08-12",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 1.06,
+        "kd": 1.03,
+        "acs": 220.0,
+        "adr": 140.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 1.06,
+        "kd": 1.0,
+        "acs": 189.0,
+        "adr": 130.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.99,
+        "kd": 1.14,
+        "acs": 258.0,
+        "adr": 148.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.94,
+        "kd": 0.97,
+        "acs": 224.0,
+        "adr": 146.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.83,
+        "kd": 0.82,
+        "acs": 181.0,
+        "adr": 121.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.46,
+        "kd": 1.5,
+        "acs": 303.0,
+        "adr": 196.0,
+        "kpr": 1.09
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.21,
+        "kd": 1.13,
+        "acs": 224.0,
+        "adr": 154.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.93,
+        "kd": 0.88,
+        "acs": 185.0,
+        "adr": 116.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.92,
+        "kd": 0.95,
+        "acs": 228.0,
+        "adr": 146.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.61,
+        "kd": 0.58,
+        "acs": 122.0,
+        "adr": 79.0,
+        "kpr": 0.43
+      }
+    ],
+    "vlrId": "724634"
+  },
+  {
+    "id": "724639",
+    "tournamentId": "2978",
+    "team1": "Nova Esports",
+    "team2": "JD Gaming",
+    "score": "0-2",
+    "winner": "JD Gaming",
+    "format": "BO3",
+    "date": "2026-08-14",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 1.1,
+        "kd": 1.11,
+        "acs": 202.0,
+        "adr": 124.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 0.98,
+        "kd": 0.93,
+        "acs": 171.0,
+        "adr": 99.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.94,
+        "kd": 0.88,
+        "acs": 188.0,
+        "adr": 121.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 0.73,
+        "kd": 0.78,
+        "acs": 216.0,
+        "adr": 139.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 0.7,
+        "kd": 0.63,
+        "acs": 140.0,
+        "adr": 100.0,
+        "kpr": 0.45
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 1.17,
+        "kd": 1.2,
+        "acs": 199.0,
+        "adr": 133.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 1.15,
+        "kd": 1.27,
+        "acs": 180.0,
+        "adr": 113.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 1.12,
+        "kd": 1.22,
+        "acs": 220.0,
+        "adr": 137.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 1.05,
+        "kd": 1.25,
+        "acs": 213.0,
+        "adr": 128.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.89,
+        "kd": 0.94,
+        "acs": 203.0,
+        "adr": 130.0,
+        "kpr": 0.69
+      }
+    ],
+    "vlrId": "724639"
+  },
+  {
+    "id": "724638",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "Titan Esports Club",
+    "score": "2-0",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-08-14",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 1.5,
+        "kd": 2.11,
+        "acs": 276.0,
+        "adr": 174.0,
+        "kpr": 1.08
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.38,
+        "kd": 1.76,
+        "acs": 217.0,
+        "adr": 149.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.28,
+        "kd": 1.68,
+        "acs": 276.0,
+        "adr": 176.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 1.24,
+        "kd": 1.59,
+        "acs": 194.0,
+        "adr": 127.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 0.82,
+        "kd": 0.83,
+        "acs": 221.0,
+        "adr": 142.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 1.07,
+        "kd": 1.0,
+        "acs": 253.0,
+        "adr": 164.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 1.01,
+        "kd": 0.76,
+        "acs": 209.0,
+        "adr": 133.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.78,
+        "kd": 0.73,
+        "acs": 149.0,
+        "adr": 83.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 0.56,
+        "kd": 0.41,
+        "acs": 145.0,
+        "adr": 103.0,
+        "kpr": 0.38
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.5,
+        "kd": 0.42,
+        "acs": 123.0,
+        "adr": 89.0,
+        "kpr": 0.35
+      }
+    ],
+    "vlrId": "724638"
+  },
+  {
+    "id": "724641",
+    "tournamentId": "2978",
+    "team1": "Bilibili Gaming",
+    "team2": "Trace Esports",
+    "score": "2-1",
+    "winner": "Bilibili Gaming",
+    "format": "BO3",
+    "date": "2026-08-15",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 1.21,
+        "kd": 1.09,
+        "acs": 219.0,
+        "adr": 148.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 1.1,
+        "kd": 1.24,
+        "acs": 220.0,
+        "adr": 139.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 1.08,
+        "kd": 1.08,
+        "acs": 203.0,
+        "adr": 132.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.95,
+        "kd": 1.02,
+        "acs": 204.0,
+        "adr": 137.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.84,
+        "kd": 0.82,
+        "acs": 161.0,
+        "adr": 103.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.16,
+        "kd": 1.22,
+        "acs": 208.0,
+        "adr": 144.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.05,
+        "kd": 1.04,
+        "acs": 215.0,
+        "adr": 143.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 1.02,
+        "kd": 0.95,
+        "acs": 159.0,
+        "adr": 97.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.79,
+        "kd": 0.85,
+        "acs": 178.0,
+        "adr": 115.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.72,
+        "kd": 0.78,
+        "acs": 187.0,
+        "adr": 122.0,
+        "kpr": 0.64
+      }
+    ],
+    "vlrId": "724641"
+  },
+  {
+    "id": "724640",
+    "tournamentId": "2978",
+    "team1": "Xi Lai Gaming",
+    "team2": "All Gamers",
+    "score": "2-1",
+    "winner": "Xi Lai Gaming",
+    "format": "BO3",
+    "date": "2026-08-15",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 1.28,
+        "kd": 1.36,
+        "acs": 209.0,
+        "adr": 143.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 1.02,
+        "kd": 0.98,
+        "acs": 213.0,
+        "adr": 140.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.98,
+        "kd": 1.02,
+        "acs": 209.0,
+        "adr": 148.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.93,
+        "kd": 1.0,
+        "acs": 197.0,
+        "adr": 136.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.91,
+        "kd": 0.84,
+        "acs": 171.0,
+        "adr": 104.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 1.16,
+        "kd": 1.24,
+        "acs": 220.0,
+        "adr": 141.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.06,
+        "kd": 1.03,
+        "acs": 179.0,
+        "adr": 121.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.04,
+        "kd": 1.1,
+        "acs": 205.0,
+        "adr": 128.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 0.95,
+        "kd": 0.95,
+        "acs": 232.0,
+        "adr": 147.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 0.71,
+        "kd": 0.54,
+        "acs": 125.0,
+        "adr": 82.0,
+        "kpr": 0.39
+      }
+    ],
+    "vlrId": "724640"
+  },
+  {
+    "id": "724646",
+    "tournamentId": "2978",
+    "team1": "Titan Esports Club",
+    "team2": "Nova Esports",
+    "score": "0-2",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-08-16",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Dynamite",
+        "team": "Titan Esports Club",
+        "rating": 1.07,
+        "kd": 0.92,
+        "acs": 243.0,
+        "adr": 148.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Coco",
+        "team": "Titan Esports Club",
+        "rating": 0.96,
+        "kd": 0.82,
+        "acs": 186.0,
+        "adr": 127.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "lucas",
+        "team": "Titan Esports Club",
+        "rating": 0.94,
+        "kd": 0.87,
+        "acs": 178.0,
+        "adr": 125.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "ra1ny",
+        "team": "Titan Esports Club",
+        "rating": 0.8,
+        "kd": 0.7,
+        "acs": 175.0,
+        "adr": 121.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Haodong",
+        "team": "Titan Esports Club",
+        "rating": 0.78,
+        "kd": 0.74,
+        "acs": 149.0,
+        "adr": 99.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 1.57,
+        "kd": 2.14,
+        "acs": 280.0,
+        "adr": 181.0,
+        "kpr": 1.04
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 1.1,
+        "kd": 1.35,
+        "acs": 206.0,
+        "adr": 133.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 1.04,
+        "kd": 1.15,
+        "acs": 227.0,
+        "adr": 152.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 1.0,
+        "kd": 0.97,
+        "acs": 195.0,
+        "adr": 127.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.89,
+        "kd": 0.81,
+        "acs": 155.0,
+        "adr": 104.0,
+        "kpr": 0.49
+      }
+    ],
+    "vlrId": "724646"
+  },
+  {
+    "id": "724647",
+    "tournamentId": "2978",
+    "team1": "All Gamers",
+    "team2": "Trace Esports",
+    "score": "2-1",
+    "winner": "All Gamers",
+    "format": "BO3",
+    "date": "2026-08-16",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 1.2,
+        "kd": 1.14,
+        "acs": 264.0,
+        "adr": 164.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 1.13,
+        "kd": 1.26,
+        "acs": 256.0,
+        "adr": 156.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 1.11,
+        "kd": 1.04,
+        "acs": 183.0,
+        "adr": 120.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 1.02,
+        "kd": 0.92,
+        "acs": 167.0,
+        "adr": 113.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.83,
+        "kd": 0.81,
+        "acs": 155.0,
+        "adr": 103.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "FengF",
+        "team": "Trace Esports",
+        "rating": 1.03,
+        "kd": 1.05,
+        "acs": 213.0,
+        "adr": 144.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "deLb",
+        "team": "Trace Esports",
+        "rating": 1.0,
+        "kd": 1.04,
+        "acs": 205.0,
+        "adr": 144.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "LuoK1ng",
+        "team": "Trace Esports",
+        "rating": 0.96,
+        "kd": 0.94,
+        "acs": 179.0,
+        "adr": 122.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "FKEY",
+        "team": "Trace Esports",
+        "rating": 0.88,
+        "kd": 0.86,
+        "acs": 176.0,
+        "adr": 114.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Kai",
+        "team": "Trace Esports",
+        "rating": 0.84,
+        "kd": 0.9,
+        "acs": 196.0,
+        "adr": 119.0,
+        "kpr": 0.67
+      }
+    ],
+    "vlrId": "724647"
+  },
+  {
+    "id": "724642",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "JD Gaming",
+    "score": "1-2",
+    "winner": "JD Gaming",
+    "format": "BO3",
+    "date": "2026-08-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 1.05,
+        "kd": 1.1,
+        "acs": 173.0,
+        "adr": 123.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.03,
+        "kd": 1.09,
+        "acs": 193.0,
+        "adr": 127.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 0.94,
+        "kd": 0.96,
+        "acs": 242.0,
+        "adr": 157.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.81,
+        "kd": 0.72,
+        "acs": 146.0,
+        "adr": 102.0,
+        "kpr": 0.48
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 0.81,
+        "kd": 0.65,
+        "acs": 177.0,
+        "adr": 119.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 1.23,
+        "kd": 1.32,
+        "acs": 231.0,
+        "adr": 152.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 1.18,
+        "kd": 1.26,
+        "acs": 210.0,
+        "adr": 141.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 1.07,
+        "kd": 1.12,
+        "acs": 210.0,
+        "adr": 137.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 1.01,
+        "kd": 0.98,
+        "acs": 195.0,
+        "adr": 128.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.9,
+        "kd": 0.93,
+        "acs": 164.0,
+        "adr": 109.0,
+        "kpr": 0.6
+      }
+    ],
+    "vlrId": "724642"
+  },
+  {
+    "id": "724643",
+    "tournamentId": "2978",
+    "team1": "Xi Lai Gaming",
+    "team2": "Bilibili Gaming",
+    "score": "1-2",
+    "winner": "Bilibili Gaming",
+    "format": "BO3",
+    "date": "2026-08-19",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 1.05,
+        "kd": 1.0,
+        "acs": 202.0,
+        "adr": 132.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.95,
+        "kd": 0.9,
+        "acs": 230.0,
+        "adr": 149.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.93,
+        "kd": 1.0,
+        "acs": 201.0,
+        "adr": 131.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.87,
+        "kd": 0.75,
+        "acs": 162.0,
+        "adr": 114.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.83,
+        "kd": 0.76,
+        "acs": 158.0,
+        "adr": 106.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 1.47,
+        "kd": 1.49,
+        "acs": 258.0,
+        "adr": 175.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 1.22,
+        "kd": 1.43,
+        "acs": 258.0,
+        "adr": 162.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 1.07,
+        "kd": 1.15,
+        "acs": 198.0,
+        "adr": 121.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.85,
+        "kd": 0.89,
+        "acs": 175.0,
+        "adr": 109.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.79,
+        "kd": 0.8,
+        "acs": 164.0,
+        "adr": 121.0,
+        "kpr": 0.59
+      }
+    ],
+    "vlrId": "724643"
+  },
+  {
+    "id": "724649",
+    "tournamentId": "2978",
+    "team1": "TYLOO",
+    "team2": "All Gamers",
+    "score": "2-0",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-08-20",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.39,
+        "kd": 1.7,
+        "acs": 279.0,
+        "adr": 178.0,
+        "kpr": 1.06
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.04,
+        "kd": 1.03,
+        "acs": 174.0,
+        "adr": 116.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.04,
+        "kd": 1.2,
+        "acs": 249.0,
+        "adr": 149.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.89,
+        "kd": 0.85,
+        "acs": 178.0,
+        "adr": 119.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.72,
+        "kd": 0.67,
+        "acs": 125.0,
+        "adr": 84.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "K1ra",
+        "team": "All Gamers",
+        "rating": 1.24,
+        "kd": 1.19,
+        "acs": 268.0,
+        "adr": 168.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "iamgrq",
+        "team": "All Gamers",
+        "rating": 1.21,
+        "kd": 1.03,
+        "acs": 202.0,
+        "adr": 133.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Shr1mp",
+        "team": "All Gamers",
+        "rating": 0.93,
+        "kd": 0.79,
+        "acs": 169.0,
+        "adr": 126.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Bai",
+        "team": "All Gamers",
+        "rating": 0.91,
+        "kd": 0.82,
+        "acs": 156.0,
+        "adr": 119.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "f4ngeer",
+        "team": "All Gamers",
+        "rating": 0.78,
+        "kd": 0.79,
+        "acs": 195.0,
+        "adr": 123.0,
+        "kpr": 0.65
+      }
+    ],
+    "vlrId": "724649"
+  },
+  {
+    "id": "724648",
+    "tournamentId": "2978",
+    "team1": "Xi Lai Gaming",
+    "team2": "Nova Esports",
+    "score": "1-2",
+    "winner": "Nova Esports",
+    "format": "BO3",
+    "date": "2026-08-20",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 1.08,
+        "kd": 1.12,
+        "acs": 228.0,
+        "adr": 147.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 1.03,
+        "kd": 0.92,
+        "acs": 199.0,
+        "adr": 137.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.94,
+        "kd": 0.83,
+        "acs": 190.0,
+        "adr": 124.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.87,
+        "kd": 0.98,
+        "acs": 221.0,
+        "adr": 135.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.49,
+        "kd": 0.55,
+        "acs": 121.0,
+        "adr": 84.0,
+        "kpr": 0.43
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 1.42,
+        "kd": 1.48,
+        "acs": 241.0,
+        "adr": 168.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 1.15,
+        "kd": 1.2,
+        "acs": 253.0,
+        "adr": 170.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 1.08,
+        "kd": 1.08,
+        "acs": 214.0,
+        "adr": 145.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 0.98,
+        "kd": 1.03,
+        "acs": 201.0,
+        "adr": 131.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.95,
+        "kd": 0.94,
+        "acs": 186.0,
+        "adr": 117.0,
+        "kpr": 0.62
+      }
+    ],
+    "vlrId": "724648"
+  },
+  {
+    "id": "724644",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "Bilibili Gaming",
+    "score": "2-0",
+    "winner": "JD Gaming",
+    "format": "BO3",
+    "date": "2026-08-21",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 1.27,
+        "kd": 1.52,
+        "acs": 215.0,
+        "adr": 133.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 1.24,
+        "kd": 1.68,
+        "acs": 205.0,
+        "adr": 126.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 1.14,
+        "kd": 1.39,
+        "acs": 218.0,
+        "adr": 152.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 1.1,
+        "kd": 1.33,
+        "acs": 221.0,
+        "adr": 142.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.99,
+        "kd": 1.17,
+        "acs": 187.0,
+        "adr": 121.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 1.15,
+        "kd": 1.12,
+        "acs": 194.0,
+        "adr": 117.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.96,
+        "kd": 0.9,
+        "acs": 184.0,
+        "adr": 136.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.94,
+        "kd": 0.8,
+        "acs": 220.0,
+        "adr": 143.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.71,
+        "kd": 0.45,
+        "acs": 125.0,
+        "adr": 92.0,
+        "kpr": 0.37
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.47,
+        "kd": 0.41,
+        "acs": 110.0,
+        "adr": 78.0,
+        "kpr": 0.34
+      }
+    ],
+    "vlrId": "724644"
+  },
+  {
+    "id": "724650",
+    "tournamentId": "2978",
+    "team1": "Nova Esports",
+    "team2": "TYLOO",
+    "score": "0-2",
+    "winner": "TYLOO",
+    "format": "BO3",
+    "date": "2026-08-21",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "cb",
+        "team": "Nova Esports",
+        "rating": 1.18,
+        "kd": 1.13,
+        "acs": 234.0,
+        "adr": 149.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Ezeir",
+        "team": "Nova Esports",
+        "rating": 0.99,
+        "kd": 0.79,
+        "acs": 187.0,
+        "adr": 132.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "GuanG",
+        "team": "Nova Esports",
+        "rating": 0.9,
+        "kd": 0.97,
+        "acs": 207.0,
+        "adr": 141.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "swagzor",
+        "team": "Nova Esports",
+        "rating": 0.83,
+        "kd": 0.89,
+        "acs": 214.0,
+        "adr": 141.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "qiutiaN",
+        "team": "Nova Esports",
+        "rating": 0.58,
+        "kd": 0.53,
+        "acs": 141.0,
+        "adr": 93.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.79,
+        "kd": 2.0,
+        "acs": 332.0,
+        "adr": 210.0,
+        "kpr": 1.16
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.24,
+        "kd": 1.33,
+        "acs": 262.0,
+        "adr": 163.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.97,
+        "kd": 1.04,
+        "acs": 179.0,
+        "adr": 118.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 0.88,
+        "kd": 0.89,
+        "acs": 169.0,
+        "adr": 117.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.8,
+        "kd": 0.75,
+        "acs": 165.0,
+        "adr": 113.0,
+        "kpr": 0.56
+      }
+    ],
+    "vlrId": "724650"
+  },
+  {
+    "id": "724651",
+    "tournamentId": "2978",
+    "team1": "Bilibili Gaming",
+    "team2": "TYLOO",
+    "score": "0-3",
+    "winner": "TYLOO",
+    "format": "BO5",
+    "date": "2026-08-22",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Knight",
+        "team": "Bilibili Gaming",
+        "rating": 1.2,
+        "kd": 1.29,
+        "acs": 218.0,
+        "adr": 139.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "whzy",
+        "team": "Bilibili Gaming",
+        "rating": 0.92,
+        "kd": 0.93,
+        "acs": 206.0,
+        "adr": 139.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "FT",
+        "team": "Bilibili Gaming",
+        "rating": 0.92,
+        "kd": 0.93,
+        "acs": 213.0,
+        "adr": 131.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "rushia",
+        "team": "Bilibili Gaming",
+        "rating": 0.74,
+        "kd": 0.69,
+        "acs": 163.0,
+        "adr": 120.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "nephh",
+        "team": "Bilibili Gaming",
+        "rating": 0.66,
+        "kd": 0.57,
+        "acs": 159.0,
+        "adr": 112.0,
+        "kpr": 0.47
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.29,
+        "kd": 1.37,
+        "acs": 268.0,
+        "adr": 173.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.24,
+        "kd": 1.27,
+        "acs": 200.0,
+        "adr": 133.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.16,
+        "kd": 1.24,
+        "acs": 251.0,
+        "adr": 154.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 1.14,
+        "kd": 1.17,
+        "acs": 224.0,
+        "adr": 157.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.88,
+        "kd": 0.72,
+        "acs": 135.0,
+        "adr": 86.0,
+        "kpr": 0.44
+      }
+    ],
+    "vlrId": "724651"
+  },
+  {
+    "id": "724645",
+    "tournamentId": "2978",
+    "team1": "JD Gaming",
+    "team2": "TYLOO",
+    "score": "1-3",
+    "winner": "TYLOO",
+    "format": "BO5",
+    "date": "2026-08-23",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 1.01,
+        "kd": 0.88,
+        "acs": 190.0,
+        "adr": 125.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.99,
+        "kd": 0.93,
+        "acs": 211.0,
+        "adr": 142.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 0.94,
+        "kd": 0.95,
+        "acs": 200.0,
+        "adr": 134.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 0.81,
+        "kd": 0.88,
+        "acs": 170.0,
+        "adr": 116.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 0.67,
+        "kd": 0.57,
+        "acs": 131.0,
+        "adr": 90.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 1.13,
+        "kd": 1.22,
+        "acs": 235.0,
+        "adr": 151.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 1.12,
+        "kd": 1.23,
+        "acs": 206.0,
+        "adr": 137.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 1.12,
+        "kd": 1.13,
+        "acs": 177.0,
+        "adr": 115.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 1.11,
+        "kd": 1.27,
+        "acs": 242.0,
+        "adr": 157.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 1.07,
+        "kd": 1.11,
+        "acs": 182.0,
+        "adr": 113.0,
+        "kpr": 0.66
+      }
+    ],
+    "vlrId": "724645"
   }
 ]

@@ -199,21 +199,8 @@ def parse_match(html, match_id):
     teams = [resolve_team_name(t) for t in teams]
 
     # ── Score ──────────────────────────────────────────────
-    # VLR replaced the old `.js-spoiler span` markup with dedicated
-    # `.match-header-vs-score-winner` / `-loser` spans inside a
-    # `.sp-hide` wrapper (used for the spoiler-hide feature). The two
-    # spans still appear in left-to-right (team1, team2) order in the
-    # DOM regardless of who actually won — only the CSS class differs,
-    # for bold/color styling — so grabbing them in document order and
-    # filtering to digits keeps the old team1/team2 mapping intact.
-    score_wrap = soup.select_one(".match-header-vs-score .sp-hide")
-    if score_wrap:
-        scores = [s.get_text(strip=True) for s in score_wrap.select("span")
-                  if s.get_text(strip=True).isdigit()]
-    else:
-        # Fallback for older/archived pages still on the previous markup
-        score_el = soup.select(".match-header-vs-score .js-spoiler span")
-        scores = [s.get_text(strip=True) for s in score_el if s.get_text(strip=True).isdigit()]
+    score_el = soup.select(".match-header-vs-score .js-spoiler span")
+    scores = [s.get_text(strip=True) for s in score_el if s.get_text(strip=True).isdigit()]
     score_str = f"{scores[0]}-{scores[1]}" if len(scores) >= 2 else None
 
     winner = None
@@ -249,7 +236,7 @@ def parse_match(html, match_id):
 
     # ── Tournament ─────────────────────────────────────────
     event_el = soup.select_one(".match-header-event-series") or soup.select_one(".match-header-event")
-    event_name = re.sub(r"\s+", " ", event_el.get_text(" ", strip=True)) if event_el else ""
+    event_name = event_el.get_text(" ", strip=True) if event_el else ""
 
     # ── Player stats from the "all" (series total) tab ────
     # VLR shows per-map tabs + an "all" tab with series totals
@@ -271,24 +258,13 @@ def parse_match(html, match_id):
             print("  ⚠ Could not auto-detect total rounds from the page.")
             rounds_total = int(input("Enter Total Rounds: "))
 
-        # VLR rebuilt this table from <table><tbody><tr><td> into a div
-        # grid: `.ovw-table` > `.ovw-row` (one `.mod-head` header row per
-        # team block, real player rows in between). Each stat cell now
-        # carries a `data-col` attribute (rating2, acs, kills, deaths,
-        # assists, adr, kast, hsp, fb, fd, kd-diff, fk-diff) — selecting
-        # by that name is far more robust than the old "Nth column"
-        # position guessing, which broke when K/D/A got merged into one
-        # combined column.
-        rows = game_all.select(".ovw-table .ovw-row:not(.mod-head)")
-        legacy_layout = not rows
-        if legacy_layout:
-            # Fallback for the old <table><tr> layout, in case an
-            # archived/older page is scraped
-            rows = game_all.select("tbody tr")
+        rows = game_all.select("tbody tr")
+        current_team_idx = 0
+        team_row_counts = [0, 0]
 
         for row in rows:
+            # Detect team separator rows (they have colspan or no player name)
             name_el = (
-                row.select_one(".ovw-player-name") or
                 row.select_one(".mod-player .text-of") or
                 row.select_one(".mod-player a div") or
                 row.select_one(".mod-player")
@@ -300,30 +276,25 @@ def parse_match(html, match_id):
             if not player_name:
                 continue
 
-            if not legacy_layout:
-                def stat_val(col):
-                    cell = row.select_one(f'[data-col="{col}"] .side.mod-both')
-                    return cell.get_text(strip=True) if cell else None
+            # VLR stat columns (series totals tab):y
+            # Rating | ACS | K | D | A | KD+/- | KAST | ADR | HS% | FK | FD | FK+/-
+            stat_cells = row.select(".mod-stat")
+            both_vals = []
+            for cell in stat_cells:
+                both = cell.select_one(".side.mod-both")
+                if both:
+                    both_vals.append(both.get_text(strip=True))
+                else:
+                    # Try getting any text from the cell
+                    both_vals.append(cell.get_text(strip=True))
 
-                rating = safe_float(stat_val("rating2"))
-                acs    = safe_float(stat_val("acs"))
-                kills  = safe_int(stat_val("kills"))
-                deaths = safe_int(stat_val("deaths"))
-                adr    = safe_float(stat_val("adr"))
-            else:
-                # Old column-position parsing:
-                # Rating | ACS | K | D | A | KD+/- | KAST | ADR | HS% | FK | FD | FK+/-
-                stat_cells = row.select(".mod-stat")
-                both_vals = []
-                for cell in stat_cells:
-                    both = cell.select_one(".side.mod-both")
-                    both_vals.append(both.get_text(strip=True) if both else cell.get_text(strip=True))
-
-                rating = safe_float(both_vals[0]) if len(both_vals) > 0 else 0
-                acs    = safe_float(both_vals[1]) if len(both_vals) > 1 else 0
-                kills  = safe_int(both_vals[2])   if len(both_vals) > 2 else 0
-                deaths = safe_int(both_vals[3])   if len(both_vals) > 3 else 0
-                adr    = safe_float(both_vals[7]) if len(both_vals) > 7 else 0
+            # Map column indices — VLR "All" tab order:
+            # 0=Rating, 1=ACS, 2=K, 3=D, 4=A, 5=KD+/-, 6=KAST, 7=ADR, 8=HS%, 9=FK, 10=FD
+            rating = safe_float(both_vals[0]) if len(both_vals) > 0 else 0
+            acs    = safe_float(both_vals[1]) if len(both_vals) > 1 else 0
+            kills  = safe_int(both_vals[2])   if len(both_vals) > 2 else 0
+            deaths = safe_int(both_vals[3])   if len(both_vals) > 3 else 0
+            adr    = safe_float(both_vals[7]) if len(both_vals) > 7 else 0
 
             kd  = round(kills / deaths, 2) if deaths > 0 else float(kills)
             kpr = round(kills / rounds_total, 2) if rounds_total > 0 else 0
