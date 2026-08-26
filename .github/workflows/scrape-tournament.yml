@@ -31,9 +31,9 @@ name: Scrape Ongoing Tournament
 #  "0 19 * * *" for the CST months, or just leave it — either way
 #  you're at most an hour off for part of the year.
 on:
-  schedule:
-    - cron: "0 6 * * *"   # 1:00 AM CDT / 12:00 AM CST
-    - cron: "0 18 * * *"  # 1:00 PM CDT / 12:00 PM CST
+  schedule: 
+    - cron: "0 15 * * *"  # 9:00 AM CST / 10:00 AM CDT
+    - cron: "0 3 * * *"   # 9:00 PM CST / 10:00 PM CDT
   workflow_dispatch:
     inputs:
       tournament_id:
