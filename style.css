@@ -1448,6 +1448,62 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .mh-chip span { color: var(--text); font-weight: 600; }
 .mh-pts   { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--accent); min-width: 52px; text-align: right; }
 
+/* ── Tournament Filter Dropdown ──────────────────────── */
+.tournament-filter { position: relative; flex: 1 1 auto; }
+
+.tournament-filter-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%;
+}
+.tournament-filter-arrow { font-size: 0.6rem; }
+
+.tournament-filter-badge {
+  background: var(--accent); color: var(--bg);
+  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+  border-radius: 999px; padding: 1px 6px; line-height: 1.4;
+}
+
+.tournament-dropdown {
+  display: none;
+  position: absolute; top: calc(100% + 6px); left: 0;
+  min-width: 280px; max-height: 320px; overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+  z-index: 30; padding: 10px;
+}
+.tournament-dropdown.show { display: block; }
+
+.tournament-dropdown-header {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); padding: 2px 4px 10px; border-bottom: 1px solid var(--border); margin-bottom: 8px;
+}
+
+.tournament-clear-btn {
+  background: none; border: none; color: var(--accent); font-size: 0.7rem;
+  font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; padding: 0;
+}
+.tournament-clear-btn:hover { text-decoration: underline; }
+
+.tournament-dropdown-list { display: flex; flex-direction: column; gap: 2px; }
+
+.tournament-option {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 6px; border-radius: 6px; cursor: pointer;
+  font-size: 0.83rem; color: var(--text); transition: background 0.12s;
+}
+.tournament-option:hover { background: var(--surface2); }
+.tournament-option input[type="checkbox"] {
+  width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0;
+}
+.tournament-option-name   { flex: 1; }
+.tournament-option-status {
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 1px 6px; border-radius: 4px; flex-shrink: 0;
+}
+.tournament-option-status.ongoing   { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); }
+.tournament-option-status.completed { color: var(--muted); background: var(--surface3); }
+
 /* ── Loading ─────────────────────────────────────────── */
 .loading-wrap { display: flex; align-items: center; justify-content: center; padding: 80px; }
 
