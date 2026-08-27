@@ -28313,5 +28313,213 @@
       }
     ],
     "vlrId": "742477"
+  },
+  {
+    "id": "742478",
+    "tournamentId": "2776",
+    "team1": "Gen.G",
+    "team2": "Nongshim RedForce",
+    "score": "1-2",
+    "winner": "Nongshim RedForce",
+    "format": "BO3",
+    "date": "2026-08-27",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "t3xture",
+        "team": "Gen.G",
+        "rating": 1.28,
+        "kd": 1.52,
+        "acs": 287.0,
+        "adr": 176.0,
+        "kpr": 1.04
+      },
+      {
+        "playerId": "Karon",
+        "team": "Gen.G",
+        "rating": 0.94,
+        "kd": 0.87,
+        "acs": 174.0,
+        "adr": 107.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Raxcal",
+        "team": "Gen.G",
+        "rating": 0.9,
+        "kd": 0.98,
+        "acs": 173.0,
+        "adr": 110.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Efina",
+        "team": "Gen.G",
+        "rating": 0.79,
+        "kd": 0.74,
+        "acs": 160.0,
+        "adr": 111.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "vo0kashu",
+        "team": "Gen.G",
+        "rating": 0.76,
+        "kd": 0.81,
+        "acs": 184.0,
+        "adr": 116.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 1.26,
+        "kd": 1.31,
+        "acs": 228.0,
+        "adr": 139.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.15,
+        "kd": 1.13,
+        "acs": 183.0,
+        "adr": 120.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.1,
+        "kd": 1.06,
+        "acs": 222.0,
+        "adr": 150.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 1.02,
+        "kd": 1.02,
+        "acs": 215.0,
+        "adr": 138.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 0.7,
+        "kd": 0.71,
+        "acs": 178.0,
+        "adr": 119.0,
+        "kpr": 0.6
+      }
+    ],
+    "vlrId": "742478"
+  },
+  {
+    "id": "742479",
+    "tournamentId": "2776",
+    "team1": "VARREL",
+    "team2": "Global Esports",
+    "score": "0-2",
+    "winner": "Global Esports",
+    "format": "BO3",
+    "date": "2026-08-27",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Zexy",
+        "team": "VARREL",
+        "rating": 0.96,
+        "kd": 0.9,
+        "acs": 187.0,
+        "adr": 113.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "XuNa",
+        "team": "VARREL",
+        "rating": 0.87,
+        "kd": 0.93,
+        "acs": 158.0,
+        "adr": 111.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "C1ndeR",
+        "team": "VARREL",
+        "rating": 0.78,
+        "kd": 0.7,
+        "acs": 155.0,
+        "adr": 100.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "oonzmlp",
+        "team": "VARREL",
+        "rating": 0.68,
+        "kd": 0.61,
+        "acs": 142.0,
+        "adr": 100.0,
+        "kpr": 0.41
+      },
+      {
+        "playerId": "Foxy9",
+        "team": "VARREL",
+        "rating": 0.67,
+        "kd": 0.74,
+        "acs": 187.0,
+        "adr": 121.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 1.44,
+        "kd": 1.9,
+        "acs": 254.0,
+        "adr": 156.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 1.29,
+        "kd": 1.71,
+        "acs": 234.0,
+        "adr": 155.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 1.07,
+        "kd": 1.11,
+        "acs": 212.0,
+        "adr": 137.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.01,
+        "kd": 1.04,
+        "acs": 169.0,
+        "adr": 109.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 0.88,
+        "kd": 0.88,
+        "acs": 154.0,
+        "adr": 104.0,
+        "kpr": 0.54
+      }
+    ],
+    "vlrId": "742479"
   }
 ]
