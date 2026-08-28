@@ -28521,5 +28521,109 @@
       }
     ],
     "vlrId": "742479"
+  },
+  {
+    "id": "734302",
+    "tournamentId": "2977",
+    "team1": "LOUD",
+    "team2": "FURIA",
+    "score": "2-0",
+    "winner": "LOUD",
+    "format": "BO3",
+    "date": "2026-08-27",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 1.5,
+        "kd": 1.94,
+        "acs": 223.0,
+        "adr": 163.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.24,
+        "kd": 1.6,
+        "acs": 213.0,
+        "adr": 151.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.23,
+        "kd": 1.4,
+        "acs": 264.0,
+        "adr": 177.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.02,
+        "kd": 1.13,
+        "acs": 203.0,
+        "adr": 117.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.96,
+        "kd": 0.93,
+        "acs": 187.0,
+        "adr": 113.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "basic",
+        "team": "FURIA",
+        "rating": 1.19,
+        "kd": 1.0,
+        "acs": 230.0,
+        "adr": 160.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "artzin",
+        "team": "FURIA",
+        "rating": 1.03,
+        "kd": 1.0,
+        "acs": 206.0,
+        "adr": 139.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Shyy",
+        "team": "FURIA",
+        "rating": 0.77,
+        "kd": 0.65,
+        "acs": 148.0,
+        "adr": 105.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "C0M",
+        "team": "FURIA",
+        "rating": 0.61,
+        "kd": 0.53,
+        "acs": 146.0,
+        "adr": 96.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "koalanoob",
+        "team": "FURIA",
+        "rating": 0.5,
+        "kd": 0.57,
+        "acs": 152.0,
+        "adr": 91.0,
+        "kpr": 0.51
+      }
+    ],
+    "vlrId": "734302"
   }
 ]
