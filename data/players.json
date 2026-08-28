@@ -285,8 +285,8 @@
     }
   },
   {
-    "id": "Ros\u00e9",
-    "name": "Ros\u00e9",
+    "id": "Rosé",
+    "name": "Rosé",
     "team": "BBL Esports",
     "role": "Initiator",
     "region": "EMEA",
@@ -642,6 +642,21 @@
       "acs": 277.0,
       "adr": 169.0,
       "kpr": 1.03
+    }
+  },
+  {
+    "id": "Leviathan",
+    "name": "seph1roth",
+    "team": "FULL SENSE",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.86,
+      "kd": 0.89,
+      "acs": 173,
+      "adr": 113.1,
+      "kpr": 0.63
     }
   },
   {
@@ -2322,6 +2337,81 @@
       "acs": 186.0,
       "adr": 123.6,
       "kpr": 0.65
+    }
+  },
+  {
+    "id": "eKo",
+    "name": "eKo",
+    "team": "ZETA DIVISION",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.03,
+      "kd": 0.96,
+      "acs": 203.0,
+      "adr": 137.2,
+      "kpr": 0.69
+    }
+  },
+  {
+    "id": "SyouTa",
+    "name": "SyouTa",
+    "team": "ZETA DIVISION",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.97,
+      "kd": 0.95,
+      "acs": 199.0,
+      "adr": 137.0,
+      "kpr": 0.71
+    }
+  },
+  {
+    "id": "Absol",
+    "name": "Absol",
+    "team": "ZETA DIVISION",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.95,
+      "kd": 0.94,
+      "acs": 207.0,
+      "adr": 135.9,
+      "kpr": 0.73
+    }
+  },
+  {
+    "id": "Xdll",
+    "name": "Xdll",
+    "team": "ZETA DIVISION",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.91,
+      "kd": 0.9,
+      "acs": 170.0,
+      "adr": 112.8,
+      "kpr": 0.63
+    }
+  },
+  {
+    "id": "SugarZ3ro",
+    "name": "SugarZ3ro",
+    "team": "ZETA DIVISION",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.75,
+      "kd": 0.57,
+      "acs": 110.8,
+      "adr": 110.8,
+      "kpr": 0.57
     }
   }
 ]
