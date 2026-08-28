@@ -28937,5 +28937,213 @@
       }
     ],
     "vlrId": "742483"
+  },
+  {
+    "id": "731400",
+    "tournamentId": "2976",
+    "team1": "FUT Esports",
+    "team2": "Karmine Corp",
+    "score": "0-2",
+    "winner": "Karmine Corp",
+    "format": "BO3",
+    "date": "2026-08-28",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "yetujey",
+        "team": "FUT Esports",
+        "rating": 1.19,
+        "kd": 1.35,
+        "acs": 263.0,
+        "adr": 181.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "s0pp",
+        "team": "FUT Esports",
+        "rating": 0.93,
+        "kd": 0.97,
+        "acs": 203.0,
+        "adr": 133.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "KROSTALY",
+        "team": "FUT Esports",
+        "rating": 0.73,
+        "kd": 0.62,
+        "acs": 124.0,
+        "adr": 91.0,
+        "kpr": 0.45
+      },
+      {
+        "playerId": "sociablEE",
+        "team": "FUT Esports",
+        "rating": 0.68,
+        "kd": 0.74,
+        "acs": 166.0,
+        "adr": 107.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "xeus",
+        "team": "FUT Esports",
+        "rating": 0.45,
+        "kd": 0.5,
+        "acs": 108.0,
+        "adr": 77.0,
+        "kpr": 0.38
+      },
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 1.65,
+        "kd": 1.92,
+        "acs": 326.0,
+        "adr": 193.0,
+        "kpr": 1.15
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 1.24,
+        "kd": 1.32,
+        "acs": 252.0,
+        "adr": 144.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 1.13,
+        "kd": 1.08,
+        "acs": 206.0,
+        "adr": 136.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 0.91,
+        "kd": 1.05,
+        "acs": 126.0,
+        "adr": 84.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 0.82,
+        "kd": 0.72,
+        "acs": 141.0,
+        "adr": 84.0,
+        "kpr": 0.45
+      }
+    ],
+    "vlrId": "731400"
+  },
+  {
+    "id": "731407",
+    "tournamentId": "2976",
+    "team1": "Team Liquid",
+    "team2": "Fire Flux Esports",
+    "score": "2-0",
+    "winner": "Team Liquid",
+    "format": "BO3",
+    "date": "2026-08-28",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "trexx",
+        "team": "Team Liquid",
+        "rating": 1.37,
+        "kd": 1.45,
+        "acs": 263.0,
+        "adr": 170.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "nAts",
+        "team": "Team Liquid",
+        "rating": 1.21,
+        "kd": 1.36,
+        "acs": 242.0,
+        "adr": 151.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Kicks",
+        "team": "Team Liquid",
+        "rating": 1.04,
+        "kd": 1.03,
+        "acs": 167.0,
+        "adr": 106.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "kamo",
+        "team": "Team Liquid",
+        "rating": 0.94,
+        "kd": 0.88,
+        "acs": 201.0,
+        "adr": 139.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "purp0",
+        "team": "Team Liquid",
+        "rating": 0.87,
+        "kd": 0.97,
+        "acs": 159.0,
+        "adr": 108.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "hezacoil",
+        "team": "Fire Flux Esports",
+        "rating": 1.01,
+        "kd": 1.0,
+        "acs": 193.0,
+        "adr": 125.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "batujnax",
+        "team": "Fire Flux Esports",
+        "rating": 1.0,
+        "kd": 0.97,
+        "acs": 189.0,
+        "adr": 123.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "reazy",
+        "team": "Fire Flux Esports",
+        "rating": 0.89,
+        "kd": 0.82,
+        "acs": 198.0,
+        "adr": 130.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Kachoww",
+        "team": "Fire Flux Esports",
+        "rating": 0.81,
+        "kd": 0.83,
+        "acs": 186.0,
+        "adr": 129.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "DeadInk",
+        "team": "Fire Flux Esports",
+        "rating": 0.73,
+        "kd": 0.82,
+        "acs": 160.0,
+        "adr": 103.0,
+        "kpr": 0.59
+      }
+    ],
+    "vlrId": "731407"
   }
 ]
