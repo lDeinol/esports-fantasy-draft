@@ -29145,5 +29145,213 @@
       }
     ],
     "vlrId": "731407"
+  },
+  {
+    "id": "734304",
+    "tournamentId": "2977",
+    "team1": "NRG",
+    "team2": "LOUD",
+    "score": "2-1",
+    "winner": "NRG",
+    "format": "BO3",
+    "date": "2026-08-28",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 1.39,
+        "kd": 1.48,
+        "acs": 270.0,
+        "adr": 171.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.37,
+        "kd": 1.37,
+        "acs": 250.0,
+        "adr": 170.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.11,
+        "kd": 1.14,
+        "acs": 176.0,
+        "adr": 121.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 0.98,
+        "kd": 1.0,
+        "acs": 180.0,
+        "adr": 127.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.87,
+        "kd": 0.79,
+        "acs": 143.0,
+        "adr": 97.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.13,
+        "kd": 1.27,
+        "acs": 251.0,
+        "adr": 164.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 0.95,
+        "kd": 0.91,
+        "acs": 178.0,
+        "adr": 115.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.78,
+        "kd": 0.85,
+        "acs": 185.0,
+        "adr": 123.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 0.66,
+        "kd": 0.76,
+        "acs": 179.0,
+        "adr": 120.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 0.65,
+        "kd": 0.47,
+        "acs": 101.0,
+        "adr": 82.0,
+        "kpr": 0.32
+      }
+    ],
+    "vlrId": "734304"
+  },
+  {
+    "id": "734305",
+    "tournamentId": "2977",
+    "team1": "100 Thieves",
+    "team2": "LEVIATÁN",
+    "score": "2-0",
+    "winner": "100 Thieves",
+    "format": "BO3",
+    "date": "2026-08-28",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.47,
+        "kd": 2.19,
+        "acs": 236.0,
+        "adr": 143.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.25,
+        "kd": 1.29,
+        "acs": 258.0,
+        "adr": 163.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.24,
+        "kd": 1.29,
+        "acs": 204.0,
+        "adr": 129.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 0.98,
+        "kd": 1.25,
+        "acs": 180.0,
+        "adr": 120.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 0.88,
+        "kd": 0.88,
+        "acs": 193.0,
+        "adr": 119.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 1.05,
+        "kd": 0.94,
+        "acs": 246.0,
+        "adr": 160.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 0.78,
+        "kd": 0.68,
+        "acs": 167.0,
+        "adr": 108.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 0.77,
+        "kd": 0.81,
+        "acs": 161.0,
+        "adr": 120.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 0.69,
+        "kd": 0.46,
+        "acs": 102.0,
+        "adr": 76.0,
+        "kpr": 0.34
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 0.64,
+        "kd": 0.72,
+        "acs": 204.0,
+        "adr": 134.0,
+        "kpr": 0.6
+      }
+    ],
+    "vlrId": "734305"
   }
 ]
