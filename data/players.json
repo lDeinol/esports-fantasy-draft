@@ -1745,7 +1745,7 @@
     "team": "Rex Regum Qeon",
     "role": "Initiator",
     "region": "Pacific",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 1.06,
       "kd": 1.07,
@@ -1760,7 +1760,7 @@
     "team": "Rex Regum Qeon",
     "role": "Flex",
     "region": "Pacific",
-    "status": "inactive",
+    "status": "active",
     "stats": {
       "rating": 1.07,
       "kd": 1.01,
@@ -2412,6 +2412,351 @@
       "acs": 110.8,
       "adr": 110.8,
       "kpr": 0.57
+    }
+  },
+  {
+    "id": "Zeus",
+    "name": "Zeus",
+    "team": "Team Secret",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.05,
+      "acs": 224.0,
+      "adr": 145.8,
+      "kpr": 0.79
+    }
+  },
+  {
+    "id": "Sylvan",
+    "name": "Sylvan",
+    "team": "Team Secret",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.01,
+      "kd": 1.0,
+      "acs": 193.0,
+      "adr": 130.2,
+      "kpr": 0.71
+    }
+  },
+  {
+    "id": "STYRON",
+    "name": "STYRON",
+    "team": "Team Secret",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.93,
+      "kd": 0.86,
+      "acs": 185.0,
+      "adr": 123.0,
+      "kpr": 0.62
+    }
+  },
+  {
+    "id": "kellyS",
+    "name": "kellyS",
+    "team": "Team Secret",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.91,
+      "kd": 0.86,
+      "acs": 192.0,
+      "adr": 130.8,
+      "kpr": 0.64
+    }
+  },
+  {
+    "id": "skye",
+    "name": "skye",
+    "team": "Team Secret",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "inactive",
+    "stats": {
+      "rating": 0.9,
+      "kd": 0.94,
+      "acs": 191.0,
+      "adr": 120.7,
+      "kpr": 0.75
+    }
+  },
+  {
+    "id": "natz",
+    "name": "natz",
+    "team": "Team Secret",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.82,
+      "kd": 0.81,
+      "acs": 174.0,
+      "adr": 119.8,
+      "kpr": 0.61
+    }
+  },
+  {
+    "id": "BuZz",
+    "name": "BuZz",
+    "team": "T1",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.13,
+      "kd": 1.2,
+      "acs": 238.0,
+      "adr": 154.5,
+      "kpr": 0.84
+    }
+  },
+  {
+    "id": "Meteor",
+    "name": "Meteor",
+    "team": "T1",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.1,
+      "kd": 1.18,
+      "acs": 231.0,
+      "adr": 149.2,
+      "kpr": 0.82
+    }
+  },
+  {
+    "id": "iZu",
+    "name": "iZu",
+    "team": "T1",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.1,
+      "kd": 1.18,
+      "acs": 211.0,
+      "adr": 137.7,
+      "kpr": 0.75
+    }
+  },
+  {
+    "id": "stax",
+    "name": "stax",
+    "team": "T1",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.06,
+      "kd": 1.11,
+      "acs": 194.0,
+      "adr": 124.6,
+      "kpr": 0.72
+    }
+  },
+  {
+    "id": "Munchkin",
+    "name": "Munchkin",
+    "team": "T1",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.05,
+      "acs": 191.0,
+      "adr": 126.3,
+      "kpr": 0.66
+    }
+  },
+  {
+    "id": "DH",
+    "name": "DH",
+    "team": "T1",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "inactive",
+    "stats": {
+      "rating": 0.88,
+      "kd": 0.84,
+      "acs": 173.0,
+      "adr": 115.2,
+      "kpr": 0.59
+    }
+  },
+  {
+    "id": "Akame",
+    "name": "Akame",
+    "team": "DetonatioN FocusMe",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.17,
+      "kd": 1.2,
+      "acs": 224.0,
+      "adr": 149.5,
+      "kpr": 0.78
+    }
+  },
+  {
+    "id": "Meiy",
+    "name": "Meiy",
+    "team": "DetonatioN FocusMe",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.13,
+      "kd": 1.17,
+      "acs": 246.0,
+      "adr": 154.2,
+      "kpr": 0.88
+    }
+  },
+  {
+    "id": "SSeeS",
+    "name": "SSeeS",
+    "team": "DetonatioN FocusMe",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.94,
+      "kd": 0.88,
+      "acs": 165.0,
+      "adr": 106.6,
+      "kpr": 0.57
+    }
+  },
+  {
+    "id": "yatsuka",
+    "name": "yatsuka",
+    "team": "DetonatioN FocusMe",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.93,
+      "kd": 0.89,
+      "acs": 198.0,
+      "adr": 131.8,
+      "kpr": 0.67
+    }
+  },
+  {
+    "id": "Caedye",
+    "name": "Caedye",
+    "team": "DetonatioN FocusMe",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.89,
+      "kd": 0.87,
+      "acs": 179.0,
+      "adr": 118.1,
+      "kpr": 0.61
+    }
+  },
+  {
+    "id": "HYUNMIN",
+    "name": "HYUNMIN",
+    "team": "KIWOOM DRX",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.06,
+      "kd": 1.07,
+      "acs": 222.0,
+      "adr": 148.6,
+      "kpr": 0.77
+    }
+  },
+  {
+    "id": "yong",
+    "name": "yong",
+    "team": "KIWOOM DRX",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.05,
+      "kd": 1.1,
+      "acs": 215.0,
+      "adr": 140.8,
+      "kpr": 0.75
+    }
+  },
+  {
+    "id": "BeYN",
+    "name": "BeYN",
+    "team": "KIWOOM DRX",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.01,
+      "kd": 0.98,
+      "acs": 187.0,
+      "adr": 125.9,
+      "kpr": 0.66
+    }
+  },
+  {
+    "id": "free1ng",
+    "name": "free1ng",
+    "team": "KIWOOM DRX",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.94,
+      "kd": 1.02,
+      "acs": 197.0,
+      "adr": 123.9,
+      "kpr": 0.72
+    }
+  },
+  {
+    "id": "MaKo",
+    "name": "MaKo",
+    "team": "KIWOOM DRX",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.92,
+      "kd": 0.87,
+      "acs": 183.0,
+      "adr": 117.8,
+      "kpr": 0.63
+    }
+  },
+  {
+    "id": "Flicker",
+    "name": "Flicker",
+    "team": "KIWOOM DRX",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "inactive",
+    "stats": {
+      "rating": 0.67,
+      "kd": 0.67,
+      "acs": 167.0,
+      "adr": 113.0,
+      "kpr": 0.54
     }
   }
 ]
