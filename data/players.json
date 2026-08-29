@@ -683,10 +683,10 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.10,
+      "kd": 1.1,
       "acs": 230.0,
       "adr": 148.2,
-      "kpr": 0.80
+      "kpr": 0.8
     }
   },
   {
@@ -935,7 +935,7 @@
     "team": "Gentle Mates",
     "role": "Sentinel",
     "region": "EMEA",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 1.09,
       "kd": 1.15,
@@ -2960,7 +2960,7 @@
     "team": "Natus Vincere",
     "role": "Flex",
     "region": "EMEA",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 0.88,
       "kd": 0.76,
@@ -3046,8 +3046,8 @@
   },
   {
     "id": "crashies",
-    "name": "y",
-    "team": "Flex",
+    "name": "crashies",
+    "team": "FNATIC",
     "role": "Flex",
     "region": "EMEA",
     "status": "active",
@@ -3185,7 +3185,7 @@
     "team": "Eternal Fire",
     "role": "Duelist",
     "region": "EMEA",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 0.95,
       "kd": 1.09,
@@ -3477,6 +3477,306 @@
       "acs": 174.0,
       "adr": 117.5,
       "kpr": 0.63
+    }
+  },
+  {
+    "id": "margaret",
+    "name": "margaret",
+    "team": "QT DIG∞",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.09,
+      "kd": 1.11,
+      "acs": 210.0,
+      "adr": 139.8,
+      "kpr": 0.78
+    }
+  },
+  {
+    "id": "Kippei",
+    "name": "Kippei",
+    "team": "QT DIG∞",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.89,
+      "kd": 0.8,
+      "acs": 166.0,
+      "adr": 113.5,
+      "kpr": 0.59
+    }
+  },
+  {
+    "id": "Pkm",
+    "name": "Pkm",
+    "team": "QT DIG∞",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.87,
+      "kd": 0.87,
+      "acs": 195.0,
+      "adr": 129.5,
+      "kpr": 0.69
+    }
+  },
+  {
+    "id": "yuran",
+    "name": "yuran",
+    "team": "QT DIG∞",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.76,
+      "kd": 0.75,
+      "acs": 164.0,
+      "adr": 117.7,
+      "kpr": 0.57
+    }
+  },
+  {
+    "id": "Misaya",
+    "name": "Misaya",
+    "team": "QT DIG∞",
+    "role": "Initiaitor",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.71,
+      "kd": 0.64,
+      "acs": 153.0,
+      "adr": 102.7,
+      "kpr": 0.5
+    }
+  },
+  {
+    "id": "Ray",
+    "name": "Ray",
+    "team": "ONSIDE GAMING",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.15,
+      "kd": 1.17,
+      "acs": 227.0,
+      "adr": 147.8,
+      "kpr": 0.81
+    }
+  },
+  {
+    "id": "Xiesta",
+    "name": "Xiesta",
+    "team": "ONSIDE GAMING",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.13,
+      "kd": 1.13,
+      "acs": 237.0,
+      "adr": 152.1,
+      "kpr": 0.81
+    }
+  },
+  {
+    "id": "Wolverine",
+    "name": "Wolverine",
+    "team": "ONSIDE GAMING",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.99,
+      "kd": 1.01,
+      "acs": 197.0,
+      "adr": 126.8,
+      "kpr": 0.69
+    }
+  },
+  {
+    "id": "Hermes",
+    "name": "Hermes",
+    "team": "ONSIDE GAMING",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.98,
+      "kd": 0.94,
+      "acs": 176.0,
+      "adr": 113.9,
+      "kpr": 0.66
+    }
+  },
+  {
+    "id": "Cloudy",
+    "name": "Cloudy",
+    "team": "ONSIDE GAMING",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.76,
+      "kd": 0.7,
+      "acs": 145.0,
+      "adr": 97.3,
+      "kpr": 0.49
+    }
+  },
+  {
+    "id": "NIZ",
+    "name": "NIZ",
+    "team": "Sharper Esports",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.08,
+      "kd": 1.09,
+      "acs": 196.0,
+      "adr": 128.9,
+      "kpr": 0.72
+    }
+  },
+  {
+    "id": "Apinya",
+    "name": "Apinya",
+    "team": "Sharper Esports",
+    "role": "Flex",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.03,
+      "kd": 1.02,
+      "acs": 203.0,
+      "adr": 134.2,
+      "kpr": 0.7
+    }
+  },
+  {
+    "id": "PTC",
+    "name": "PTC",
+    "team": "Sharper Esports",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.02,
+      "kd": 0.99,
+      "acs": 194.0,
+      "adr": 126.6,
+      "kpr": 0.68
+    }
+  },
+  {
+    "id": "Laz",
+    "name": "Laz",
+    "team": "Sharper Esports",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.95,
+      "kd": 0.95,
+      "acs": 180.0,
+      "adr": 122.2,
+      "kpr": 0.63
+    }
+  },
+  {
+    "id": "Kadoom",
+    "name": "Kadoom",
+    "team": "Sharper Esports",
+    "role": "Duelist",
+    "region": ".85",
+    "status": "active",
+    "stats": {
+      "rating": 0.85,
+      "kd": 0.89,
+      "acs": 207.0,
+      "adr": 137.4,
+      "kpr": 0.71
+    }
+  },
+  {
+    "id": "endoist",
+    "name": "endoist",
+    "team": "Xipto Esports",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.11,
+      "kd": 1.16,
+      "acs": 250.0,
+      "adr": 167.3,
+      "kpr": 0.83
+    }
+  },
+  {
+    "id": "aLert",
+    "name": "aLert",
+    "team": "Xipto Esports",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.99,
+      "kd": 0.99,
+      "acs": 184.0,
+      "adr": 121.7,
+      "kpr": 0.65
+    }
+  },
+  {
+    "id": "doffy",
+    "name": "doffy",
+    "team": "Xipto Esports",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.97,
+      "kd": 1.05,
+      "acs": 216.0,
+      "adr": 137.0,
+      "kpr": 0.75
+    }
+  },
+  {
+    "id": "canady",
+    "name": "canady",
+    "team": "Xipto Esports",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.94,
+      "kd": 1.0,
+      "acs": 183.0,
+      "adr": 118.2,
+      "kpr": 0.65
+    }
+  },
+  {
+    "id": "Surf",
+    "name": "Surf",
+    "team": "Xipto Esports",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.84,
+      "kd": 0.91,
+      "acs": 178.0,
+      "adr": 113.1,
+      "kpr": 0.65
     }
   }
 ]
