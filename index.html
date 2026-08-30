@@ -62,20 +62,6 @@
             </select>
           </div>
 
-          <div class="field">
-            <label>Draft Format</label>
-            <div class="format-toggle">
-              <button class="format-btn active" data-format="snake">
-                <span class="fmt-label">🐍 Snake</span>
-                <span class="fmt-desc">Turn-based, reversing order</span>
-              </button>
-              <button class="format-btn" data-format="auction">
-                <span class="fmt-label">🏷 Auction</span>
-                <span class="fmt-desc">$200 budget per player</span>
-              </button>
-            </div>
-          </div>
-
           <div id="create-error" class="error-msg"></div>
           <button class="btn btn-primary" id="btn-create">Create Lobby</button>
         </div>
@@ -210,13 +196,10 @@
     });
 
     // ── Format toggle ──────────────────────────────────
-    document.querySelectorAll(".format-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".format-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedFormat = btn.dataset.format;
-      });
-    });
+    // Auction draft isn't ready yet, so lobby creation no longer offers
+    // a format choice — every new lobby defaults to snake. selectedFormat
+    // is kept (rather than inlined at the createLobby() call) so the
+    // toggle can come back later without touching that call site.
 
     // ── View helpers ───────────────────────────────────
     function showView(id) {
