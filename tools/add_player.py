@@ -69,6 +69,47 @@ def slugify(name):
     return name.strip().replace(" ", "_")
 
 
+def add_one_player(players, existing_ids, name, team, region):
+    """Given name/team, prompt for Role -> Stats, save, and return updated players/existing_ids."""
+    player_id = slugify(name)
+
+    if player_id in existing_ids:
+        overwrite = prompt(f"ID '{player_id}' already exists. Overwrite? (y/n)", default="n")
+        if overwrite.lower() != "y":
+            print("Skipped.\n")
+            return players, existing_ids
+
+    role = prompt_role()
+
+    print("\n  Enter season average stats:")
+    rating = prompt_float("  Rating")
+    acs    = prompt_float("  ACS")
+    kd     = prompt_float("  K/D")
+    adr    = prompt_float("  ADR")
+    kpr    = prompt_float("  KPR")
+
+    new_player = {
+        "id": player_id,
+        "name": name,
+        "team": team,
+        "role": role,
+        "region": region,
+        "status": "active",
+        "stats": {
+            "rating": rating,
+            "acs": acs,
+            "kd": kd,
+            "adr": adr,
+            "kpr": kpr,
+        },
+    }
+
+    players = [p for p in players if p["id"] != player_id]
+    players.append(new_player)
+    existing_ids.add(player_id)
+    return players, existing_ids
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--file", default="data/players.json", help="Path to players.json")
@@ -80,53 +121,45 @@ def main():
 
     print(f"\n=== Add Player ({len(players)} players currently in {path}) ===\n")
 
-    while True:
-        name = prompt("Player name (in-game handle)")
-        default_id = slugify(name)
+    region = prompt("Region (Americas / EMEA / Pacific / China)")
 
-        player_id = prompt("Player ID (unique, no spaces)", default=default_id)
-        if player_id in existing_ids:
-            overwrite = prompt(f"ID '{player_id}' already exists. Overwrite? (y/n)", default="n")
-            if overwrite.lower() != "y":
-                print("Skipped.\n")
-                continue
-            players = [p for p in players if p["id"] != player_id]
+    mode = ""
+    while mode.lower() not in ("bulk", "individual"):
+        mode = prompt("Mode — Bulk or Individual?")
 
-        team   = prompt("Team")
-        role   = prompt_role()
-        region = prompt("Region (Americas / EMEA / Pacific / China)")
+    if mode.lower() == "individual":
+        while True:
+            name = prompt("\nPlayer name (in-game handle)")
+            team = prompt("Team")
+            players, existing_ids = add_one_player(players, existing_ids, name, team, region)
+            save_players(path, players)
+            print(f"\n✓ Total players: {len(players)}\n")
 
-        print("\n  Enter season average stats:")
-        rating = prompt_float("  Rating")
-        acs    = prompt_float("  ACS")
-        kd     = prompt_float("  K/D")
-        adr    = prompt_float("  ADR")
-        kpr    = prompt_float("  KPR")
+            again = prompt("Add another player? (y/n)", default="y")
+            if again.lower() != "y":
+                break
 
-        new_player = {
-            "id": player_id,
-            "name": name,
-            "team": team,
-            "role": role,
-            "region": region,
-            "status": "active",
-            "stats": {
-                "rating": rating,
-                "kd": kd,
-                "acs": acs,
-                "adr": adr,
-                "kpr": kpr,
-            },
-        }
+    else:  # bulk
+        while True:
+            team = prompt("\nTeam")
+            count = 0
+            while count <= 0:
+                try:
+                    count = int(prompt(f"# of players on {team}"))
+                except ValueError:
+                    print("  Please enter a whole number.")
+                    count = 0
 
-        players.append(new_player)
-        existing_ids.add(player_id)
-        save_players(path, players)
-        print(f"\n✓ Added '{name}' ({player_id}). Total players: {len(players)}\n")
+            for i in range(count):
+                print(f"\n  -- Player {i + 1} of {count} ({team}) --")
+                name = prompt("Player name (in-game handle)")
+                players, existing_ids = add_one_player(players, existing_ids, name, team, region)
+                save_players(path, players)
+                print(f"  ✓ Total players: {len(players)}")
 
-        again = prompt("Add another player? (y/n)", default="y")
-        if again.lower() != "y":
-            break
+            another_team = prompt("\nAnother team? (y/n)", default="y")
+            if another_team.lower() != "y":
+                break
 
     print(f"\nDone. {path} now has {len(players)} players.")
 

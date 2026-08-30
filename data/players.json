@@ -8,8 +8,8 @@
     "status": "active",
     "stats": {
       "rating": 1.25,
-      "kd": 1.4,
       "acs": 254.2,
+      "kd": 1.4,
       "adr": 171.0,
       "kpr": 0.91
     }
@@ -23,8 +23,8 @@
     "status": "active",
     "stats": {
       "rating": 1.19,
-      "kd": 1.36,
       "acs": 216.2,
+      "kd": 1.36,
       "adr": 139.1,
       "kpr": 0.83
     }
@@ -38,8 +38,8 @@
     "status": "active",
     "stats": {
       "rating": 0.93,
-      "kd": 0.97,
       "acs": 198.8,
+      "kd": 0.97,
       "adr": 121.8,
       "kpr": 0.7
     }
@@ -53,8 +53,8 @@
     "status": "active",
     "stats": {
       "rating": 1.19,
-      "kd": 1.35,
       "acs": 190.4,
+      "kd": 1.35,
       "adr": 120.4,
       "kpr": 0.73
     }
@@ -68,8 +68,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.09,
       "acs": 181.0,
+      "kd": 1.09,
       "adr": 121.8,
       "kpr": 0.6
     }
@@ -83,8 +83,8 @@
     "status": "active",
     "stats": {
       "rating": 0.8,
-      "kd": 0.78,
       "acs": 151.0,
+      "kd": 0.78,
       "adr": 102.5,
       "kpr": 0.56
     }
@@ -98,8 +98,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 0.94,
       "acs": 210.0,
+      "kd": 0.94,
       "adr": 143.9,
       "kpr": 0.72
     }
@@ -113,8 +113,8 @@
     "status": "active",
     "stats": {
       "rating": 0.88,
-      "kd": 0.88,
       "acs": 199.0,
+      "kd": 0.88,
       "adr": 128.7,
       "kpr": 0.67
     }
@@ -128,8 +128,8 @@
     "status": "active",
     "stats": {
       "rating": 1.05,
-      "kd": 1.11,
       "acs": 218.0,
+      "kd": 1.11,
       "adr": 137.2,
       "kpr": 0.79
     }
@@ -143,8 +143,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 0.97,
       "acs": 188.0,
+      "kd": 0.97,
       "adr": 121.7,
       "kpr": 0.65
     }
@@ -158,8 +158,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 0.93,
       "acs": 175.0,
+      "kd": 0.93,
       "adr": 118.6,
       "kpr": 0.63
     }
@@ -173,8 +173,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.97,
       "acs": 219.0,
+      "kd": 0.97,
       "adr": 137.1,
       "kpr": 0.73
     }
@@ -188,8 +188,8 @@
     "status": "active",
     "stats": {
       "rating": 1.09,
-      "kd": 1.08,
       "acs": 191.0,
+      "kd": 1.08,
       "adr": 126.8,
       "kpr": 0.66
     }
@@ -203,8 +203,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.0,
-      "kd": 1.21,
       "acs": 219.4,
+      "kd": 1.21,
       "adr": 0.0,
       "kpr": 0.78
     }
@@ -218,8 +218,8 @@
     "status": "active",
     "stats": {
       "rating": 1.11,
-      "kd": 1.2,
       "acs": 243.0,
+      "kd": 1.2,
       "adr": 151.6,
       "kpr": 0.86
     }
@@ -233,8 +233,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 0.96,
       "acs": 186.0,
+      "kd": 0.96,
       "adr": 123.4,
       "kpr": 0.65
     }
@@ -248,8 +248,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 0.97,
       "acs": 182.0,
+      "kd": 0.97,
       "adr": 120.1,
       "kpr": 0.64
     }
@@ -263,8 +263,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 0.96,
       "acs": 202.0,
+      "kd": 0.96,
       "adr": 131.3,
       "kpr": 0.68
     }
@@ -278,8 +278,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.05,
       "acs": 190.4,
+      "kd": 1.05,
       "adr": 127.5,
       "kpr": 0.69
     }
@@ -293,8 +293,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.95,
       "acs": 197.4,
+      "kd": 0.95,
       "adr": 131.4,
       "kpr": 0.71
     }
@@ -308,8 +308,8 @@
     "status": "active",
     "stats": {
       "rating": 1.17,
-      "kd": 1.27,
       "acs": 231.1,
+      "kd": 1.27,
       "adr": 143.9,
       "kpr": 0.83
     }
@@ -323,8 +323,8 @@
     "status": "active",
     "stats": {
       "rating": 0.88,
-      "kd": 0.87,
       "acs": 181.0,
+      "kd": 0.87,
       "adr": 117.2,
       "kpr": 0.63
     }
@@ -338,8 +338,8 @@
     "status": "active",
     "stats": {
       "rating": 1.26,
-      "kd": 1.25,
       "acs": 225.0,
+      "kd": 1.25,
       "adr": 147.0,
       "kpr": 0.77
     }
@@ -353,8 +353,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.74,
       "acs": 164.0,
+      "kd": 0.74,
       "adr": 108.3,
       "kpr": 0.55
     }
@@ -368,8 +368,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.89,
       "acs": 183.0,
+      "kd": 0.89,
       "adr": 128.4,
       "kpr": 0.63
     }
@@ -383,8 +383,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 1.04,
       "acs": 222.0,
+      "kd": 1.04,
       "adr": 145.2,
       "kpr": 0.77
     }
@@ -398,8 +398,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.8,
-      "kd": 0.65,
       "acs": 149.4,
+      "kd": 0.65,
       "adr": 97.3,
       "kpr": 0.48
     }
@@ -413,8 +413,8 @@
     "status": "active",
     "stats": {
       "rating": 0.86,
-      "kd": 0.93,
       "acs": 208.0,
+      "kd": 0.93,
       "adr": 132.1,
       "kpr": 0.71
     }
@@ -428,8 +428,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.13,
       "acs": 192.0,
+      "kd": 1.13,
       "adr": 124.2,
       "kpr": 0.7
     }
@@ -443,8 +443,8 @@
     "status": "active",
     "stats": {
       "rating": 0.9,
-      "kd": 0.94,
       "acs": 210.0,
+      "kd": 0.94,
       "adr": 136.6,
       "kpr": 0.74
     }
@@ -458,8 +458,8 @@
     "status": "active",
     "stats": {
       "rating": 1.0,
-      "kd": 0.96,
       "acs": 186.0,
+      "kd": 0.96,
       "adr": 121.7,
       "kpr": 0.66
     }
@@ -473,8 +473,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.18,
       "acs": 230.0,
+      "kd": 1.18,
       "adr": 150.1,
       "kpr": 0.82
     }
@@ -488,8 +488,8 @@
     "status": "active",
     "stats": {
       "rating": 1.14,
-      "kd": 1.14,
       "acs": 228.0,
+      "kd": 1.14,
       "adr": 154.7,
       "kpr": 0.79
     }
@@ -503,8 +503,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 0.91,
       "acs": 167.0,
+      "kd": 0.91,
       "adr": 109.6,
       "kpr": 0.61
     }
@@ -518,8 +518,8 @@
     "status": "active",
     "stats": {
       "rating": 0.85,
-      "kd": 0.8,
       "acs": 191.0,
+      "kd": 0.8,
       "adr": 131.3,
       "kpr": 0.64
     }
@@ -533,8 +533,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 1.02,
       "acs": 222.0,
+      "kd": 1.02,
       "adr": 140.8,
       "kpr": 0.75
     }
@@ -548,8 +548,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 0.97,
       "acs": 194.0,
+      "kd": 0.97,
       "adr": 128.6,
       "kpr": 0.68
     }
@@ -563,8 +563,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.89,
-      "kd": 0.89,
       "acs": 171.0,
+      "kd": 0.89,
       "adr": 110.5,
       "kpr": 0.6
     }
@@ -578,8 +578,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.69,
       "acs": 159.8,
+      "kd": 0.69,
       "adr": 113.7,
       "kpr": 0.52
     }
@@ -593,8 +593,8 @@
     "status": "active",
     "stats": {
       "rating": 0.71,
-      "kd": 0.7,
       "acs": 154.6,
+      "kd": 0.7,
       "adr": 110.1,
       "kpr": 0.53
     }
@@ -608,8 +608,8 @@
     "status": "active",
     "stats": {
       "rating": 0.75,
-      "kd": 0.72,
       "acs": 150.4,
+      "kd": 0.72,
       "adr": 99.0,
       "kpr": 0.53
     }
@@ -623,8 +623,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.65,
-      "kd": 0.6,
       "acs": 145.2,
+      "kd": 0.6,
       "adr": 97.8,
       "kpr": 0.48
     }
@@ -638,8 +638,8 @@
     "status": "active",
     "stats": {
       "rating": 1.4,
-      "kd": 1.51,
       "acs": 277.0,
+      "kd": 1.51,
       "adr": 169.0,
       "kpr": 1.03
     }
@@ -653,8 +653,8 @@
     "status": "active",
     "stats": {
       "rating": 0.86,
-      "kd": 0.89,
       "acs": 173,
+      "kd": 0.89,
       "adr": 113.1,
       "kpr": 0.63
     }
@@ -668,8 +668,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 0.95,
       "acs": 173.0,
+      "kd": 0.95,
       "adr": 118.2,
       "kpr": 0.62
     }
@@ -683,8 +683,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.1,
       "acs": 230.0,
+      "kd": 1.1,
       "adr": 148.2,
       "kpr": 0.8
     }
@@ -698,8 +698,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.88,
       "acs": 182.0,
+      "kd": 0.88,
       "adr": 121.0,
       "kpr": 0.62
     }
@@ -713,8 +713,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.91,
       "acs": 193.0,
+      "kd": 0.91,
       "adr": 130.9,
       "kpr": 0.69
     }
@@ -728,8 +728,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.12,
       "acs": 201.0,
+      "kd": 1.12,
       "adr": 136.1,
       "kpr": 0.72
     }
@@ -743,8 +743,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.23,
       "acs": 223.0,
+      "kd": 1.23,
       "adr": 153.6,
       "kpr": 0.81
     }
@@ -758,8 +758,8 @@
     "status": "active",
     "stats": {
       "rating": 1.09,
-      "kd": 1.08,
       "acs": 206.0,
+      "kd": 1.08,
       "adr": 135.8,
       "kpr": 0.71
     }
@@ -773,8 +773,8 @@
     "status": "active",
     "stats": {
       "rating": 0.86,
-      "kd": 0.95,
       "acs": 190.0,
+      "kd": 0.95,
       "adr": 119.3,
       "kpr": 0.67
     }
@@ -788,8 +788,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.94,
       "acs": 202.0,
+      "kd": 0.94,
       "adr": 130.3,
       "kpr": 0.71
     }
@@ -803,8 +803,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 0.98,
       "acs": 202.0,
+      "kd": 0.98,
       "adr": 131.6,
       "kpr": 0.7
     }
@@ -818,8 +818,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.95,
       "acs": 211.8,
+      "kd": 0.95,
       "adr": 137.8,
       "kpr": 0.7
     }
@@ -833,8 +833,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 0.88,
       "acs": 179.0,
+      "kd": 0.88,
       "adr": 124.5,
       "kpr": 0.64
     }
@@ -848,8 +848,8 @@
     "status": "active",
     "stats": {
       "rating": 1.11,
-      "kd": 0.97,
       "acs": 221.6,
+      "kd": 0.97,
       "adr": 144.5,
       "kpr": 0.73
     }
@@ -863,8 +863,8 @@
     "status": "active",
     "stats": {
       "rating": 1.05,
-      "kd": 0.91,
       "acs": 201.8,
+      "kd": 0.91,
       "adr": 141.3,
       "kpr": 0.66
     }
@@ -878,8 +878,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.92,
       "acs": 181.2,
+      "kd": 0.92,
       "adr": 124.9,
       "kpr": 0.68
     }
@@ -887,14 +887,14 @@
   {
     "id": "GLYPH",
     "name": "GLYPH",
-    "team": "Gentle Mates",
-    "role": "Controller",
+    "team": "ENVY",
+    "role": "Initiator",
     "region": "EMEA",
-    "status": "inactive",
+    "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.81,
       "acs": 157.8,
+      "kd": 0.81,
       "adr": 102.4,
       "kpr": 0.51
     }
@@ -908,8 +908,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.14,
       "acs": 219.0,
+      "kd": 1.14,
       "adr": 140.7,
       "kpr": 0.8
     }
@@ -923,8 +923,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.93,
       "acs": 146.2,
+      "kd": 0.93,
       "adr": 95.0,
       "kpr": 0.54
     }
@@ -938,8 +938,8 @@
     "status": "inactive",
     "stats": {
       "rating": 1.09,
-      "kd": 1.15,
       "acs": 205.4,
+      "kd": 1.15,
       "adr": 130.1,
       "kpr": 0.74
     }
@@ -953,8 +953,8 @@
     "status": "active",
     "stats": {
       "rating": 1.28,
-      "kd": 1.3,
       "acs": 241.0,
+      "kd": 1.3,
       "adr": 170.2,
       "kpr": 0.85
     }
@@ -968,8 +968,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 1.03,
       "acs": 195.8,
+      "kd": 1.03,
       "adr": 124.8,
       "kpr": 0.66
     }
@@ -983,8 +983,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 1.02,
       "acs": 185.3,
+      "kd": 1.02,
       "adr": 117.6,
       "kpr": 0.68
     }
@@ -998,8 +998,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.19,
       "acs": 212.2,
+      "kd": 1.19,
       "adr": 135.6,
       "kpr": 0.72
     }
@@ -1013,8 +1013,8 @@
     "status": "active",
     "stats": {
       "rating": 0.75,
-      "kd": 0.8,
       "acs": 178.1,
+      "kd": 0.8,
       "adr": 119.5,
       "kpr": 0.6
     }
@@ -1028,8 +1028,8 @@
     "status": "active",
     "stats": {
       "rating": 1.05,
-      "kd": 1.11,
       "acs": 232.7,
+      "kd": 1.11,
       "adr": 147.7,
       "kpr": 0.8
     }
@@ -1043,8 +1043,8 @@
     "status": "active",
     "stats": {
       "rating": 0.83,
-      "kd": 0.82,
       "acs": 156.2,
+      "kd": 0.82,
       "adr": 103.4,
       "kpr": 0.55
     }
@@ -1058,8 +1058,8 @@
     "status": "active",
     "stats": {
       "rating": 1.0,
-      "kd": 0.99,
       "acs": 183.0,
+      "kd": 0.99,
       "adr": 122.2,
       "kpr": 0.64
     }
@@ -1073,8 +1073,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 1.05,
       "acs": 207.0,
+      "kd": 1.05,
       "adr": 136.4,
       "kpr": 0.73
     }
@@ -1088,8 +1088,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 0.99,
       "acs": 185.0,
+      "kd": 0.99,
       "adr": 123.1,
       "kpr": 0.67
     }
@@ -1103,8 +1103,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 1.0,
       "acs": 198.0,
+      "kd": 1.0,
       "adr": 131.7,
       "kpr": 0.71
     }
@@ -1118,8 +1118,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.15,
       "acs": 219.0,
+      "kd": 1.15,
       "adr": 141.9,
       "kpr": 0.78
     }
@@ -1133,8 +1133,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 1.09,
       "acs": 188.6,
+      "kd": 1.09,
       "adr": 128.3,
       "kpr": 0.71
     }
@@ -1148,8 +1148,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 1.12,
       "acs": 225.1,
+      "kd": 1.12,
       "adr": 138.2,
       "kpr": 0.8
     }
@@ -1162,11 +1162,11 @@
     "region": "EMEA",
     "status": "active",
     "stats": {
-      "rating": 1.18,
-      "kd": 1.22,
-      "acs": 226.1,
-      "adr": 156.0,
-      "kpr": 0.79
+      "rating": 1.4,
+      "acs": 287.0,
+      "kd": 1.49,
+      "adr": 175.2,
+      "kpr": 1.0
     }
   },
   {
@@ -1178,8 +1178,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.11,
       "acs": 197.0,
+      "kd": 1.11,
       "adr": 136.6,
       "kpr": 0.72
     }
@@ -1193,8 +1193,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 1.02,
       "acs": 179.0,
+      "kd": 1.02,
       "adr": 118.0,
       "kpr": 0.64
     }
@@ -1208,8 +1208,8 @@
     "status": "active",
     "stats": {
       "rating": 0.8,
-      "kd": 0.87,
       "acs": 202.0,
+      "kd": 0.87,
       "adr": 128.5,
       "kpr": 0.71
     }
@@ -1223,8 +1223,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.76,
       "acs": 155.0,
+      "kd": 0.76,
       "adr": 108.9,
       "kpr": 0.57
     }
@@ -1238,8 +1238,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 1.0,
       "acs": 212.0,
+      "kd": 1.0,
       "adr": 142.1,
       "kpr": 0.75
     }
@@ -1253,8 +1253,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 0.94,
       "acs": 212.0,
+      "kd": 0.94,
       "adr": 136.9,
       "kpr": 0.71
     }
@@ -1268,8 +1268,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.85,
       "acs": 177.0,
+      "kd": 0.85,
       "adr": 131.2,
       "kpr": 0.6
     }
@@ -1283,8 +1283,8 @@
     "status": "active",
     "stats": {
       "rating": 1.21,
-      "kd": 1.37,
       "acs": 223.4,
+      "kd": 1.37,
       "adr": 147.5,
       "kpr": 0.81
     }
@@ -1298,8 +1298,8 @@
     "status": "active",
     "stats": {
       "rating": 1.1,
-      "kd": 1.16,
       "acs": 229.4,
+      "kd": 1.16,
       "adr": 151.0,
       "kpr": 0.8
     }
@@ -1313,8 +1313,8 @@
     "status": "active",
     "stats": {
       "rating": 1.1,
-      "kd": 1.09,
       "acs": 181.4,
+      "kd": 1.09,
       "adr": 123.3,
       "kpr": 0.64
     }
@@ -1328,8 +1328,8 @@
     "status": "active",
     "stats": {
       "rating": 1.0,
-      "kd": 1.04,
       "acs": 168.5,
+      "kd": 1.04,
       "adr": 110.5,
       "kpr": 0.6
     }
@@ -1343,8 +1343,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.21,
       "acs": 235.5,
+      "kd": 1.21,
       "adr": 151.8,
       "kpr": 0.85
     }
@@ -1358,8 +1358,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.22,
       "acs": 184.8,
+      "kd": 1.22,
       "adr": 128.4,
       "kpr": 0.68
     }
@@ -1373,8 +1373,8 @@
     "status": "active",
     "stats": {
       "rating": 1.37,
-      "kd": 1.41,
       "acs": 235.4,
+      "kd": 1.41,
       "adr": 156.5,
       "kpr": 0.77
     }
@@ -1388,8 +1388,8 @@
     "status": "active",
     "stats": {
       "rating": 1.22,
-      "kd": 1.37,
       "acs": 258.6,
+      "kd": 1.37,
       "adr": 168.5,
       "kpr": 0.93
     }
@@ -1403,8 +1403,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.14,
       "acs": 197.8,
+      "kd": 1.14,
       "adr": 124.1,
       "kpr": 0.69
     }
@@ -1418,8 +1418,8 @@
     "status": "active",
     "stats": {
       "rating": 1.08,
-      "kd": 1.23,
       "acs": 214.4,
+      "kd": 1.23,
       "adr": 132.5,
       "kpr": 0.81
     }
@@ -1433,8 +1433,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.83,
       "acs": 188.3,
+      "kd": 0.83,
       "adr": 127.8,
       "kpr": 0.6
     }
@@ -1448,8 +1448,8 @@
     "status": "active",
     "stats": {
       "rating": 0.96,
-      "kd": 0.88,
       "acs": 118.5,
+      "kd": 0.88,
       "adr": 130.6,
       "kpr": 0.7
     }
@@ -1463,8 +1463,8 @@
     "status": "active",
     "stats": {
       "rating": 1.23,
-      "kd": 1.27,
       "acs": 235.9,
+      "kd": 1.27,
       "adr": 155.5,
       "kpr": 0.88
     }
@@ -1478,8 +1478,8 @@
     "status": "active",
     "stats": {
       "rating": 0.8,
-      "kd": 0.9,
       "acs": 188.0,
+      "kd": 0.9,
       "adr": 118.4,
       "kpr": 0.68
     }
@@ -1493,8 +1493,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.06,
       "acs": 182.8,
+      "kd": 1.06,
       "adr": 118.1,
       "kpr": 0.65
     }
@@ -1508,8 +1508,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 1.05,
       "acs": 227.0,
+      "kd": 1.05,
       "adr": 144.3,
       "kpr": 0.81
     }
@@ -1523,8 +1523,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 0.99,
       "acs": 188.6,
+      "kd": 0.99,
       "adr": 132.5,
       "kpr": 0.68
     }
@@ -1538,8 +1538,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.2,
       "acs": 195.4,
+      "kd": 1.2,
       "adr": 130.0,
       "kpr": 0.75
     }
@@ -1553,8 +1553,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 0.88,
       "acs": 172.8,
+      "kd": 0.88,
       "adr": 114.1,
       "kpr": 0.58
     }
@@ -1568,8 +1568,8 @@
     "status": "active",
     "stats": {
       "rating": 1.05,
-      "kd": 1.0,
       "acs": 210.2,
+      "kd": 1.0,
       "adr": 142.5,
       "kpr": 0.71
     }
@@ -1583,8 +1583,8 @@
     "status": "active",
     "stats": {
       "rating": 1.18,
-      "kd": 1.2,
       "acs": 220.0,
+      "kd": 1.2,
       "adr": 145.9,
       "kpr": 0.79
     }
@@ -1598,8 +1598,8 @@
     "status": "active",
     "stats": {
       "rating": 1.05,
-      "kd": 1.1,
       "acs": 203.0,
+      "kd": 1.1,
       "adr": 137.5,
       "kpr": 0.72
     }
@@ -1613,8 +1613,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.02,
       "acs": 200.0,
+      "kd": 1.02,
       "adr": 127.1,
       "kpr": 0.69
     }
@@ -1628,8 +1628,8 @@
     "status": "active",
     "stats": {
       "rating": 0.84,
-      "kd": 0.78,
       "acs": 169.0,
+      "kd": 0.78,
       "adr": 109.3,
       "kpr": 0.56
     }
@@ -1643,8 +1643,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 1.01,
       "acs": 230.0,
+      "kd": 1.01,
       "adr": 151.4,
       "kpr": 0.8
     }
@@ -1658,8 +1658,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.19,
       "acs": 225.8,
+      "kd": 1.19,
       "adr": 153.8,
       "kpr": 0.81
     }
@@ -1673,8 +1673,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.09,
       "acs": 189.5,
+      "kd": 1.09,
       "adr": 129.9,
       "kpr": 0.69
     }
@@ -1688,8 +1688,8 @@
     "status": "active",
     "stats": {
       "rating": 0.9,
-      "kd": 0.85,
       "acs": 194.6,
+      "kd": 0.85,
       "adr": 130.0,
       "kpr": 0.65
     }
@@ -1703,8 +1703,8 @@
     "status": "active",
     "stats": {
       "rating": 1.25,
-      "kd": 1.29,
       "acs": 221.2,
+      "kd": 1.29,
       "adr": 148.6,
       "kpr": 0.78
     }
@@ -1718,8 +1718,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.23,
       "acs": 226.5,
+      "kd": 1.23,
       "adr": 145.4,
       "kpr": 0.8
     }
@@ -1733,8 +1733,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.92,
       "acs": 207.4,
+      "kd": 0.92,
       "adr": 136.2,
       "kpr": 0.72
     }
@@ -1748,8 +1748,8 @@
     "status": "inactive",
     "stats": {
       "rating": 1.06,
-      "kd": 1.07,
       "acs": 198.3,
+      "kd": 1.07,
       "adr": 126.1,
       "kpr": 0.73
     }
@@ -1763,8 +1763,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.01,
       "acs": 188.7,
+      "kd": 1.01,
       "adr": 125.5,
       "kpr": 0.66
     }
@@ -1778,8 +1778,8 @@
     "status": "active",
     "stats": {
       "rating": 0.71,
-      "kd": 0.65,
       "acs": 164.5,
+      "kd": 0.65,
       "adr": 102.1,
       "kpr": 0.54
     }
@@ -1793,8 +1793,8 @@
     "status": "active",
     "stats": {
       "rating": 1.11,
-      "kd": 1.01,
       "acs": 198.4,
+      "kd": 1.01,
       "adr": 129.7,
       "kpr": 0.64
     }
@@ -1808,8 +1808,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.15,
       "acs": 204.3,
+      "kd": 1.15,
       "adr": 135.4,
       "kpr": 0.7
     }
@@ -1823,8 +1823,8 @@
     "status": "active",
     "stats": {
       "rating": 1.1,
-      "kd": 1.15,
       "acs": 189.0,
+      "kd": 1.15,
       "adr": 124.8,
       "kpr": 0.69
     }
@@ -1838,8 +1838,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 1.07,
       "acs": 198.0,
+      "kd": 1.07,
       "adr": 133.4,
       "kpr": 0.7
     }
@@ -1853,8 +1853,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 0.99,
       "acs": 164.0,
+      "kd": 0.99,
       "adr": 107.4,
       "kpr": 0.59
     }
@@ -1868,8 +1868,8 @@
     "status": "active",
     "stats": {
       "rating": 1.14,
-      "kd": 1.26,
       "acs": 254.0,
+      "kd": 1.26,
       "adr": 162.3,
       "kpr": 0.89
     }
@@ -1883,8 +1883,8 @@
     "status": "active",
     "stats": {
       "rating": 1.16,
-      "kd": 1.2,
       "acs": 243.0,
+      "kd": 1.2,
       "adr": 155.7,
       "kpr": 0.83
     }
@@ -1898,8 +1898,8 @@
     "status": "active",
     "stats": {
       "rating": 0.71,
-      "kd": 0.62,
       "acs": 132.0,
+      "kd": 0.62,
       "adr": 85.8,
       "kpr": 0.47
     }
@@ -1913,8 +1913,8 @@
     "status": "active",
     "stats": {
       "rating": 0.84,
-      "kd": 0.79,
       "acs": 174.2,
+      "kd": 0.79,
       "adr": 111.6,
       "kpr": 0.6
     }
@@ -1928,8 +1928,8 @@
     "status": "active",
     "stats": {
       "rating": 0.67,
-      "kd": 0.67,
       "acs": 158.4,
+      "kd": 0.67,
       "adr": 112.1,
       "kpr": 0.54
     }
@@ -1943,8 +1943,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.81,
       "acs": 181.0,
+      "kd": 0.81,
       "adr": 119.7,
       "kpr": 0.6
     }
@@ -1958,8 +1958,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 0.86,
       "acs": 201.0,
+      "kd": 0.86,
       "adr": 138.1,
       "kpr": 0.66
     }
@@ -1973,8 +1973,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.17,
       "acs": 211.1,
+      "kd": 1.17,
       "adr": 141.7,
       "kpr": 0.75
     }
@@ -1988,8 +1988,8 @@
     "status": "active",
     "stats": {
       "rating": 1.21,
-      "kd": 1.27,
       "acs": 254.1,
+      "kd": 1.27,
       "adr": 168.5,
       "kpr": 0.89
     }
@@ -2003,8 +2003,8 @@
     "status": "active",
     "stats": {
       "rating": 0.87,
-      "kd": 0.87,
       "acs": 167.9,
+      "kd": 0.87,
       "adr": 109.0,
       "kpr": 0.61
     }
@@ -2018,8 +2018,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.09,
       "acs": 185.0,
+      "kd": 1.09,
       "adr": 118.1,
       "kpr": 0.68
     }
@@ -2033,8 +2033,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 1.03,
       "acs": 205.7,
+      "kd": 1.03,
       "adr": 134.7,
       "kpr": 0.72
     }
@@ -2048,8 +2048,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 0.95,
       "acs": 194.0,
+      "kd": 0.95,
       "adr": 128.4,
       "kpr": 0.67
     }
@@ -2063,8 +2063,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.98,
       "acs": 221.0,
+      "kd": 0.98,
       "adr": 144.9,
       "kpr": 0.74
     }
@@ -2078,8 +2078,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.96,
       "acs": 173.0,
+      "kd": 0.96,
       "adr": 109.6,
       "kpr": 0.65
     }
@@ -2093,8 +2093,8 @@
     "status": "active",
     "stats": {
       "rating": 0.84,
-      "kd": 0.81,
       "acs": 164.0,
+      "kd": 0.81,
       "adr": 111.9,
       "kpr": 0.56
     }
@@ -2108,8 +2108,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.99,
       "acs": 231.0,
+      "kd": 0.99,
       "adr": 154.6,
       "kpr": 0.8
     }
@@ -2123,8 +2123,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.84,
       "acs": 182.0,
+      "kd": 0.84,
       "adr": 118.2,
       "kpr": 0.63
     }
@@ -2138,8 +2138,8 @@
     "status": "active",
     "stats": {
       "rating": 1.09,
-      "kd": 1.11,
       "acs": 226.0,
+      "kd": 1.11,
       "adr": 148.2,
       "kpr": 0.8
     }
@@ -2153,8 +2153,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 0.96,
       "acs": 209.0,
+      "kd": 0.96,
       "adr": 133.5,
       "kpr": 0.72
     }
@@ -2168,8 +2168,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 0.98,
       "acs": 186.0,
+      "kd": 0.98,
       "adr": 115.7,
       "kpr": 0.65
     }
@@ -2183,8 +2183,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.2,
       "acs": 209.0,
+      "kd": 1.2,
       "adr": 143.8,
       "kpr": 0.78
     }
@@ -2198,8 +2198,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.76,
       "acs": 162.0,
+      "kd": 0.76,
       "adr": 108.3,
       "kpr": 0.55
     }
@@ -2213,8 +2213,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 0.94,
       "acs": 195.0,
+      "kd": 0.94,
       "adr": 129.2,
       "kpr": 0.65
     }
@@ -2228,8 +2228,8 @@
     "status": "active",
     "stats": {
       "rating": 0.88,
-      "kd": 0.77,
       "acs": 165.0,
+      "kd": 0.77,
       "adr": 111.4,
       "kpr": 0.56
     }
@@ -2243,8 +2243,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 1.09,
       "acs": 242.0,
+      "kd": 1.09,
       "adr": 157.4,
       "kpr": 0.84
     }
@@ -2258,8 +2258,8 @@
     "status": "active",
     "stats": {
       "rating": 1.18,
-      "kd": 1.18,
       "acs": 234.0,
+      "kd": 1.18,
       "adr": 152.5,
       "kpr": 0.83
     }
@@ -2273,8 +2273,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.99,
       "acs": 200.0,
+      "kd": 0.99,
       "adr": 127.5,
       "kpr": 0.73
     }
@@ -2288,8 +2288,8 @@
     "status": "active",
     "stats": {
       "rating": 0.93,
-      "kd": 1.0,
       "acs": 210.0,
+      "kd": 1.0,
       "adr": 138.0,
       "kpr": 0.75
     }
@@ -2303,8 +2303,8 @@
     "status": "active",
     "stats": {
       "rating": 0.8,
-      "kd": 0.82,
       "acs": 183.0,
+      "kd": 0.82,
       "adr": 124.8,
       "kpr": 0.64
     }
@@ -2318,8 +2318,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 0.88,
       "acs": 191.0,
+      "kd": 0.88,
       "adr": 129.5,
       "kpr": 0.62
     }
@@ -2333,8 +2333,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.95,
       "acs": 186.0,
+      "kd": 0.95,
       "adr": 123.6,
       "kpr": 0.65
     }
@@ -2348,8 +2348,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 0.96,
       "acs": 203.0,
+      "kd": 0.96,
       "adr": 137.2,
       "kpr": 0.69
     }
@@ -2363,8 +2363,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 0.95,
       "acs": 199.0,
+      "kd": 0.95,
       "adr": 137.0,
       "kpr": 0.71
     }
@@ -2378,8 +2378,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.94,
       "acs": 207.0,
+      "kd": 0.94,
       "adr": 135.9,
       "kpr": 0.73
     }
@@ -2393,8 +2393,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.9,
       "acs": 170.0,
+      "kd": 0.9,
       "adr": 112.8,
       "kpr": 0.63
     }
@@ -2408,8 +2408,8 @@
     "status": "active",
     "stats": {
       "rating": 0.75,
-      "kd": 0.57,
       "acs": 110.8,
+      "kd": 0.57,
       "adr": 110.8,
       "kpr": 0.57
     }
@@ -2423,8 +2423,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.05,
       "acs": 224.0,
+      "kd": 1.05,
       "adr": 145.8,
       "kpr": 0.79
     }
@@ -2438,8 +2438,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 1.0,
       "acs": 193.0,
+      "kd": 1.0,
       "adr": 130.2,
       "kpr": 0.71
     }
@@ -2453,8 +2453,8 @@
     "status": "active",
     "stats": {
       "rating": 0.93,
-      "kd": 0.86,
       "acs": 185.0,
+      "kd": 0.86,
       "adr": 123.0,
       "kpr": 0.62
     }
@@ -2468,8 +2468,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.86,
       "acs": 192.0,
+      "kd": 0.86,
       "adr": 130.8,
       "kpr": 0.64
     }
@@ -2483,8 +2483,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.9,
-      "kd": 0.94,
       "acs": 191.0,
+      "kd": 0.94,
       "adr": 120.7,
       "kpr": 0.75
     }
@@ -2498,8 +2498,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.81,
       "acs": 174.0,
+      "kd": 0.81,
       "adr": 119.8,
       "kpr": 0.61
     }
@@ -2513,8 +2513,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.2,
       "acs": 238.0,
+      "kd": 1.2,
       "adr": 154.5,
       "kpr": 0.84
     }
@@ -2528,8 +2528,8 @@
     "status": "active",
     "stats": {
       "rating": 1.1,
-      "kd": 1.18,
       "acs": 231.0,
+      "kd": 1.18,
       "adr": 149.2,
       "kpr": 0.82
     }
@@ -2543,8 +2543,8 @@
     "status": "active",
     "stats": {
       "rating": 1.1,
-      "kd": 1.18,
       "acs": 211.0,
+      "kd": 1.18,
       "adr": 137.7,
       "kpr": 0.75
     }
@@ -2558,8 +2558,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.11,
       "acs": 194.0,
+      "kd": 1.11,
       "adr": 124.6,
       "kpr": 0.72
     }
@@ -2573,8 +2573,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.05,
       "acs": 191.0,
+      "kd": 1.05,
       "adr": 126.3,
       "kpr": 0.66
     }
@@ -2588,8 +2588,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.88,
-      "kd": 0.84,
       "acs": 173.0,
+      "kd": 0.84,
       "adr": 115.2,
       "kpr": 0.59
     }
@@ -2603,8 +2603,8 @@
     "status": "active",
     "stats": {
       "rating": 1.17,
-      "kd": 1.2,
       "acs": 224.0,
+      "kd": 1.2,
       "adr": 149.5,
       "kpr": 0.78
     }
@@ -2618,8 +2618,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.17,
       "acs": 246.0,
+      "kd": 1.17,
       "adr": 154.2,
       "kpr": 0.88
     }
@@ -2633,8 +2633,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 0.88,
       "acs": 165.0,
+      "kd": 0.88,
       "adr": 106.6,
       "kpr": 0.57
     }
@@ -2648,8 +2648,8 @@
     "status": "active",
     "stats": {
       "rating": 0.93,
-      "kd": 0.89,
       "acs": 198.0,
+      "kd": 0.89,
       "adr": 131.8,
       "kpr": 0.67
     }
@@ -2663,8 +2663,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.87,
       "acs": 179.0,
+      "kd": 0.87,
       "adr": 118.1,
       "kpr": 0.61
     }
@@ -2678,8 +2678,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.07,
       "acs": 222.0,
+      "kd": 1.07,
       "adr": 148.6,
       "kpr": 0.77
     }
@@ -2693,8 +2693,8 @@
     "status": "active",
     "stats": {
       "rating": 1.05,
-      "kd": 1.1,
       "acs": 215.0,
+      "kd": 1.1,
       "adr": 140.8,
       "kpr": 0.75
     }
@@ -2708,8 +2708,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 0.98,
       "acs": 187.0,
+      "kd": 0.98,
       "adr": 125.9,
       "kpr": 0.66
     }
@@ -2723,8 +2723,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 1.02,
       "acs": 197.0,
+      "kd": 1.02,
       "adr": 123.9,
       "kpr": 0.72
     }
@@ -2738,8 +2738,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.87,
       "acs": 183.0,
+      "kd": 0.87,
       "adr": 117.8,
       "kpr": 0.63
     }
@@ -2753,8 +2753,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.67,
-      "kd": 0.67,
       "acs": 167.0,
+      "kd": 0.67,
       "adr": 113.0,
       "kpr": 0.54
     }
@@ -2768,8 +2768,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 1.0,
       "acs": 199.0,
+      "kd": 1.0,
       "adr": 128.3,
       "kpr": 0.72
     }
@@ -2783,8 +2783,8 @@
     "status": "active",
     "stats": {
       "rating": 0.96,
-      "kd": 1.0,
       "acs": 220.0,
+      "kd": 1.0,
       "adr": 141.0,
       "kpr": 0.76
     }
@@ -2798,8 +2798,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 0.9,
       "acs": 192.0,
+      "kd": 0.9,
       "adr": 130.9,
       "kpr": 0.64
     }
@@ -2813,8 +2813,8 @@
     "status": "active",
     "stats": {
       "rating": 0.83,
-      "kd": 0.74,
       "acs": 152.0,
+      "kd": 0.74,
       "adr": 101.4,
       "kpr": 0.53
     }
@@ -2828,8 +2828,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.8,
       "acs": 172.0,
+      "kd": 0.8,
       "adr": 111.5,
       "kpr": 0.6
     }
@@ -2843,8 +2843,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 0.93,
       "acs": 195.0,
+      "kd": 0.93,
       "adr": 133.0,
       "kpr": 0.67
     }
@@ -2858,8 +2858,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 1.0,
       "acs": 196.0,
+      "kd": 1.0,
       "adr": 131.3,
       "kpr": 0.72
     }
@@ -2873,8 +2873,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.95,
       "acs": 185.0,
+      "kd": 0.95,
       "adr": 127.0,
       "kpr": 0.68
     }
@@ -2888,8 +2888,8 @@
     "status": "active",
     "stats": {
       "rating": 0.84,
-      "kd": 0.74,
       "acs": 159.0,
+      "kd": 0.74,
       "adr": 106.0,
       "kpr": 0.55
     }
@@ -2903,8 +2903,8 @@
     "status": "active",
     "stats": {
       "rating": 0.82,
-      "kd": 0.79,
       "acs": 189.0,
+      "kd": 0.79,
       "adr": 130.3,
       "kpr": 0.62
     }
@@ -2918,8 +2918,8 @@
     "status": "active",
     "stats": {
       "rating": 1.12,
-      "kd": 1.19,
       "acs": 216.0,
+      "kd": 1.19,
       "adr": 147.4,
       "kpr": 0.82
     }
@@ -2933,8 +2933,8 @@
     "status": "active",
     "stats": {
       "rating": 1.08,
-      "kd": 1.05,
       "acs": 212.0,
+      "kd": 1.05,
       "adr": 137.9,
       "kpr": 0.74
     }
@@ -2948,8 +2948,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.86,
       "acs": 176.0,
+      "kd": 0.86,
       "adr": 123.0,
       "kpr": 0.61
     }
@@ -2963,8 +2963,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.88,
-      "kd": 0.76,
       "acs": 163.0,
+      "kd": 0.76,
       "adr": 111.2,
       "kpr": 0.53
     }
@@ -2978,8 +2978,8 @@
     "status": "active",
     "stats": {
       "rating": 0.87,
-      "kd": 0.85,
       "acs": 188.0,
+      "kd": 0.85,
       "adr": 128.5,
       "kpr": 0.64
     }
@@ -2993,8 +2993,8 @@
     "status": "active",
     "stats": {
       "rating": 0.71,
-      "kd": 0.78,
       "acs": 185.0,
+      "kd": 0.78,
       "adr": 122.1,
       "kpr": 0.63
     }
@@ -3008,8 +3008,8 @@
     "status": "active",
     "stats": {
       "rating": 0.86,
-      "kd": 0.77,
       "acs": 167.0,
+      "kd": 0.77,
       "adr": 111.5,
       "kpr": 0.56
     }
@@ -3023,8 +3023,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.1,
       "acs": 234.0,
+      "kd": 1.1,
       "adr": 154.5,
       "kpr": 0.84
     }
@@ -3038,8 +3038,8 @@
     "status": "active",
     "stats": {
       "rating": 1.04,
-      "kd": 1.0,
       "acs": 186.0,
+      "kd": 1.0,
       "adr": 127.2,
       "kpr": 0.66
     }
@@ -3053,8 +3053,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 0.98,
       "acs": 184.0,
+      "kd": 0.98,
       "adr": 125.0,
       "kpr": 0.64
     }
@@ -3068,8 +3068,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.96,
       "acs": 202.0,
+      "kd": 0.96,
       "adr": 134.4,
       "kpr": 0.74
     }
@@ -3083,8 +3083,8 @@
     "status": "active",
     "stats": {
       "rating": 0.77,
-      "kd": 0.7,
       "acs": 140.0,
+      "kd": 0.7,
       "adr": 92.2,
       "kpr": 0.5
     }
@@ -3098,8 +3098,8 @@
     "status": "active",
     "stats": {
       "rating": 1.09,
-      "kd": 1.07,
       "acs": 199.0,
+      "kd": 1.07,
       "adr": 130.4,
       "kpr": 0.71
     }
@@ -3113,8 +3113,8 @@
     "status": "active",
     "stats": {
       "rating": 1.09,
-      "kd": 1.05,
       "acs": 216.0,
+      "kd": 1.05,
       "adr": 137.9,
       "kpr": 0.74
     }
@@ -3128,8 +3128,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 1.04,
       "acs": 233.0,
+      "kd": 1.04,
       "adr": 151.0,
       "kpr": 0.78
     }
@@ -3143,8 +3143,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 0.95,
       "acs": 172.0,
+      "kd": 0.95,
       "adr": 111.6,
       "kpr": 0.6
     }
@@ -3158,8 +3158,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.93,
       "acs": 161.0,
+      "kd": 0.93,
       "adr": 110.2,
       "kpr": 0.59
     }
@@ -3173,8 +3173,8 @@
     "status": "active",
     "stats": {
       "rating": 1.06,
-      "kd": 1.1,
       "acs": 234.0,
+      "kd": 1.1,
       "adr": 146.8,
       "kpr": 0.83
     }
@@ -3188,8 +3188,8 @@
     "status": "inactive",
     "stats": {
       "rating": 0.95,
-      "kd": 1.09,
       "acs": 214.0,
+      "kd": 1.09,
       "adr": 120.5,
       "kpr": 0.75
     }
@@ -3203,8 +3203,8 @@
     "status": "active",
     "stats": {
       "rating": 0.93,
-      "kd": 0.91,
       "acs": 192.0,
+      "kd": 0.91,
       "adr": 132.4,
       "kpr": 0.68
     }
@@ -3218,8 +3218,8 @@
     "status": "active",
     "stats": {
       "rating": 0.92,
-      "kd": 0.87,
       "acs": 198.0,
+      "kd": 0.87,
       "adr": 135.1,
       "kpr": 0.67
     }
@@ -3233,8 +3233,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.81,
       "acs": 150.0,
+      "kd": 0.81,
       "adr": 99.6,
       "kpr": 0.55
     }
@@ -3248,8 +3248,8 @@
     "status": "active",
     "stats": {
       "rating": 0.86,
-      "kd": 0.85,
       "acs": 176.0,
+      "kd": 0.85,
       "adr": 120.3,
       "kpr": 0.6
     }
@@ -3263,8 +3263,8 @@
     "status": "active",
     "stats": {
       "rating": 1.11,
-      "kd": 1.09,
       "acs": 205.0,
+      "kd": 1.09,
       "adr": 136.1,
       "kpr": 0.71
     }
@@ -3278,8 +3278,8 @@
     "status": "active",
     "stats": {
       "rating": 1.1,
-      "kd": 1.11,
       "acs": 209.0,
+      "kd": 1.11,
       "adr": 152.7,
       "kpr": 0.78
     }
@@ -3293,8 +3293,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 0.98,
       "acs": 181.0,
+      "kd": 0.98,
       "adr": 115.9,
       "kpr": 0.67
     }
@@ -3308,8 +3308,8 @@
     "status": "active",
     "stats": {
       "rating": 1.01,
-      "kd": 1.04,
       "acs": 226.0,
+      "kd": 1.04,
       "adr": 149.0,
       "kpr": 0.8
     }
@@ -3323,8 +3323,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.83,
       "acs": 172.0,
+      "kd": 0.83,
       "adr": 115.5,
       "kpr": 0.58
     }
@@ -3338,8 +3338,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.16,
       "acs": 243.0,
+      "kd": 1.16,
       "adr": 162.0,
       "kpr": 0.86
     }
@@ -3353,8 +3353,8 @@
     "status": "active",
     "stats": {
       "rating": 1.07,
-      "kd": 1.12,
       "acs": 203.0,
+      "kd": 1.12,
       "adr": 133.9,
       "kpr": 0.72
     }
@@ -3368,8 +3368,8 @@
     "status": "active",
     "stats": {
       "rating": 0.91,
-      "kd": 0.86,
       "acs": 167.0,
+      "kd": 0.86,
       "adr": 108.9,
       "kpr": 0.57
     }
@@ -3383,8 +3383,8 @@
     "status": "active",
     "stats": {
       "rating": 0.9,
-      "kd": 0.86,
       "acs": 161.0,
+      "kd": 0.86,
       "adr": 108.8,
       "kpr": 0.58
     }
@@ -3398,8 +3398,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.89,
       "acs": 185.0,
+      "kd": 0.89,
       "adr": 123.3,
       "kpr": 0.66
     }
@@ -3413,8 +3413,8 @@
     "status": "active",
     "stats": {
       "rating": 1.17,
-      "kd": 1.27,
       "acs": 264.0,
+      "kd": 1.27,
       "adr": 167.0,
       "kpr": 0.93
     }
@@ -3428,8 +3428,8 @@
     "status": "active",
     "stats": {
       "rating": 186.0,
-      "kd": 123.6,
       "acs": 1.03,
+      "kd": 123.6,
       "adr": 0.63,
       "kpr": 0.63
     }
@@ -3443,8 +3443,8 @@
     "status": "active",
     "stats": {
       "rating": 1.0,
-      "kd": 0.97,
       "acs": 195.0,
+      "kd": 0.97,
       "adr": 129.0,
       "kpr": 0.64
     }
@@ -3458,8 +3458,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 1.07,
       "acs": 186.0,
+      "kd": 1.07,
       "adr": 117.5,
       "kpr": 0.68
     }
@@ -3473,8 +3473,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.98,
       "acs": 174.0,
+      "kd": 0.98,
       "adr": 117.5,
       "kpr": 0.63
     }
@@ -3488,8 +3488,8 @@
     "status": "active",
     "stats": {
       "rating": 1.09,
-      "kd": 1.11,
       "acs": 210.0,
+      "kd": 1.11,
       "adr": 139.8,
       "kpr": 0.78
     }
@@ -3503,8 +3503,8 @@
     "status": "active",
     "stats": {
       "rating": 0.89,
-      "kd": 0.8,
       "acs": 166.0,
+      "kd": 0.8,
       "adr": 113.5,
       "kpr": 0.59
     }
@@ -3518,8 +3518,8 @@
     "status": "active",
     "stats": {
       "rating": 0.87,
-      "kd": 0.87,
       "acs": 195.0,
+      "kd": 0.87,
       "adr": 129.5,
       "kpr": 0.69
     }
@@ -3533,8 +3533,8 @@
     "status": "active",
     "stats": {
       "rating": 0.76,
-      "kd": 0.75,
       "acs": 164.0,
+      "kd": 0.75,
       "adr": 117.7,
       "kpr": 0.57
     }
@@ -3543,13 +3543,13 @@
     "id": "Misaya",
     "name": "Misaya",
     "team": "QT DIG∞",
-    "role": "Initiaitor",
+    "role": "Initiator",
     "region": "Pacific",
     "status": "active",
     "stats": {
       "rating": 0.71,
-      "kd": 0.64,
       "acs": 153.0,
+      "kd": 0.64,
       "adr": 102.7,
       "kpr": 0.5
     }
@@ -3563,8 +3563,8 @@
     "status": "active",
     "stats": {
       "rating": 1.15,
-      "kd": 1.17,
       "acs": 227.0,
+      "kd": 1.17,
       "adr": 147.8,
       "kpr": 0.81
     }
@@ -3578,8 +3578,8 @@
     "status": "active",
     "stats": {
       "rating": 1.13,
-      "kd": 1.13,
       "acs": 237.0,
+      "kd": 1.13,
       "adr": 152.1,
       "kpr": 0.81
     }
@@ -3593,8 +3593,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 1.01,
       "acs": 197.0,
+      "kd": 1.01,
       "adr": 126.8,
       "kpr": 0.69
     }
@@ -3608,8 +3608,8 @@
     "status": "active",
     "stats": {
       "rating": 0.98,
-      "kd": 0.94,
       "acs": 176.0,
+      "kd": 0.94,
       "adr": 113.9,
       "kpr": 0.66
     }
@@ -3623,8 +3623,8 @@
     "status": "active",
     "stats": {
       "rating": 0.76,
-      "kd": 0.7,
       "acs": 145.0,
+      "kd": 0.7,
       "adr": 97.3,
       "kpr": 0.49
     }
@@ -3638,8 +3638,8 @@
     "status": "active",
     "stats": {
       "rating": 1.08,
-      "kd": 1.09,
       "acs": 196.0,
+      "kd": 1.09,
       "adr": 128.9,
       "kpr": 0.72
     }
@@ -3653,8 +3653,8 @@
     "status": "active",
     "stats": {
       "rating": 1.03,
-      "kd": 1.02,
       "acs": 203.0,
+      "kd": 1.02,
       "adr": 134.2,
       "kpr": 0.7
     }
@@ -3668,8 +3668,8 @@
     "status": "active",
     "stats": {
       "rating": 1.02,
-      "kd": 0.99,
       "acs": 194.0,
+      "kd": 0.99,
       "adr": 126.6,
       "kpr": 0.68
     }
@@ -3683,8 +3683,8 @@
     "status": "active",
     "stats": {
       "rating": 0.95,
-      "kd": 0.95,
       "acs": 180.0,
+      "kd": 0.95,
       "adr": 122.2,
       "kpr": 0.63
     }
@@ -3698,8 +3698,8 @@
     "status": "active",
     "stats": {
       "rating": 0.85,
-      "kd": 0.89,
       "acs": 207.0,
+      "kd": 0.89,
       "adr": 137.4,
       "kpr": 0.71
     }
@@ -3713,8 +3713,8 @@
     "status": "active",
     "stats": {
       "rating": 1.11,
-      "kd": 1.16,
       "acs": 250.0,
+      "kd": 1.16,
       "adr": 167.3,
       "kpr": 0.83
     }
@@ -3728,8 +3728,8 @@
     "status": "active",
     "stats": {
       "rating": 0.99,
-      "kd": 0.99,
       "acs": 184.0,
+      "kd": 0.99,
       "adr": 121.7,
       "kpr": 0.65
     }
@@ -3743,8 +3743,8 @@
     "status": "active",
     "stats": {
       "rating": 0.97,
-      "kd": 1.05,
       "acs": 216.0,
+      "kd": 1.05,
       "adr": 137.0,
       "kpr": 0.75
     }
@@ -3758,8 +3758,8 @@
     "status": "active",
     "stats": {
       "rating": 0.94,
-      "kd": 1.0,
       "acs": 183.0,
+      "kd": 1.0,
       "adr": 118.2,
       "kpr": 0.65
     }
@@ -3773,10 +3773,670 @@
     "status": "active",
     "stats": {
       "rating": 0.84,
-      "kd": 0.91,
       "acs": 178.0,
+      "kd": 0.91,
       "adr": 113.1,
       "kpr": 0.65
+    }
+  },
+  {
+    "id": "Palla",
+    "name": "Palla",
+    "team": "Fluxo W7M",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.06,
+      "acs": 232.0,
+      "kd": 1.09,
+      "adr": 154.9,
+      "kpr": 0.84
+    }
+  },
+  {
+    "id": "tuyz",
+    "name": "tuyz",
+    "team": "Fluxo W7M",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.94,
+      "acs": 171.0,
+      "kd": 0.89,
+      "adr": 119.6,
+      "kpr": 0.6
+    }
+  },
+  {
+    "id": "Zanatsu",
+    "name": "Zanatsu",
+    "team": "Fluxo W7M",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.92,
+      "acs": 211.0,
+      "kd": 0.87,
+      "adr": 141.4,
+      "kpr": 0.69
+    }
+  },
+  {
+    "id": "jzz",
+    "name": "jzz",
+    "team": "Fluxo W7M",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.77,
+      "acs": 142.0,
+      "kd": 0.67,
+      "adr": 96.9,
+      "kpr": 0.46
+    }
+  },
+  {
+    "id": "mazin",
+    "name": "mazin",
+    "team": "Fluxo W7M",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.71,
+      "acs": 138.0,
+      "kd": 0.69,
+      "adr": 87.7,
+      "kpr": 0.48
+    }
+  },
+  {
+    "id": "Tacolilla",
+    "name": "Tacolilla",
+    "team": "BESTIA",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.04,
+      "acs": 221.0,
+      "kd": 1.12,
+      "adr": 135.9,
+      "kpr": 0.8
+    }
+  },
+  {
+    "id": "david",
+    "name": "david",
+    "team": "BESTIA",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.04,
+      "acs": 191.0,
+      "kd": 1.06,
+      "adr": 135.9,
+      "kpr": 0.7
+    }
+  },
+  {
+    "id": "Loss",
+    "name": "Loss",
+    "team": "BESTIA",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.99,
+      "acs": 193.0,
+      "kd": 1.05,
+      "adr": 126.2,
+      "kpr": 0.68
+    }
+  },
+  {
+    "id": "chubizin",
+    "name": "chubizin",
+    "team": "BESTIA",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.84,
+      "acs": 157.0,
+      "kd": 0.8,
+      "adr": 101.4,
+      "kpr": 0.58
+    }
+  },
+  {
+    "id": "Melser",
+    "name": "Melser",
+    "team": "BESTIA",
+    "role": "Flex",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.82,
+      "acs": 168.0,
+      "kd": 0.83,
+      "adr": 116.3,
+      "kpr": 0.59
+    }
+  },
+  {
+    "id": "Boni",
+    "name": "Boni",
+    "team": "M80",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.07,
+      "acs": 250.0,
+      "kd": 1.0,
+      "adr": 165.2,
+      "kpr": 0.84
+    }
+  },
+  {
+    "id": "NiSMO",
+    "name": "NiSMO",
+    "team": "M80",
+    "role": "Flex",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.99,
+      "acs": 212.0,
+      "kd": 0.88,
+      "adr": 143.0,
+      "kpr": 0.69
+    }
+  },
+  {
+    "id": "alvinboy",
+    "name": "alvinboy",
+    "team": "M80",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.92,
+      "acs": 180.0,
+      "kd": 0.78,
+      "adr": 127.4,
+      "kpr": 0.59
+    }
+  },
+  {
+    "id": "Spaz",
+    "name": "Spaz",
+    "team": "M80",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.9,
+      "acs": 176.0,
+      "kd": 0.8,
+      "adr": 110.9,
+      "kpr": 0.59
+    }
+  },
+  {
+    "id": "Kyu",
+    "name": "Kyu",
+    "team": "M80",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.75,
+      "acs": 142.0,
+      "kd": 0.66,
+      "adr": 108.2,
+      "kpr": 0.5
+    }
+  },
+  {
+    "id": "xenom",
+    "name": "xenom",
+    "team": "2Game Esports",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.16,
+      "acs": 213.0,
+      "kd": 1.17,
+      "adr": 144.3,
+      "kpr": 0.75
+    }
+  },
+  {
+    "id": "gobera",
+    "name": "gobera",
+    "team": "2Game Esports",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.87,
+      "acs": 195.0,
+      "kd": 0.84,
+      "adr": 127.4,
+      "kpr": 0.64
+    }
+  },
+  {
+    "id": "frz",
+    "name": "frz",
+    "team": "2Game Esports",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.85,
+      "acs": 159.0,
+      "kd": 0.82,
+      "adr": 104.4,
+      "kpr": 0.54
+    }
+  },
+  {
+    "id": "qck",
+    "name": "qck",
+    "team": "2Game Esports",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.85,
+      "acs": 185.0,
+      "kd": 0.79,
+      "adr": 123.1,
+      "kpr": 0.59
+    }
+  },
+  {
+    "id": "Brinks",
+    "name": "Brinks",
+    "team": "2Game Esports",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.82,
+      "acs": 168.0,
+      "kd": 0.87,
+      "adr": 114.6,
+      "kpr": 0.61
+    }
+  },
+  {
+    "id": "johnqt",
+    "name": "johnqt",
+    "team": "Sentinels",
+    "role": "Flex",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.14,
+      "acs": 215.0,
+      "kd": 1.03,
+      "adr": 144.5,
+      "kpr": 0.74
+    }
+  },
+  {
+    "id": "cortezia",
+    "name": "cortezia",
+    "team": "Sentinels",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.01,
+      "acs": 190.0,
+      "kd": 0.99,
+      "adr": 129.6,
+      "kpr": 0.62
+    }
+  },
+  {
+    "id": "Reduxx",
+    "name": "Reduxx",
+    "team": "Sentinels",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.97,
+      "acs": 200.0,
+      "kd": 0.9,
+      "adr": 132.4,
+      "kpr": 0.65
+    }
+  },
+  {
+    "id": "Jerrwin",
+    "name": "Jerrwin",
+    "team": "Sentinels",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.84,
+      "acs": 190.0,
+      "kd": 0.86,
+      "adr": 124.9,
+      "kpr": 0.69
+    }
+  },
+  {
+    "id": "JonahP",
+    "name": "JonahP",
+    "team": "Sentinels",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.8,
+      "acs": 161.0,
+      "kd": 0.75,
+      "adr": 103.2,
+      "kpr": 0.54
+    }
+  },
+  {
+    "id": "OXY",
+    "name": "OXY",
+    "team": "Cloud9",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.3,
+      "acs": 287.0,
+      "kd": 1.39,
+      "adr": 174.9,
+      "kpr": 0.99
+    }
+  },
+  {
+    "id": "Jackk",
+    "name": "Jackk",
+    "team": "Cloud9",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.12,
+      "acs": 186.0,
+      "kd": 1.14,
+      "adr": 123.9,
+      "kpr": 0.68
+    }
+  },
+  {
+    "id": "FireBallOps",
+    "name": "FireBallOps",
+    "team": "Cloud9",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.94,
+      "acs": 182.0,
+      "kd": 0.98,
+      "adr": 125.0,
+      "kpr": 0.66
+    }
+  },
+  {
+    "id": "v1c",
+    "name": "v1c",
+    "team": "Cloud9",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.88,
+      "acs": 158.0,
+      "kd": 0.79,
+      "adr": 105.1,
+      "kpr": 0.53
+    }
+  },
+  {
+    "id": "Zellsis",
+    "name": "Zellsis",
+    "team": "Cloud9",
+    "role": "Flex\\",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.76,
+      "acs": 157.0,
+      "kd": 0.73,
+      "adr": 102.6,
+      "kpr": 0.53
+    }
+  },
+  {
+    "id": "mwzera",
+    "name": "mwzera",
+    "team": "KRU Esports",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.12,
+      "acs": 222.0,
+      "kd": 1.14,
+      "adr": 142.3,
+      "kpr": 0.76
+    }
+  },
+  {
+    "id": "heat",
+    "name": "heat",
+    "team": "KRU Esports",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.1,
+      "acs": 185.0,
+      "kd": 1.26,
+      "adr": 123.1,
+      "kpr": 0.74
+    }
+  },
+  {
+    "id": "Less",
+    "name": "Less",
+    "team": "KRU Esports",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.09,
+      "acs": 204.0,
+      "kd": 1.17,
+      "adr": 137.8,
+      "kpr": 0.76
+    }
+  },
+  {
+    "id": "saadhak",
+    "name": "saadhak",
+    "team": "KRU Esports",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.93,
+      "acs": 172.0,
+      "kd": 0.82,
+      "adr": 112.9,
+      "kpr": 0.56
+    }
+  },
+  {
+    "id": "Dantedeu5",
+    "name": "Dantedeu5",
+    "team": "KRU Esports",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.82,
+      "acs": 181.0,
+      "kd": 0.81,
+      "adr": 119.4,
+      "kpr": 0.61
+    }
+  },
+  {
+    "id": "Rossy",
+    "name": "Rossy",
+    "team": "ENVY",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.01,
+      "acs": 169.0,
+      "kd": 0.98,
+      "adr": 109.9,
+      "kpr": 0.62
+    }
+  },
+  {
+    "id": "Demon1",
+    "name": "Demon1",
+    "team": "ENVY",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.01,
+      "acs": 196.0,
+      "kd": 1.16,
+      "adr": 129.0,
+      "kpr": 0.74
+    }
+  },
+  {
+    "id": "nightz",
+    "name": "nightz",
+    "team": "ENVY",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.01,
+      "acs": 215.0,
+      "kd": 0.93,
+      "adr": 142.4,
+      "kpr": 0.7
+    }
+  },
+  {
+    "id": "keznit",
+    "name": "keznit",
+    "team": "ENVY",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.0,
+      "acs": 222.0,
+      "kd": 1.05,
+      "adr": 142.1,
+      "kpr": 0.78
+    }
+  },
+  {
+    "id": "Shyy",
+    "name": "Shyy",
+    "team": "FURIA",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.18,
+      "acs": 218.0,
+      "kd": 1.24,
+      "adr": 142.5,
+      "kpr": 0.76
+    }
+  },
+  {
+    "id": "basic",
+    "name": "basic",
+    "team": "FURIA",
+    "role": "1.16",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.16,
+      "acs": 218.0,
+      "kd": 1.18,
+      "adr": 147.3,
+      "kpr": 0.77
+    }
+  },
+  {
+    "id": "artzin",
+    "name": "artzin",
+    "team": "FURIA",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.05,
+      "acs": 192.0,
+      "kd": 1.05,
+      "adr": 125.2,
+      "kpr": 0.66
+    }
+  },
+  {
+    "id": "koalanoob",
+    "name": "koalanoob",
+    "team": "FURIA",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.86,
+      "acs": 204.0,
+      "kd": 0.92,
+      "adr": 129.1,
+      "kpr": 0.73
+    }
+  },
+  {
+    "id": "C0M",
+    "name": "C0M",
+    "team": "FURIA",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.81,
+      "acs": 177.0,
+      "kd": 0.83,
+      "adr": 117.8,
+      "kpr": 0.55
     }
   }
 ]
