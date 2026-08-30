@@ -667,10 +667,10 @@
     "region": "EMEA",
     "status": "active",
     "stats": {
-      "rating": 0.97,
+      "rating": 0.95,
       "acs": 173.0,
-      "kd": 0.95,
-      "adr": 118.2,
+      "kd": 0.93,
+      "adr": 117.9,
       "kpr": 0.62
     }
   },
@@ -682,11 +682,11 @@
     "region": "EMEA",
     "status": "active",
     "stats": {
-      "rating": 1.06,
-      "acs": 230.0,
-      "kd": 1.1,
-      "adr": 148.2,
-      "kpr": 0.8
+      "rating": 1.14,
+      "acs": 246.0,
+      "kd": 1.26,
+      "adr": 157.0,
+      "kpr": 0.88
     }
   },
   {
@@ -697,11 +697,11 @@
     "region": "EMEA",
     "status": "active",
     "stats": {
-      "rating": 0.95,
-      "acs": 182.0,
-      "kd": 0.88,
-      "adr": 121.0,
-      "kpr": 0.62
+      "rating": 0.79,
+      "acs": 153.0,
+      "kd": 0.71,
+      "adr": 100.0,
+      "kpr": 0.52
     }
   },
   {
@@ -712,11 +712,11 @@
     "region": "EMEA",
     "status": "active",
     "stats": {
-      "rating": 0.89,
-      "acs": 193.0,
-      "kd": 0.91,
-      "adr": 130.9,
-      "kpr": 0.69
+      "rating": 0.85,
+      "acs": 182.0,
+      "kd": 0.89,
+      "adr": 125.6,
+      "kpr": 0.66
     }
   },
   {
@@ -727,11 +727,11 @@
     "region": "EMEA",
     "status": "active",
     "stats": {
-      "rating": 1.07,
-      "acs": 201.0,
-      "kd": 1.12,
-      "adr": 136.1,
-      "kpr": 0.72
+      "rating": 1.10,
+      "acs": 199.0,
+      "kd": 1.19,
+      "adr": 131.2,
+      "kpr": 0.74
     }
   },
   {
@@ -4436,6 +4436,81 @@
       "acs": 177.0,
       "kd": 0.83,
       "adr": 117.8,
+      "kpr": 0.55
+    }
+  },
+  {
+    "id": "zerona",
+    "name": "zerona",
+    "team": "Evil Geniuses",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.04,
+      "acs": 213.0,
+      "kd": 1.05,
+      "adr": 146.1,
+      "kpr": 0.74
+    }
+  },
+  {
+    "id": "dgzin",
+    "name": "dgzin",
+    "team": "Evil Geniuses",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.05,
+      "acs": 241.0,
+      "kd": 1.11,
+      "adr": 148.2,
+      "kpr": 0.83
+    }
+  },
+  {
+    "id": "supamen",
+    "name": "supamen",
+    "team": "Evil Geniuses",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.0,
+      "acs": 181.0,
+      "kd": 0.96,
+      "adr": 121.0,
+      "kpr": 0.65
+    }
+  },
+  {
+    "id": "bao",
+    "name": "bao",
+    "team": "Evil Geniuses",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.9,
+      "acs": 157.0,
+      "kd": 0.84,
+      "adr": 108.4,
+      "kpr": 0.55
+    }
+  },
+  {
+    "id": "Paincakes",
+    "name": "Paincakes",
+    "team": "Evil Geniuses",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.92,
+      "acs": 165.0,
+      "kd": 0.84,
+      "adr": 112.2,
       "kpr": 0.55
     }
   }
