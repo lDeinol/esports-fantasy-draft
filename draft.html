@@ -40,10 +40,8 @@
     <div class="header-divider"></div>
     <div class="pick-status" id="pick-status">Loading draft…</div>
     <div class="round-badge" id="round-badge">Round —</div>
-    <div class="format-badge" id="format-badge">—</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <nav class="draft-nav">
-      <a id="rejoin-link" href="#" class="nav-link rejoin-link" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none;">🔗 Rejoin Link</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
@@ -97,14 +95,11 @@
   <!-- ── 3-Column Layout ─────────────────────────────── -->
   <div class="draft-layout">
 
-    <!-- INFO (mobile only): format, tournament, rejoin link, page links -->
+    <!-- INFO (mobile only): tournament, page links -->
     <div class="mobile-info-panel" data-tab="info">
       <div class="panel-header">Draft Info</div>
       <div class="panel-body">
-        <div class="info-pill" style="margin-bottom:10px;">Format: <strong id="info-format-value">—</strong></div>
         <div class="info-pill" id="info-tournament-row" style="display:none; margin-bottom:16px;">Tournament: <strong id="info-tournament-value">—</strong></div>
-
-        <a href="#" class="nav-link rejoin-link" id="rejoin-link-info" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none; text-align:center; margin-bottom:16px;">🔗 Rejoin Link</a>
 
         <div style="display:flex; flex-direction:column; gap:10px;">
           <a href="matches.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Matches</div></a>
@@ -762,21 +757,18 @@
       const round     = Math.floor(doneCount / pickOrder.length) + 1;
 
       document.getElementById("round-badge").textContent  = `Round ${Math.min(round, CONFIG.ROSTER_SIZE)} / ${CONFIG.ROSTER_SIZE}`;
-      document.getElementById("format-badge").textContent = format === "auction" ? "🏷 Auction" : "🐍 Snake";
 
-      const infoFormatValue = document.getElementById("info-format-value");
-      if (infoFormatValue) infoFormatValue.textContent = format === "auction" ? "Auction" : "Snake";
-
-      // Show tournament name in header if available
+      // Show tournament name (resolved from tournaments.json) in header if available
       const tournamentBadge = document.getElementById("tournament-badge");
       if (tournamentBadge && lobbyData.tournamentId) {
-        tournamentBadge.textContent = `📋 ${lobbyData.tournamentId}`;
+        const tournamentName = tournaments.find(t => t.id === lobbyData.tournamentId)?.name || lobbyData.tournamentId;
+        tournamentBadge.textContent = `📋 ${tournamentName}`;
         tournamentBadge.style.display = "inline-block";
 
         const infoTournamentRow   = document.getElementById("info-tournament-row");
         const infoTournamentValue = document.getElementById("info-tournament-value");
         if (infoTournamentRow && infoTournamentValue) {
-          infoTournamentValue.textContent = lobbyData.tournamentId;
+          infoTournamentValue.textContent = tournamentName;
           infoTournamentRow.style.display = "block";
         }
       }
@@ -1125,21 +1117,6 @@
 
       await ensureAuth();
       await loadPlayers();
-
-      // Set up the rejoin link(s) so players can bookmark it
-      const rejoinLinks = document.querySelectorAll(".rejoin-link");
-      if (rejoinLinks.length && lobbyCode) {
-        rejoinLinks.forEach(rejoinLink => {
-          rejoinLink.href = `index.html?code=${lobbyCode}`;
-          rejoinLink.style.display = "inline-block";
-          rejoinLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(window.location.origin + window.location.pathname.replace("draft.html", "") + `index.html?code=${lobbyCode}`)
-              .then(() => { rejoinLink.textContent = "✓ Copied!"; setTimeout(() => { rejoinLink.textContent = "🔗 Rejoin Link"; }, 1500); })
-              .catch(() => { window.open(rejoinLink.href, "_blank"); });
-          });
-        });
-      }
 
       // Mobile tab buttons
       document.querySelectorAll(".mobile-tab-btn").forEach(btn => {
