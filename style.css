@@ -984,16 +984,16 @@ select option { background: var(--surface2); }
   align-items: center;
 }
 .pool-filter-row .search-input {
-  flex: 1;
+  flex: 2;
   min-width: 0;
 }
 /* Dropdowns in the pool are fixed-width so they don't
    squish too narrow when the panel is partially collapsed */
 .pool-filter-row .filter-dropdown {
-  flex: 0 0 auto;
+  flex: 1;
 }
 .pool-filter-row .filter-dropdown-btn {
-  width: auto;
+  width: 100%;
   padding: 9px 10px;
   white-space: nowrap;
 }
