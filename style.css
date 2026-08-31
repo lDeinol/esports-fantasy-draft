@@ -23,6 +23,25 @@
   --font-mono:    'JetBrains Mono', monospace;
 }
 
+/* ── Light Mode ──────────────────────────────────────
+   Applied via data-theme="light" on <html>, set by the
+   header toggle (see .theme-toggle below) and persisted
+   through initThemeToggle()/setTheme() in app.js. */
+:root[data-theme="light"] {
+  --bg:       #faf9f6;
+  --surface:  #ffffff;
+  --surface2: #f2f0ea;
+  --surface3: #e8e5dc;
+  --border:   #ddd8cc;
+  --accent:   #d64550;
+  --accent2:  #6d28d9;
+  --danger:   #dc2626;
+  --text:     #1f1c18;
+  --muted:    #78716c;
+  --success:  #059669;
+  --warn:     #b45309;
+}
+
 /* ── Reset ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { min-height: 100vh; }
