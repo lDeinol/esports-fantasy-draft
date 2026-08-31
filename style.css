@@ -6,6 +6,7 @@
 /* ── Tokens ─────────────────────────────────────────── */
 :root {
   --bg:       #0a0b0f;
+  
   --surface:  #13151c;
   --surface2: #1c1f2b;
   --surface3: #22263a;
@@ -28,7 +29,8 @@
    header toggle (see .theme-toggle below) and persisted
    through initThemeToggle()/setTheme() in app.js. */
 :root[data-theme="light"] {
-  --bg:       #faf9f6;
+  --bg:       #C1C3C3;
+  --header:   #363636;
   --surface:  #ffffff;
   --surface2: #f2f0ea;
   --surface3: #e8e5dc;
@@ -70,25 +72,6 @@
 }
 .theme-toggle-input:checked ~ .theme-toggle-track .theme-toggle-thumb { transform: translateX(22px); }
 
-/* ── Light Mode ──────────────────────────────────────
-   Applied via data-theme="light" on <html>, set by the
-   header toggle (see .theme-toggle below) and persisted
-   through initThemeToggle()/setTheme() in app.js. */
-:root[data-theme="light"] {
-  --bg:       #faf9f6;
-  --surface:  #ffffff;
-  --surface2: #f2f0ea;
-  --surface3: #e8e5dc;
-  --border:   #ddd8cc;
-  --accent:   #d64550;
-  --accent2:  #6d28d9;
-  --danger:   #dc2626;
-  --text:     #1f1c18;
-  --muted:    #78716c;
-  --success:  #059669;
-  --warn:     #b45309;
-}
-
 /* ── Reset ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { min-height: 100vh; }
@@ -109,7 +92,7 @@ header {
   align-items: center;
   padding: 0 24px;
   gap: 16px;
-  background: var(--surface);
+  background: var(--header);
   flex-shrink: 0;
 }
 
