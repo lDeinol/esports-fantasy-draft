@@ -156,8 +156,39 @@
       <div class="panel-expanded-content">
         <div class="panel-header">Player Pool</div>
         <div class="search-wrap">
-          <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
-          <div class="filter-row" id="game-filters"></div>
+          <div class="pool-filter-row">
+            <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
+
+            <div class="filter-dropdown" id="pool-team-filter">
+              <button class="filter-btn filter-dropdown-btn" id="pool-team-filter-btn" type="button">
+                Team
+                <span class="filter-dropdown-badge" id="pool-team-filter-badge" style="display:none;">0</span>
+                <span class="filter-dropdown-arrow">▾</span>
+              </button>
+              <div class="filter-dropdown-panel" id="pool-team-dropdown">
+                <div class="filter-dropdown-header">
+                  <span>Filter by team</span>
+                  <button class="filter-dropdown-clear" id="pool-team-clear-btn" type="button">Clear</button>
+                </div>
+                <div class="filter-dropdown-list" id="pool-team-dropdown-list"></div>
+              </div>
+            </div>
+
+            <div class="filter-dropdown" id="pool-region-filter">
+              <button class="filter-btn filter-dropdown-btn" id="pool-region-filter-btn" type="button">
+                Region
+                <span class="filter-dropdown-badge" id="pool-region-filter-badge" style="display:none;">0</span>
+                <span class="filter-dropdown-arrow">▾</span>
+              </button>
+              <div class="filter-dropdown-panel pool-filter-dropdown-right" id="pool-region-dropdown">
+                <div class="filter-dropdown-header">
+                  <span>Filter by region</span>
+                  <button class="filter-dropdown-clear" id="pool-region-clear-btn" type="button">Clear</button>
+                </div>
+                <div class="filter-dropdown-list" id="pool-region-dropdown-list"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <div id="player-pool"></div>
         <div class="player-detail" id="player-detail">
@@ -204,10 +235,11 @@
     let lobbyData     = null;
     let players       = [];       // from players.json
     let selectedPlayer= null;
-    let activeFilter  = "all";
     let activeMobileTab = "pool";
     let wasMyTurn       = false;
     let mobileTabInitialized = false;
+    let selectedPoolRegions = new Set();
+    let selectedPoolTeams   = new Set();
 
     // ─────────────────────────────────────────────────────
     //  Toast helper
@@ -269,29 +301,61 @@
     }
 
     // ─────────────────────────────────────────────────────
-    //  Region filter buttons
+    //  Pool filter dropdowns (Team + Region)
+    //  Same pattern as wireCheckboxDropdown in stats.html
     // ─────────────────────────────────────────────────────
-    function renderGameFilters() {
-      const tournamentTeams = getTournamentTeams();
-      const visiblePlayers = tournamentTeams
-        ? players.filter(p => tournamentTeams.has(p.team))
-        : players;
-      const regions = ["all", ...new Set(visiblePlayers.map(p => p.region))];
-      const wrap    = document.getElementById("game-filters");
-      wrap.innerHTML = "";
-      regions.forEach(r => {
-        const btn = document.createElement("button");
-        btn.className = "filter-btn" + (r === activeFilter ? " active" : "");
-        btn.textContent = r === "all" ? "All" : r;
-        btn.addEventListener("click", () => {
-          activeFilter = r;
-          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderPlayerPool();
+    function wirePoolDropdown({ btnId, panelId, listId, badgeId, clearBtnId, selectedSet, getOptions }) {
+      function populate() {
+        const list = document.getElementById(listId);
+        list.innerHTML = getOptions().map(opt => `
+          <label class="filter-option">
+            <input type="checkbox" value="${opt}" ${selectedSet.has(opt) ? "checked" : ""} />
+            <span class="filter-option-name">${opt}</span>
+          </label>
+        `).join("");
+        list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener("change", () => {
+            if (cb.checked) selectedSet.add(cb.value);
+            else selectedSet.delete(cb.value);
+            updateBadge();
+            renderPlayerPool();
+          });
         });
-        wrap.appendChild(btn);
+      }
+
+      function updateBadge() {
+        const badge = document.getElementById(badgeId);
+        const btn   = document.getElementById(btnId);
+        const count = selectedSet.size;
+        badge.style.display = count > 0 ? "inline-block" : "none";
+        badge.textContent   = count;
+        btn.classList.toggle("active", count > 0);
+      }
+
+      document.getElementById(btnId).addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.getElementById(panelId).classList.toggle("show");
       });
+
+      document.getElementById(clearBtnId).addEventListener("click", (e) => {
+        e.stopPropagation();
+        selectedSet.clear();
+        populate();
+        updateBadge();
+        renderPlayerPool();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!document.getElementById(btnId).closest(".filter-dropdown").contains(e.target)) {
+          document.getElementById(panelId).classList.remove("show");
+        }
+      });
+
+      return { populate, updateBadge };
     }
+
+    let poolTeamFilter;
+    let poolRegionFilter;
 
     // ─────────────────────────────────────────────────────
     //  Player pool rendering
@@ -305,10 +369,11 @@
       const tournamentTeams = getTournamentTeams();
 
       const filtered = players.filter(p => {
-        const matchRegion = activeFilter === "all" || p.region === activeFilter;
-        const matchSearch = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
+        const matchRegion     = selectedPoolRegions.size === 0 || selectedPoolRegions.has(p.region);
+        const matchTeam       = selectedPoolTeams.size   === 0 || selectedPoolTeams.has(p.team);
+        const matchSearch     = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
         const matchTournament = !tournamentTeams || tournamentTeams.has(p.team);
-        return matchRegion && matchSearch && matchTournament;
+        return matchRegion && matchTeam && matchSearch && matchTournament;
       });
 
       const pool = document.getElementById("player-pool");
@@ -384,20 +449,7 @@
       document.getElementById("detail-name").textContent = p.name;
       document.getElementById("detail-meta").textContent = `${p.team} · ${p.role} · ${p.region}`;
 
-      const trackedBadge = p.tracked
-        ? `<div><span style="font-size:0.7rem; color:var(--success); font-weight:700;">●Tracked</span><div style="font-size:0.7rem; color:var(--muted); margin-top:2px;">${p.matchCount} match${p.matchCount !== 1 ? "es" : ""}</div></div>`
-        : `<div><span style="font-size:0.7rem; color:var(--muted); font-weight:700;">Seeded</span><div style="font-size:0.7rem; color:var(--muted); margin-top:2px;">no match data</div></div>`;
-
-      const statsDiv = document.getElementById("detail-stats");
-      statsDiv.innerHTML = `
-        <div style="margin-bottom:8px;">${trackedBadge}</div>
-        ${Object.entries(p.stats).map(([k, v]) => `
-          <div class="detail-stat">
-            <div class="detail-stat-label">${k.toUpperCase()}</div>
-            <div class="detail-stat-val">${v}</div>
-          </div>
-        `).join("")}
-      `;
+      document.getElementById("detail-stats").innerHTML = "";
 
       updatePickButton();
     }
@@ -890,7 +942,6 @@
     function render() {
       renderMyTeam();
       renderDraftGrid();
-      renderGameFilters();
       renderPlayerPool();
       updateHeader();
       updatePickButton();
@@ -1146,6 +1197,34 @@
 
       await ensureAuth();
       await loadPlayers();
+
+      // Pool filter dropdowns
+      poolTeamFilter = wirePoolDropdown({
+        btnId: "pool-team-filter-btn", panelId: "pool-team-dropdown",
+        listId: "pool-team-dropdown-list", badgeId: "pool-team-filter-badge",
+        clearBtnId: "pool-team-clear-btn", selectedSet: selectedPoolTeams,
+        getOptions: () => {
+          const tournamentTeams = getTournamentTeams();
+          const visible = tournamentTeams
+            ? players.filter(p => tournamentTeams.has(p.team))
+            : players;
+          return [...new Set(visible.map(p => p.team))].sort();
+        },
+      });
+      poolRegionFilter = wirePoolDropdown({
+        btnId: "pool-region-filter-btn", panelId: "pool-region-dropdown",
+        listId: "pool-region-dropdown-list", badgeId: "pool-region-filter-badge",
+        clearBtnId: "pool-region-clear-btn", selectedSet: selectedPoolRegions,
+        getOptions: () => {
+          const tournamentTeams = getTournamentTeams();
+          const visible = tournamentTeams
+            ? players.filter(p => tournamentTeams.has(p.team))
+            : players;
+          return [...new Set(visible.map(p => p.region))].sort();
+        },
+      });
+      poolTeamFilter.populate();
+      poolRegionFilter.populate();
 
       // Mobile tab buttons
       document.querySelectorAll(".mobile-tab-btn").forEach(btn => {

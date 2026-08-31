@@ -977,6 +977,33 @@ select option { background: var(--surface2); }
 }
 .stat-pill span { color: var(--text); font-weight: 600; }
 
+/* ── Pool Panel: search + filter row ────────────────── */
+.pool-filter-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.pool-filter-row .search-input {
+  flex: 1;
+  min-width: 0;
+}
+/* Dropdowns in the pool are fixed-width so they don't
+   squish too narrow when the panel is partially collapsed */
+.pool-filter-row .filter-dropdown {
+  flex: 0 0 auto;
+}
+.pool-filter-row .filter-dropdown-btn {
+  width: auto;
+  padding: 9px 10px;
+  white-space: nowrap;
+}
+/* The rightmost dropdown opens left-aligned by default which
+   can clip outside the panel — pin it to the right edge instead */
+.pool-filter-dropdown-right {
+  left: auto !important;
+  right: 0;
+}
+
 /* ── Player Detail Panel ─────────────────────────────── */
 .player-detail {
   border-top: 1px solid var(--border);
