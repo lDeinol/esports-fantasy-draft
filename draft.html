@@ -942,6 +942,8 @@
     function render() {
       renderMyTeam();
       renderDraftGrid();
+      poolTeamFilter?.populate();
+      poolRegionFilter?.populate();
       renderPlayerPool();
       updateHeader();
       updatePickButton();
@@ -1223,9 +1225,6 @@
           return [...new Set(visible.map(p => p.region))].sort();
         },
       });
-      poolTeamFilter.populate();
-      poolRegionFilter.populate();
-
       // Mobile tab buttons
       document.querySelectorAll(".mobile-tab-btn").forEach(btn => {
         btn.addEventListener("click", () => setMobileTab(btn.dataset.tab));
