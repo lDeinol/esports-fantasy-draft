@@ -33,10 +33,13 @@
   --surface2: #f2f0ea;
   --surface3: #e8e5dc;
   --border:   #ddd8cc;
-  --accent:   #d64550;   /* keeps the Valorant red-ish energy */
+  --accent:   #d64550;
   --accent2:  #6d28d9;
+  --danger:   #dc2626;
   --text:     #1f1c18;
   --muted:    #78716c;
+  --success:  #059669;
+  --warn:     #b45309;
 }
 
 /* ── Theme Toggle Switch ─────────────────────────────── */
@@ -742,10 +745,14 @@ select option { background: var(--surface2); }
 /* ── 3-Column Layout ─────────────────────────────────── */
 .draft-layout {
   flex: 1;
-  display: grid;
-  grid-template-columns: 220px 1fr 300px;
+  display: flex;
   overflow: hidden;
   min-height: 0;
+}
+
+.draft-layout > .panel[data-tab="team"] {
+  flex: 0 0 220px;
+  width: 220px;
 }
 
 /* ── Panel Shared ────────────────────────────────────── */
@@ -994,6 +1001,62 @@ select option { background: var(--surface2); }
 #player-pool::-webkit-scrollbar { width: 4px; }
 #player-pool::-webkit-scrollbar-track { background: transparent; }
 #player-pool::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ── Slide-out Draft Board / Player Pool tabs ────────────
+   Base rules (all screen sizes): keep the rotated tab strip
+   hidden and the real content visible, so nothing leaks into
+   the mobile tab-bar layout, which owns visibility below
+   900px via .active-tab instead. */
+.side-tab-strip { display: none; }
+.panel-expanded-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Desktop-only: the actual expand/collapse + slide behavior.
+   Exactly one of Draft Board / Player Pool is "expanded" (fills
+   the space) at a time; the other collapses to a 44px
+   rotated-label tab. */
+@media (min-width: 901px) {
+  .side-slide-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: flex 0.3s ease;
+  }
+  .side-slide-panel.expanded  { flex: 1 1 0%; }
+  .side-slide-panel.collapsed { flex: 0 0 44px; width: 44px; cursor: pointer; }
+
+  .side-slide-panel.collapsed .panel-expanded-content { display: none; }
+
+  .side-tab-strip {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--surface2);
+    transition: background 0.15s;
+  }
+  .side-slide-panel.collapsed .side-tab-strip { display: flex; }
+  .side-slide-panel.collapsed:hover .side-tab-strip { background: var(--surface3); }
+
+  .side-tab-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .side-slide-panel.collapsed:hover .side-tab-label { color: var(--accent); }
+}
 
 .detail-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 2px; }
 .detail-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
