@@ -29882,5 +29882,213 @@
       }
     ],
     "vlrId": "734310"
+  },
+  {
+    "id": "734311",
+    "tournamentId": "2977",
+    "team1": "LEVIATÁN",
+    "team2": "G2 Esports",
+    "score": "1-2",
+    "winner": "G2 Esports",
+    "format": "BO3",
+    "date": "2026-08-30",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "kiNgg",
+        "team": "LEVIATÁN",
+        "rating": 1.21,
+        "kd": 1.33,
+        "acs": 229.0,
+        "adr": 146.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Sato",
+        "team": "LEVIATÁN",
+        "rating": 1.01,
+        "kd": 1.1,
+        "acs": 197.0,
+        "adr": 141.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "blowz",
+        "team": "LEVIATÁN",
+        "rating": 0.91,
+        "kd": 0.98,
+        "acs": 175.0,
+        "adr": 116.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Neon",
+        "team": "LEVIATÁN",
+        "rating": 0.87,
+        "kd": 0.91,
+        "acs": 170.0,
+        "adr": 106.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "spike",
+        "team": "LEVIATÁN",
+        "rating": 0.65,
+        "kd": 0.64,
+        "acs": 152.0,
+        "adr": 101.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.23,
+        "kd": 1.29,
+        "acs": 202.0,
+        "adr": 132.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.16,
+        "kd": 1.23,
+        "acs": 206.0,
+        "adr": 129.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 1.1,
+        "kd": 1.07,
+        "acs": 208.0,
+        "adr": 136.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.97,
+        "kd": 0.95,
+        "acs": 172.0,
+        "adr": 117.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.74,
+        "kd": 0.71,
+        "acs": 160.0,
+        "adr": 107.0,
+        "kpr": 0.52
+      }
+    ],
+    "vlrId": "734311"
+  },
+  {
+    "id": "734312",
+    "tournamentId": "2977",
+    "team1": "LOUD",
+    "team2": "MIBR",
+    "score": "2-0",
+    "winner": "LOUD",
+    "format": "BO3",
+    "date": "2026-08-30",
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.29,
+        "kd": 1.36,
+        "acs": 237.0,
+        "adr": 150.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.19,
+        "kd": 1.26,
+        "acs": 255.0,
+        "adr": 163.0,
+        "kpr": 0.93
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.07,
+        "kd": 1.15,
+        "acs": 228.0,
+        "adr": 146.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.89,
+        "kd": 0.85,
+        "acs": 195.0,
+        "adr": 124.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 0.74,
+        "kd": 0.67,
+        "acs": 126.0,
+        "adr": 91.0,
+        "kpr": 0.43
+      },
+      {
+        "playerId": "zekken",
+        "team": "MIBR",
+        "rating": 1.16,
+        "kd": 1.03,
+        "acs": 191.0,
+        "adr": 136.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Mazino",
+        "team": "MIBR",
+        "rating": 1.1,
+        "kd": 1.15,
+        "acs": 235.0,
+        "adr": 162.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "aspas",
+        "team": "MIBR",
+        "rating": 1.04,
+        "kd": 1.05,
+        "acs": 236.0,
+        "adr": 160.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Verno",
+        "team": "MIBR",
+        "rating": 0.88,
+        "kd": 0.88,
+        "acs": 173.0,
+        "adr": 115.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "tex",
+        "team": "MIBR",
+        "rating": 0.62,
+        "kd": 0.64,
+        "acs": 145.0,
+        "adr": 99.0,
+        "kpr": 0.5
+      }
+    ],
+    "vlrId": "734312"
   }
 ]
