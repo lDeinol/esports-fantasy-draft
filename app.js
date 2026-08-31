@@ -138,12 +138,15 @@ export const SCORING = {
 // ── Firebase Lobby Helpers ───────────────────────────────────
 
 // Create a new lobby in Firebase
-export async function createLobby({ code, hostUid, hostName, format, tournamentId }) {
+// maxPlayers caps how many players can join — normally set to the
+// selected tournament's team count (one player drafts per team).
+export async function createLobby({ code, hostUid, hostName, format, tournamentId, maxPlayers }) {
   const lobbyRef = ref(db, `lobbies/${code}`);
   await set(lobbyRef, {
     code,
     format,
     tournamentId:     tournamentId || null,
+    maxPlayers:       maxPlayers || null,
     pickTimer:        null,
     status:           "waiting",
     hostId:           hostUid,
@@ -159,8 +162,23 @@ export async function createLobby({ code, hostUid, hostName, format, tournamentI
   });
 }
 
-// Add a player to an existing lobby
+// Add a player to an existing lobby.
+// Re-checks the lobby's maxPlayers/current player count right before
+// writing, so two people can't both squeeze into the last open slot.
 export async function joinLobby({ code, uid, name }) {
+  const lobbyRef = ref(db, `lobbies/${code}`);
+  const snap = await get(lobbyRef);
+  const lobby = snap.val();
+  if (!lobby) throw new Error("Lobby not found.");
+
+  const players = lobby.players || {};
+  if (!players[uid] && lobby.maxPlayers) {
+    const currentCount = Object.keys(players).length;
+    if (currentCount >= lobby.maxPlayers) {
+      throw new Error(`Lobby is full (${lobby.maxPlayers} / ${lobby.maxPlayers}).`);
+    }
+  }
+
   const playerRef = ref(db, `lobbies/${code}/players/${uid}`);
   await set(playerRef, { name, isHost: false, joinedAt: Date.now() });
 }

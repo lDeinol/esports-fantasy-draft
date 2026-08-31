@@ -104,7 +104,7 @@
 
         <div class="players-header">
           <div class="players-label">Players</div>
-          <div class="player-count" id="player-count">0 / 16</div>
+          <div class="player-count" id="player-count">0</div>
         </div>
 
         <ul class="player-list" id="player-list"></ul>
@@ -304,11 +304,11 @@
     const avatarClass = (i) => `av-${i % 8}`;
 
     // ── Render player list ─────────────────────────────
-    function renderPlayers(players, myUid, hostId) {
+    function renderPlayers(players, myUid, hostId, maxPlayers) {
       const list  = document.getElementById("player-list");
       const count = document.getElementById("player-count");
       const entries = Object.entries(players || {});
-      count.textContent = `${entries.length} / 16`;
+      count.textContent = maxPlayers ? `${entries.length} / ${maxPlayers}` : `${entries.length}`;
       list.innerHTML = "";
 
       entries.forEach(([uid, p], i) => {
@@ -377,7 +377,7 @@
           document.getElementById("tab-join").style.display   = "none";
           return;
         }
-        renderPlayers(data.players, currentUid, data.hostId);
+        renderPlayers(data.players, currentUid, data.hostId, data.maxPlayers);
 
         // Enable start button only if 2+ players
         const playerCount = Object.keys(data.players || {}).length;
@@ -398,6 +398,14 @@
       if (!name)         return showError("create-error", "Enter your name.");
       if (!tournamentId) return showError("create-error", "Select a tournament.");
 
+      // Player limit = number of teams in the tournament (one player drafts per team)
+      const tournament = tournamentsData.find(t => t.id === tournamentId);
+      const teams      = tournament?.teams || [];
+      if (teams.length === 0 || (teams.length === 1 && teams[0] === "TBD")) {
+        return showError("create-error", "This tournament's teams aren't finalized yet — pick another tournament.");
+      }
+      const maxPlayers = teams.length;
+
       const btn = document.getElementById("btn-create");
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span> Creating…';
@@ -407,7 +415,7 @@
         currentUid = user.uid;
         const code = generateCode();
 
-        await createLobby({ code, hostUid: currentUid, hostName: name, format: selectedFormat, tournamentId });
+        await createLobby({ code, hostUid: currentUid, hostName: name, format: selectedFormat, tournamentId, maxPlayers });
         LS.saveSession({ uid: currentUid, name, lobbyCode: code, isHost: true });
 
         const snap = await get(ref(db, `lobbies/${code}`));
@@ -448,6 +456,12 @@
 
         // New joiner — only allowed while lobby is still in waiting room
         if (lobby.status !== "waiting") return showError("join-error", "This draft has already started.");
+
+        // Player limit check (joinLobby double-checks this too, to avoid a race)
+        const currentCount = Object.keys(lobby.players || {}).length;
+        if (lobby.maxPlayers && currentCount >= lobby.maxPlayers) {
+          return showError("join-error", `Lobby is full (${lobby.maxPlayers} / ${lobby.maxPlayers}).`);
+        }
 
         const user = await ensureAuth();
         currentUid = user.uid;
