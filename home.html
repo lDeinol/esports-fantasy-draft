@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DraftZone — Valorant Fantasy Draft</title>
@@ -12,6 +22,14 @@
 
   <header>
     <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <label class="theme-toggle" title="Toggle light / dark mode">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </label>
     <div class="header-divider"></div>
     <nav>
       <a href="home.html"       class="nav-link active">Home</a>
@@ -73,7 +91,9 @@
   </main>
 
   <script type="module">
-    import { LS } from "./app.js";
+    import { LS, initThemeToggle } from "./app.js";
+
+    initThemeToggle();
 
     // ── Session banner ─────────────────────────────────
     const session = LS.getSession();

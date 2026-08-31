@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Draft Room — DraftZone</title>
@@ -19,13 +29,19 @@
   <!-- ── Header ──────────────────────────────────────── -->
   <header class="draft-header">
     <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <label class="theme-toggle" title="Toggle light / dark mode">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </label>
     <div class="header-divider"></div>
     <div class="pick-status" id="pick-status">Loading draft…</div>
     <div class="round-badge" id="round-badge">Round —</div>
-    <div class="format-badge" id="format-badge">—</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <nav class="draft-nav">
-      <a id="rejoin-link" href="#" class="nav-link rejoin-link" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none;">🔗 Rejoin Link</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
@@ -79,14 +95,11 @@
   <!-- ── 3-Column Layout ─────────────────────────────── -->
   <div class="draft-layout">
 
-    <!-- INFO (mobile only): format, tournament, rejoin link, page links -->
+    <!-- INFO (mobile only): tournament, page links -->
     <div class="mobile-info-panel" data-tab="info">
       <div class="panel-header">Draft Info</div>
       <div class="panel-body">
-        <div class="info-pill" style="margin-bottom:10px;">Format: <strong id="info-format-value">—</strong></div>
         <div class="info-pill" id="info-tournament-row" style="display:none; margin-bottom:16px;">Tournament: <strong id="info-tournament-value">—</strong></div>
-
-        <a href="#" class="nav-link rejoin-link" id="rejoin-link-info" style="color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); display:none; text-align:center; margin-bottom:16px;">🔗 Rejoin Link</a>
 
         <div style="display:flex; flex-direction:column; gap:10px;">
           <a href="matches.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Matches</div></a>
@@ -114,36 +127,77 @@
     </div>
 
     <!-- CENTER: Draft Grid -->
-    <div class="panel" data-tab="board" style="border-right:none;">
-      <div class="panel-header">Draft Board</div>
-      <div class="grid-scroll panel-body" style="padding:0;">
-        <table class="draft-table" id="draft-table">
-          <thead id="draft-thead"></thead>
-          <tbody id="draft-tbody"></tbody>
-        </table>
+    <div class="panel side-slide-panel expanded" data-tab="board" id="board-panel" style="border-right:none;">
+      <div class="side-tab-strip" id="board-tab-strip" title="Open Draft Board">
+        <span class="side-tab-label">📋 Draft Board</span>
       </div>
+      <div class="panel-expanded-content">
+        <div class="panel-header">Draft Board</div>
+        <div class="grid-scroll panel-body" style="padding:0;">
+          <table class="draft-table" id="draft-table">
+            <thead id="draft-thead"></thead>
+            <tbody id="draft-tbody"></tbody>
+          </table>
+        </div>
 
-      <!-- Nominate button for auction (shown in center panel when no active bid) -->
-      <div style="padding:14px; border-top:1px solid var(--border); flex-shrink:0;" id="nominate-wrap">
-        <button class="btn-nominate show" id="btn-nominate" style="width:100%; display:none;">+ Nominate a Player</button>
-        <div id="center-status" style="text-align:center; color:var(--muted); font-size:0.85rem;"></div>
+        <!-- Nominate button for auction (shown in center panel when no active bid) -->
+        <div style="padding:14px; border-top:1px solid var(--border); flex-shrink:0;" id="nominate-wrap">
+          <button class="btn-nominate show" id="btn-nominate" style="width:100%; display:none;">+ Nominate a Player</button>
+          <div id="center-status" style="text-align:center; color:var(--muted); font-size:0.85rem;"></div>
+        </div>
       </div>
     </div>
 
     <!-- RIGHT: Player Pool -->
-    <div class="right-panel" data-tab="pool">
-      <div class="panel-header">Player Pool</div>
-      <div class="search-wrap">
-        <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
-        <div class="filter-row" id="game-filters"></div>
+    <div class="right-panel side-slide-panel collapsed" data-tab="pool" id="pool-panel">
+      <div class="side-tab-strip" id="pool-tab-strip" title="Open Player Pool">
+        <span class="side-tab-label">🎯 Player Pool <span class="tab-turn-dot" id="tab-turn-dot-desktop"></span></span>
       </div>
-      <div id="player-pool"></div>
-      <div class="player-detail" id="player-detail">
-        <button class="player-detail-close" id="player-detail-close" aria-label="Close">✕</button>
-        <div class="detail-name" id="detail-name">—</div>
-        <div class="detail-meta" id="detail-meta">—</div>
-        <div class="detail-stats" id="detail-stats"></div>
-        <button class="btn-pick" id="btn-pick">Draft Player</button>
+      <div class="panel-expanded-content">
+        <div class="panel-header">Player Pool</div>
+        <div class="search-wrap">
+          <div class="pool-filter-row">
+            <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
+
+            <div class="filter-dropdown" id="pool-team-filter">
+              <button class="filter-btn filter-dropdown-btn" id="pool-team-filter-btn" type="button">
+                Team
+                <span class="filter-dropdown-badge" id="pool-team-filter-badge" style="display:none;">0</span>
+                <span class="filter-dropdown-arrow">▾</span>
+              </button>
+              <div class="filter-dropdown-panel" id="pool-team-dropdown">
+                <div class="filter-dropdown-header">
+                  <span>Filter by team</span>
+                  <button class="filter-dropdown-clear" id="pool-team-clear-btn" type="button">Clear</button>
+                </div>
+                <div class="filter-dropdown-list" id="pool-team-dropdown-list"></div>
+              </div>
+            </div>
+
+            <div class="filter-dropdown" id="pool-region-filter">
+              <button class="filter-btn filter-dropdown-btn" id="pool-region-filter-btn" type="button">
+                Region
+                <span class="filter-dropdown-badge" id="pool-region-filter-badge" style="display:none;">0</span>
+                <span class="filter-dropdown-arrow">▾</span>
+              </button>
+              <div class="filter-dropdown-panel pool-filter-dropdown-right" id="pool-region-dropdown">
+                <div class="filter-dropdown-header">
+                  <span>Filter by region</span>
+                  <button class="filter-dropdown-clear" id="pool-region-clear-btn" type="button">Clear</button>
+                </div>
+                <div class="filter-dropdown-list" id="pool-region-dropdown-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="player-pool"></div>
+        <div class="player-detail" id="player-detail">
+          <button class="player-detail-close" id="player-detail-close" aria-label="Close">✕</button>
+          <div class="detail-name" id="detail-name">—</div>
+          <div class="detail-meta" id="detail-meta">—</div>
+          <div class="detail-stats" id="detail-stats"></div>
+          <button class="btn-pick" id="btn-pick">Draft Player</button>
+        </div>
       </div>
     </div>
 
@@ -164,8 +218,10 @@
   <script type="module">
     import {
       db, auth, ref, set, get, update, onValue, push,
-      ensureAuth, LS, CONFIG, getPickerUid, totalPicks, SCORING, subscribeLobby
+      ensureAuth, LS, CONFIG, getPickerUid, totalPicks, SCORING, subscribeLobby, initThemeToggle
     } from "./app.js";
+
+    initThemeToggle();
 
     // ─────────────────────────────────────────────────────
     //  State
@@ -179,10 +235,11 @@
     let lobbyData     = null;
     let players       = [];       // from players.json
     let selectedPlayer= null;
-    let activeFilter  = "all";
     let activeMobileTab = "pool";
     let wasMyTurn       = false;
     let mobileTabInitialized = false;
+    let selectedPoolRegions = new Set();
+    let selectedPoolTeams   = new Set();
 
     // ─────────────────────────────────────────────────────
     //  Toast helper
@@ -244,29 +301,61 @@
     }
 
     // ─────────────────────────────────────────────────────
-    //  Region filter buttons
+    //  Pool filter dropdowns (Team + Region)
+    //  Same pattern as wireCheckboxDropdown in stats.html
     // ─────────────────────────────────────────────────────
-    function renderGameFilters() {
-      const tournamentTeams = getTournamentTeams();
-      const visiblePlayers = tournamentTeams
-        ? players.filter(p => tournamentTeams.has(p.team))
-        : players;
-      const regions = ["all", ...new Set(visiblePlayers.map(p => p.region))];
-      const wrap    = document.getElementById("game-filters");
-      wrap.innerHTML = "";
-      regions.forEach(r => {
-        const btn = document.createElement("button");
-        btn.className = "filter-btn" + (r === activeFilter ? " active" : "");
-        btn.textContent = r === "all" ? "All" : r;
-        btn.addEventListener("click", () => {
-          activeFilter = r;
-          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderPlayerPool();
+    function wirePoolDropdown({ btnId, panelId, listId, badgeId, clearBtnId, selectedSet, getOptions }) {
+      function populate() {
+        const list = document.getElementById(listId);
+        list.innerHTML = getOptions().map(opt => `
+          <label class="filter-option">
+            <input type="checkbox" value="${opt}" ${selectedSet.has(opt) ? "checked" : ""} />
+            <span class="filter-option-name">${opt}</span>
+          </label>
+        `).join("");
+        list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener("change", () => {
+            if (cb.checked) selectedSet.add(cb.value);
+            else selectedSet.delete(cb.value);
+            updateBadge();
+            renderPlayerPool();
+          });
         });
-        wrap.appendChild(btn);
+      }
+
+      function updateBadge() {
+        const badge = document.getElementById(badgeId);
+        const btn   = document.getElementById(btnId);
+        const count = selectedSet.size;
+        badge.style.display = count > 0 ? "inline-block" : "none";
+        badge.textContent   = count;
+        btn.classList.toggle("active", count > 0);
+      }
+
+      document.getElementById(btnId).addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.getElementById(panelId).classList.toggle("show");
       });
+
+      document.getElementById(clearBtnId).addEventListener("click", (e) => {
+        e.stopPropagation();
+        selectedSet.clear();
+        populate();
+        updateBadge();
+        renderPlayerPool();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!document.getElementById(btnId).closest(".filter-dropdown").contains(e.target)) {
+          document.getElementById(panelId).classList.remove("show");
+        }
+      });
+
+      return { populate, updateBadge };
     }
+
+    let poolTeamFilter;
+    let poolRegionFilter;
 
     // ─────────────────────────────────────────────────────
     //  Player pool rendering
@@ -280,10 +369,11 @@
       const tournamentTeams = getTournamentTeams();
 
       const filtered = players.filter(p => {
-        const matchRegion = activeFilter === "all" || p.region === activeFilter;
-        const matchSearch = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
+        const matchRegion     = selectedPoolRegions.size === 0 || selectedPoolRegions.has(p.region);
+        const matchTeam       = selectedPoolTeams.size   === 0 || selectedPoolTeams.has(p.team);
+        const matchSearch     = !query || p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query);
         const matchTournament = !tournamentTeams || tournamentTeams.has(p.team);
-        return matchRegion && matchSearch && matchTournament;
+        return matchRegion && matchTeam && matchSearch && matchTournament;
       });
 
       const pool = document.getElementById("player-pool");
@@ -330,6 +420,24 @@
     }
 
     // ─────────────────────────────────────────────────────
+    //  Desktop slide-out tabs (Draft Board / Player Pool)
+    //  Exactly one is expanded at a time; clicking the
+    //  collapsed one's rotated tab swaps which is open.
+    // ─────────────────────────────────────────────────────
+    let activeSidePanel = "board";
+    function setSidePanel(tab) {
+      activeSidePanel = tab;
+      const boardPanel = document.getElementById("board-panel");
+      const poolPanel  = document.getElementById("pool-panel");
+      boardPanel.classList.toggle("expanded",  tab === "board");
+      boardPanel.classList.toggle("collapsed", tab !== "board");
+      poolPanel.classList.toggle("expanded",  tab === "pool");
+      poolPanel.classList.toggle("collapsed", tab !== "pool");
+    }
+    document.getElementById("board-tab-strip").addEventListener("click", () => setSidePanel("board"));
+    document.getElementById("pool-tab-strip").addEventListener("click", () => setSidePanel("pool"));
+
+    // ─────────────────────────────────────────────────────
     //  Select a player (show detail pane)
     // ─────────────────────────────────────────────────────
     function selectPlayer(p) {
@@ -341,20 +449,7 @@
       document.getElementById("detail-name").textContent = p.name;
       document.getElementById("detail-meta").textContent = `${p.team} · ${p.role} · ${p.region}`;
 
-      const trackedBadge = p.tracked
-        ? `<div><span style="font-size:0.7rem; color:var(--success); font-weight:700;">●Tracked</span><div style="font-size:0.7rem; color:var(--muted); margin-top:2px;">${p.matchCount} match${p.matchCount !== 1 ? "es" : ""}</div></div>`
-        : `<div><span style="font-size:0.7rem; color:var(--muted); font-weight:700;">Seeded</span><div style="font-size:0.7rem; color:var(--muted); margin-top:2px;">no match data</div></div>`;
-
-      const statsDiv = document.getElementById("detail-stats");
-      statsDiv.innerHTML = `
-        <div style="margin-bottom:8px;">${trackedBadge}</div>
-        ${Object.entries(p.stats).map(([k, v]) => `
-          <div class="detail-stat">
-            <div class="detail-stat-label">${k.toUpperCase()}</div>
-            <div class="detail-stat-val">${v}</div>
-          </div>
-        `).join("")}
-      `;
+      document.getElementById("detail-stats").innerHTML = "";
 
       updatePickButton();
     }
@@ -558,7 +653,9 @@
       const picks   = lobbyData?.picks || {};
       const myPicks = Object.values(picks).filter(p => p.byUid === myUid);
 
-      document.getElementById("my-team-name").textContent = myName || "My Team";
+      const myTeamNameEl = document.getElementById("my-team-name");
+      myTeamNameEl.textContent = myName || "My Team";
+      myTeamNameEl.style.color = lobbyData?.players?.[myUid]?.color || "";
 
       // Budget bar (auction only)
       if (lobbyData?.format === "auction") {
@@ -637,6 +734,7 @@
           // The participant who picks at this slot:
           const ownerUid   = getPickerUid(pickOrder, pickIndex);
           const ownerName  = lobbyPlayers[ownerUid]?.name || "?";
+          const ownerColor = lobbyPlayers[ownerUid]?.color || "";
           const pick        = picksArr[pickIndex];
           const isActive    = pickIndex === picksArr.length;
           const isMyActive  = isActive && ownerUid === myUid;
@@ -647,16 +745,21 @@
           div.className = "pick-cell" +
             (isMyActive ? " your-active" : isActive ? " active-pick" : "") +
             (isFuture   ? " empty-future" : "");
+          if (isActive && ownerColor) {
+            div.style.setProperty("--cell-active-color", ownerColor);
+          }
 
           // Label format: round.pick e.g. 1.1, 1.2, 2.3
           const label = `${r + 1}.${p + 1}`;
 
+          const byColor = lobbyPlayers[pick?.byUid]?.color || "";
+
           div.innerHTML = pick
             ? `<div class="pick-cell-label">${label}</div>
                <div class="pick-cell-player">${pick.playerName}</div>
-               <div class="pick-cell-by">${pick.byName}${pick.price ? ` · $${pick.price}` : ""}${pick.skipped ? ' · <span style="color:var(--warn)">auto</span>' : ""}</div>`
+               <div class="pick-cell-by"${byColor ? ` style="color:${byColor}"` : ""}>${pick.byName}${pick.price ? ` · $${pick.price}` : ""}${pick.skipped ? ' · <span style="color:var(--warn)">auto</span>' : ""}</div>`
             : `<div class="pick-cell-label">${label}</div>
-               <div style="font-size:0.7rem; color:var(--muted);">${ownerName}${ownerUid === myUid ? " (You)" : ""}</div>
+               <div style="font-size:0.7rem; color:${ownerColor || "var(--muted)"};">${ownerName}${ownerUid === myUid ? " (You)" : ""}</div>
                ${isActive ? `<div style="color:var(--warn);font-size:0.72rem; margin-top:2px;">${ownerUid === myUid ? "⚡ YOUR PICK" : "On clock…"}</div>` : ""}`;
 
           td.appendChild(div);
@@ -734,21 +837,18 @@
       const round     = Math.floor(doneCount / pickOrder.length) + 1;
 
       document.getElementById("round-badge").textContent  = `Round ${Math.min(round, CONFIG.ROSTER_SIZE)} / ${CONFIG.ROSTER_SIZE}`;
-      document.getElementById("format-badge").textContent = format === "auction" ? "🏷 Auction" : "🐍 Snake";
 
-      const infoFormatValue = document.getElementById("info-format-value");
-      if (infoFormatValue) infoFormatValue.textContent = format === "auction" ? "Auction" : "Snake";
-
-      // Show tournament name in header if available
+      // Show tournament name (resolved from tournaments.json) in header if available
       const tournamentBadge = document.getElementById("tournament-badge");
       if (tournamentBadge && lobbyData.tournamentId) {
-        tournamentBadge.textContent = `📋 ${lobbyData.tournamentId}`;
+        const tournamentName = tournaments.find(t => t.id === lobbyData.tournamentId)?.name || lobbyData.tournamentId;
+        tournamentBadge.textContent = `📋 ${tournamentName}`;
         tournamentBadge.style.display = "inline-block";
 
         const infoTournamentRow   = document.getElementById("info-tournament-row");
         const infoTournamentValue = document.getElementById("info-tournament-value");
         if (infoTournamentRow && infoTournamentValue) {
-          infoTournamentValue.textContent = lobbyData.tournamentId;
+          infoTournamentValue.textContent = tournamentName;
           infoTournamentRow.style.display = "block";
         }
       }
@@ -766,11 +866,12 @@
       if (format === "snake") {
         const onClockUid  = getPickerUid(pickOrder, doneCount);
         const onClockName = lobbyPlayers[onClockUid]?.name || "Someone";
+        const onClockColor = lobbyPlayers[onClockUid]?.color || "";
         if (onClockUid === myUid) {
           statusEl.innerHTML = `<span class="your-turn">⚡ Your pick!</span>`;
           myPickLabel.textContent = "On the clock";
         } else {
-          statusEl.innerHTML = `<span class="waiting">Waiting on </span><span class="on-clock">${onClockName}</span>`;
+          statusEl.innerHTML = `<span class="waiting">Waiting on </span><span class="on-clock"${onClockColor ? ` style="color:${onClockColor}"` : ""}>${onClockName}</span>`;
           myPickLabel.textContent = "";
         }
         // Start per-pick timer if configured
@@ -786,9 +887,10 @@
         } else {
           const nominatorUid  = getPickerUid(pickOrder, doneCount);
           const nominatorName = lobbyPlayers[nominatorUid]?.name || "Someone";
+          const nominatorColor = lobbyPlayers[nominatorUid]?.color || "";
           statusEl.innerHTML = nominatorUid === myUid
             ? `<span class="your-turn">⚡ Your turn to nominate!</span>`
-            : `<span class="waiting">Waiting for </span><span class="on-clock">${nominatorName}</span><span class="waiting"> to nominate</span>`;
+            : `<span class="waiting">Waiting for </span><span class="on-clock"${nominatorColor ? ` style="color:${nominatorColor}"` : ""}>${nominatorName}</span><span class="waiting"> to nominate</span>`;
         }
       }
     }
@@ -840,7 +942,8 @@
     function render() {
       renderMyTeam();
       renderDraftGrid();
-      renderGameFilters();
+      poolTeamFilter?.populate();
+      poolRegionFilter?.populate();
       renderPlayerPool();
       updateHeader();
       updatePickButton();
@@ -858,6 +961,7 @@
       }
       wasMyTurn = myTurnNow;
       document.getElementById("tab-turn-dot").classList.toggle("show", myTurnNow);
+      document.getElementById("tab-turn-dot-desktop")?.classList.toggle("show", myTurnNow);
 
       if (lobbyData?.status === "complete") {
         document.getElementById("draft-complete-banner").style.display = "flex";
@@ -1096,21 +1200,31 @@
       await ensureAuth();
       await loadPlayers();
 
-      // Set up the rejoin link(s) so players can bookmark it
-      const rejoinLinks = document.querySelectorAll(".rejoin-link");
-      if (rejoinLinks.length && lobbyCode) {
-        rejoinLinks.forEach(rejoinLink => {
-          rejoinLink.href = `index.html?code=${lobbyCode}`;
-          rejoinLink.style.display = "inline-block";
-          rejoinLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(window.location.origin + window.location.pathname.replace("draft.html", "") + `index.html?code=${lobbyCode}`)
-              .then(() => { rejoinLink.textContent = "✓ Copied!"; setTimeout(() => { rejoinLink.textContent = "🔗 Rejoin Link"; }, 1500); })
-              .catch(() => { window.open(rejoinLink.href, "_blank"); });
-          });
-        });
-      }
-
+      // Pool filter dropdowns
+      poolTeamFilter = wirePoolDropdown({
+        btnId: "pool-team-filter-btn", panelId: "pool-team-dropdown",
+        listId: "pool-team-dropdown-list", badgeId: "pool-team-filter-badge",
+        clearBtnId: "pool-team-clear-btn", selectedSet: selectedPoolTeams,
+        getOptions: () => {
+          const tournamentTeams = getTournamentTeams();
+          const visible = tournamentTeams
+            ? players.filter(p => tournamentTeams.has(p.team))
+            : players;
+          return [...new Set(visible.map(p => p.team))].sort();
+        },
+      });
+      poolRegionFilter = wirePoolDropdown({
+        btnId: "pool-region-filter-btn", panelId: "pool-region-dropdown",
+        listId: "pool-region-dropdown-list", badgeId: "pool-region-filter-badge",
+        clearBtnId: "pool-region-clear-btn", selectedSet: selectedPoolRegions,
+        getOptions: () => {
+          const tournamentTeams = getTournamentTeams();
+          const visible = tournamentTeams
+            ? players.filter(p => tournamentTeams.has(p.team))
+            : players;
+          return [...new Set(visible.map(p => p.region))].sort();
+        },
+      });
       // Mobile tab buttons
       document.querySelectorAll(".mobile-tab-btn").forEach(btn => {
         btn.addEventListener("click", () => setMobileTab(btn.dataset.tab));

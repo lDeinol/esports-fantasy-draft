@@ -42,6 +42,53 @@
   --warn:     #b45309;
 }
 
+/* ── Theme Toggle Switch ─────────────────────────────── */
+.theme-toggle { display: inline-flex; align-items: center; cursor: pointer; user-select: none; }
+.theme-toggle-input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.theme-toggle-track {
+  position: relative;
+  width: 46px; height: 24px;
+  border-radius: 999px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.theme-toggle-icon {
+  font-size: 0.6rem; line-height: 1; width: 50%;
+  text-align: center; z-index: 1; pointer-events: none;
+}
+
+.theme-toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+.theme-toggle-input:checked ~ .theme-toggle-track .theme-toggle-thumb { transform: translateX(22px); }
+
+/* ── Light Mode ──────────────────────────────────────
+   Applied via data-theme="light" on <html>, set by the
+   header toggle (see .theme-toggle below) and persisted
+   through initThemeToggle()/setTheme() in app.js. */
+:root[data-theme="light"] {
+  --bg:       #faf9f6;
+  --surface:  #ffffff;
+  --surface2: #f2f0ea;
+  --surface3: #e8e5dc;
+  --border:   #ddd8cc;
+  --accent:   #d64550;
+  --accent2:  #6d28d9;
+  --danger:   #dc2626;
+  --text:     #1f1c18;
+  --muted:    #78716c;
+  --success:  #059669;
+  --warn:     #b45309;
+}
+
 /* ── Reset ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { min-height: 100vh; }
@@ -420,6 +467,52 @@ select option { background: var(--surface2); }
 .av-6 { background: #2a1a1a; color: #f87171; }
 .av-7 { background: #2a2a1a; color: #d4d40a; }
 
+/* ── Player Color Picker ─────────────────────────────── */
+.color-picker-section { margin-bottom: 20px; }
+
+.color-picker-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.color-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+
+.color-swatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.12s ease;
+}
+.color-swatch:hover  { transform: scale(1.14); }
+.color-swatch.selected {
+  border-color: var(--bg);
+  box-shadow: 0 0 0 2px currentColor;
+}
+.color-swatch.selected::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.55);
+}
+
 /* ── Lobby Actions ───────────────────────────────────── */
 .waiting-msg {
   text-align: center;
@@ -671,10 +764,14 @@ select option { background: var(--surface2); }
 /* ── 3-Column Layout ─────────────────────────────────── */
 .draft-layout {
   flex: 1;
-  display: grid;
-  grid-template-columns: 220px 1fr 300px;
+  display: flex;
   overflow: hidden;
   min-height: 0;
+}
+
+.draft-layout > .panel[data-tab="team"] {
+  flex: 0 0 220px;
+  width: 220px;
 }
 
 /* ── Panel Shared ────────────────────────────────────── */
@@ -808,8 +905,18 @@ select option { background: var(--surface2); }
 .pick-cell-player { font-size: 0.85rem; font-weight: 600; color: var(--text); }
 .pick-cell-by     { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
 
-.pick-cell.active-pick  { background: color-mix(in srgb, var(--warn) 8%, transparent); }
-.pick-cell.your-active  { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.pick-cell.active-pick  {
+  background:  color-mix(in srgb, var(--cell-active-color, var(--warn))   12%, transparent);
+  border:      1px solid color-mix(in srgb, var(--cell-active-color, var(--warn))   55%, transparent);
+  box-shadow:  0 0 8px color-mix(in srgb, var(--cell-active-color, var(--warn))   30%, transparent);
+  border-radius: 4px;
+}
+.pick-cell.your-active  {
+  background:  color-mix(in srgb, var(--cell-active-color, var(--accent)) 15%, transparent);
+  border:      1px solid color-mix(in srgb, var(--cell-active-color, var(--accent)) 70%, transparent);
+  box-shadow:  0 0 10px color-mix(in srgb, var(--cell-active-color, var(--accent)) 40%, transparent);
+  border-radius: 4px;
+}
 .pick-cell.empty-future { opacity: 0.3; }
 .pick-cell.skipped      { background: color-mix(in srgb, var(--warn) 6%, transparent); }
 .pick-cell-skipped-label { font-size: 0.7rem; color: var(--warn); margin-top: 2px; }
@@ -889,6 +996,33 @@ select option { background: var(--surface2); }
 }
 .stat-pill span { color: var(--text); font-weight: 600; }
 
+/* ── Pool Panel: search + filter row ────────────────── */
+.pool-filter-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.pool-filter-row .search-input {
+  flex: 2;
+  min-width: 0;
+}
+/* Dropdowns in the pool are fixed-width so they don't
+   squish too narrow when the panel is partially collapsed */
+.pool-filter-row .filter-dropdown {
+  flex: 1;
+}
+.pool-filter-row .filter-dropdown-btn {
+  width: 100%;
+  padding: 9px 10px;
+  white-space: nowrap;
+}
+/* The rightmost dropdown opens left-aligned by default which
+   can clip outside the panel — pin it to the right edge instead */
+.pool-filter-dropdown-right {
+  left: auto !important;
+  right: 0;
+}
+
 /* ── Player Detail Panel ─────────────────────────────── */
 .player-detail {
   border-top: 1px solid var(--border);
@@ -913,6 +1047,83 @@ select option { background: var(--surface2); }
 #player-pool::-webkit-scrollbar { width: 4px; }
 #player-pool::-webkit-scrollbar-track { background: transparent; }
 #player-pool::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ── Player Pool: multi-column grid (desktop only) ────────
+   The pool panel expands to fill available width when open,
+   so we use auto-fill columns that adapt as the panel grows.
+   Breakpoints target the panel's own rendered width, not the
+   viewport, via min-width media queries on the viewport —
+   these thresholds are tuned so the pool panel is wide enough
+   to comfortably fit 2 or 3 columns before they kick in. */
+@media (min-width: 901px) {
+  #player-pool {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    align-content: start;
+    gap: 8px;
+    padding: 14px;
+  }
+  /* Cards inside the grid shouldn't add their own bottom margin */
+  #player-pool .player-card { margin-bottom: 0; }
+  /* "No players found" message should span all columns */
+  #player-pool > div:only-child { grid-column: 1 / -1; }
+}
+
+/* ── Slide-out Draft Board / Player Pool tabs ────────────
+   Base rules (all screen sizes): keep the rotated tab strip
+   hidden and the real content visible, so nothing leaks into
+   the mobile tab-bar layout, which owns visibility below
+   900px via .active-tab instead. */
+.side-tab-strip { display: none; }
+.panel-expanded-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Desktop-only: the actual expand/collapse + slide behavior.
+   Exactly one of Draft Board / Player Pool is "expanded" (fills
+   the space) at a time; the other collapses to a 44px
+   rotated-label tab. */
+@media (min-width: 901px) {
+  .side-slide-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: flex 0.3s ease;
+  }
+  .side-slide-panel.expanded  { flex: 1 1 0%; }
+  .side-slide-panel.collapsed { flex: 0 0 44px; width: 44px; cursor: pointer; }
+
+  .side-slide-panel.collapsed .panel-expanded-content { display: none; }
+
+  .side-tab-strip {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--surface2);
+    transition: background 0.15s;
+  }
+  .side-slide-panel.collapsed .side-tab-strip { display: flex; }
+  .side-slide-panel.collapsed:hover .side-tab-strip { background: var(--surface3); }
+
+  .side-tab-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .side-slide-panel.collapsed:hover .side-tab-label { color: var(--accent); }
+}
 
 .detail-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 2px; }
 .detail-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
@@ -1387,12 +1598,18 @@ main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 32px 24
 .controls .filter-btn   { flex: 1 1 auto; }
 
 .sort-control { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.sort-label  { font-size: 0.75rem; color: var(--muted); }
-.sort-select {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-  padding: 8px 12px; color: var(--text); font-size: 0.8rem; outline: none; cursor: pointer;
+.sort-label  {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted);
 }
-.sort-select option { background: var(--surface2); }
+.sort-select {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 7px 10px; color: var(--muted); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase; outline: none; cursor: pointer;
+  transition: all 0.15s;
+}
+.sort-select:hover, .sort-select:focus { color: var(--accent); border-color: var(--accent); }
+.sort-select option { background: var(--surface2); text-transform: none; letter-spacing: normal; }
 
 /* ── Scoring Legend ──────────────────────────────────── */
 .scoring-legend {
@@ -1522,6 +1739,59 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 }
 .tournament-option-status.ongoing   { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); }
 .tournament-option-status.completed { color: var(--muted); background: var(--surface3); }
+.tournament-option-status.upcoming  { color: var(--accent2); background: color-mix(in srgb, var(--accent2) 15%, transparent); }
+
+/* ── Generic Checkbox Filter Dropdown (Region / Team / etc.) ─
+   Same look as the tournament filter above, but reusable so it
+   isn't tied to tournament-specific markup or status badges. */
+.filter-dropdown { position: relative; flex: 1 1 auto; }
+
+.filter-dropdown-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%;
+}
+.filter-dropdown-arrow { font-size: 0.6rem; }
+
+.filter-dropdown-badge {
+  background: var(--accent); color: var(--bg);
+  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+  border-radius: 999px; padding: 1px 6px; line-height: 1.4;
+}
+
+.filter-dropdown-panel {
+  display: none;
+  position: absolute; top: calc(100% + 6px); left: 0;
+  min-width: 220px; max-height: 320px; overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+  z-index: 30; padding: 10px;
+}
+.filter-dropdown-panel.show { display: block; }
+
+.filter-dropdown-header {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); padding: 2px 4px 10px; border-bottom: 1px solid var(--border); margin-bottom: 8px;
+}
+
+.filter-dropdown-clear {
+  background: none; border: none; color: var(--accent); font-size: 0.7rem;
+  font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; padding: 0;
+}
+.filter-dropdown-clear:hover { text-decoration: underline; }
+
+.filter-dropdown-list { display: flex; flex-direction: column; gap: 2px; }
+
+.filter-option {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 6px; border-radius: 6px; cursor: pointer;
+  font-size: 0.83rem; color: var(--text); transition: background 0.12s;
+}
+.filter-option:hover { background: var(--surface2); }
+.filter-option input[type="checkbox"] {
+  width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0;
+}
+.filter-option-name { flex: 1; }
 
 /* ── Loading ─────────────────────────────────────────── */
 .loading-wrap { display: flex; align-items: center; justify-content: center; padding: 80px; }
