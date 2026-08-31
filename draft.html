@@ -127,36 +127,46 @@
     </div>
 
     <!-- CENTER: Draft Grid -->
-    <div class="panel" data-tab="board" style="border-right:none;">
-      <div class="panel-header">Draft Board</div>
-      <div class="grid-scroll panel-body" style="padding:0;">
-        <table class="draft-table" id="draft-table">
-          <thead id="draft-thead"></thead>
-          <tbody id="draft-tbody"></tbody>
-        </table>
+    <div class="panel side-slide-panel expanded" data-tab="board" id="board-panel" style="border-right:none;">
+      <div class="side-tab-strip" id="board-tab-strip" title="Open Draft Board">
+        <span class="side-tab-label">📋 Draft Board</span>
       </div>
+      <div class="panel-expanded-content">
+        <div class="panel-header">Draft Board</div>
+        <div class="grid-scroll panel-body" style="padding:0;">
+          <table class="draft-table" id="draft-table">
+            <thead id="draft-thead"></thead>
+            <tbody id="draft-tbody"></tbody>
+          </table>
+        </div>
 
-      <!-- Nominate button for auction (shown in center panel when no active bid) -->
-      <div style="padding:14px; border-top:1px solid var(--border); flex-shrink:0;" id="nominate-wrap">
-        <button class="btn-nominate show" id="btn-nominate" style="width:100%; display:none;">+ Nominate a Player</button>
-        <div id="center-status" style="text-align:center; color:var(--muted); font-size:0.85rem;"></div>
+        <!-- Nominate button for auction (shown in center panel when no active bid) -->
+        <div style="padding:14px; border-top:1px solid var(--border); flex-shrink:0;" id="nominate-wrap">
+          <button class="btn-nominate show" id="btn-nominate" style="width:100%; display:none;">+ Nominate a Player</button>
+          <div id="center-status" style="text-align:center; color:var(--muted); font-size:0.85rem;"></div>
+        </div>
       </div>
     </div>
 
     <!-- RIGHT: Player Pool -->
-    <div class="right-panel" data-tab="pool">
-      <div class="panel-header">Player Pool</div>
-      <div class="search-wrap">
-        <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
-        <div class="filter-row" id="game-filters"></div>
+    <div class="right-panel side-slide-panel collapsed" data-tab="pool" id="pool-panel">
+      <div class="side-tab-strip" id="pool-tab-strip" title="Open Player Pool">
+        <span class="side-tab-label">🎯 Player Pool <span class="tab-turn-dot" id="tab-turn-dot-desktop"></span></span>
       </div>
-      <div id="player-pool"></div>
-      <div class="player-detail" id="player-detail">
-        <button class="player-detail-close" id="player-detail-close" aria-label="Close">✕</button>
-        <div class="detail-name" id="detail-name">—</div>
-        <div class="detail-meta" id="detail-meta">—</div>
-        <div class="detail-stats" id="detail-stats"></div>
-        <button class="btn-pick" id="btn-pick">Draft Player</button>
+      <div class="panel-expanded-content">
+        <div class="panel-header">Player Pool</div>
+        <div class="search-wrap">
+          <input class="search-input" id="search-input" type="text" placeholder="Search players…" />
+          <div class="filter-row" id="game-filters"></div>
+        </div>
+        <div id="player-pool"></div>
+        <div class="player-detail" id="player-detail">
+          <button class="player-detail-close" id="player-detail-close" aria-label="Close">✕</button>
+          <div class="detail-name" id="detail-name">—</div>
+          <div class="detail-meta" id="detail-meta">—</div>
+          <div class="detail-stats" id="detail-stats"></div>
+          <button class="btn-pick" id="btn-pick">Draft Player</button>
+        </div>
       </div>
     </div>
 
@@ -343,6 +353,24 @@
         btn.classList.toggle("active", btn.dataset.tab === tab);
       });
     }
+
+    // ─────────────────────────────────────────────────────
+    //  Desktop slide-out tabs (Draft Board / Player Pool)
+    //  Exactly one is expanded at a time; clicking the
+    //  collapsed one's rotated tab swaps which is open.
+    // ─────────────────────────────────────────────────────
+    let activeSidePanel = "board";
+    function setSidePanel(tab) {
+      activeSidePanel = tab;
+      const boardPanel = document.getElementById("board-panel");
+      const poolPanel  = document.getElementById("pool-panel");
+      boardPanel.classList.toggle("expanded",  tab === "board");
+      boardPanel.classList.toggle("collapsed", tab !== "board");
+      poolPanel.classList.toggle("expanded",  tab === "pool");
+      poolPanel.classList.toggle("collapsed", tab !== "pool");
+    }
+    document.getElementById("board-tab-strip").addEventListener("click", () => setSidePanel("board"));
+    document.getElementById("pool-tab-strip").addEventListener("click", () => setSidePanel("pool"));
 
     // ─────────────────────────────────────────────────────
     //  Select a player (show detail pane)
@@ -880,6 +908,7 @@
       }
       wasMyTurn = myTurnNow;
       document.getElementById("tab-turn-dot").classList.toggle("show", myTurnNow);
+      document.getElementById("tab-turn-dot-desktop")?.classList.toggle("show", myTurnNow);
 
       if (lobbyData?.status === "complete") {
         document.getElementById("draft-complete-banner").style.display = "flex";
