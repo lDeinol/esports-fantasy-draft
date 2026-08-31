@@ -448,6 +448,52 @@ select option { background: var(--surface2); }
 .av-6 { background: #2a1a1a; color: #f87171; }
 .av-7 { background: #2a2a1a; color: #d4d40a; }
 
+/* ── Player Color Picker ─────────────────────────────── */
+.color-picker-section { margin-bottom: 20px; }
+
+.color-picker-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.color-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+
+.color-swatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.12s ease;
+}
+.color-swatch:hover  { transform: scale(1.14); }
+.color-swatch.selected {
+  border-color: var(--bg);
+  box-shadow: 0 0 0 2px currentColor;
+}
+.color-swatch.selected::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.55);
+}
+
 /* ── Lobby Actions ───────────────────────────────────── */
 .waiting-msg {
   text-align: center;
@@ -836,8 +882,18 @@ select option { background: var(--surface2); }
 .pick-cell-player { font-size: 0.85rem; font-weight: 600; color: var(--text); }
 .pick-cell-by     { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
 
-.pick-cell.active-pick  { background: color-mix(in srgb, var(--warn) 8%, transparent); }
-.pick-cell.your-active  { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.pick-cell.active-pick  {
+  background:  color-mix(in srgb, var(--cell-active-color, var(--warn))   12%, transparent);
+  border:      1px solid color-mix(in srgb, var(--cell-active-color, var(--warn))   55%, transparent);
+  box-shadow:  0 0 8px color-mix(in srgb, var(--cell-active-color, var(--warn))   30%, transparent);
+  border-radius: 4px;
+}
+.pick-cell.your-active  {
+  background:  color-mix(in srgb, var(--cell-active-color, var(--accent)) 15%, transparent);
+  border:      1px solid color-mix(in srgb, var(--cell-active-color, var(--accent)) 70%, transparent);
+  box-shadow:  0 0 10px color-mix(in srgb, var(--cell-active-color, var(--accent)) 40%, transparent);
+  border-radius: 4px;
+}
 .pick-cell.empty-future { opacity: 0.3; }
 .pick-cell.skipped      { background: color-mix(in srgb, var(--warn) 6%, transparent); }
 .pick-cell-skipped-label { font-size: 0.7rem; color: var(--warn); margin-top: 2px; }

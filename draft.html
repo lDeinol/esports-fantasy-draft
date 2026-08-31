@@ -578,7 +578,9 @@
       const picks   = lobbyData?.picks || {};
       const myPicks = Object.values(picks).filter(p => p.byUid === myUid);
 
-      document.getElementById("my-team-name").textContent = myName || "My Team";
+      const myTeamNameEl = document.getElementById("my-team-name");
+      myTeamNameEl.textContent = myName || "My Team";
+      myTeamNameEl.style.color = lobbyData?.players?.[myUid]?.color || "";
 
       // Budget bar (auction only)
       if (lobbyData?.format === "auction") {
@@ -657,6 +659,7 @@
           // The participant who picks at this slot:
           const ownerUid   = getPickerUid(pickOrder, pickIndex);
           const ownerName  = lobbyPlayers[ownerUid]?.name || "?";
+          const ownerColor = lobbyPlayers[ownerUid]?.color || "";
           const pick        = picksArr[pickIndex];
           const isActive    = pickIndex === picksArr.length;
           const isMyActive  = isActive && ownerUid === myUid;
@@ -667,16 +670,21 @@
           div.className = "pick-cell" +
             (isMyActive ? " your-active" : isActive ? " active-pick" : "") +
             (isFuture   ? " empty-future" : "");
+          if (isActive && ownerColor) {
+            div.style.setProperty("--cell-active-color", ownerColor);
+          }
 
           // Label format: round.pick e.g. 1.1, 1.2, 2.3
           const label = `${r + 1}.${p + 1}`;
 
+          const byColor = lobbyPlayers[pick?.byUid]?.color || "";
+
           div.innerHTML = pick
             ? `<div class="pick-cell-label">${label}</div>
                <div class="pick-cell-player">${pick.playerName}</div>
-               <div class="pick-cell-by">${pick.byName}${pick.price ? ` · $${pick.price}` : ""}${pick.skipped ? ' · <span style="color:var(--warn)">auto</span>' : ""}</div>`
+               <div class="pick-cell-by"${byColor ? ` style="color:${byColor}"` : ""}>${pick.byName}${pick.price ? ` · $${pick.price}` : ""}${pick.skipped ? ' · <span style="color:var(--warn)">auto</span>' : ""}</div>`
             : `<div class="pick-cell-label">${label}</div>
-               <div style="font-size:0.7rem; color:var(--muted);">${ownerName}${ownerUid === myUid ? " (You)" : ""}</div>
+               <div style="font-size:0.7rem; color:${ownerColor || "var(--muted)"};">${ownerName}${ownerUid === myUid ? " (You)" : ""}</div>
                ${isActive ? `<div style="color:var(--warn);font-size:0.72rem; margin-top:2px;">${ownerUid === myUid ? "⚡ YOUR PICK" : "On clock…"}</div>` : ""}`;
 
           td.appendChild(div);
@@ -786,11 +794,12 @@
       if (format === "snake") {
         const onClockUid  = getPickerUid(pickOrder, doneCount);
         const onClockName = lobbyPlayers[onClockUid]?.name || "Someone";
+        const onClockColor = lobbyPlayers[onClockUid]?.color || "";
         if (onClockUid === myUid) {
           statusEl.innerHTML = `<span class="your-turn">⚡ Your pick!</span>`;
           myPickLabel.textContent = "On the clock";
         } else {
-          statusEl.innerHTML = `<span class="waiting">Waiting on </span><span class="on-clock">${onClockName}</span>`;
+          statusEl.innerHTML = `<span class="waiting">Waiting on </span><span class="on-clock"${onClockColor ? ` style="color:${onClockColor}"` : ""}>${onClockName}</span>`;
           myPickLabel.textContent = "";
         }
         // Start per-pick timer if configured
@@ -806,9 +815,10 @@
         } else {
           const nominatorUid  = getPickerUid(pickOrder, doneCount);
           const nominatorName = lobbyPlayers[nominatorUid]?.name || "Someone";
+          const nominatorColor = lobbyPlayers[nominatorUid]?.color || "";
           statusEl.innerHTML = nominatorUid === myUid
             ? `<span class="your-turn">⚡ Your turn to nominate!</span>`
-            : `<span class="waiting">Waiting for </span><span class="on-clock">${nominatorName}</span><span class="waiting"> to nominate</span>`;
+            : `<span class="waiting">Waiting for </span><span class="on-clock"${nominatorColor ? ` style="color:${nominatorColor}"` : ""}>${nominatorName}</span><span class="waiting"> to nominate</span>`;
         }
       }
     }

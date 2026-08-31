@@ -135,6 +135,22 @@ export const SCORING = {
   },
 };
 
+// ── Player Name Colors ───────────────────────────────────────
+// Preset palette participants can choose from in the lobby to color
+// their name wherever it appears (player list, draft board, etc).
+export const PLAYER_COLORS = [
+  "#ff4655", "#ff8a5c", "#f59e0b", "#facc15",
+  "#d4d40a", "#4ade80", "#10b981", "#2dd4bf",
+  "#34d399", "#00e5ff", "#38bdf8", "#60a5fa",
+  "#818cf8", "#a78bfa", "#c084fc", "#e879f9",
+  "#f472b6", "#ec4899", "#fb7185", "#f87171",
+];
+
+// Sets the calling player's chosen name color for a given lobby.
+export async function setPlayerColor({ code, uid, color }) {
+  await set(ref(db, `lobbies/${code}/players/${uid}/color`), color);
+}
+
 // ── Firebase Lobby Helpers ───────────────────────────────────
 
 // Create a new lobby in Firebase
