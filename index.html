@@ -168,9 +168,27 @@
     let tournamentsData = [];
 
     // ── Load tournaments into select ───────────────────
+    // Sort order: Upcoming (soonest start first) → Live (soonest/most
+    // recent start first) → Completed (soonest/most recent end first).
+    // "Soonest" = closest to right now — for future dates that's the
+    // earliest one; for past dates (live start / completed end) that's
+    // the most recent one — so sort by distance from "now", not raw date.
+    function sortTournamentsForDropdown(list) {
+      const now = Date.now();
+      const byDistanceFromNow = (key) => (a, b) =>
+        Math.abs(new Date(a[key]) - now) - Math.abs(new Date(b[key]) - now);
+
+      const upcoming  = list.filter(t => t.status === "upcoming").sort(byDistanceFromNow("startDate"));
+      const live      = list.filter(t => t.status === "ongoing").sort(byDistanceFromNow("startDate"));
+      const completed = list.filter(t => t.status === "completed").sort(byDistanceFromNow("endDate"));
+
+      return [...upcoming, ...live, ...completed];
+    }
+
     (async () => {
       try {
-        tournamentsData = await fetch("data/tournaments.json").then(r => r.json());
+        const rawData = await fetch("data/tournaments.json").then(r => r.json());
+        tournamentsData = sortTournamentsForDropdown(rawData);
         const sel = document.getElementById("create-tournament");
         sel.innerHTML = "";
         tournamentsData.forEach(t => {
