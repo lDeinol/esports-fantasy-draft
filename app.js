@@ -196,6 +196,37 @@ export function subscribeLobby(code, callback) {
   return unsub;
 }
 
+// ── Theme (Light / Dark) ─────────────────────────────────────
+const THEME_KEY = "theme";
+
+// Returns the currently active theme ("light" or "dark"), reading
+// from localStorage. Defaults to "dark" (the site's original look).
+export function getTheme() {
+  try { return localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark"; }
+  catch { return "dark"; }
+}
+
+// Applies + persists a theme. "dark" removes the attribute entirely
+// so it falls back to the default :root tokens in style.css.
+export function setTheme(theme) {
+  const isLight = theme === "light";
+  if (isLight) document.documentElement.setAttribute("data-theme", "light");
+  else document.documentElement.removeAttribute("data-theme");
+  try { localStorage.setItem(THEME_KEY, isLight ? "light" : "dark"); } catch {}
+}
+
+// Wires up the header's theme-toggle checkbox: syncs its initial
+// checked state to the active theme, and flips + persists on change.
+// Call this once per page after the toggle markup exists in the DOM.
+export function initThemeToggle(inputId = "theme-toggle-input") {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.checked = getTheme() === "light";
+  input.addEventListener("change", () => {
+    setTheme(input.checked ? "light" : "dark");
+  });
+}
+
 // ── Utility ──────────────────────────────────────────────────
 export function formatCurrency(n) {
   return `$${Math.round(n)}`;

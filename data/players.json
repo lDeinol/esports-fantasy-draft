@@ -889,7 +889,7 @@
     "name": "GLYPH",
     "team": "ENVY",
     "role": "Initiator",
-    "region": "EMEA",
+    "region": "Americas",
     "status": "active",
     "stats": {
       "rating": 0.92,
@@ -2869,7 +2869,7 @@
     "name": "NINJA",
     "team": "PCIFIC Esports",
     "role": "Sentinel",
-    "region": "EMA",
+    "region": "EMEA",
     "status": "active",
     "stats": {
       "rating": 0.95,
@@ -3109,7 +3109,7 @@
     "name": "runneR",
     "team": "Joblife",
     "role": "Duelist",
-    "region": "EMA",
+    "region": "EMEA",
     "status": "active",
     "stats": {
       "rating": 1.09,
@@ -3424,7 +3424,7 @@
     "name": "hezacoil",
     "team": "Fire Flux Esports",
     "role": "Controller",
-    "region": "1.05",
+    "region": "EMEA",
     "status": "active",
     "stats": {
       "rating": 186.0,
@@ -3694,7 +3694,7 @@
     "name": "Kadoom",
     "team": "Sharper Esports",
     "role": "Duelist",
-    "region": ".85",
+    "region": "Pacific",
     "status": "active",
     "stats": {
       "rating": 0.85,
