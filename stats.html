@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stats — DraftZone</title>
@@ -12,6 +22,14 @@
 
 <header>
   <a href="home.html" class="logo">Draft<span>Zone</span></a>
+  <label class="theme-toggle" title="Toggle light / dark mode">
+    <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+    <span class="theme-toggle-track">
+      <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+      <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+      <span class="theme-toggle-thumb"></span>
+    </span>
+  </label>
   <div class="header-divider"></div>
   <nav>
     <a href="home.html"      class="nav-link">Home</a>
@@ -39,11 +57,41 @@
 
   <div class="controls">
     <input class="search-input" id="search" type="text" placeholder="Search players or teams…" />
-    <button class="filter-btn active" data-region="all">All</button>
-    <button class="filter-btn" data-region="Americas">Americas</button>
-    <button class="filter-btn" data-region="EMEA">EMEA</button>
-    <button class="filter-btn" data-region="Pacific">Pacific</button>
-    <button class="filter-btn" data-region="China">China</button>
+
+    <div class="filter-dropdown" id="region-filter">
+      <button class="filter-btn filter-dropdown-btn" id="region-filter-btn" type="button">
+        Region
+        <span class="filter-dropdown-badge" id="region-filter-badge" style="display:none;">0</span>
+        <span class="filter-dropdown-arrow">▾</span>
+      </button>
+      <div class="filter-dropdown-panel" id="region-dropdown">
+        <div class="filter-dropdown-header">
+          <span>Filter by region</span>
+          <button class="filter-dropdown-clear" id="region-clear-btn" type="button">Clear</button>
+        </div>
+        <div class="filter-dropdown-list" id="region-dropdown-list">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-dropdown" id="team-filter">
+      <button class="filter-btn filter-dropdown-btn" id="team-filter-btn" type="button">
+        Team
+        <span class="filter-dropdown-badge" id="team-filter-badge" style="display:none;">0</span>
+        <span class="filter-dropdown-arrow">▾</span>
+      </button>
+      <div class="filter-dropdown-panel" id="team-dropdown">
+        <div class="filter-dropdown-header">
+          <span>Filter by team</span>
+          <button class="filter-dropdown-clear" id="team-clear-btn" type="button">Clear</button>
+        </div>
+        <div class="filter-dropdown-list" id="team-dropdown-list">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+
     <div class="tournament-filter" id="tournament-filter">
       <button class="filter-btn tournament-filter-btn" id="tournament-filter-btn" type="button">
         Tournaments
@@ -61,9 +109,11 @@
       </div>
     </div>
     <div class="sort-control">
-      <span class="sort-label">Sort by</span>
+      <span class="sort-label">Sort</span>
       <select class="sort-select" id="sort-select">
         <option value="totalPts">Total Pts</option>
+        <option value="name">Player Name</option>
+        <option value="team">Team</option>
         <option value="rating">Rating</option>
         <option value="acs">ACS</option>
         <option value="kd">K/D</option>
@@ -79,8 +129,8 @@
       <thead>
         <tr>
           <th class="td-rank">#</th>
-          <th>Player</th>
-          <th>Team</th>
+          <th data-col="name">Player</th>
+          <th data-col="team">Team</th>
           <th>Role</th>
           <th>Region</th>
           <th data-col="rating" class="sorted">Rating <span class="sort-arrow">▼</span></th>
@@ -100,12 +150,15 @@
 </main>
 
 <script type="module">
-  import { SCORING } from "./app.js";
+  import { SCORING, initThemeToggle } from "./app.js";
+
+  initThemeToggle();
 
   let players    = [];
   let matches    = [];
   let tournaments = [];
-  let activeRegion = "all";
+  let selectedRegions = new Set(); // empty = all regions
+  let selectedTeams   = new Set(); // empty = all teams
   let selectedTournaments = new Set(); // empty = all tournaments
   let sortCol    = "totalPts";
   let expanded   = new Set();
@@ -173,13 +226,16 @@
     return allPlayers
       .filter(p => {
         const q = document.getElementById("search").value.toLowerCase();
-        const matchRegion = activeRegion === "all" || p.region === activeRegion;
+        const matchRegion = selectedRegions.size === 0 || selectedRegions.has(p.region);
+        const matchTeam   = selectedTeams.size === 0 || selectedTeams.has(p.team);
         const matchSearch = !q || p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q);
-        return matchRegion && matchSearch;
+        return matchRegion && matchTeam && matchSearch;
       })
       .sort((a, b) => {
         if (sortCol === "totalPts")    return b.totalPts - a.totalPts;
         if (sortCol === "matchCount")  return b.matchCount - a.matchCount;
+        if (sortCol === "name")        return a.name.localeCompare(b.name);
+        if (sortCol === "team")        return a.team.localeCompare(b.team);
         return (b.stats?.[sortCol] ?? 0) - (a.stats?.[sortCol] ?? 0);
       });
   }
@@ -249,22 +305,88 @@
   }
 
   // Controls
-  document.querySelectorAll(".filter-btn[data-region]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      activeRegion = btn.dataset.region;
-      document.querySelectorAll(".filter-btn[data-region]").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderTable(buildPlayerData());
+  // Generic checkbox-dropdown wiring, reused for Region and Team filters.
+  function wireCheckboxDropdown({ btnId, dropdownId, listId, badgeId, clearBtnId, selectedSet, getOptions, onChange }) {
+    function populate() {
+      const list = document.getElementById(listId);
+      list.innerHTML = getOptions().map(opt => `
+        <label class="filter-option">
+          <input type="checkbox" value="${opt}" ${selectedSet.has(opt) ? "checked" : ""} />
+          <span class="filter-option-name">${opt}</span>
+        </label>
+      `).join("");
+
+      list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener("change", () => {
+          if (cb.checked) selectedSet.add(cb.value);
+          else selectedSet.delete(cb.value);
+          updateBadge();
+          onChange();
+        });
+      });
+    }
+
+    function updateBadge() {
+      const badge = document.getElementById(badgeId);
+      const btn   = document.getElementById(btnId);
+      const count = selectedSet.size;
+      badge.style.display = count > 0 ? "inline-block" : "none";
+      badge.textContent = count;
+      btn.classList.toggle("active", count > 0);
+    }
+
+    document.getElementById(btnId).addEventListener("click", (e) => {
+      e.stopPropagation();
+      document.getElementById(dropdownId).classList.toggle("show");
     });
+
+    document.getElementById(clearBtnId).addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectedSet.clear();
+      populate();
+      updateBadge();
+      onChange();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!document.getElementById(btnId).closest(".filter-dropdown").contains(e.target)) {
+        document.getElementById(dropdownId).classList.remove("show");
+      }
+    });
+
+    return { populate, updateBadge };
+  }
+
+  const regionFilter = wireCheckboxDropdown({
+    btnId: "region-filter-btn", dropdownId: "region-dropdown", listId: "region-dropdown-list",
+    badgeId: "region-filter-badge", clearBtnId: "region-clear-btn", selectedSet: selectedRegions,
+    getOptions: () => [...new Set(players.map(p => p.region))].sort(),
+    onChange: () => renderTable(buildPlayerData()),
+  });
+
+  const teamFilter = wireCheckboxDropdown({
+    btnId: "team-filter-btn", dropdownId: "team-dropdown", listId: "team-dropdown-list",
+    badgeId: "team-filter-badge", clearBtnId: "team-clear-btn", selectedSet: selectedTeams,
+    getOptions: () => [...new Set(players.map(p => p.team))].sort(),
+    onChange: () => renderTable(buildPlayerData()),
   });
 
   // Tournament filter dropdown
+  // Order: Ongoing (earliest start → latest) → Completed (latest end → earliest) → Upcoming (earliest start → latest)
+  function sortTournamentsForFilter(list) {
+    const byAsc  = (key) => (a, b) => new Date(a[key]) - new Date(b[key]);
+    const byDesc = (key) => (a, b) => new Date(b[key]) - new Date(a[key]);
+
+    const ongoing   = list.filter(t => t.status === "ongoing").sort(byAsc("startDate"));
+    const completed = list.filter(t => t.status === "completed").sort(byDesc("endDate"));
+    const upcoming  = list.filter(t => t.status === "upcoming").sort(byAsc("startDate"));
+
+    return [...ongoing, ...completed, ...upcoming];
+  }
+
   function populateTournamentDropdown() {
     const list = document.getElementById("tournament-dropdown-list");
-    const sorted = [...tournaments].sort((a, b) => {
-      if (a.status !== b.status) return a.status === "ongoing" ? -1 : 1;
-      return (b.startDate || "").localeCompare(a.startDate || "");
-    });
+    const sorted = sortTournamentsForFilter(tournaments);
 
     list.innerHTML = sorted.map(t => `
       <label class="tournament-option">
@@ -329,6 +451,8 @@
   });
 
   await loadData();
+  regionFilter.populate();
+  teamFilter.populate();
   populateTournamentDropdown();
   updateTournamentFilterUI();
   renderTable(buildPlayerData());

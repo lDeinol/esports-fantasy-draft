@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Standings — DraftZone</title>
@@ -12,6 +22,14 @@
 
   <header>
     <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <label class="theme-toggle" title="Toggle light / dark mode">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </label>
     <div class="header-divider"></div>
     <nav>
       <a href="home.html"      class="nav-link">Home</a>
@@ -32,8 +50,10 @@
   <script type="module">
     import {
       db, ref, get, subscribeLobby,
-      ensureAuth, LS, CONFIG, SCORING
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle
     } from "./app.js";
+
+    initThemeToggle();
 
     const session = LS.getSession();
 
@@ -97,6 +117,7 @@
         return {
           uid,
           name:   p.name,
+          color:  p.color || null,
           isHost: p.isHost,
           picks:  enriched,
           totalScore,
@@ -191,7 +212,7 @@
             <div class="podium-card rank-${i + 1}">
               <div class="podium-medal">${rankMedal(i)}</div>
               <div class="podium-rank">${i === 0 ? "1st" : i === 1 ? "2nd" : "3rd"}</div>
-              <div class="podium-name">${e.name}${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}</div>
+              <div class="podium-name"><span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}</div>
               <div class="podium-score">${e.totalScore}</div>
               <div class="podium-picks">${e.pickCount} pick${e.pickCount !== 1 ? "s" : ""}</div>
             </div>
@@ -208,7 +229,7 @@
               data-uid="${e.uid}" onclick="toggleExpand('${e.uid}')">
             <td class="rank-cell ${rankClass(i)}">${rankMedal(i) || `#${i + 1}`}</td>
             <td class="name-cell">
-              ${e.name}
+              <span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>
               ${e.uid === myUid ? '<span class="you-tag">You</span>' : ""}
               ${e.isHost        ? '<span style="font-size:0.65rem; color:var(--accent2); margin-left:6px;">Host</span>' : ""}
             </td>

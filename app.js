@@ -135,6 +135,22 @@ export const SCORING = {
   },
 };
 
+// ── Player Name Colors ───────────────────────────────────────
+// Preset palette participants can choose from in the lobby to color
+// their name wherever it appears (player list, draft board, etc).
+export const PLAYER_COLORS = [
+  "#ff4655", "#ff8a5c", "#f59e0b", "#facc15",
+  "#d4d40a", "#4ade80", "#10b981", "#2dd4bf",
+  "#34d399", "#00e5ff", "#38bdf8", "#60a5fa",
+  "#818cf8", "#a78bfa", "#c084fc", "#e879f9",
+  "#f472b6", "#ec4899", "#fb7185", "#f87171",
+];
+
+// Sets the calling player's chosen name color for a given lobby.
+export async function setPlayerColor({ code, uid, color }) {
+  await set(ref(db, `lobbies/${code}/players/${uid}/color`), color);
+}
+
 // ── Firebase Lobby Helpers ───────────────────────────────────
 
 // Create a new lobby in Firebase
@@ -194,6 +210,37 @@ export function subscribeLobby(code, callback) {
   const lobbyRef = ref(db, `lobbies/${code}`);
   const unsub = onValue(lobbyRef, (snap) => callback(snap.val()));
   return unsub;
+}
+
+// ── Theme (Light / Dark) ─────────────────────────────────────
+const THEME_KEY = "theme";
+
+// Returns the currently active theme ("light" or "dark"), reading
+// from localStorage. Defaults to "dark" (the site's original look).
+export function getTheme() {
+  try { return localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark"; }
+  catch { return "dark"; }
+}
+
+// Applies + persists a theme. "dark" removes the attribute entirely
+// so it falls back to the default :root tokens in style.css.
+export function setTheme(theme) {
+  const isLight = theme === "light";
+  if (isLight) document.documentElement.setAttribute("data-theme", "light");
+  else document.documentElement.removeAttribute("data-theme");
+  try { localStorage.setItem(THEME_KEY, isLight ? "light" : "dark"); } catch {}
+}
+
+// Wires up the header's theme-toggle checkbox: syncs its initial
+// checked state to the active theme, and flips + persists on change.
+// Call this once per page after the toggle markup exists in the DOM.
+export function initThemeToggle(inputId = "theme-toggle-input") {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.checked = getTheme() === "light";
+  input.addEventListener("change", () => {
+    setTheme(input.checked ? "light" : "dark");
+  });
 }
 
 // ── Utility ──────────────────────────────────────────────────

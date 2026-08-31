@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Esports Fantasy Draft</title>
@@ -12,6 +22,14 @@
 
   <header>
     <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <label class="theme-toggle" title="Toggle light / dark mode">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </label>
     <div class="header-divider"></div>
     <nav>
       <a href="home.html"      class="nav-link">Home</a>
@@ -109,6 +127,12 @@
 
         <ul class="player-list" id="player-list"></ul>
 
+        <!-- Everyone (host + joiners) picks a name color pre-draft -->
+        <div class="color-picker-section">
+          <div class="color-picker-label">Your Name Color</div>
+          <div class="color-swatch-grid" id="color-swatch-grid"></div>
+        </div>
+
         <div id="lobby-error" class="error-msg"></div>
 
         <!-- Host-only draft settings -->
@@ -158,8 +182,11 @@
     import {
       db, auth, ref, set, get, update, onValue,
       ensureAuth, LS, generateCode, createLobby, joinLobby,
-      lobbyExists, subscribeLobby, CONFIG
+      lobbyExists, subscribeLobby, CONFIG, initThemeToggle,
+      PLAYER_COLORS, setPlayerColor
     } from "./app.js";
+
+    initThemeToggle();
 
     // ── State ──────────────────────────────────────────
     let selectedFormat = "snake";
@@ -297,7 +324,7 @@
         item.draggable = true;
         item.innerHTML = `
           <span class="order-pos">${i + 1}</span>
-          <span class="order-name">${p.name}${uid === hostId ? " 👑" : ""}</span>
+          <span class="order-name"${p.color ? ` style="color:${p.color}"` : ""}>${p.name}${uid === hostId ? " 👑" : ""}</span>
           <span class="order-handle">⠿</span>
         `;
         item.addEventListener("dragstart", () => { dragSrc = item; item.style.opacity = "0.4"; });
@@ -335,7 +362,7 @@
         const initial = (p.name || "?")[0].toUpperCase();
         li.innerHTML = `
           <div class="player-avatar ${avatarClass(i)}">${initial}</div>
-          <div class="player-name">${p.name}</div>
+          <div class="player-name"${p.color ? ` style="color:${p.color}"` : ""}>${p.name}</div>
           ${uid === hostId ? '<span class="host-badge">Host</span>' : ""}
           ${uid === myUid  ? '<span class="you-badge">You</span>'   : ""}
         `;
@@ -344,6 +371,36 @@
 
       // Rebuild drag-order list whenever players change
       if (myUid === hostId) buildOrderList(players, hostId);
+
+      // Keep the color picker in sync with my current pick
+      renderColorSwatches(players?.[myUid]?.color);
+    }
+
+    // ── Render color swatch picker ──────────────────────
+    function renderColorSwatches(myColor) {
+      const grid = document.getElementById("color-swatch-grid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      PLAYER_COLORS.forEach(color => {
+        const btn = document.createElement("button");
+        btn.type  = "button";
+        btn.className = "color-swatch" + (color === myColor ? " selected" : "");
+        btn.style.background = color;
+        btn.style.color = color; // used by .selected's currentColor ring
+        btn.title = color;
+        btn.setAttribute("aria-label", `Choose color ${color}`);
+        btn.addEventListener("click", async () => {
+          const session = LS.getSession();
+          if (!currentUid || !session?.lobbyCode) return;
+          try {
+            await setPlayerColor({ code: session.lobbyCode, uid: currentUid, color });
+          } catch (err) {
+            console.error("Failed to set color:", err);
+          }
+        });
+        grid.appendChild(btn);
+      });
     }
 
     // ── Enter lobby view ───────────────────────────────
