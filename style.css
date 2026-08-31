@@ -1002,6 +1002,27 @@ select option { background: var(--surface2); }
 #player-pool::-webkit-scrollbar-track { background: transparent; }
 #player-pool::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
+/* ── Player Pool: multi-column grid (desktop only) ────────
+   The pool panel expands to fill available width when open,
+   so we use auto-fill columns that adapt as the panel grows.
+   Breakpoints target the panel's own rendered width, not the
+   viewport, via min-width media queries on the viewport —
+   these thresholds are tuned so the pool panel is wide enough
+   to comfortably fit 2 or 3 columns before they kick in. */
+@media (min-width: 901px) {
+  #player-pool {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    align-content: start;
+    gap: 8px;
+    padding: 14px;
+  }
+  /* Cards inside the grid shouldn't add their own bottom margin */
+  #player-pool .player-card { margin-bottom: 0; }
+  /* "No players found" message should span all columns */
+  #player-pool > div:only-child { grid-column: 1 / -1; }
+}
+
 /* ── Slide-out Draft Board / Player Pool tabs ────────────
    Base rules (all screen sizes): keep the rotated tab strip
    hidden and the real content visible, so nothing leaks into
