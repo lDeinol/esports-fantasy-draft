@@ -49,15 +49,6 @@
         <div class="card-title">Esports Fantasy Draft</div>
         <div class="card-sub">Create a lobby or join with a code</div>
 
-        <!-- Active session banner (shown when a saved session's draft has finished) -->
-        <div class="session-banner" id="session-banner" style="margin-bottom:24px;">
-          <div class="session-text">
-            Your draft is finished: <span class="session-code" id="session-banner-code"></span>
-          </div>
-          <button class="btn-sm btn-sm-primary" id="btn-session-rejoin">View Draft Board</button>
-          <button class="btn-sm btn-sm-ghost" id="btn-session-leave">Leave</button>
-        </div>
-
         <!-- Rejoin Banner (shown when ?code= is in URL and no session) -->
         <div class="rejoin-banner" id="rejoin-banner">
           <div class="rejoin-banner-title">⚡ Rejoin Draft</div>
@@ -114,6 +105,15 @@
     <!-- ── Lobby / Waiting Room View ─────────────────── -->
     <div id="view-lobby" class="view">
       <div class="card">
+        <!-- Draft finished banner (shown when this lobby's draft has already completed —
+             no Leave button here since "Leave Lobby" below already covers that) -->
+        <div class="session-banner" id="lobby-finished-banner" style="margin-bottom:24px;">
+          <div class="session-text">
+            Your draft is finished: <span class="session-code" id="lobby-finished-banner-code"></span>
+          </div>
+          <button class="btn-sm btn-sm-primary" id="btn-lobby-finished-rejoin">View Draft Board</button>
+        </div>
+
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
           <div class="card-title">Lobby</div>
           <span id="lobby-format-badge" class="lobby-format-badge">Snake</span>
@@ -413,7 +413,10 @@
     }
 
     // ── Enter lobby view ───────────────────────────────
-    function enterLobby(code, isHost, lobbyData) {
+    // finished=true renders the waiting-room view (player list, code)
+    // but for a draft that's already complete: shows the "draft
+    // finished" banner instead of Start/waiting/settings controls.
+    function enterLobby(code, isHost, lobbyData, finished = false) {
       showView("view-lobby");
       document.getElementById("lobby-code-display").textContent = code;
       document.getElementById("lobby-format-badge").textContent =
@@ -427,15 +430,25 @@
         nameEl.style.display = "block";
       }
 
-      // Host controls vs non-host
-      if (isHost) {
-        document.getElementById("btn-start").style.display   = "block";
-        document.getElementById("waiting-msg").style.display  = "none";
-        document.getElementById("draft-settings").style.display = "block";
+      const finishedBanner = document.getElementById("lobby-finished-banner");
+      if (finished) {
+        document.getElementById("lobby-finished-banner-code").textContent = code;
+        finishedBanner.classList.add("show");
+        document.getElementById("btn-start").style.display       = "none";
+        document.getElementById("waiting-msg").style.display     = "none";
+        document.getElementById("draft-settings").style.display  = "none";
       } else {
-        document.getElementById("btn-start").style.display   = "none";
-        document.getElementById("waiting-msg").style.display  = "block";
-        document.getElementById("draft-settings").style.display = "none";
+        finishedBanner.classList.remove("show");
+        // Host controls vs non-host
+        if (isHost) {
+          document.getElementById("btn-start").style.display   = "block";
+          document.getElementById("waiting-msg").style.display  = "none";
+          document.getElementById("draft-settings").style.display = "block";
+        } else {
+          document.getElementById("btn-start").style.display   = "none";
+          document.getElementById("waiting-msg").style.display  = "block";
+          document.getElementById("draft-settings").style.display = "none";
+        }
       }
 
       // Copy code button
@@ -733,6 +746,12 @@
       }
     });
 
+    // ── View draft board (from the finished-draft banner atop the lobby view) ──
+    document.getElementById("btn-lobby-finished-rejoin").addEventListener("click", () => {
+      const session = LS.getSession();
+      if (session?.lobbyCode) window.location.href = `draft.html?code=${session.lobbyCode}`;
+    });
+
     // ── Rejoin on page load ────────────────────────────
     (async () => {
       const params  = new URLSearchParams(location.search);
@@ -766,20 +785,11 @@
             return;
           }
 
-          // Draft already finished — show a banner instead of silently
-          // redirecting, since landing here later is usually just browsing
+          // Draft already finished — show the lobby (players + code) with a
+          // "draft finished" banner up top instead of silently redirecting,
+          // since landing here later is usually just browsing
           if (lobby.status === "complete") {
-            const banner = document.getElementById("session-banner");
-            document.getElementById("session-banner-code").textContent = session.lobbyCode;
-            banner.classList.add("show");
-
-            document.getElementById("btn-session-rejoin").addEventListener("click", () => {
-              window.location.href = `draft.html?code=${session.lobbyCode}`;
-            });
-            document.getElementById("btn-session-leave").addEventListener("click", () => {
-              LS.clearSession();
-              banner.classList.remove("show");
-            });
+            enterLobby(session.lobbyCode, session.isHost, lobby, true);
             return;
           }
 
