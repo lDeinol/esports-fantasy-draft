@@ -384,6 +384,10 @@
         return matchRegion && matchTeam && matchSearch && matchTournament;
       });
 
+      filtered.sort((a, b) =>
+        a.region.localeCompare(b.region) || a.team.localeCompare(b.team)
+      );
+
       const pool = document.getElementById("player-pool");
       pool.innerHTML = "";
 
