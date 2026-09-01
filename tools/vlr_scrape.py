@@ -251,8 +251,16 @@ def parse_match(html, match_id):
                 date_str = m.group(1)
 
     # ── Tournament ─────────────────────────────────────────
-    event_el = soup.select_one(".match-header-event-series") or soup.select_one(".match-header-event")
+    event_el = soup.select_one(".match-header-event")
     event_name = re.sub(r"\s+", " ", event_el.get_text(" ", strip=True)) if event_el else ""
+
+    # ── Series / stage (e.g. "Playoffs: Upper Final") ──────
+    # This is a sub-element inside .match-header-event that VLR uses
+    # to describe what part of the tournament this match belongs to
+    # (group stage, bracket round, etc). Pulled separately so it's
+    # not lost inside the broader event_name text above.
+    series_el = soup.select_one(".match-header-event-series")
+    series = re.sub(r"\s+", " ", series_el.get_text(" ", strip=True)) if series_el else ""
 
     # ── Player stats from the "all" (series total) tab ────
     # VLR shows per-map tabs + an "all" tab with series totals
@@ -353,6 +361,7 @@ def parse_match(html, match_id):
         "format": fmt,
         "date": date_str,
         "eventName": event_name,
+        "series": series,
         "roundsTotal": rounds_total,
         "playerStats": player_stats,
     }
@@ -453,6 +462,7 @@ def main():
     print(f"    Format:  {data['format']}")
     print(f"    Date:    {data['date'] or 'unknown'}")
     print(f"    Event:   {data['eventName'] or 'unknown'}")
+    print(f"    Series:  {data['series'] or 'unknown'}")
     print(f"    Rounds:  {data['roundsTotal']}")
     print(f"    Players: {len(data['playerStats'])}")
 
@@ -504,6 +514,7 @@ def main():
     new_match = {
         "id":           match_id,
         "tournamentId": tournament_id,
+        "series":       data["series"],
         "team1":        data["teams"][0],
         "team2":        data["teams"][1],
         "score":        data["score"],
@@ -512,7 +523,6 @@ def main():
         "date":         data["date"],
         "status":       status,
         "playerStats":  clean_stats,
-        "vlrId":        vlr_id,
     }
 
     # ── Update in place if ID exists, otherwise append ────

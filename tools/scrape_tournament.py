@@ -221,6 +221,7 @@ def scrape_match(vlr_id, tournament_id, players_data, matches, matches_file,
     new_match = {
         "id":           match_id,
         "tournamentId": tournament_id,
+        "series":       data["series"],
         "team1":        data["teams"][0],
         "team2":        data["teams"][1],
         "score":        data["score"],
@@ -229,7 +230,6 @@ def scrape_match(vlr_id, tournament_id, players_data, matches, matches_file,
         "date":         data["date"],
         "status":       status,
         "playerStats":  clean_stats,
-        "vlrId":        vlr_id,
     }
 
     existing_idx = next((i for i, m in enumerate(matches) if m["id"] == match_id), None)
@@ -269,7 +269,7 @@ def scrape_tournament(tournament, players_data, matches, args, index=1, total_to
     # "live", gets (re-)scraped — that's exactly how a match's date gets saved
     # early and how it later picks up a score once one exists. Only matches we
     # already have as "completed" are skipped outright.
-    existing_status_by_id = {m.get("vlrId"): m.get("status") for m in matches if m.get("vlrId")}
+    existing_status_by_id = {m.get("id"): m.get("status") for m in matches if m.get("id")}
 
     to_scrape = [mid for mid in all_match_ids if existing_status_by_id.get(mid) != "completed"]
     already_done = len(all_match_ids) - len(to_scrape)
