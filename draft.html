@@ -8,6 +8,9 @@
         if (localStorage.getItem("theme") === "light") {
           document.documentElement.setAttribute("data-theme", "light");
         }
+        if (localStorage.getItem("draftViewMode") === "combined") {
+          document.documentElement.setAttribute("data-draft-view", "combined");
+        }
       } catch (e) {}
     })();
   </script>
@@ -38,6 +41,15 @@
       </span>
     </label>
     <div class="header-divider"></div>
+    <label class="draft-view-toggle" id="draft-view-toggle" title="Draft View layout: Tab (one panel at a time) or Combined (board + pool side by side)">
+      <input type="checkbox" id="draft-view-toggle-input" class="draft-view-toggle-input" />
+      <span class="draft-view-toggle-label draft-view-toggle-label-off">Tab</span>
+      <span class="draft-view-toggle-track">
+        <span class="draft-view-toggle-thumb"></span>
+      </span>
+      <span class="draft-view-toggle-label draft-view-toggle-label-on">Combined</span>
+    </label>
+    <div class="header-divider draft-view-divider"></div>
     <div class="pick-status" id="pick-status">Loading draft…</div>
     <div class="round-badge" id="round-badge">Round —</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
@@ -223,6 +235,27 @@
     } from "./app.js";
 
     initThemeToggle();
+
+    // ─────────────────────────────────────────────────────
+    //  Draft View toggle (Tab layout / Combined layout)
+    //  Desktop-only (>900px) — the actual layout switch lives
+    //  in CSS via html[data-draft-view="combined"], scoped to
+    //  @media (min-width: 901px) so it's a no-op on the mobile
+    //  tab layout. The attribute itself is applied before first
+    //  paint by the inline script in <head>.
+    // ─────────────────────────────────────────────────────
+    function initDraftViewToggle(inputId = "draft-view-toggle-input") {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      input.checked = document.documentElement.getAttribute("data-draft-view") === "combined";
+      input.addEventListener("change", () => {
+        const isCombined = input.checked;
+        if (isCombined) document.documentElement.setAttribute("data-draft-view", "combined");
+        else document.documentElement.removeAttribute("data-draft-view");
+        try { localStorage.setItem("draftViewMode", isCombined ? "combined" : "tab"); } catch {}
+      });
+    }
+    initDraftViewToggle();
 
     // ─────────────────────────────────────────────────────
     //  State

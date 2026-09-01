@@ -72,6 +72,46 @@
 }
 .theme-toggle-input:checked ~ .theme-toggle-track .theme-toggle-thumb { transform: translateX(22px); }
 
+/* ── Draft View Toggle (Tab / Combined layout) ────────
+   Desktop-only control (hidden below 900px — see the
+   max-width: 900px header rules). Persisted via
+   localStorage "draftViewMode" and applied as
+   data-draft-view="combined" on <html>; see the
+   "Combined Draft View" rules further down for the
+   actual layout changes this drives. */
+.draft-view-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+.draft-view-toggle-input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.draft-view-toggle-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.draft-view-toggle-input:not(:checked) ~ .draft-view-toggle-label-off { color: var(--accent); }
+.draft-view-toggle-input:checked     ~ .draft-view-toggle-label-on  { color: var(--accent); }
+
+.draft-view-toggle-track {
+  position: relative;
+  width: 46px; height: 24px;
+  border-radius: 999px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  transition: background 0.15s, border-color 0.15s;
+}
+.draft-view-toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.2s ease;
+}
+.draft-view-toggle-input:checked ~ .draft-view-toggle-track .draft-view-toggle-thumb {
+  transform: translateX(22px);
+}
+
 /* ── Reset ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { min-height: 100vh; }
@@ -1107,6 +1147,37 @@ select option { background: var(--surface2); }
     gap: 8px;
   }
   .side-slide-panel.collapsed:hover .side-tab-label { color: var(--accent); }
+}
+
+/* ── Combined Draft View (desktop only) ───────────────
+   Toggled via the header's Draft View switch (Tab / Combined).
+   Tab (default/off) keeps the existing expand-one-collapse-
+   the-other side panel behavior above. Combined (on) shows the
+   Draft Board and Player Pool at the same time — no tab strip,
+   no collapsing — with the pool rendered as a single scrollable
+   column instead of a card grid, and its search bar stacked
+   above the Team/Region filter row. */
+@media (min-width: 901px) {
+  html[data-draft-view="combined"] .side-slide-panel {
+    flex: 1 1 0% !important;
+    width: auto !important;
+  }
+  html[data-draft-view="combined"] #pool-panel {
+    flex: 0 0 380px !important;
+    width: 380px !important;
+  }
+  html[data-draft-view="combined"] .side-tab-strip { display: none !important; }
+  html[data-draft-view="combined"] .panel-expanded-content { display: flex !important; }
+
+  /* Search bar on its own row, Team + Region filters sharing the row below */
+  html[data-draft-view="combined"] .pool-filter-row { flex-wrap: wrap; }
+  html[data-draft-view="combined"] .pool-filter-row .search-input { flex: 1 1 100%; }
+  html[data-draft-view="combined"] .pool-filter-row .filter-dropdown { flex: 1 1 0; }
+
+  /* Player pool: single scrollable column instead of a card grid */
+  html[data-draft-view="combined"] #player-pool {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .detail-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 2px; }
@@ -2214,6 +2285,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   #format-badge    { display: none !important; }
   #tournament-badge { display: none !important; }
   .draft-header .draft-nav { display: none !important; }
+  .draft-view-toggle, .draft-view-divider { display: none !important; }
 }
 
 /* ── Phone: compact header, stacked hero/cards ────────── */
