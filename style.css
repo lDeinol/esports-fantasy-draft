@@ -2014,7 +2014,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .podium-picks { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
 
 /* ── Standings Table ─────────────────────────────────── */
-.standings-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+.standings-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; background: var(--surface); }
 
 .standings-table th {
   text-align: left; padding: 10px 16px;
