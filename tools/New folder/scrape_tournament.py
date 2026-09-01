@@ -2,32 +2,20 @@
 """
 scrape_tournament.py — Find every ongoing tournament in tournaments.json,
 pull the full match list for each from VLR.gg, and scrape any matches
-that aren't already up to date in matches.json.
+that aren't already in matches.json.
 
 How it works:
     1. Reads tournaments.json, finds every tournament with status == "ongoing".
     2. For each one, fetches https://www.vlr.gg/event/matches/{tournament_id}/?series_id=all
     3. Scans every element with class "wf-card" for <a href="/12345/..."> links
        and pulls out the numeric match ID (first path segment).
-    4. Decides what to (re-)scrape by comparing against our own matches.json,
-       not VLR's list-page labels:
-         - Not in matches.json at all       -> scrape it (even if it's still
-           "Upcoming" on VLR — we still want its date saved).
-         - Already in matches.json marked "upcoming" or "live" -> scrape it
-           again, since that's exactly the case where new data (a score) may
-           now be available.
-         - Already in matches.json marked "completed"          -> skip it.
-    5. For every match scraped, reuses vlr_scrape.py's own fetch_page() /
-       parse_match() / match_player_ids() / resolve_status() logic and
-       writes/updates it in matches.json — same schema as vlr_scrape.py
+    4. Skips any match ID already present in matches.json (matched via "vlrId").
+    5. Skips matches VLR still marks as not-yet-played ("Upcoming").
+    6. For every new, completed match, reuses vlr_scrape.py's own
+       fetch_page() / parse_match() / match_player_ids() logic to scrape
+       it and append it to matches.json — same schema as vlr_scrape.py
        produces, with tournamentId set to the tournament's numeric VLR id
-       (matches the "id" field in tournaments.json). resolve_status() is
-       what actually decides the saved status for each match:
-       "completed" once a score is parsed, "live" once the match's date
-       has arrived but no score exists yet, otherwise "upcoming" — so a
-       match naturally flips upcoming -> live -> completed across runs as
-       real data becomes available, and only ever gets marked "completed"
-       once real score data has actually been parsed for it.
+       (matches the "id" field in tournaments.json).
 
 Each tournament's matches are scraped with a single, in-place progress
 bar line rather than a running log — pass --verbose if you want the old
@@ -36,6 +24,7 @@ per-match detail printed instead.
 Usage:
     python3 scrape_tournament.py                  # every ongoing tournament
     python3 scrape_tournament.py --tournament-id 2952   # just this one
+    python3 scrape_tournament.py --include-upcoming
 
 Run from the same folder as vlr_scrape.py (it's imported here for parsing),
 and with the same directory layout it expects (data/tournaments.json,
@@ -116,18 +105,12 @@ def get_event_matches_url(tournament_id):
 def extract_match_ids(html):
     """
     Parse the VLR event matches page.
-    Returns a list of match IDs, in page order, deduplicated.
-
-    Status ("Upcoming" / "LIVE" / "Completed") isn't read off this list
-    page — whether to (re-)scrape a given match is decided in
-    scrape_tournament() by comparing against matches.json, and the saved
-    status itself comes from resolve_status() against the real match
-    page's date/score, which is far more reliable than the list page's
-    label.
+    Returns a list of (match_id, is_completed) tuples, in page order,
+    deduplicated by match_id.
     """
     soup = BeautifulSoup(html, "html.parser")
     seen = set()
-    match_ids = []
+    results = []
 
     for card in soup.select(".wf-card"):
         for a in card.select("a[href]"):
@@ -139,9 +122,17 @@ def extract_match_ids(html):
             if match_id in seen:
                 continue
             seen.add(match_id)
-            match_ids.append(match_id)
 
-    return match_ids
+            # VLR match-list links usually contain a status label
+            # ("Completed", "LIVE", or a countdown for upcoming matches).
+            status_el = a.select_one(".ml-status")
+            status_text = (status_el.get_text(strip=True) if status_el
+                            else a.get_text(" ", strip=True))
+            is_completed = "completed" in status_text.lower()
+
+            results.append((match_id, is_completed))
+
+    return results
 
 
 # ── Scrape a single match into matches.json ─────────────────
@@ -201,11 +192,8 @@ def scrape_match(vlr_id, tournament_id, players_data, matches, matches_file,
 
     status = vs.resolve_status(data["date"], bool(data["score"]))
 
-    # Only fill in real stats once the match is actually completed —
-    # an "upcoming" or "live" match is saved with empty playerStats
-    # (there's nothing to report yet) and gets re-scraped next run.
     clean_stats = []
-    if status == "completed":
+    if status != "upcoming":
         for p in data["playerStats"]:
             clean_stats.append({
                 "playerId": p["playerId"],
@@ -259,26 +247,28 @@ def scrape_tournament(tournament, players_data, matches, args, index=1, total_to
         print("  Could not fetch the tournament matches page — skipping.")
         return 0, 0, []
 
-    all_match_ids = extract_match_ids(html)
-    if not all_match_ids:
+    all_matches = extract_match_ids(html)
+    if not all_matches:
         print("  No matches found on the tournament page. VLR may have changed its HTML — check selectors.")
         return 0, 0, []
 
-    # Decide what to (re-)scrape from our own matches.json, not VLR's list-page
-    # label: anything we don't have yet, or already have marked "upcoming" or
-    # "live", gets (re-)scraped — that's exactly how a match's date gets saved
-    # early and how it later picks up a score once one exists. Only matches we
-    # already have as "completed" are skipped outright.
-    existing_status_by_id = {m.get("vlrId"): m.get("status") for m in matches if m.get("vlrId")}
+    existing_vlr_ids = {m.get("vlrId") for m in matches if m.get("vlrId")}
 
-    to_scrape = [mid for mid in all_match_ids if existing_status_by_id.get(mid) != "completed"]
-    already_done = len(all_match_ids) - len(to_scrape)
+    to_scrape = []
+    upcoming_count = 0
+    for match_id, is_completed in all_matches:
+        if match_id in existing_vlr_ids:
+            continue
+        if not is_completed:
+            upcoming_count += 1
+            continue
+        to_scrape.append(match_id)
 
-    if already_done:
-        print(f"  ({already_done} match(es) already completed and up to date, skipped)")
+    if args.include_upcoming and upcoming_count:
+        print(f"  ({upcoming_count} upcoming match(es) not yet played, skipped)")
 
     if not to_scrape:
-        print(f"  Up to date — {len(all_match_ids)} match(es) on VLR, nothing to scrape.")
+        print(f"  Up to date — {len(all_matches)} match(es) on VLR, nothing new to scrape.")
         return 0, 0, []
 
     scraped = 0
@@ -305,7 +295,7 @@ def scrape_tournament(tournament, players_data, matches, args, index=1, total_to
         if i < total:
             time.sleep(args.delay)
 
-    print(f"  ✓ {scraped}/{total} match(es) scraped/updated" + (f", {skipped} skipped" if skipped else ""))
+    print(f"  ✓ {scraped}/{total} new match(es) scraped" + (f", {skipped} skipped" if skipped else ""))
     for w in warnings:
         print(f"  ⚠ {w}")
 
@@ -316,6 +306,8 @@ def scrape_tournament(tournament, players_data, matches, args, index=1, total_to
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tournament-id", help="Only scrape this specific tournament ID instead of every 'ongoing' tournament")
+    parser.add_argument("--include-upcoming", action="store_true",
+                         help="Report how many upcoming (not-yet-played) matches were skipped")
     parser.add_argument("--matches-file",     default="data/matches.json")
     parser.add_argument("--tournaments-file", default="data/tournaments.json")
     parser.add_argument("--players-file",     default="data/players.json")
@@ -358,7 +350,7 @@ def main():
         if unmatched:
             all_unmatched.append((tournament["name"], unmatched))
 
-    print(f"\n✓ Done. Scraped/updated {total_scraped} match(es) across "
+    print(f"\n✓ Done. Scraped {total_scraped} new match(es) across "
           f"{len(target_tournaments)} tournament(s).")
     if total_skipped:
         print(f"  ⚠ {total_skipped} match(es) skipped (see warnings above).")

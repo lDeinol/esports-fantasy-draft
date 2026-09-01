@@ -101,29 +101,26 @@ def resolve_team_name(raw_name):
 
 
 def resolve_status(date_str, has_score):
-    """
-    Return 'upcoming', 'live', or 'completed':
-      - Has a score already                          -> 'completed'
-      - No score, and the date is missing/unparsable -> 'upcoming' (can't
-        confirm it's started, so default to the safe/old behavior)
-      - No score, and the date is in the future       -> 'upcoming'
-      - No score, and the date is today or has passed -> 'live'
-        (VLR shows a match without a final score once it's kicked off —
-        that covers same-day matches still being played, and also a
-        rare stale/delayed-reporting case where the date has already
-        passed but a score still hasn't shown up)
-    """
-    if has_score:
-        return "completed"
+    """Return 'upcoming' or 'completed' based on date vs today and whether a score exists."""
     if not date_str:
-        return "upcoming"
+        return "completed" if has_score else "upcoming"
     try:
         match_date = date.fromisoformat(date_str)
+        if match_date > date.today():
+            return "upcoming"
     except ValueError:
-        return "upcoming"
-    if match_date > date.today():
-        return "upcoming"
-    return "live"
+        pass
+    return "completed" if has_score else "upcoming"
+    """Return 'upcoming', or 'completed' based on date vs today and whether a score exists."""
+    if not date_str:
+        return "completed" if has_score else "upcoming"
+    try:
+        match_date = date.fromisoformat(date_str)
+        if match_date > date.today():
+            return "upcoming"
+    except ValueError:
+        pass
+    return "completed" if has_score else "upcoming"
 
 
 # ── Fetch page ─────────────────────────────────────────────
@@ -487,9 +484,9 @@ def main():
     status = resolve_status(data["date"], bool(data["score"]))
     print(f"  → Status set to: {status}  (match date: {data['date'] or 'unknown'})")
 
-    # ── Build clean stats (only once the match is actually completed) ──
+    # ── Build clean stats (skip if upcoming) ──────────────
     clean_stats = []
-    if status == "completed":
+    if status != "upcoming":
         for p in data["playerStats"]:
             clean_stats.append({
                 "playerId": p["playerId"],
