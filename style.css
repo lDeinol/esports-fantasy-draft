@@ -870,6 +870,7 @@ select option { background: var(--surface2); }
   padding: 10px 14px;
   vertical-align: top;
   min-width: 140px;
+  background: var(--surface);
 }
 
 .draft-table td.round-label {
@@ -1898,6 +1899,10 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
 }
 
 .player-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
