@@ -705,8 +705,11 @@
 
     // ─────────────────────────────────────────────────────
     //  Render center: Draft Grid
-    //  Columns = pick slots 1..N (participants in pick order)
+    //  Columns = participants (fixed per column for the whole board)
     //  Rows    = rounds 1..ROSTER_SIZE
+    //  Snake: even rounds pick left→right, odd rounds pick right→left,
+    //  so within a column-fixed layout, the "on the clock" cell zigzags
+    //  across the board round to round instead of jumping between columns.
     // ─────────────────────────────────────────────────────
     function renderDraftGrid() {
       if (!lobbyData) return;
@@ -715,7 +718,7 @@
       const numRounds  = CONFIG.ROSTER_SIZE;
       const picksArr   = Object.values(picks);
 
-      // Header: blank corner + Pick 1 .. Pick N
+      // Header: blank corner + one column per participant (fixed for the board)
       const thead = document.getElementById("draft-thead");
       thead.innerHTML = "";
       const headerRow = document.createElement("tr");
@@ -726,8 +729,11 @@
       headerRow.appendChild(cornerTh);
 
       for (let p = 0; p < numPlayers; p++) {
-        const th = document.createElement("th");
-        th.textContent = `Pick ${p + 1}`;
+        const uid  = pickOrder[p];
+        const th   = document.createElement("th");
+        th.textContent = lobbyPlayers[uid]?.name || `Pick ${p + 1}`;
+        const color = lobbyPlayers[uid]?.color || "";
+        if (color) th.style.color = color;
         headerRow.appendChild(th);
       }
       thead.appendChild(headerRow);
@@ -746,10 +752,14 @@
         tr.appendChild(roundTd);
 
         for (let p = 0; p < numPlayers; p++) {
-          const pickIndex = r * numPlayers + p;
-          // Snake: even rounds left→right, odd rounds right→left
-          // The participant who picks at this slot:
-          const ownerUid   = getPickerUid(pickOrder, pickIndex);
+          // Column p is always this participant's column. Snake: on even
+          // rounds they pick in column order (left→right); on odd rounds
+          // pick order is reversed (right→left), so figure out which
+          // position in the overall pick sequence this column's pick fell at.
+          const posInRound = (r % 2 === 0) ? p : (numPlayers - 1 - p);
+          const pickIndex  = r * numPlayers + posInRound;
+
+          const ownerUid   = pickOrder[p];
           const ownerName  = lobbyPlayers[ownerUid]?.name || "?";
           const ownerColor = lobbyPlayers[ownerUid]?.color || "";
           const pick        = picksArr[pickIndex];
@@ -766,8 +776,8 @@
             div.style.setProperty("--cell-active-color", ownerColor);
           }
 
-          // Label format: round.pick e.g. 1.1, 1.2, 2.3
-          const label = `${r + 1}.${p + 1}`;
+          // Label format: round.pick e.g. 1.1, 1.2, 2.3 (pick number = order within the round)
+          const label = `${r + 1}.${posInRound + 1}`;
 
           const byColor = lobbyPlayers[pick?.byUid]?.color || "";
 

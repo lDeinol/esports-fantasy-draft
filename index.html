@@ -49,6 +49,15 @@
         <div class="card-title">Esports Fantasy Draft</div>
         <div class="card-sub">Create a lobby or join with a code</div>
 
+        <!-- Active session banner (shown when a saved session's draft has finished) -->
+        <div class="session-banner" id="session-banner" style="margin-bottom:24px;">
+          <div class="session-text">
+            Your draft is finished: <span class="session-code" id="session-banner-code"></span>
+          </div>
+          <button class="btn-sm btn-sm-primary" id="btn-session-rejoin">View Draft Board</button>
+          <button class="btn-sm btn-sm-ghost" id="btn-session-leave">Leave</button>
+        </div>
+
         <!-- Rejoin Banner (shown when ?code= is in URL and no session) -->
         <div class="rejoin-banner" id="rejoin-banner">
           <div class="rejoin-banner-title">⚡ Rejoin Draft</div>
@@ -730,7 +739,7 @@
       const urlCode = params.get("code")?.toUpperCase();
       const session = LS.getSession();
 
-      // Case 1: valid session exists — try to resume it
+      // Case 1: saved session exists
       if (session) {
         try {
           const user  = await ensureAuth();
@@ -751,10 +760,30 @@
             return;
           }
 
+          // Draft in progress — jump straight back in, nothing to decide
           if (lobby.status === "drafting") {
             window.location.href = `draft.html?code=${session.lobbyCode}`;
             return;
           }
+
+          // Draft already finished — show a banner instead of silently
+          // redirecting, since landing here later is usually just browsing
+          if (lobby.status === "complete") {
+            const banner = document.getElementById("session-banner");
+            document.getElementById("session-banner-code").textContent = session.lobbyCode;
+            banner.classList.add("show");
+
+            document.getElementById("btn-session-rejoin").addEventListener("click", () => {
+              window.location.href = `draft.html?code=${session.lobbyCode}`;
+            });
+            document.getElementById("btn-session-leave").addEventListener("click", () => {
+              LS.clearSession();
+              banner.classList.remove("show");
+            });
+            return;
+          }
+
+          // Still in the waiting room pre-draft — resume it silently
           enterLobby(session.lobbyCode, session.isHost, lobby);
         } catch (err) {
           console.error("Rejoin failed:", err);
