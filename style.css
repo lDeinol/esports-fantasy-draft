@@ -964,7 +964,7 @@ select option { background: var(--surface2); }
 .player-card-name { font-size: 0.9rem; font-weight: 600; flex: 1; }
 .player-card-game {
   font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--muted); background: var(--surface3); border-radius: 4px; padding: 2px 6px;
+  color: var(--team-text, var(--muted)); background: var(--team-color, var(--surface3)); border-radius: 4px; padding: 2px 6px;
 }
 .player-card-meta { font-size: 0.72rem; color: var(--muted); }
 
@@ -1631,6 +1631,18 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .td-rank    { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); width: 36px; }
 .td-name    { font-weight: 600; }
 .td-team    { color: var(--muted); font-size: 0.85rem; }
+
+.team-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--team-text, var(--text));
+  background: var(--team-color, var(--surface3));
+  border-radius: 4px;
+  padding: 3px 8px;
+}
 .td-role    { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: var(--surface3); border-radius: 4px; padding: 2px 7px; color: var(--muted); }
 .td-region  { font-size: 0.82rem; color: var(--muted); }
 .td-stat    { font-family: var(--font-mono); font-size: 0.925rem; }
@@ -2014,7 +2026,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .podium-picks { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
 
 /* ── Standings Table ─────────────────────────────────── */
-.standings-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; background: var(--surface2); }
+.standings-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; background: var(--surface); }
 
 .standings-table th {
   text-align: left; padding: 10px 16px;

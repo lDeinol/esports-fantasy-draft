@@ -251,3 +251,21 @@ export function formatCurrency(n) {
 export function el(id) {
   return document.getElementById(id);
 }
+
+// Given a hex color (e.g. "#00e5ff"), returns "#000000" or "#ffffff" —
+// whichever gives better contrast against it. Used for badges whose
+// background is a data-driven color (team colors, etc.) that isn't
+// tied to the light/dark theme, so the text needs to be picked per
+// color rather than via the --text token.
+export function contrastTextColor(hex) {
+  if (!hex) return "#ffffff";
+  const clean = hex.replace("#", "");
+  const full  = clean.length === 3 ? clean.split("").map(c => c + c).join("") : clean;
+  const r = parseInt(full.substring(0, 2), 16);
+  const g = parseInt(full.substring(2, 4), 16);
+  const b = parseInt(full.substring(4, 6), 16);
+  if ([r, g, b].some(Number.isNaN)) return "#ffffff";
+  // Relative luminance (WCAG-style approximation)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? "#000000" : "#ffffff";
+}

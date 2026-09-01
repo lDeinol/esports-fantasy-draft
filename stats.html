@@ -150,13 +150,14 @@
 </main>
 
 <script type="module">
-  import { SCORING, initThemeToggle } from "./app.js";
+  import { SCORING, initThemeToggle, contrastTextColor } from "./app.js";
 
   initThemeToggle();
 
   let players    = [];
   let matches    = [];
   let tournaments = [];
+  let teamsById   = new Map(); // team name → { name, abbrv, color }
   let selectedRegions = new Set(); // empty = all regions
   let selectedTeams   = new Set(); // empty = all teams
   let selectedTournaments = new Set(); // empty = all tournaments
@@ -164,19 +165,32 @@
   let expanded   = new Set();
 
   async function loadData() {
-    [players, matches, tournaments] = await Promise.all([
+    let teamsList;
+    [players, matches, tournaments, teamsList] = await Promise.all([
       fetch("data/players.json").then(r => r.json()),
       fetch("data/matches.json").then(r => r.json()),
       fetch("data/tournaments.json").then(r => r.json()),
+      fetch("data/teams.json").then(r => r.ok ? r.json() : []).catch(() => []),
     ]);
     // Only ever browse active players. Missing status is treated as
     // active for backwards-compatibility with older players.json entries.
     players = players.filter(p => p.status !== "inactive");
+    teamsById = new Map(teamsList.map(t => [t.name, t]));
   }
 
   // Build tournament lookup
   function tournamentName(id) {
     return tournaments.find(t => t.id === id)?.name || id;
+  }
+
+  // Renders a team name as a colored badge (falls back to plain
+  // gray badge if the team isn't in teams.json)
+  function teamBadge(teamName) {
+    const team  = teamsById.get(teamName);
+    const style = team?.color
+      ? ` style="--team-color:${team.color}; --team-text:${contrastTextColor(team.color)}"`
+      : "";
+    return `<span class="team-badge"${style}>${team?.abbrv || teamName}</span>`;
   }
 
   // Calculate per-match fantasy points
@@ -254,7 +268,7 @@
       tr.innerHTML = `
         <td class="td-rank">${i + 1}</td>
         <td class="td-name">${p.name}${p.matchCount > 0 ? ' <span style="font-size:0.62rem; color:var(--success); font-weight:600;">●Tracked</span>' : ' <span style="font-size:0.62rem; color:var(--muted); font-weight:600;">Seeded</span>'}</td>
-        <td class="td-team">${p.team}</td>
+        <td class="td-team">${teamBadge(p.team)}</td>
         <td><span class="td-role">${p.role}</span></td>
         <td class="td-region">${p.region}</td>
         <td class="td-stat">${p.stats.rating}</td>

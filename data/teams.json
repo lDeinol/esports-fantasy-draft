@@ -1,0 +1,297 @@
+[
+  {
+    "name": "100 Thieves",
+    "abbrv": "100T",
+    "color": "#ed2f33"
+  },
+  {
+    "name": "2Game Esports",
+    "abbrv": "2G",
+    "color": "#794af8"
+  },
+  {
+    "name": "A Team",
+    "abbrv": "AT",
+    "color": "#fafafa"
+  },
+  {
+    "name": "All Gamers",
+    "abbrv": "AG",
+    "color": "#d72815"
+  },
+  {
+    "name": "BBL Esports",
+    "abbrv": "BBL",
+    "color": "#c58e10"
+  },
+  {
+    "name": "BESTIA",
+    "abbrv": "BST",
+    "color": "#000000"
+  },
+  {
+    "name": "Bilibili Gaming",
+    "abbrv": "BLG",
+    "color": "#00A1D6"
+  },
+  {
+    "name": "Cloud9",
+    "abbrv": "C9",
+    "color": "#27abe4"
+  },
+  {
+    "name": "DetonatioN FocusMe",
+    "abbrv": "DFM",
+    "color": "#2866d5"
+  },
+  {
+    "name": "Dragon Ranger Gaming",
+    "abbrv": "DRG",
+    "color": "#78f35c"
+  },
+  {
+    "name": "EDward Gaming",
+    "abbrv": "EDG",
+    "color": "#f9f8f7"
+  },
+  {
+    "name": "ENVY",
+    "abbrv": "NV",
+    "color": "#ffffff"
+  },
+  {
+    "name": "Eintracht Frankfurt",
+    "abbrv": "SGE",
+    "color": "#e1110f"
+  },
+  {
+    "name": "Enterprise Esports",
+    "abbrv": "EP",
+    "color": "#e32042"
+  },
+  {
+    "name": "Eternal Fire",
+    "abbrv": "EF",
+    "color": "#908162"
+  },
+  {
+    "name": "Evil Geniuses",
+    "abbrv": "EG",
+    "color": "#000429"
+  },
+  {
+    "name": "FNATIC",
+    "abbrv": "FNC",
+    "color": "#fa5900"
+  },
+  {
+    "name": "FULL SENSE",
+    "abbrv": "FS",
+    "color": "#fb7c01"
+  },
+  {
+    "name": "FURIA",
+    "abbrv": "FUR",
+    "color": "#000000"
+  },
+  {
+    "name": "FUT Esports",
+    "abbrv": "FUT",
+    "color": "#fffffd"
+  },
+  {
+    "name": "Fire Flux Esports",
+    "abbrv": "FF",
+    "color": "#20cced"
+  },
+  {
+    "name": "Fluxo W7M",
+    "abbrv": "FX",
+    "color": "#741dc3"
+  },
+  {
+    "name": "FunPlus Phoenix",
+    "abbrv": "FPX",
+    "color": "#ff0500"
+  },
+  {
+    "name": "G2 Esports",
+    "abbrv": "G2",
+    "color": "#ffffff"
+  },
+  {
+    "name": "GIANTX",
+    "abbrv": "GX",
+    "color": "#ffffff"
+  },
+  {
+    "name": "Gentle Mates",
+    "abbrv": "M8",
+    "color": "#e63a94"
+  },
+  {
+    "name": "Global Esports",
+    "abbrv": "GE",
+    "color": "#1d4491"
+  },
+  {
+    "name": "JD Gaming",
+    "abbrv": "JDG",
+    "color": "#c7102c"
+  },
+  {
+    "name": "Joblife",
+    "abbrv": "JL",
+    "color": "#ffffff"
+  },
+  {
+    "name": "KIWOOM DRX",
+    "abbrv": "KRX",
+    "color": "#0065ff"
+  },
+  {
+    "name": "KRU Esports",
+    "abbrv": "KRU",
+    "color": "#ff1a8f"
+  },
+  {
+    "name": "Karmine Corp",
+    "abbrv": "KC",
+    "color": "#0f1e35"
+  },
+  {
+    "name": "KeepBest Gaming",
+    "abbrv": "KBG",
+    "color": "#46277d"
+  },
+  {
+    "name": "Leviatan",
+    "abbrv": "LEV",
+    "color": "#62abdf"
+  },
+  {
+    "name": "M80",
+    "abbrv": "M80",
+    "color": "#daff01"
+  },
+  {
+    "name": "MIBR",
+    "abbrv": "MIBR",
+    "color": "#021132"
+  },
+  {
+    "name": "NRG",
+    "abbrv": "NRG",
+    "color": "#f84001"
+  },
+  {
+    "name": "Natus Vincere",
+    "abbrv": "NAVI",
+    "color": "#feec02"
+  },
+  {
+    "name": "Nongshim RedForce",
+    "abbrv": "NS",
+    "color": "#df2026"
+  },
+  {
+    "name": "Nova Esports",
+    "abbrv": "NOVA",
+    "color": "#a866f4"
+  },
+  {
+    "name": "ONSIDE GAMING",
+    "abbrv": "ONG",
+    "color": "#e2e319"
+  },
+  {
+    "name": "PCIFIC Esports",
+    "abbrv": "PCF",
+    "color": "#43bddd"
+  },
+  {
+    "name": "Paper Rex",
+    "abbrv": "PRX",
+    "color": "#2c0427"
+  },
+  {
+    "name": "QT DIG∞",
+    "abbrv": "QTD",
+    "color": "#e30113"
+  },
+  {
+    "name": "Rex Regum Qeon",
+    "abbrv": "RRQ",
+    "color": "#f2ab35"
+  },
+  {
+    "name": "Sentinels",
+    "abbrv": "SEN",
+    "color": "#cd0038"
+  },
+  {
+    "name": "Sharper Esports",
+    "abbrv": "SP",
+    "color": "#03236e"
+  },
+  {
+    "name": "T1",
+    "abbrv": "T1",
+    "color": "#df012b"
+  },
+  {
+    "name": "TYLOO",
+    "abbrv": "TYL",
+    "color": "#c9372b"
+  },
+  {
+    "name": "Team Heretics",
+    "abbrv": "TH",
+    "color": "#c25a79"
+  },
+  {
+    "name": "Team Liquid",
+    "abbrv": "TL",
+    "color": "#001637"
+  },
+  {
+    "name": "Team Secret",
+    "abbrv": "TS",
+    "color": "#fefefe"
+  },
+  {
+    "name": "Team Vitality",
+    "abbrv": "VIT",
+    "color": "#fffc00"
+  },
+  {
+    "name": "Titan Esports Club",
+    "abbrv": "TEC",
+    "color": "#c82b10"
+  },
+  {
+    "name": "Trace Esports",
+    "abbrv": "TE",
+    "color": "#f4c030"
+  },
+  {
+    "name": "Wolves Esports",
+    "abbrv": "WOL",
+    "color": "#fda61a"
+  },
+  {
+    "name": "Xi Lai Gaming",
+    "abbrv": "XLG",
+    "color": "#0ee7bf"
+  },
+  {
+    "name": "Xipto Esports",
+    "abbrv": "XIP",
+    "color": "#c60402"
+  },
+  {
+    "name": "ZETA DIVISION",
+    "abbrv": "ZETA",
+    "color": "#020202"
+  }
+]
