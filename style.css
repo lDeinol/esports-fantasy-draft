@@ -6,7 +6,7 @@
 /* ── Tokens ─────────────────────────────────────────── */
 :root {
   --bg:       #0a0b0f;
-  
+  --header:   #13151c;
   --surface:  #13151c;
   --surface2: #1c1f2b;
   --surface3: #22263a;
@@ -1605,6 +1605,7 @@ main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 32px 24
 
 /* ── Stats Table ─────────────────────────────────────── */
 .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+#stats-table { background: var(--surface2); }
 
 table { width: 100%; border-collapse: collapse; min-width: 1000px; }
 
