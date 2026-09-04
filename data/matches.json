@@ -30149,12 +30149,103 @@
     "series": "Playoffs: Upper Final",
     "team1": "Nongshim RedForce",
     "team2": "Global Esports",
-    "score": null,
-    "winner": null,
-    "format": "BO3",
+    "score": "1-0",
+    "winner": "Nongshim RedForce",
+    "format": "BO1",
     "date": "2026-09-04",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 1.41,
+        "kd": 1.62,
+        "acs": 310.0,
+        "adr": 192.0,
+        "kpr": 0.88
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.25,
+        "kd": 1.56,
+        "acs": 188.0,
+        "adr": 128.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 1.09,
+        "kd": 1.4,
+        "acs": 184.0,
+        "adr": 111.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.0,
+        "kd": 1.33,
+        "acs": 226.0,
+        "adr": 152.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 0.94,
+        "kd": 1.0,
+        "acs": 175.0,
+        "adr": 97.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 1.1,
+        "kd": 1.0,
+        "acs": 185.0,
+        "adr": 115.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 0.99,
+        "kd": 0.71,
+        "acs": 173.0,
+        "adr": 127.0,
+        "kpr": 0.42
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.77,
+        "kd": 0.71,
+        "acs": 143.0,
+        "adr": 93.0,
+        "kpr": 0.42
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 0.73,
+        "kd": 0.63,
+        "acs": 178.0,
+        "adr": 126.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 0.69,
+        "kd": 0.65,
+        "acs": 150.0,
+        "adr": 95.0,
+        "kpr": 0.46
+      }
+    ]
   },
   {
     "id": "742486",
