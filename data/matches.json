@@ -30201,101 +30201,101 @@
     "series": "Playoffs: Lower Round 3",
     "team1": "G2 Esports",
     "team2": "LOUD",
-    "score": "0-1",
+    "score": "0-2",
     "winner": "LOUD",
-    "format": "BO1",
+    "format": "BO3",
     "date": "2026-09-04",
-    "status": "live",
+    "status": "completed",
     "playerStats": [
       {
         "playerId": "leaf",
         "team": "G2 Esports",
-        "rating": 1.41,
-        "kd": 1.18,
-        "acs": 239.0,
-        "adr": 154.0,
-        "kpr": 0.59
+        "rating": 1.07,
+        "kd": 0.92,
+        "acs": 201.0,
+        "adr": 138.0,
+        "kpr": 0.69
       },
       {
         "playerId": "trent",
         "team": "G2 Esports",
-        "rating": 1.12,
-        "kd": 0.95,
-        "acs": 209.0,
-        "adr": 146.0,
-        "kpr": 0.56
-      },
-      {
-        "playerId": "BABYBAY",
-        "team": "G2 Esports",
-        "rating": 0.63,
-        "kd": 0.65,
-        "acs": 154.0,
-        "adr": 84.0,
-        "kpr": 0.44
+        "rating": 0.86,
+        "kd": 0.79,
+        "acs": 170.0,
+        "adr": 114.0,
+        "kpr": 0.66
       },
       {
         "playerId": "jawgemo",
         "team": "G2 Esports",
-        "rating": 0.48,
-        "kd": 0.57,
-        "acs": 154.0,
-        "adr": 103.0,
-        "kpr": 0.38
+        "rating": 0.77,
+        "kd": 0.74,
+        "acs": 205.0,
+        "adr": 129.0,
+        "kpr": 0.66
       },
       {
         "playerId": "valyn",
         "team": "G2 Esports",
-        "rating": 0.28,
-        "kd": 0.65,
-        "acs": 95.0,
-        "adr": 60.0,
-        "kpr": 0.38
+        "rating": 0.67,
+        "kd": 0.62,
+        "acs": 161.0,
+        "adr": 106.0,
+        "kpr": 0.51
       },
       {
-        "playerId": "tkzin",
-        "team": "LOUD",
-        "rating": 1.65,
-        "kd": 1.53,
-        "acs": 359.0,
-        "adr": 235.0,
-        "kpr": 0.85
-      },
-      {
-        "playerId": "DaviH",
-        "team": "LOUD",
-        "rating": 1.44,
-        "kd": 1.5,
-        "acs": 195.0,
-        "adr": 130.0,
-        "kpr": 0.53
-      },
-      {
-        "playerId": "lukxo",
-        "team": "LOUD",
-        "rating": 1.34,
-        "kd": 1.41,
-        "acs": 263.0,
-        "adr": 173.0,
-        "kpr": 0.71
-      },
-      {
-        "playerId": "Darker",
-        "team": "LOUD",
-        "rating": 1.09,
-        "kd": 1.13,
-        "acs": 172.0,
-        "adr": 119.0,
-        "kpr": 0.5
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.59,
+        "kd": 0.56,
+        "acs": 155.0,
+        "adr": 104.0,
+        "kpr": 0.51
       },
       {
         "playerId": "erde",
         "team": "LOUD",
-        "rating": 0.8,
-        "kd": 1.06,
-        "acs": 136.0,
-        "adr": 95.0,
-        "kpr": 0.5
+        "rating": 1.49,
+        "kd": 1.89,
+        "acs": 272.0,
+        "adr": 172.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.26,
+        "kd": 1.59,
+        "acs": 256.0,
+        "adr": 166.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.15,
+        "kd": 1.22,
+        "acs": 267.0,
+        "adr": 175.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 1.14,
+        "kd": 1.09,
+        "acs": 199.0,
+        "adr": 136.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 1.13,
+        "kd": 1.19,
+        "acs": 154.0,
+        "adr": 99.0,
+        "kpr": 0.54
       }
     ]
   },
