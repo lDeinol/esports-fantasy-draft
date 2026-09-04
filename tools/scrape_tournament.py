@@ -22,12 +22,17 @@ How it works:
        writes/updates it in matches.json — same schema as vlr_scrape.py
        produces, with tournamentId set to the tournament's numeric VLR id
        (matches the "id" field in tournaments.json). resolve_status() is
-       what actually decides the saved status for each match:
-       "completed" once a score is parsed, "live" once the match's date
-       has arrived but no score exists yet, otherwise "upcoming" — so a
-       match naturally flips upcoming -> live -> completed across runs as
-       real data becomes available, and only ever gets marked "completed"
-       once real score data has actually been parsed for it.
+       what actually decides the saved status for each match: "completed"
+       only once the parsed score is actually a *finished-series* score
+       for the match's real BO1/BO3/BO5 format (checked via
+       is_series_final() against the format read off the page, not
+       guessed from the score) — otherwise "live" once a score exists but
+       isn't final yet, or the match's date has arrived but no score
+       exists at all, otherwise "upcoming". So a match naturally flips
+       upcoming -> live -> completed across runs as real data becomes
+       available, and a match that's mid-series (e.g. 1-0 in a BO3) stays
+       "live" and keeps getting re-scraped instead of getting stuck
+       "completed" on a partial score.
 
 Each tournament's matches are scraped with a single, in-place progress
 bar line rather than a running log — pass --verbose if you want the old
@@ -199,7 +204,7 @@ def scrape_match(vlr_id, tournament_id, players_data, matches, matches_file,
         if verbose:
             print(f"    ⚠ {len(unmatched_names)} unmatched player(s): {', '.join(unmatched_names)}")
 
-    status = vs.resolve_status(data["date"], bool(data["score"]))
+    status = vs.resolve_status(data["date"], data["score"], data["format"])
 
     # Only fill in real stats once the match is actually completed —
     # an "upcoming" or "live" match is saved with empty playerStats

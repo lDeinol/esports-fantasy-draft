@@ -29993,7 +29993,7 @@
     "series": "Playoffs: Lower Round 2",
     "team1": "LOUD",
     "team2": "MIBR",
-    "score": "2-0",
+    "score": "1-0",
     "winner": "LOUD",
     "format": "BO3",
     "date": "2026-08-30",
@@ -30003,7 +30003,7 @@
         "playerId": "erde",
         "team": "LOUD",
         "rating": 1.29,
-        "kd": 1.36,
+        "kd": 1.6,
         "acs": 237.0,
         "adr": 150.0,
         "kpr": 0.83
@@ -30011,7 +30011,7 @@
       {
         "playerId": "lukxo",
         "team": "LOUD",
-        "rating": 1.19,
+        "rating": 129,
         "kd": 1.26,
         "acs": 255.0,
         "adr": 163.0,
@@ -30097,12 +30097,103 @@
     "series": "Playoffs: Upper Final",
     "team1": "NRG",
     "team2": "100 Thieves",
-    "score": null,
-    "winner": null,
+    "score": "0-2",
+    "winner": "100 Thieves",
     "format": "BO3",
     "date": "2026-09-04",
-    "status": "upcoming",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 0.86,
+        "acs": 204.0,
+        "adr": 130.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 0.85,
+        "kd": 0.82,
+        "acs": 173.0,
+        "adr": 123.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.85,
+        "kd": 0.67,
+        "acs": 180.0,
+        "adr": 134.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 0.64,
+        "kd": 0.5,
+        "acs": 148.0,
+        "adr": 106.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.51,
+        "kd": 0.5,
+        "acs": 147.0,
+        "adr": 102.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.39,
+        "kd": 1.68,
+        "acs": 241.0,
+        "adr": 155.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.32,
+        "kd": 1.65,
+        "acs": 199.0,
+        "adr": 123.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.22,
+        "kd": 1.62,
+        "acs": 253.0,
+        "adr": 158.0,
+        "kpr": 0.97
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.2,
+        "kd": 1.2,
+        "acs": 252.0,
+        "adr": 162.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.0,
+        "kd": 1.17,
+        "acs": 159.0,
+        "adr": 109.0,
+        "kpr": 0.6
+      }
+    ]
   },
   {
     "id": "734313",
@@ -30110,19 +30201,110 @@
     "series": "Playoffs: Lower Round 3",
     "team1": "G2 Esports",
     "team2": "LOUD",
-    "score": null,
-    "winner": null,
+    "score": "0-2",
+    "winner": "LOUD",
     "format": "BO3",
     "date": "2026-09-04",
-    "status": "upcoming",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.07,
+        "kd": 0.92,
+        "acs": 201.0,
+        "adr": 138.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 0.86,
+        "kd": 0.79,
+        "acs": 170.0,
+        "adr": 114.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.77,
+        "kd": 0.74,
+        "acs": 205.0,
+        "adr": 129.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.67,
+        "kd": 0.62,
+        "acs": 161.0,
+        "adr": 106.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.59,
+        "kd": 0.56,
+        "acs": 155.0,
+        "adr": 104.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.49,
+        "kd": 1.89,
+        "acs": 272.0,
+        "adr": 172.0,
+        "kpr": 1.03
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.26,
+        "kd": 1.59,
+        "acs": 256.0,
+        "adr": 166.0,
+        "kpr": 1.0
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.15,
+        "kd": 1.22,
+        "acs": 267.0,
+        "adr": 175.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 1.14,
+        "kd": 1.09,
+        "acs": 199.0,
+        "adr": 136.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 1.13,
+        "kd": 1.19,
+        "acs": 154.0,
+        "adr": 99.0,
+        "kpr": 0.54
+      }
+    ]
   },
   {
     "id": "734314",
     "tournamentId": "2977",
     "series": "Playoffs: Lower Final",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "NRG",
+    "team2": "LOUD",
     "score": null,
     "winner": null,
     "format": "BO5",
@@ -30134,11 +30316,11 @@
     "id": "734308",
     "tournamentId": "2977",
     "series": "Playoffs: Grand Final",
-    "team1": "TBD",
+    "team1": "100 Thieves",
     "team2": "TBD",
     "score": null,
     "winner": null,
-    "format": "BO3",
+    "format": "BO5",
     "date": "2026-09-06",
     "status": "upcoming",
     "playerStats": []
@@ -30149,12 +30331,103 @@
     "series": "Playoffs: Upper Final",
     "team1": "Nongshim RedForce",
     "team2": "Global Esports",
-    "score": null,
-    "winner": null,
-    "format": "BO5",
+    "score": "2-1",
+    "winner": "Nongshim RedForce",
+    "format": "BO3",
     "date": "2026-09-04",
-    "status": "upcoming",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 1.23,
+        "kd": 1.34,
+        "acs": 263.0,
+        "adr": 167.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 1.14,
+        "kd": 1.34,
+        "acs": 190.0,
+        "adr": 118.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 1.13,
+        "kd": 1.21,
+        "acs": 259.0,
+        "adr": 165.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 0.99,
+        "kd": 1.03,
+        "acs": 151.0,
+        "adr": 107.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 0.95,
+        "kd": 1.05,
+        "acs": 195.0,
+        "adr": 133.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 1.05,
+        "kd": 1.08,
+        "acs": 220.0,
+        "adr": 144.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 1.02,
+        "kd": 0.91,
+        "acs": 174.0,
+        "adr": 119.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 0.92,
+        "kd": 0.82,
+        "acs": 203.0,
+        "adr": 133.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 0.8,
+        "kd": 0.63,
+        "acs": 144.0,
+        "adr": 104.0,
+        "kpr": 0.45
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 0.74,
+        "kd": 0.73,
+        "acs": 165.0,
+        "adr": 112.0,
+        "kpr": 0.58
+      }
+    ]
   },
   {
     "id": "742486",
@@ -30162,19 +30435,119 @@
     "series": "Playoffs: Lower Round 3",
     "team1": "VARREL",
     "team2": "T1",
-    "score": null,
-    "winner": null,
-    "format": "BO5",
+    "score": "0-2",
+    "winner": "T1",
+    "format": "BO3",
     "date": "2026-09-04",
-    "status": "upcoming",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Klaus",
+        "team": "VARREL",
+        "rating": 1.32,
+        "kd": 1.2,
+        "acs": 250.0,
+        "adr": 175.0,
+        "kpr": 0.41
+      },
+      {
+        "playerId": "oonzmlp",
+        "team": "VARREL",
+        "rating": 0.98,
+        "kd": 0.97,
+        "acs": 184.0,
+        "adr": 122.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "XuNa",
+        "team": "VARREL",
+        "rating": 0.84,
+        "kd": 0.74,
+        "acs": 168.0,
+        "adr": 118.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Zexy",
+        "team": "VARREL",
+        "rating": 0.82,
+        "kd": 0.74,
+        "acs": 158.0,
+        "adr": 104.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "OXY",
+        "team": "VARREL",
+        "rating": 0.81,
+        "kd": 0.83,
+        "acs": 159.0,
+        "adr": 109.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "C1ndeR",
+        "team": "T1",
+        "rating": 0.7,
+        "kd": 0.62,
+        "acs": 131.0,
+        "adr": 89.0,
+        "kpr": 0.23
+      },
+      {
+        "playerId": "Meteor",
+        "team": "T1",
+        "rating": 1.21,
+        "kd": 1.43,
+        "acs": 239.0,
+        "adr": 150.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "stax",
+        "team": "T1",
+        "rating": 1.2,
+        "kd": 1.38,
+        "acs": 179.0,
+        "adr": 111.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "iZu",
+        "team": "T1",
+        "rating": 1.13,
+        "kd": 1.12,
+        "acs": 180.0,
+        "adr": 127.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Munchkin",
+        "team": "T1",
+        "rating": 0.97,
+        "kd": 0.96,
+        "acs": 182.0,
+        "adr": 123.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "BuZz",
+        "team": "T1",
+        "rating": 0.96,
+        "kd": 1.11,
+        "acs": 188.0,
+        "adr": 129.0,
+        "kpr": 0.68
+      }
+    ]
   },
   {
     "id": "742487",
     "tournamentId": "2776",
     "series": "Playoffs: Lower Final",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "Global Esports",
+    "team2": "T1",
     "score": null,
     "winner": null,
     "format": "BO5",
@@ -30186,7 +30559,7 @@
     "id": "742481",
     "tournamentId": "2776",
     "series": "Playoffs: Grand Final",
-    "team1": "TBD",
+    "team1": "Nongshim RedForce",
     "team2": "TBD",
     "score": null,
     "winner": null,
