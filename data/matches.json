@@ -30305,19 +30305,110 @@
     "series": "Playoffs: Lower Final",
     "team1": "NRG",
     "team2": "LOUD",
-    "score": "0-0",
-    "winner": null,
+    "score": "2-3",
+    "winner": "LOUD",
     "format": "BO5",
     "date": "2026-09-05",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.17,
+        "kd": 1.12,
+        "acs": 219.0,
+        "adr": 148.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 1.15,
+        "acs": 186.0,
+        "adr": 120.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.01,
+        "kd": 0.99,
+        "acs": 186.0,
+        "adr": 125.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.01,
+        "kd": 0.97,
+        "acs": 182.0,
+        "adr": 119.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.77,
+        "kd": 0.91,
+        "acs": 207.0,
+        "adr": 129.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.15,
+        "kd": 1.04,
+        "acs": 207.0,
+        "adr": 133.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.05,
+        "kd": 1.1,
+        "acs": 216.0,
+        "adr": 144.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 0.98,
+        "kd": 0.91,
+        "acs": 164.0,
+        "adr": 107.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.96,
+        "kd": 0.9,
+        "acs": 185.0,
+        "adr": 120.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 0.72,
+        "kd": 0.76,
+        "acs": 176.0,
+        "adr": 120.0,
+        "kpr": 0.6
+      }
+    ]
   },
   {
     "id": "734308",
     "tournamentId": "2977",
     "series": "Playoffs: Grand Final",
     "team1": "100 Thieves",
-    "team2": "TBD",
+    "team2": "LOUD",
     "score": null,
     "winner": null,
     "format": "BO5",
