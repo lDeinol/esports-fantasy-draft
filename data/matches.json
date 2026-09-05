@@ -30548,19 +30548,110 @@
     "series": "Playoffs: Lower Final",
     "team1": "Global Esports",
     "team2": "T1",
-    "score": "0-0",
-    "winner": null,
+    "score": "3-1",
+    "winner": "Global Esports",
     "format": "BO5",
     "date": "2026-09-05",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.32,
+        "kd": 1.43,
+        "acs": 230.0,
+        "adr": 154.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 1.26,
+        "kd": 1.42,
+        "acs": 245.0,
+        "adr": 151.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 1.13,
+        "kd": 1.24,
+        "acs": 205.0,
+        "adr": 126.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 1.12,
+        "kd": 1.23,
+        "acs": 240.0,
+        "adr": 159.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.78,
+        "kd": 0.79,
+        "acs": 148.0,
+        "adr": 104.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "stax",
+        "team": "T1",
+        "rating": 1.08,
+        "kd": 1.04,
+        "acs": 195.0,
+        "adr": 129.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "iZu",
+        "team": "T1",
+        "rating": 0.92,
+        "kd": 0.85,
+        "acs": 181.0,
+        "adr": 115.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "BuZz",
+        "team": "T1",
+        "rating": 0.84,
+        "kd": 0.82,
+        "acs": 194.0,
+        "adr": 127.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Munchkin",
+        "team": "T1",
+        "rating": 0.73,
+        "kd": 0.71,
+        "acs": 173.0,
+        "adr": 115.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Meteor",
+        "team": "T1",
+        "rating": 0.73,
+        "kd": 0.73,
+        "acs": 165.0,
+        "adr": 107.0,
+        "kpr": 0.57
+      }
+    ]
   },
   {
     "id": "742481",
     "tournamentId": "2776",
     "series": "Playoffs: Grand Final",
     "team1": "Nongshim RedForce",
-    "team2": "TBD",
+    "team2": "Global Esports",
     "score": null,
     "winner": null,
     "format": "BO5",
