@@ -275,6 +275,11 @@
     "color": "#f4c030"
   },
   {
+    "name": "VARREL",
+    "abbrv": "VL",
+    "color": "#F9F9F9"
+  },
+  {
     "name": "Wolves Esports",
     "abbrv": "WOL",
     "color": "#fda61a"
@@ -293,5 +298,15 @@
     "name": "ZETA DIVISION",
     "abbrv": "ZETA",
     "color": "#020202"
+  },
+  {
+    "name": "Gen.G",
+    "abbrv": "GEN",
+    "color": "#D2B984"
+  },
+  {
+    "name": "LOUD",
+    "abbrv": "LOUD",
+    "color": "#13FF00"
   }
 ]
