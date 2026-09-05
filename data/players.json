@@ -2512,11 +2512,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.13,
-      "acs": 238.0,
-      "kd": 1.2,
-      "adr": 154.5,
-      "kpr": 0.84
+      "rating": 1.03,
+      "acs": 230.0,
+      "kd": 1.13,
+      "adr": 147.1,
+      "kpr": 0.82
     }
   },
   {
@@ -2527,11 +2527,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.1,
-      "acs": 231.0,
-      "kd": 1.18,
-      "adr": 149.2,
-      "kpr": 0.82
+      "rating": 0.95,
+      "acs": 208.0,
+      "kd": 1.02,
+      "adr": 133.3,
+      "kpr": 0.74
     }
   },
   {
@@ -2542,11 +2542,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.1,
-      "acs": 211.0,
-      "kd": 1.18,
-      "adr": 137.7,
-      "kpr": 0.75
+      "rating": 1.12,
+      "acs": 193.0,
+      "kd": 1.16,
+      "adr": 128.7,
+      "kpr": 0.69
     }
   },
   {
@@ -2557,11 +2557,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.06,
-      "acs": 194.0,
-      "kd": 1.11,
-      "adr": 124.6,
-      "kpr": 0.72
+      "rating": 1.12,
+      "acs": 190.0,
+      "kd": 1.16,
+      "adr": 120.2,
+      "kpr": 0.70
     }
   },
   {
@@ -2572,11 +2572,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.03,
-      "acs": 191.0,
-      "kd": 1.05,
-      "adr": 126.3,
-      "kpr": 0.66
+      "rating": 0.96,
+      "acs": 188.0,
+      "kd": 0.95,
+      "adr": 126.1,
+      "kpr": 0.63
     }
   },
   {
