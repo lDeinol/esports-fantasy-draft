@@ -862,7 +862,7 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 1.20,
+      "rating": 1.2,
       "acs": 202.0,
       "kd": 1.22,
       "adr": 138.6,
@@ -1389,7 +1389,7 @@
     "stats": {
       "rating": 1.04,
       "acs": 228.0,
-      "kd": 1.10,
+      "kd": 1.1,
       "adr": 152.0,
       "kpr": 0.81
     }
@@ -1417,7 +1417,7 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 1.00,
+      "rating": 1.0,
       "acs": 205.0,
       "kd": 0.99,
       "adr": 132.9,
@@ -2561,7 +2561,7 @@
       "acs": 190.0,
       "kd": 1.16,
       "adr": 120.2,
-      "kpr": 0.70
+      "kpr": 0.7
     }
   },
   {
@@ -4677,6 +4677,81 @@
       "kd": 0.76,
       "adr": 95.8,
       "kpr": 0.51
+    }
+  },
+  {
+    "id": "t3xture",
+    "name": "t3xture",
+    "team": "Gen.G",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 1.14,
+      "acs": 271.0,
+      "kd": 1.28,
+      "adr": 167.5,
+      "kpr": 0.94
+    }
+  },
+  {
+    "id": "Raxcal",
+    "name": "Raxcal",
+    "team": "Gen.G",
+    "role": "Sentinel",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.93,
+      "acs": 174.0,
+      "kd": 0.94,
+      "adr": 113.4,
+      "kpr": 0.62
+    }
+  },
+  {
+    "id": "Karon",
+    "name": "Karon",
+    "team": "Gen.G",
+    "role": "Controller",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.91,
+      "acs": 159.0,
+      "kd": 0.84,
+      "adr": 97.5,
+      "kpr": 0.57
+    }
+  },
+  {
+    "id": "Ash",
+    "name": "Ash",
+    "team": "Gen.G",
+    "role": "Duelist",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.76,
+      "acs": 190.0,
+      "kd": 0.83,
+      "adr": 118.3,
+      "kpr": 0.67
+    }
+  },
+  {
+    "id": "Efina",
+    "name": "Efina",
+    "team": "Gen.G",
+    "role": "Initiator",
+    "region": "Pacific",
+    "status": "active",
+    "stats": {
+      "rating": 0.75,
+      "acs": 147.0,
+      "kd": 0.69,
+      "adr": 101.3,
+      "kpr": 0.5
     }
   }
 ]
