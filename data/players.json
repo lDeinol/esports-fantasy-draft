@@ -7,11 +7,11 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 1.25,
-      "acs": 254.2,
-      "kd": 1.4,
-      "adr": 171.0,
-      "kpr": 0.91
+      "rating": 1.03,
+      "acs": 221.0,
+      "kd": 1.05,
+      "adr": 141.7,
+      "kpr": 0.77
     }
   },
   {
@@ -22,11 +22,11 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 1.19,
-      "acs": 216.2,
-      "kd": 1.36,
-      "adr": 139.1,
-      "kpr": 0.83
+      "rating": 1.0,
+      "acs": 182.0,
+      "kd": 1.1,
+      "adr": 122.3,
+      "kpr": 0.68
     }
   },
   {
@@ -37,11 +37,11 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 0.93,
-      "acs": 198.8,
-      "kd": 0.97,
-      "adr": 121.8,
-      "kpr": 0.7
+      "rating": 1.04,
+      "acs": 225.0,
+      "kd": 1.16,
+      "adr": 144.4,
+      "kpr": 0.79
     }
   },
   {
@@ -52,11 +52,11 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 1.19,
-      "acs": 190.4,
-      "kd": 1.35,
-      "adr": 120.4,
-      "kpr": 0.73
+      "rating": 1.09,
+      "acs": 184.0,
+      "kd": 1.1,
+      "adr": 118.4,
+      "kpr": 0.68
     }
   },
   {
@@ -67,11 +67,11 @@
     "region": "Americas",
     "status": "active",
     "stats": {
-      "rating": 1.03,
-      "acs": 181.0,
-      "kd": 1.09,
-      "adr": 121.8,
-      "kpr": 0.6
+      "rating": 1.1,
+      "acs": 191.0,
+      "kd": 1.16,
+      "adr": 121.7,
+      "kpr": 0.69
     }
   },
   {
@@ -982,11 +982,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 0.92,
-      "acs": 185.3,
-      "kd": 1.02,
-      "adr": 117.6,
-      "kpr": 0.68
+      "rating": 0.91,
+      "acs": 183.0,
+      "kd": 0.97,
+      "adr": 120.9,
+      "kpr": 0.66
     }
   },
   {
@@ -997,11 +997,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.13,
-      "acs": 212.2,
-      "kd": 1.19,
-      "adr": 135.6,
-      "kpr": 0.72
+      "rating": 1.04,
+      "acs": 187.0,
+      "kd": 0.98,
+      "adr": 127.9,
+      "kpr": 0.64
     }
   },
   {
@@ -1012,11 +1012,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 0.75,
-      "acs": 178.1,
-      "kd": 0.8,
-      "adr": 119.5,
-      "kpr": 0.6
+      "rating": 1.09,
+      "acs": 217.0,
+      "kd": 1.1,
+      "adr": 140.4,
+      "kpr": 0.77
     }
   },
   {
@@ -1027,11 +1027,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.05,
-      "acs": 232.7,
-      "kd": 1.11,
-      "adr": 147.7,
-      "kpr": 0.8
+      "rating": 0.99,
+      "acs": 212.0,
+      "kd": 1.02,
+      "adr": 140.9,
+      "kpr": 0.74
     }
   },
   {
@@ -1042,11 +1042,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 0.83,
-      "acs": 156.2,
-      "kd": 0.82,
-      "adr": 103.4,
-      "kpr": 0.55
+      "rating": 1.14,
+      "acs": 205.0,
+      "kd": 1.12,
+      "adr": 135.3,
+      "kpr": 0.72
     }
   },
   {
@@ -1507,11 +1507,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 0.99,
-      "acs": 227.0,
-      "kd": 1.05,
-      "adr": 144.3,
-      "kpr": 0.81
+      "rating": 1.14,
+      "acs": 237.0,
+      "kd": 1.19,
+      "adr": 150.2,
+      "kpr": 0.84
     }
   },
   {
@@ -1522,11 +1522,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.02,
-      "acs": 188.6,
-      "kd": 0.99,
-      "adr": 132.5,
-      "kpr": 0.68
+      "rating": 1.08,
+      "acs": 235.0,
+      "kd": 1.13,
+      "adr": 150.6,
+      "kpr": 0.82
     }
   },
   {
@@ -1537,11 +1537,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.07,
-      "acs": 195.4,
-      "kd": 1.2,
-      "adr": 130.0,
-      "kpr": 0.75
+      "rating": 0.96,
+      "acs": 201.0,
+      "kd": 1.02,
+      "adr": 134.0,
+      "kpr": 0.72
     }
   },
   {
@@ -1552,11 +1552,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 0.98,
-      "acs": 172.8,
-      "kd": 0.88,
-      "adr": 114.1,
-      "kpr": 0.58
+      "rating": 1.11,
+      "acs": 194.0,
+      "kd": 1.12,
+      "adr": 120.2,
+      "kpr": 0.69
     }
   },
   {
@@ -1567,11 +1567,11 @@
     "region": "Pacific",
     "status": "active",
     "stats": {
-      "rating": 1.05,
-      "acs": 210.2,
-      "kd": 1.0,
-      "adr": 142.5,
-      "kpr": 0.71
+      "rating": 1.06,
+      "acs": 235.0,
+      "kd": 1.06,
+      "adr": 122.8,
+      "kpr": 0.65
     }
   },
   {
@@ -4752,6 +4752,81 @@
       "kd": 0.69,
       "adr": 101.3,
       "kpr": 0.5
+    }
+  },
+  {
+    "id": "erde",
+    "name": "erde",
+    "team": "LOUD",
+    "role": "Controller",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.21,
+      "acs": 222.0,
+      "kd": 1.26,
+      "adr": 141.6,
+      "kpr": 0.79
+    }
+  },
+  {
+    "id": "lukxo",
+    "name": "lukxo",
+    "team": "LOUD",
+    "role": "Sentinel",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.12,
+      "acs": 232.0,
+      "kd": 1.24,
+      "adr": 153.6,
+      "kpr": 0.85
+    }
+  },
+  {
+    "id": "DaviH",
+    "name": "DaviH",
+    "team": "LOUD",
+    "role": "Initiator",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 1.0,
+      "acs": 158.0,
+      "kd": 0.92,
+      "adr": 110.0,
+      "kpr": 0.55
+    }
+  },
+  {
+    "id": "Darker",
+    "name": "Darker",
+    "team": "LOUD",
+    "role": "Flex",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.91,
+      "acs": 178.0,
+      "kd": 0.86,
+      "adr": 117.5,
+      "kpr": 0.61
+    }
+  },
+  {
+    "id": "tkzin",
+    "name": "tkzin",
+    "team": "LOUD",
+    "role": "Duelist",
+    "region": "Americas",
+    "status": "active",
+    "stats": {
+      "rating": 0.85,
+      "acs": 199.0,
+      "kd": 0.91,
+      "adr": 132.1,
+      "kpr": 0.69
     }
   }
 ]
