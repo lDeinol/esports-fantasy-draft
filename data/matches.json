@@ -30409,12 +30409,103 @@
     "series": "Playoffs: Grand Final",
     "team1": "100 Thieves",
     "team2": "LOUD",
-    "score": "0-1",
-    "winner": "LOUD",
+    "score": "3-2",
+    "winner": "100 Thieves",
     "format": "BO5",
     "date": "2026-09-06",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.02,
+        "kd": 1.05,
+        "acs": 222.0,
+        "adr": 142.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.01,
+        "kd": 1.04,
+        "acs": 189.0,
+        "adr": 127.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 0.94,
+        "kd": 0.91,
+        "acs": 165.0,
+        "adr": 104.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 0.91,
+        "kd": 1.0,
+        "acs": 204.0,
+        "adr": 134.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 0.9,
+        "kd": 0.82,
+        "acs": 172.0,
+        "adr": 114.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.35,
+        "kd": 1.53,
+        "acs": 243.0,
+        "adr": 160.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 1.11,
+        "kd": 1.02,
+        "acs": 173.0,
+        "adr": 122.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.07,
+        "kd": 1.17,
+        "acs": 225.0,
+        "adr": 151.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.85,
+        "kd": 0.73,
+        "acs": 154.0,
+        "adr": 105.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 0.75,
+        "kd": 0.79,
+        "acs": 178.0,
+        "adr": 114.0,
+        "kpr": 0.63
+      }
+    ]
   },
   {
     "id": "742480",
