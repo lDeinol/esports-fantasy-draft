@@ -226,7 +226,7 @@ export async function createLobby({ code, hostUid, hostName, format, tournamentI
     currentPickIndex: 0,
     pickOrder:        [],
     players: {
-      [hostUid]: { name: hostName, isHost: true, joinedAt: Date.now() }
+      [hostUid]: { name: hostName, isHost: true, status: "active", joinedAt: Date.now() }
     },
     picks:             {},
     draftedPlayerIds:  [],
@@ -245,14 +245,69 @@ export async function joinLobby({ code, uid, name }) {
 
   const players = lobby.players || {};
   if (!players[uid] && lobby.maxPlayers) {
-    const currentCount = Object.keys(players).length;
-    if (currentCount >= lobby.maxPlayers) {
+    // Only players still active in the lobby count against the cap —
+    // someone who left frees their slot back up.
+    const activeCount = Object.values(players).filter(p => p.status !== "left").length;
+    if (activeCount >= lobby.maxPlayers) {
       throw new Error(`Lobby is full (${lobby.maxPlayers} / ${lobby.maxPlayers}).`);
     }
   }
 
   const playerRef = ref(db, `lobbies/${code}/players/${uid}`);
-  await set(playerRef, { name, isHost: false, joinedAt: Date.now() });
+  await set(playerRef, { name, isHost: false, status: "active", joinedAt: Date.now() });
+}
+
+// Marks a player as having left the lobby WITHOUT deleting their data —
+// their name, color, and (most importantly) their draft picks stay in
+// place, so Standings/Dashboard keep showing them instead of the row
+// just vanishing. This also means findPlayerByName can still find them
+// later, which is what makes "leave by accident, rejoin with the same
+// name" work at all.
+//
+// Pre-draft exception: if the HOST leaves before the draft has started,
+// there's no data to preserve yet, so we still close the lobby for
+// everyone (matches the old behavior). A host leaving DURING or AFTER
+// a draft instead hands host duties to another still-active player so
+// the lobby and everyone's picks stay intact.
+export async function leavePlayer({ code, uid }) {
+  const lobbyRef = ref(db, `lobbies/${code}`);
+  const snap = await get(lobbyRef);
+  const lobby = snap.val();
+  if (!lobby) return;
+
+  const players = lobby.players || {};
+  const wasHost = lobby.hostId === uid;
+
+  if (wasHost && lobby.status === "waiting") {
+    await set(lobbyRef, null);
+    return;
+  }
+
+  const updates = {};
+  updates[`lobbies/${code}/players/${uid}/status`] = "left";
+  updates[`lobbies/${code}/players/${uid}/leftAt`] = Date.now();
+
+  if (wasHost) {
+    const nextHost = Object.entries(players).find(
+      ([otherUid, p]) => otherUid !== uid && p.status !== "left"
+    );
+    if (nextHost) {
+      updates[`lobbies/${code}/hostId`] = nextHost[0];
+      updates[`lobbies/${code}/players/${nextHost[0]}/isHost`] = true;
+    }
+    updates[`lobbies/${code}/players/${uid}/isHost`] = false;
+  }
+
+  await update(ref(db), updates);
+}
+
+// Marks a player active again — used whenever someone who previously
+// left rejoins (whether their local session survived or not).
+export async function rejoinPlayer({ code, uid }) {
+  await update(ref(db, `lobbies/${code}/players/${uid}`), {
+    status: "active",
+    leftAt: null,
+  });
 }
 
 // Check if a lobby exists and is still in "waiting" status

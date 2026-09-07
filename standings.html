@@ -122,6 +122,7 @@
           name:   p.name,
           color:  p.color || null,
           isHost: p.isHost,
+          left:   p.status === "left",
           picks:  enriched,
           totalScore,
           totalPP,
@@ -216,7 +217,7 @@
             <div class="podium-card rank-${i + 1}">
               <div class="podium-medal">${rankMedal(i)}</div>
               <div class="podium-rank">${i === 0 ? "1st" : i === 1 ? "2nd" : "3rd"}</div>
-              <div class="podium-name"><span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}</div>
+              <div class="podium-name"><span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}${e.left ? ' <span style="color:var(--muted); font-size:0.7rem;">(Left)</span>' : ""}</div>
               <div class="podium-score">${e.totalScore}</div>
               ${e.totalPP > 0 ? `<div style="color:var(--success); font-size:0.7rem; font-weight:600;">+${e.totalPP} PP</div>` : ""}
               <div class="podium-picks">${e.pickCount} pick${e.pickCount !== 1 ? "s" : ""}</div>
@@ -237,6 +238,7 @@
               <span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>
               ${e.uid === myUid ? '<span class="you-tag">You</span>' : ""}
               ${e.isHost        ? '<span style="font-size:0.65rem; color:var(--accent2); margin-left:6px;">Host</span>' : ""}
+              ${e.left          ? '<span style="font-size:0.65rem; color:var(--muted); margin-left:6px;">Left Lobby</span>' : ""}
             </td>
             <td class="picks-cell">${e.pickCount} / ${CONFIG.ROSTER_SIZE}</td>
             <td class="score-cell">${e.totalScore}${e.totalPP > 0 ? `<div style="color:var(--success); font-size:0.65rem; font-weight:600;">+${e.totalPP} PP</div>` : ""}</td>
