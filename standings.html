@@ -96,7 +96,7 @@
     }
 
     // ── Build per-participant standings ────────────────
-    function buildStandings(lobbyData, playerMap, matchData, tournamentId) {
+    function buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData) {
       const { players, picks = {}, pickOrder = [] } = lobbyData;
       const picksArr = Object.values(picks);
 
@@ -106,13 +106,16 @@
         const enriched = myPicksList.map(pick => {
           const pData     = playerMap[pick.playerId] || {};
           const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
-          const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
+          const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
+          const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
+          const pts       = +(basePts + pp).toFixed(1);
           const breakdown = SCORING.breakdown(stats);
           const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
-          return { ...pick, pData, stats, pts, breakdown, history, tracked, matchCount };
+          return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
         });
 
         const totalScore = +enriched.reduce((s, e) => s + e.pts, 0).toFixed(1);
+        const totalPP    = +enriched.reduce((s, e) => s + e.pp, 0).toFixed(1);
 
         return {
           uid,
@@ -121,6 +124,7 @@
           isHost: p.isHost,
           picks:  enriched,
           totalScore,
+          totalPP,
           pickCount: enriched.length,
         };
       }).sort((a, b) => b.totalScore - a.totalScore);
@@ -171,7 +175,7 @@
               </div>
             `).join("")}
           </div>
-          <div class="expand-pts">${p.pts} pts</div>
+          <div class="expand-pts">${p.pts} pts${p.pp > 0 ? `<br><span style="color:var(--success); font-size:0.65rem;">+${p.pp} PP</span>` : ""}</div>
         </div>
       `).join("");
 
@@ -198,7 +202,7 @@
       const playerMap    = Object.fromEntries(playerData.map(p => [p.id, p]));
       const tournamentId = lobbyData.tournamentId || null;
       const tournament   = tournamentData.find(t => t.id === tournamentId);
-      const standings    = buildStandings(lobbyData, playerMap, matchData, tournamentId);
+      const standings    = buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData);
       const isLive       = lobbyData.status === "drafting";
       const top3         = standings.slice(0, 3);
 
@@ -214,6 +218,7 @@
               <div class="podium-rank">${i === 0 ? "1st" : i === 1 ? "2nd" : "3rd"}</div>
               <div class="podium-name"><span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}</div>
               <div class="podium-score">${e.totalScore}</div>
+              ${e.totalPP > 0 ? `<div style="color:var(--success); font-size:0.7rem; font-weight:600;">+${e.totalPP} PP</div>` : ""}
               <div class="podium-picks">${e.pickCount} pick${e.pickCount !== 1 ? "s" : ""}</div>
             </div>
           `).join("")}
@@ -234,7 +239,7 @@
               ${e.isHost        ? '<span style="font-size:0.65rem; color:var(--accent2); margin-left:6px;">Host</span>' : ""}
             </td>
             <td class="picks-cell">${e.pickCount} / ${CONFIG.ROSTER_SIZE}</td>
-            <td class="score-cell">${e.totalScore}</td>
+            <td class="score-cell">${e.totalScore}${e.totalPP > 0 ? `<div style="color:var(--success); font-size:0.65rem; font-weight:600;">+${e.totalPP} PP</div>` : ""}</td>
             <td class="expand-cell">${isExpanded ? "▲" : "▼"}</td>
           </tr>
           ${expandRow}

@@ -86,6 +86,43 @@ export function totalPicks(numPlayers) {
   return numPlayers * CONFIG.ROSTER_SIZE;
 }
 
+// ── Placement Points (PP) ────────────────────────────────────
+// For International-region tournaments only, winning a bracket round
+// awards a flat bonus, regardless of how many matches a team played
+// to get there. Keyed by the match's "series" label with the group
+// letter / swiss record suffix stripped off — e.g.
+// "Group Stage: Winner's (A)" and "Group Stage: Winner's (D)" both
+// map to "Group Stage: Winner's". A round with no entry (or 0) awards
+// no PP. This is the single source of truth — stats.html, dashboard.html,
+// and standings.html all read from this rather than keeping their own copy.
+export const PP_BY_SERIES = {
+  "Group Stage: Opening":            0,
+  "Group Stage: Winner's":           110,
+  "Group Stage: Elimination":        0,
+  "Group Stage: Decider":            0,
+  "Swiss Stage: Round 1":            0,
+  "Swiss Stage: Round 2":            100,
+  "Swiss Stage: Round 3":            0,
+  "Playoffs: Upper Quarterfinals":   0,
+  "Playoffs: Upper Semifinals":      110,
+  "Playoffs: Upper Final":           110,
+  "Playoffs: Grand Final":           100,
+  "Playoffs: Lower Round 1":         0,
+  "Playoffs: Lower Round 2":         0,
+  "Playoffs: Lower Round 3":         0,
+  "Playoffs: Lower Final":           0,
+  "Playoffs: Quarterfinals":         0,
+  "Playoffs: Semifinals":            0,
+  "Playoffs: Consolation Final":     0,
+};
+
+// Strips a trailing "(A)" group letter or "(1-0)" swiss record off a
+// series label so it matches a PP_BY_SERIES key regardless of group
+// or seed.
+export function normalizeSeries(series) {
+  return (series || "").replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
+
 // ── Scoring Engine ───────────────────────────────────────────
 // Valorant-specific scoring weights (CL% excluded — calculated end of tournament only)
 export const SCORING = {
@@ -132,6 +169,25 @@ export const SCORING = {
         const stats = m.playerStats.find(s => s.playerId === playerId);
         return { match: m, stats, pts: +this.calculate(stats).toFixed(1) };
       });
+  },
+  // Placement Points earned by a player within a single tournament.
+  // Only awards PP when that tournament's region is "International" —
+  // pass the full tournaments array so the region can be looked up.
+  // Returns 0 for tournamentId === null (an "all tournaments" view has
+  // no single region to check against).
+  placementPoints(playerId, matches, tournamentId, tournaments) {
+    if (!tournamentId) return 0;
+    const tournament = tournaments?.find(t => t.id === tournamentId);
+    if (tournament?.region !== "International") return 0;
+
+    const wins = matches.filter(m =>
+      m.status === "completed" &&
+      m.tournamentId === tournamentId &&
+      m.winner &&
+      m.playerStats?.some(s => s.playerId === playerId && s.team === m.winner)
+    );
+
+    return +wins.reduce((total, m) => total + (PP_BY_SERIES[normalizeSeries(m.series)] || 0), 0).toFixed(1);
   },
 };
 

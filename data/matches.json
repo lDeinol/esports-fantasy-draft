@@ -29993,7 +29993,7 @@
     "series": "Playoffs: Lower Round 2",
     "team1": "LOUD",
     "team2": "MIBR",
-    "score": "1-0",
+    "score": "2-0",
     "winner": "LOUD",
     "format": "BO3",
     "date": "2026-08-30",
@@ -30003,7 +30003,7 @@
         "playerId": "erde",
         "team": "LOUD",
         "rating": 1.29,
-        "kd": 1.6,
+        "kd": 1.36,
         "acs": 237.0,
         "adr": 150.0,
         "kpr": 0.83
@@ -30011,7 +30011,7 @@
       {
         "playerId": "lukxo",
         "team": "LOUD",
-        "rating": 129,
+        "rating": 1.19,
         "kd": 1.26,
         "acs": 255.0,
         "adr": 163.0,

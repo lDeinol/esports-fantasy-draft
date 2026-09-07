@@ -129,17 +129,22 @@
 
       // Enrich picks with tournament-scoped match points
       let totalScore = 0;
+      let totalPP    = 0;
       const enriched = myPicks.map(pick => {
         const pData     = playerMap[pick.playerId] || {};
         const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
-        const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
+        const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
+        const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
+        const pts       = +(basePts + pp).toFixed(1);
         const breakdown = SCORING.breakdown(stats);
         const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
         totalScore     += pts;
-        return { ...pick, pData, stats, pts, breakdown, history, tracked, matchCount };
+        totalPP        += pp;
+        return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
       });
 
       totalScore = +totalScore.toFixed(1);
+      totalPP    = +totalPP.toFixed(1);
 
       // Stat summary across roster
       const avgRating = enriched.length
@@ -176,6 +181,11 @@
               <div class="score-stat-val">${enriched.length}</div>
               <div class="score-stat-label">Players</div>
             </div>
+            ${totalPP > 0 ? `
+            <div class="score-stat">
+              <div class="score-stat-val" style="color:var(--success);">+${totalPP}</div>
+              <div class="score-stat-label">Placement Pts</div>
+            </div>` : ""}
           </div>
         </div>
 
@@ -239,6 +249,7 @@
                 <div class="player-pts">
                   <div class="player-pts-val">${p.pts}</div>
                   <div class="player-pts-label">pts</div>
+                  ${p.pp > 0 ? `<div class="player-pts-pp">+${p.pp} PP</div>` : ""}
                 </div>
               </div>
               ${expandedPicks.has(p.playerId) ? `

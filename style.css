@@ -1718,6 +1718,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .td-region  { font-size: 0.82rem; color: var(--muted); }
 .td-stat    { font-family: var(--font-mono); font-size: 0.925rem; }
 .td-pts     { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+.td-pp      { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; color: var(--success); }
 .td-matches { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
 
 /* ── Expanded Match History ──────────────────────────── */
@@ -1742,6 +1743,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .mh-date  { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
 
 .mh-tournament { font-size: 0.72rem; color: var(--muted); flex: 1; min-width: 160px; }
+.mh-series     { opacity: 0.7; }
 .mh-match      { font-size: 0.82rem; font-weight: 600; min-width: 120px; }
 .mh-result     { font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
 .mh-result.win  { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); border: 1px solid color-mix(in srgb, var(--success) 25%, transparent); }
@@ -2006,6 +2008,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .player-pts       { text-align: right; flex-shrink: 0; }
 .player-pts-val   { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 600; color: var(--accent); }
 .player-pts-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.player-pts-pp    { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; color: var(--success); margin-top: 2px; }
 
 /* ── Badges ──────────────────────────────────────────── */
 .price-badge {
