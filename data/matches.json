@@ -30931,5 +30931,109 @@
         "kpr": 0.75
       }
     ]
+  },
+  {
+    "id": "753455",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (C)",
+    "team1": "Team Liquid",
+    "team2": "Paper Rex",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-24",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753454",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (C)",
+    "team1": "TYLOO",
+    "team2": "G2 Esports",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-24",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753460",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (D)",
+    "team1": "Nongshim RedForce",
+    "team2": "NRG",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-25",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753459",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (D)",
+    "team1": "Karmine Corp",
+    "team2": "Xi Lai Gaming",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-25",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753449",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (B)",
+    "team1": "Global Esports",
+    "team2": "Team Vitality",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-26",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753450",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (B)",
+    "team1": "LOUD",
+    "team2": "EDward Gaming",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-26",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753444",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (A)",
+    "team1": "100 Thieves",
+    "team2": "T1",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-27",
+    "status": "upcoming",
+    "playerStats": []
+  },
+  {
+    "id": "753445",
+    "tournamentId": "2766",
+    "series": "Group Stage: Opening (A)",
+    "team1": "JD Gaming",
+    "team2": "FUT Esports",
+    "score": null,
+    "winner": null,
+    "format": "BO3",
+    "date": "2026-09-27",
+    "status": "upcoming",
+    "playerStats": []
   }
 ]
