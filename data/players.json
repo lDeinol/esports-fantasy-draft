@@ -4580,13 +4580,28 @@
     "team": "Team Liquid",
     "role": "Duelist",
     "region": "EMEA",
-    "status": "active",
+    "status": "inactive",
     "stats": {
       "rating": 0.87,
       "acs": 178.0,
       "kd": 0.97,
       "adr": 107.4,
       "kpr": 0.64
+    }
+  },
+  {
+    "id": "GSR",
+    "name": "GSR",
+    "team": "Team Liquid",
+    "role": "Duelist",
+    "region": "EMEA",
+    "status": "active",
+    "stats": {
+      "rating": 1.02,
+      "acs": 227.0,
+      "kd": 1.00,
+      "adr": 147.0,
+      "kpr": 0.76
     }
   },
   {
