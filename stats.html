@@ -264,13 +264,15 @@
   }
 
   function filteredSorted(allPlayers) {
+    const tournamentTeams = selectedTournaments.size > 0 ? getTournamentTeams(selectedTournaments) : null;
     return allPlayers
       .filter(p => {
         const q = document.getElementById("search").value.toLowerCase();
         const matchRegion = selectedRegions.size === 0 || selectedRegions.has(p.region);
         const matchTeam   = selectedTeams.size === 0 || selectedTeams.has(p.team);
+        const matchTournament = !tournamentTeams || tournamentTeams.has(p.team);
         const matchSearch = !q || p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q);
-        return matchRegion && matchTeam && matchSearch;
+        return matchRegion && matchTeam && matchTournament && matchSearch;
       })
       .sort((a, b) => {
         if (sortCol === "totalPts")    return b.totalPts - a.totalPts;
@@ -400,6 +402,37 @@
     return { populate, updateBadge };
   }
 
+  // Teams declared in tournaments.json for the given set of tournament ids.
+  // Reading from the tournament's own "teams" roster (rather than match
+  // data) means this works for upcoming/ongoing tournaments too, before
+  // any matches have been played.
+  function getTournamentTeams(tournamentIds) {
+    const set = new Set();
+    tournaments.forEach(t => {
+      if (tournamentIds.has(t.id)) {
+        (t.teams || []).forEach(name => set.add(name));
+      }
+    });
+    return set;
+  }
+
+  // Teams that are actually part of the currently-selected tournament(s).
+  // With no tournament selected, every team is valid.
+  function getValidTeamOptions() {
+    if (selectedTournaments.size === 0) {
+      return [...new Set(players.map(p => p.team))].sort();
+    }
+    return [...getTournamentTeams(selectedTournaments)].sort();
+  }
+
+  // Drop any selected teams that aren't part of the current tournament filter.
+  function pruneTeamSelection() {
+    const valid = new Set(getValidTeamOptions());
+    [...selectedTeams].forEach(t => {
+      if (!valid.has(t)) selectedTeams.delete(t);
+    });
+  }
+
   const regionFilter = wireCheckboxDropdown({
     btnId: "region-filter-btn", dropdownId: "region-dropdown", listId: "region-dropdown-list",
     badgeId: "region-filter-badge", clearBtnId: "region-clear-btn", selectedSet: selectedRegions,
@@ -410,7 +443,7 @@
   const teamFilter = wireCheckboxDropdown({
     btnId: "team-filter-btn", dropdownId: "team-dropdown", listId: "team-dropdown-list",
     badgeId: "team-filter-badge", clearBtnId: "team-clear-btn", selectedSet: selectedTeams,
-    getOptions: () => [...new Set(players.map(p => p.team))].sort(),
+    getOptions: getValidTeamOptions,
     onChange: () => renderTable(buildPlayerData()),
   });
 
@@ -443,6 +476,9 @@
       cb.addEventListener("change", () => {
         if (cb.checked) selectedTournaments.add(cb.value);
         else selectedTournaments.delete(cb.value);
+        pruneTeamSelection();
+        teamFilter.populate();
+        teamFilter.updateBadge();
         updateTournamentFilterUI();
         renderTable(buildPlayerData());
       });
@@ -467,6 +503,8 @@
     e.stopPropagation();
     selectedTournaments.clear();
     populateTournamentDropdown();
+    teamFilter.populate();
+    teamFilter.updateBadge();
     updateTournamentFilterUI();
     renderTable(buildPlayerData());
   });
