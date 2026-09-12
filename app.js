@@ -106,7 +106,7 @@ export const PP_BY_SERIES = {
   "Playoffs: Upper Quarterfinals":   0,
   "Playoffs: Upper Semifinals":      110,
   "Playoffs: Upper Final":           110,
-  "Playoffs: Grand Final":           100,
+  "Playoffs: Grand Final":           120,
   "Playoffs: Lower Round 1":         0,
   "Playoffs: Lower Round 2":         0,
   "Playoffs: Lower Round 3":         0,
