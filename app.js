@@ -251,3 +251,384 @@ export function formatCurrency(n) {
 export function el(id) {
   return document.getElementById(id);
 }
+<<<<<<< Updated upstream
+=======
+
+// Given a hex color (e.g. "#00e5ff"), returns "#000000" or "#ffffff" —
+// whichever gives better contrast against it. Used for badges whose
+// background is a data-driven color (team colors, etc.) that isn't
+// tied to the light/dark theme, so the text needs to be picked per
+// color rather than via the --text token.
+export function contrastTextColor(hex) {
+  if (!hex) return "#ffffff";
+  const clean = hex.replace("#", "");
+  const full  = clean.length === 3 ? clean.split("").map(c => c + c).join("") : clean;
+  const r = parseInt(full.substring(0, 2), 16);
+  const g = parseInt(full.substring(2, 4), 16);
+  const b = parseInt(full.substring(4, 6), 16);
+  if ([r, g, b].some(Number.isNaN)) return "#ffffff";
+  // Relative luminance (WCAG-style approximation)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? "#000000" : "#ffffff";
+}
+
+// ============================================================
+//  Trading Phase
+// ============================================================
+//
+// Data model added to lobbies/{code}:
+//   tradingEnabled    bool   — host toggle
+//   tradeRounds       number — how many full passes through tradeOrder
+//   currentRound      number — 1-based
+//   tradeOrder        [uid]  — snapshotted from standings (lowest score
+//                              first) the moment the host starts trading;
+//                              reused for every round
+//   currentTurnIndex  number — index into tradeOrder
+//   currentTurnUid    uid
+//   attemptsThisTurn  number — rejected proposals in the current turn;
+//                              hits 3 and the turn auto-passes
+//   roster            { playerId: ownerUid }       — current owner of
+//                      every drafted-or-traded player; missing entry
+//                      means "in the undrafted pool"
+//   ownershipLog      { playerId: { p0: {uid,from,to}, p1: ... } } —
+//                      full history of who owned a player and when, so
+//                      match points can be attributed to whoever owned
+//                      the player at the time that match happened
+//   trades            { tradeId: {...} }           — full trade log,
+//                      visible to everyone
+
+// Builds the trade turn order: every active manager, lowest total score
+// first. Snapshotted once when trading starts and reused every round.
+export function computeTradeOrder(lobbyData, matchData, tournamentData) {
+  const { players, picks = {}, tournamentId } = lobbyData;
+  const picksArr = Object.values(picks);
+  const scored = Object.entries(players || {})
+    .filter(([, p]) => p.status !== "left")
+    .map(([uid]) => {
+      const myPicks = picksArr.filter(pk => pk.byUid === uid);
+      const total = myPicks.reduce((s, pk) => {
+        const base = SCORING.totalFromMatches(pk.playerId, matchData, tournamentId);
+        const pp   = SCORING.placementPoints(pk.playerId, matchData, tournamentId, tournamentData);
+        return s + base + pp;
+      }, 0);
+      return { uid, total };
+    });
+  scored.sort((a, b) => a.total - b.total);
+  return scored.map(s => s.uid);
+}
+
+// Fallback roster map for lobbies where trading has never been started —
+// derives "who owns what" straight from the original draft picks.
+export function buildRosterMap(lobbyData) {
+  if (lobbyData.roster) return lobbyData.roster;
+  const map = {};
+  Object.values(lobbyData.picks || {}).forEach(pk => { map[pk.playerId] = pk.byUid; });
+  return map;
+}
+
+// Ownership periods for a single player: [{ uid, from, to }], sorted
+// oldest-first, `to: null` meaning "still owned". Falls back to a single
+// all-time period under the original drafter if trading was never used.
+export function getOwnershipPeriods(lobbyData, playerId) {
+  const log = lobbyData.ownershipLog?.[playerId];
+  if (log) return Object.values(log).sort((a, b) => a.from - b.from);
+  const pick = Object.values(lobbyData.picks || {}).find(pk => pk.playerId === playerId);
+  if (!pick) return [];
+  return [{ uid: pick.byUid, from: 0, to: null }];
+}
+
+// Which uid owned a player at the moment a given match (by its YYYY-MM-DD
+// date) kicked off. A trade that lands on the same day as a match: if the
+// trade timestamp is before the match's start-of-day moment, the new
+// owner gets it; a trade later that same day means the old owner keeps it
+// (this falls out of `from` being inclusive / `to` being exclusive below).
+export function ownerAtMatch(periods, matchDate) {
+  const t = new Date(matchDate + "T00:00:00").getTime();
+  const period = periods.find(p => p.from <= t && (p.to === null || t < p.to));
+  return period ? period.uid : null;
+}
+
+// Players with no current owner in the roster map — draftable via trade.
+export function getUndraftedPool(allPlayers, rosterMap) {
+  return allPlayers.filter(p => !rosterMap[p.id]);
+}
+
+// Ownership-aware scoring — same shape as SCORING.totalFromMatches /
+// matchHistory, but only counts a match toward `uid` if `uid` owned the
+// player at the time. Safe to use even for lobbies with zero trades,
+// since getOwnershipPeriods() falls back to "the drafter owns it always".
+SCORING.totalFromMatchesOwned = function (playerId, matches, tournamentId, periods, uid) {
+  const filtered = matches.filter(m =>
+    m.status === "completed" &&
+    (!tournamentId || m.tournamentId === tournamentId) &&
+    ownerAtMatch(periods, m.date) === uid
+  );
+  return +filtered.reduce((total, m) => {
+    const stats = m.playerStats?.find(s => s.playerId === playerId);
+    return total + (stats ? this.calculate(stats) : 0);
+  }, 0).toFixed(1);
+};
+
+SCORING.matchHistoryOwned = function (playerId, matches, tournamentId, periods, uid) {
+  return matches
+    .filter(m =>
+      m.status === "completed" &&
+      (!tournamentId || m.tournamentId === tournamentId) &&
+      m.playerStats?.some(s => s.playerId === playerId) &&
+      ownerAtMatch(periods, m.date) === uid
+    )
+    .map(m => {
+      const stats = m.playerStats.find(s => s.playerId === playerId);
+      return { match: m, stats, pts: +this.calculate(stats).toFixed(1) };
+    });
+};
+
+// Ownership-aware Placement Points — same as SCORING.placementPoints but
+// only credits a round win to `uid` if they owned the player at the time
+// that win was recorded.
+SCORING.placementPointsOwned = function (playerId, matches, tournamentId, tournaments, periods, uid) {
+  if (!tournamentId) return 0;
+  const tournament = tournaments?.find(t => t.id === tournamentId);
+  if (tournament?.region !== "International") return 0;
+
+  const wins = matches.filter(m =>
+    m.status === "completed" &&
+    m.tournamentId === tournamentId &&
+    m.winner &&
+    m.playerStats?.some(s => s.playerId === playerId && s.team === m.winner) &&
+    ownerAtMatch(periods, m.date) === uid
+  );
+
+  return +wins.reduce((total, m) => total + (PP_BY_SERIES[normalizeSeries(m.series)] || 0), 0).toFixed(1);
+};
+
+// Points a manager earned from players they've since traded away — one
+// entry per closed ownership period, scored only for matches that fell
+// inside that window. These points are already folded into totalScore;
+// this is a transparency breakdown of where some of it came from, for the
+// dashboard's "Traded Away" section.
+export function tradedAwayBreakdown(lobbyData, uid, matchData, tournamentId) {
+  const log = lobbyData.ownershipLog || {};
+  const results = [];
+  Object.entries(log).forEach(([playerId, periodsObj]) => {
+    const periods = Object.values(periodsObj).sort((a, b) => a.from - b.from);
+    periods.forEach(period => {
+      if (period.uid !== uid || period.to === null) return; // still owned = not "away"
+      const pts = SCORING.totalFromMatchesOwned(playerId, matchData, tournamentId, [period], uid);
+      if (pts > 0) results.push({ playerId, pts, from: period.from, to: period.to });
+    });
+  });
+  return results;
+}
+
+// Closes a player's currently-open ownership period and, if there's a new
+// owner, opens a fresh one for them starting now. `newUid: null` means the
+// player is going back to the undrafted pool (no new period opened).
+function closeAndOpenOwnership(updates, code, lobby, playerId, newUid, now) {
+  const periods = getOwnershipPeriods(lobby, playerId);
+  const openIdx = periods.findIndex(p => p.to === null);
+  const logPath = `lobbies/${code}/ownershipLog/${playerId}`;
+
+  if (openIdx >= 0) {
+    updates[`${logPath}/p${openIdx}/to`] = now;
+  }
+  if (newUid) {
+    updates[`${logPath}/p${periods.length}`] = { uid: newUid, from: now, to: null };
+  }
+}
+
+// Advances the turn pointer, rolling into the next round or closing
+// trading entirely once tradeRounds is exhausted. Resets the reject
+// counter for whoever's turn it becomes.
+async function advanceTurn(code, lobby) {
+  const order = lobby.tradeOrder || [];
+  let idx   = (lobby.currentTurnIndex ?? 0) + 1;
+  let round = lobby.currentRound || 1;
+
+  if (idx >= order.length) {
+    idx = 0;
+    round += 1;
+  }
+
+  if (round > (lobby.tradeRounds || 1)) {
+    await update(ref(db, `lobbies/${code}`), {
+      tradingEnabled:  false,
+      tradingClosedAt: Date.now(),
+    });
+    return;
+  }
+
+  await update(ref(db, `lobbies/${code}`), {
+    currentRound:     round,
+    currentTurnIndex: idx,
+    currentTurnUid:   order[idx],
+    attemptsThisTurn: 0,
+  });
+}
+
+// Host starts (or restarts) the trading phase. On a true first start this
+// also seeds the roster map + ownership log from the current draft picks;
+// on a restart (trading was closed, host reopens it) that history is left
+// alone and only the order/round counters reset.
+export async function startTrading({ code, rounds, matchData, tournamentData }) {
+  const lobbyRef = ref(db, `lobbies/${code}`);
+  const snap  = await get(lobbyRef);
+  const lobby = snap.val();
+  if (!lobby) throw new Error("Lobby not found.");
+
+  const order = computeTradeOrder(lobby, matchData, tournamentData);
+  if (order.length === 0) throw new Error("No active managers to trade.");
+
+  const updates = {
+    [`lobbies/${code}/tradingEnabled`]:   true,
+    [`lobbies/${code}/tradeRounds`]:      rounds,
+    [`lobbies/${code}/currentRound`]:     1,
+    [`lobbies/${code}/tradeOrder`]:       order,
+    [`lobbies/${code}/currentTurnIndex`]: 0,
+    [`lobbies/${code}/currentTurnUid`]:   order[0],
+    [`lobbies/${code}/attemptsThisTurn`]: 0,
+    [`lobbies/${code}/tradingStartedAt`]: Date.now(),
+  };
+
+  if (!lobby.roster) {
+    const roster = {};
+    const ownershipLog = {};
+    Object.values(lobby.picks || {}).forEach(pk => {
+      roster[pk.playerId] = pk.byUid;
+      ownershipLog[pk.playerId] = { p0: { uid: pk.byUid, from: 0, to: null } };
+    });
+    updates[`lobbies/${code}/roster`]        = roster;
+    updates[`lobbies/${code}/ownershipLog`]  = ownershipLog;
+  }
+
+  await update(ref(db), updates);
+}
+
+// Host can manually close trading at any point, independent of rounds.
+export async function closeTrading({ code }) {
+  await update(ref(db, `lobbies/${code}`), {
+    tradingEnabled:  false,
+    tradingClosedAt: Date.now(),
+  });
+}
+
+// Voluntary self-pass (requestingUid must be the current turn holder) or
+// host force-pass (isHost: true bypasses the turn check).
+export async function passTurn({ code, requestingUid, isHost }) {
+  const snap  = await get(ref(db, `lobbies/${code}`));
+  const lobby = snap.val();
+  if (!lobby || !lobby.tradingEnabled) return;
+  if (!isHost && requestingUid !== lobby.currentTurnUid) {
+    throw new Error("It's not your turn.");
+  }
+  await advanceTurn(code, lobby);
+}
+
+// Proposes a manager-vs-manager 1-for-1 trade. Must be the proposer's
+// turn, and they can only have one pending offer out at a time.
+export async function proposeTrade({ code, fromUid, fromName, toUid, toName, offerPlayerId, offerName, requestPlayerId, requestName }) {
+  const snap  = await get(ref(db, `lobbies/${code}`));
+  const lobby = snap.val();
+  if (!lobby || !lobby.tradingEnabled) throw new Error("Trading isn't open.");
+  if (lobby.currentTurnUid !== fromUid) throw new Error("It's not your turn.");
+
+  const openTrade = Object.values(lobby.trades || {}).find(
+    t => t.fromUid === fromUid && t.status === "pending"
+  );
+  if (openTrade) throw new Error("You already have a pending offer out — wait for a response.");
+
+  const roster = buildRosterMap(lobby);
+  if (roster[offerPlayerId] !== fromUid) throw new Error("You don't own that player.");
+  if (roster[requestPlayerId] !== toUid) throw new Error("They don't own that player.");
+
+  const newRef = push(ref(db, `lobbies/${code}/trades`));
+  await set(newRef, {
+    type: "player-player",
+    fromUid, fromName, toUid, toName,
+    offerPlayerId, offerName, requestPlayerId, requestName,
+    status: "pending",
+    round: lobby.currentRound || 1,
+    proposedAt: Date.now(),
+  });
+}
+
+// The recipient of a pending trade accepts or rejects it.
+export async function respondTrade({ code, tradeId, uid, accept }) {
+  const lobbyRef = ref(db, `lobbies/${code}`);
+  const snap  = await get(lobbyRef);
+  const lobby = snap.val();
+  if (!lobby) throw new Error("Lobby not found.");
+  const trade = lobby.trades?.[tradeId];
+  if (!trade || trade.status !== "pending") throw new Error("This trade is no longer pending.");
+  if (trade.toUid !== uid) throw new Error("This trade isn't addressed to you.");
+
+  if (!accept) {
+    const attempts = (lobby.attemptsThisTurn || 0) + 1;
+    await update(ref(db), {
+      [`lobbies/${code}/trades/${tradeId}/status`]:     "rejected",
+      [`lobbies/${code}/trades/${tradeId}/resolvedAt`]: Date.now(),
+    });
+    if (attempts >= 3) {
+      const freshSnap = await get(lobbyRef);
+      await advanceTurn(code, freshSnap.val());
+    } else {
+      await update(ref(db, `lobbies/${code}`), { attemptsThisTurn: attempts });
+    }
+    return;
+  }
+
+  const now = Date.now();
+  const updates = {
+    [`lobbies/${code}/trades/${tradeId}/status`]:        "completed",
+    [`lobbies/${code}/trades/${tradeId}/resolvedAt`]:    now,
+    [`lobbies/${code}/roster/${trade.offerPlayerId}`]:   trade.toUid,
+    [`lobbies/${code}/roster/${trade.requestPlayerId}`]: trade.fromUid,
+  };
+  closeAndOpenOwnership(updates, code, lobby, trade.offerPlayerId,   trade.toUid,   now);
+  closeAndOpenOwnership(updates, code, lobby, trade.requestPlayerId, trade.fromUid, now);
+
+  await update(ref(db), updates);
+  const freshSnap = await get(lobbyRef);
+  await advanceTurn(code, freshSnap.val());
+}
+
+// Instant, no-approval trade: give up one of your players to take an
+// undrafted one. Must be the acting manager's turn. `givePlayer` /
+// `takePlayer` are { id, name } pairs.
+export async function undraftedTrade({ code, uid, givePlayer, takePlayer }) {
+  const lobbyRef = ref(db, `lobbies/${code}`);
+  const snap  = await get(lobbyRef);
+  const lobby = snap.val();
+  if (!lobby || !lobby.tradingEnabled) throw new Error("Trading isn't open.");
+  if (lobby.currentTurnUid !== uid) throw new Error("It's not your turn.");
+
+  const roster = buildRosterMap(lobby);
+  if (roster[givePlayer.id] !== uid) throw new Error("You don't own that player.");
+  if (roster[takePlayer.id]) throw new Error("That player has already been taken.");
+
+  const now = Date.now();
+  const updates = {
+    [`lobbies/${code}/roster/${givePlayer.id}`]: null, // back to the undrafted pool
+    [`lobbies/${code}/roster/${takePlayer.id}`]: uid,
+  };
+
+  const newRef = push(ref(db, `lobbies/${code}/trades`));
+  updates[`lobbies/${code}/trades/${newRef.key}`] = {
+    type: "player-undrafted",
+    fromUid: uid,
+    givePlayerId: givePlayer.id, givePlayerName: givePlayer.name,
+    takePlayerId: takePlayer.id, takePlayerName: takePlayer.name,
+    status: "completed",
+    round: lobby.currentRound || 1,
+    proposedAt: now,
+    resolvedAt: now,
+  };
+
+  closeAndOpenOwnership(updates, code, lobby, givePlayer.id, null, now);
+  closeAndOpenOwnership(updates, code, lobby, takePlayer.id, uid,  now);
+
+  await update(ref(db), updates);
+  const freshSnap = await get(lobbyRef);
+  await advanceTurn(code, freshSnap.val());
+}
+>>>>>>> Stashed changes

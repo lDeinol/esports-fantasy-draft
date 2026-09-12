@@ -36,6 +36,7 @@
       <a href="stats.html"     class="nav-link">Stats</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="index.html"     class="nav-link">Draft</a>
+      <a href="trade.html"     class="nav-link">Trade</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link active">Standings</a>
     </nav>
@@ -50,7 +51,8 @@
   <script type="module">
     import {
       db, ref, get, subscribeLobby,
-      ensureAuth, LS, CONFIG, SCORING, initThemeToggle
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle,
+      buildRosterMap, getOwnershipPeriods
     } from "./app.js";
 
     initThemeToggle();
@@ -96,13 +98,33 @@
     }
 
     // ── Build per-participant standings ────────────────
+<<<<<<< Updated upstream
     function buildStandings(lobbyData, playerMap, matchData, tournamentId) {
       const { players, picks = {}, pickOrder = [] } = lobbyData;
+=======
+    function buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData) {
+      const { players, picks = {} } = lobbyData;
+>>>>>>> Stashed changes
       const picksArr = Object.values(picks);
+      const pickByPlayerId = Object.fromEntries(picksArr.map(pk => [pk.playerId, pk]));
+      const rosterMap = buildRosterMap(lobbyData);
+      const ownershipLog = lobbyData.ownershipLog || {};
+
+      // Every player uid has ever owned but no longer does — appear in
+      // their roster list with a "Traded" badge and only the points/
+      // matches earned while they actually owned the player.
+      function tradedAwayIdsFor(uid) {
+        return Object.entries(ownershipLog)
+          .filter(([, periodsObj]) => Object.values(periodsObj).some(per => per.uid === uid && per.to !== null))
+          .map(([playerId]) => playerId);
+      }
 
       return Object.entries(players || {}).map(([uid, p]) => {
-        const myPicksList = picksArr.filter(pk => pk.byUid === uid);
+        const currentIds = Object.entries(rosterMap).filter(([, owner]) => owner === uid).map(([pid]) => pid);
+        const tradedIds  = tradedAwayIdsFor(uid).filter(pid => !currentIds.includes(pid));
+        const allIds     = [...currentIds, ...tradedIds];
 
+<<<<<<< Updated upstream
         const enriched = myPicksList.map(pick => {
           const pData     = playerMap[pick.playerId] || {};
           const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
@@ -110,6 +132,22 @@
           const breakdown = SCORING.breakdown(stats);
           const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
           return { ...pick, pData, stats, pts, breakdown, history, tracked, matchCount };
+=======
+        const enriched = allIds.map(playerId => {
+          const pick      = pickByPlayerId[playerId];
+          const pData     = playerMap[playerId] || {};
+          const { stats, tracked, matchCount } = resolveStats(playerId, pData, matchData, tournamentId);
+          const periods   = getOwnershipPeriods(lobbyData, playerId);
+          const basePts   = SCORING.totalFromMatchesOwned(playerId, matchData, tournamentId, periods, uid);
+          const pp        = SCORING.placementPointsOwned(playerId, matchData, tournamentId, tournamentData, periods, uid);
+          const pts       = +(basePts + pp).toFixed(1);
+          const breakdown = SCORING.breakdown(stats);
+          const history   = SCORING.matchHistoryOwned(playerId, matchData, tournamentId, periods, uid);
+          const base = pick
+            ? pick
+            : { byUid: uid, playerId, playerName: pData.name, playerTeam: pData.team, playerRole: pData.role, label: "Trade" };
+          return { ...base, pData, stats, pts, pp, breakdown, history, tracked, matchCount, traded: tradedIds.includes(playerId) };
+>>>>>>> Stashed changes
         });
 
         const totalScore = +enriched.reduce((s, e) => s + e.pts, 0).toFixed(1);
@@ -121,7 +159,12 @@
           isHost: p.isHost,
           picks:  enriched,
           totalScore,
+<<<<<<< Updated upstream
           pickCount: enriched.length,
+=======
+          totalPP,
+          pickCount: currentIds.length,
+>>>>>>> Stashed changes
         };
       }).sort((a, b) => b.totalScore - a.totalScore);
     }
@@ -152,6 +195,7 @@
             <div class="expand-player-name">
               ${p.playerName}
               ${p.skipped ? '<span class="skipped-tag">Auto</span>' : ""}
+              ${p.traded ? '<span class="traded-badge" style="margin-left:6px;">Traded</span>' : ""}
             </div>
             <div class="expand-player-meta">
               ${p.pData.team || p.playerTeam || "—"} ·

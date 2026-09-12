@@ -36,6 +36,7 @@
       <a href="stats.html"     class="nav-link">Stats</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="index.html"     class="nav-link">Draft</a>
+      <a href="trade.html"     class="nav-link">Trade</a>
       <a href="dashboard.html" class="nav-link active">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
     </nav>
@@ -50,7 +51,8 @@
   <script type="module">
     import {
       db, ref, get, subscribeLobby,
-      ensureAuth, LS, CONFIG, SCORING, initThemeToggle
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle,
+      tradedAwayBreakdown, buildRosterMap, getOwnershipPeriods
     } from "./app.js";
 
     initThemeToggle();
@@ -113,8 +115,26 @@
       }
 
       const picks        = lobbyData.picks || {};
-      const myPicks      = Object.values(picks).filter(p => p.byUid === myUid);
       const playerMap    = Object.fromEntries(playerData.map(p => [p.id, p]));
+      const rosterMap    = buildRosterMap(lobbyData);
+      const pickByPlayerId = Object.fromEntries(Object.values(picks).map(pk => [pk.playerId, pk]));
+
+      // My current roster — includes both original draft picks I still
+      // hold and anyone I've acquired via trade, using the live roster
+      // map rather than the (now possibly stale) original draft picks.
+      const myPicks = Object.entries(rosterMap)
+        .filter(([, uid]) => uid === myUid)
+        .map(([playerId]) => {
+          const original = pickByPlayerId[playerId];
+          const pData    = playerMap[playerId] || {};
+          return original
+            ? original
+            : {
+                byUid: myUid, playerId,
+                playerName: pData.name, playerTeam: pData.team, playerRole: pData.role,
+                label: "Trade", acquiredViaTrade: true,
+              };
+        });
       const format       = lobbyData.format;
       const tournamentId = lobbyData.tournamentId || null;
       const budgets      = lobbyData.budgets || {};
@@ -132,14 +152,34 @@
       const enriched = myPicks.map(pick => {
         const pData     = playerMap[pick.playerId] || {};
         const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
+<<<<<<< Updated upstream
         const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
+=======
+        const periods   = getOwnershipPeriods(lobbyData, pick.playerId);
+        const basePts   = SCORING.totalFromMatchesOwned(pick.playerId, matchData, tournamentId, periods, myUid);
+        const pp        = SCORING.placementPointsOwned(pick.playerId, matchData, tournamentId, tournamentData, periods, myUid);
+        const pts       = +(basePts + pp).toFixed(1);
+>>>>>>> Stashed changes
         const breakdown = SCORING.breakdown(stats);
-        const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
+        const history   = SCORING.matchHistoryOwned(pick.playerId, matchData, tournamentId, periods, myUid);
         totalScore     += pts;
         return { ...pick, pData, stats, pts, breakdown, history, tracked, matchCount };
       });
 
       totalScore = +totalScore.toFixed(1);
+
+      // Points earned by players you've since traded away — already
+      // folded into totalScore above; this is just a transparency
+      // breakdown of where some of it came from.
+      const tradedAway = tradedAwayBreakdown(lobbyData, myUid, matchData, tournamentId)
+        .map(t => ({ ...t, playerName: playerMap[t.playerId]?.name || "Unknown Player" }));
+      const tradedAwayByPlayer = Object.values(
+        tradedAway.reduce((acc, t) => {
+          if (!acc[t.playerId]) acc[t.playerId] = { playerName: t.playerName, pts: 0 };
+          acc[t.playerId].pts = +(acc[t.playerId].pts + t.pts).toFixed(1);
+          return acc;
+        }, {})
+      );
 
       // Stat summary across roster
       const avgRating = enriched.length
@@ -202,6 +242,20 @@
           </a>
         </div>
 
+        ${tradedAwayByPlayer.length > 0 ? `
+        <div class="section-title">Traded Away</div>
+        <div class="trade-panel" style="margin-bottom:24px;">
+          <div class="trade-panel-body">
+            ${tradedAwayByPlayer.map(t => `
+              <div class="trade-player-row" style="cursor:default;">
+                <div class="trade-player-name">${t.playerName}</div>
+                <div class="trade-player-pts">+${t.pts} pts <span style="color:var(--muted); font-weight:400;">(earned before trade)</span></div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+        ` : ""}
+
         <div class="section-title">Roster</div>
 
         <div class="roster-grid">
@@ -222,6 +276,7 @@
                     ${p.pData.role || p.playerRole || "—"} ·
                     ${p.pData.region || "—"}
                     ${p.skipped ? ' · <span class="skipped-badge">Auto-pick</span>' : ""}
+                    ${p.acquiredViaTrade ? ' · <span class="traded-badge">Traded In</span>' : ""}
                     ${p.price    ? ` · <span class="price-badge">$${p.price}</span>` : ""}
                     · ${p.tracked
                       ? `<span style="font-size:0.65rem; color:var(--success); font-weight:700;">●Tracked (${p.matchCount})</span>`

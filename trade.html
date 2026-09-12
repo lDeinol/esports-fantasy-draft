@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade — DraftZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <label class="theme-toggle" title="Toggle light / dark mode">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </label>
+    <div class="header-divider"></div>
+    <nav>
+      <a href="home.html"      class="nav-link">Home</a>
+      <a href="stats.html"     class="nav-link">Stats</a>
+      <a href="matches.html"   class="nav-link">Matches</a>
+      <a href="index.html"     class="nav-link">Draft</a>
+      <a href="trade.html"     class="nav-link active">Trade</a>
+      <a href="dashboard.html" class="nav-link">My Team</a>
+      <a href="standings.html" class="nav-link">Standings</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="content">
+      <div class="loading-wrap"><div class="spinner"></div></div>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+
+  <script type="module">
+    import {
+      db, ref, get, update, subscribeLobby,
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle,
+      buildRosterMap, getUndraftedPool,
+      startTrading, closeTrading, passTurn,
+      proposeTrade, respondTrade, undraftedTrade,
+    } from "./app.js";
+
+    initThemeToggle();
+
+    const session = LS.getSession();
+    if (!session) {
+      window.location.href = "index.html";
+    }
+    const { uid: myUid, name: myName, lobbyCode } = session;
+
+    let lobbyData      = null;
+    let playerData     = [];
+    let matchData      = [];
+    let tournamentData = [];
+
+    // ── UI state (kept across re-renders) ───────────────
+    let mode              = null;   // "propose" | "undrafted" | null
+    let selectedTargetUid = null;
+    let selectedOfferId   = null;   // my player being offered
+    let selectedRequestId = null;   // their player being requested
+    let selectedGiveId    = null;   // my player given for an undrafted swap
+    let selectedTakeId    = null;   // undrafted player being taken
+    let startRounds       = 3;
+
+    function toast(msg, type = "") {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.className = `show ${type}`;
+      setTimeout(() => { t.className = ""; }, 2500);
+    }
+
+    async function loadData() {
+      const [pd, md, td] = await Promise.all([
+        fetch("data/players.json").then(r => r.json()).catch(() => []),
+        fetch("data/matches.json").then(r => r.json()).catch(() => []),
+        fetch("data/tournaments.json").then(r => r.json()).catch(() => []),
+      ]);
+      return { pd, md, td };
+    }
+
+    function eligiblePlayers() {
+      const active = playerData.filter(p => p.status !== "inactive");
+      const tournament = tournamentData.find(t => t.id === lobbyData.tournamentId);
+      if (!tournament?.teams) return active;
+      const teams = new Set(tournament.teams);
+      return active.filter(p => teams.has(p.team));
+    }
+
+    function playerPts(playerId) {
+      const base = SCORING.totalFromMatches(playerId, matchData, lobbyData.tournamentId);
+      const pp   = SCORING.placementPoints(playerId, matchData, lobbyData.tournamentId, tournamentData);
+      return +(base + pp).toFixed(1);
+    }
+
+    function resetSelections() {
+      mode = null;
+      selectedTargetUid = null;
+      selectedOfferId = null;
+      selectedRequestId = null;
+      selectedGiveId = null;
+      selectedTakeId = null;
+    }
+
+    // ── Player row markup ───────────────────────────────
+    function playerRow(p, { selected, disabled, onClickId } = {}) {
+      return `
+        <div class="trade-player-row${selected ? " selected" : ""}${disabled ? " disabled" : ""}" ${disabled ? "" : `data-select="${onClickId}"`} data-player-id="${p.id}">
+          <div>
+            <div class="trade-player-name">${p.name}</div>
+            <div class="trade-player-meta">${p.team} · ${p.role} · ${p.region}</div>
+          </div>
+          <div class="trade-player-pts">${playerPts(p.id)} pts</div>
+        </div>
+      `;
+    }
+
+    // ── Main render ──────────────────────────────────────
+    function render() {
+      const content = document.getElementById("content");
+
+      if (!lobbyData) {
+        content.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-title">No active draft found.</div>
+            <p>Create or join a lobby to get started.</p>
+          </div>`;
+        return;
+      }
+
+      const isHost = lobbyData.hostId === myUid;
+
+      if (lobbyData.status !== "complete") {
+        content.innerHTML = `
+          <div class="page-title">Trade</div>
+          <div class="page-sub">Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span></div>
+          <div class="trade-not-started">
+            <div class="trade-not-started-title">Trading opens after the draft finishes</div>
+            <p>Finish the draft, then the host can open a trading window here.</p>
+          </div>`;
+        return;
+      }
+
+      const players = eligiblePlayers();
+      const playerMap = Object.fromEntries(players.map(p => [p.id, p]));
+      const rosterMap = buildRosterMap(lobbyData);
+      const trades = Object.entries(lobbyData.trades || {}).map(([id, t]) => ({ id, ...t }));
+
+      const tradingEnabled = !!lobbyData.tradingEnabled;
+      const everStarted    = !!lobbyData.tradingStartedAt;
+
+      // ── Not (yet) started, or closed and never reopened ──
+      if (!tradingEnabled) {
+        content.innerHTML = `
+          <div class="page-title">Trade</div>
+          <div class="page-sub">Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span></div>
+
+          <div class="trade-not-started">
+            <div class="trade-not-started-title">${everStarted ? "Trading is closed" : "Trading hasn't started"}</div>
+            <p>${everStarted
+              ? "The trading window has ended."
+              : "The host controls when the trading window opens."}</p>
+            ${isHost ? `
+              <div class="trade-start-form">
+                <label>Rounds:</label>
+                <input type="number" id="rounds-input" min="1" max="10" value="${startRounds}" />
+                <button class="btn btn-primary" id="btn-start-trading" style="width:auto; padding:10px 22px;">
+                  ${everStarted ? "Reopen Trading" : "Start Trading"}
+                </button>
+              </div>
+            ` : `<p style="color:var(--muted); font-size:0.85rem;">Waiting for the host to open trading…</p>`}
+          </div>
+
+          ${renderTradeLog(trades)}
+        `;
+
+        if (isHost) {
+          document.getElementById("btn-start-trading").addEventListener("click", async () => {
+            const roundsVal = Math.max(1, Math.min(10, +document.getElementById("rounds-input").value || 1));
+            try {
+              await startTrading({ code: lobbyCode, rounds: roundsVal, matchData, tournamentData });
+              toast("Trading is open!", "success");
+            } catch (err) {
+              toast(err.message || "Failed to start trading.", "error");
+            }
+          });
+        }
+        return;
+      }
+
+      // ── Trading is active ────────────────────────────
+      const order        = lobbyData.tradeOrder || [];
+      const turnIdx       = lobbyData.currentTurnIndex || 0;
+      const currentTurnUid = lobbyData.currentTurnUid;
+      const isMyTurn       = currentTurnUid === myUid;
+      const currentTurnName = lobbyData.players?.[currentTurnUid]?.name || "—";
+      const attempts        = lobbyData.attemptsThisTurn || 0;
+
+      const pendingForMe = trades.find(t => t.status === "pending" && t.toUid === myUid);
+      const myOutgoing    = trades.find(t => t.status === "pending" && t.fromUid === myUid);
+
+      const orderStrip = order.map((uid, i) => `
+        <div class="trade-order-chip${i === turnIdx ? " active" : ""}${i < turnIdx ? " done" : ""}">
+          <span class="order-num">${i + 1}</span>
+          ${lobbyData.players?.[uid]?.name || "—"}${uid === myUid ? " (You)" : ""}
+        </div>
+      `).join("");
+
+      content.innerHTML = `
+        <div class="page-title">Trade</div>
+        <div class="page-sub">Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span></div>
+
+        <div class="trade-hero">
+          <div>
+            <div class="trade-hero-title">Round ${lobbyData.currentRound || 1} of ${lobbyData.tradeRounds || 1}</div>
+            <div class="trade-hero-sub">Trades go in order, lowest score first</div>
+          </div>
+          <div class="trade-hero-turn">
+            <div class="trade-turn-label">On the clock</div>
+            <div class="trade-turn-name${isMyTurn ? " mine" : ""}">${isMyTurn ? "Your turn" : currentTurnName}</div>
+          </div>
+        </div>
+
+        <div class="trade-order-strip">${orderStrip}</div>
+
+        ${isHost ? `
+          <div style="display:flex; gap:10px; margin-bottom:24px;">
+            <button class="btn-sm btn-sm-ghost" id="btn-force-pass">Force Pass Current Turn</button>
+            <button class="btn-sm btn-sm-ghost" id="btn-close-trading" style="color:var(--danger); border-color:var(--danger);">Close Trading</button>
+          </div>
+        ` : ""}
+
+        ${pendingForMe ? renderPendingForMe(pendingForMe) : ""}
+
+        ${isMyTurn ? renderMyTurnUI({ myOutgoing, players, playerMap, rosterMap }) : `
+          <div class="trade-panel" style="margin-bottom:24px;">
+            <div class="trade-panel-body" style="text-align:center; color:var(--muted); padding:24px;">
+              Waiting for <strong style="color:var(--text);">${currentTurnName}</strong> to make a move…
+            </div>
+          </div>
+        `}
+
+        ${renderTradeLog(trades)}
+      `;
+
+      wireActiveHandlers({ isHost, isMyTurn, myOutgoing, players, playerMap, rosterMap });
+    }
+
+    // ── Pending trade waiting on me ──────────────────────
+    function renderPendingForMe(t) {
+      return `
+        <div class="pending-trade-card">
+          <div class="pending-trade-title">⚡ Trade offer from ${t.fromName}</div>
+          <div class="pending-trade-swap">
+            <span>You give <strong>${t.requestName}</strong></span>
+            <span class="swap-arrow">⇄</span>
+            <span>You get <strong>${t.offerName}</strong></span>
+          </div>
+          <div class="pending-trade-actions">
+            <button class="btn-sm btn-sm-primary" id="btn-accept-${t.id}">Accept</button>
+            <button class="btn-sm btn-sm-ghost" id="btn-reject-${t.id}">Reject</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ── My-turn UI: propose trade or take undrafted ──────
+    function renderMyTurnUI({ myOutgoing, players, playerMap, rosterMap }) {
+      if (myOutgoing) {
+        return `
+          <div class="pending-trade-card" style="border-color:var(--accent);">
+            <div class="pending-trade-title" style="color:var(--accent);">Offer sent — waiting on ${myOutgoing.toName}</div>
+            <div class="pending-trade-swap">
+              <span>You gave <strong>${myOutgoing.offerName}</strong></span>
+              <span class="swap-arrow">⇄</span>
+              <span>You asked for <strong>${myOutgoing.requestName}</strong></span>
+            </div>
+          </div>
+        `;
+      }
+
+      const myRoster = players.filter(p => rosterMap[p.id] === myUid);
+      const otherManagers = Object.entries(lobbyData.players || {})
+        .filter(([uid, p]) => uid !== myUid && p.status !== "left");
+
+      const tabButtons = `
+        <button class="trade-target-tab${mode === "propose" ? " active" : ""}" data-mode="propose">Trade with a Manager</button>
+        <button class="trade-target-tab${mode === "undrafted" ? " active" : ""}" data-mode="undrafted">Take an Undrafted Player</button>
+      `;
+
+      let body = "";
+
+      if (mode === "propose") {
+        const managerTabs = otherManagers.map(([uid, p]) => `
+          <button class="trade-target-tab${selectedTargetUid === uid ? " active" : ""}" data-target="${uid}">${p.name}</button>
+        `).join("");
+
+        const targetRoster = selectedTargetUid
+          ? players.filter(p => rosterMap[p.id] === selectedTargetUid)
+          : [];
+
+        body = `
+          <div class="trade-target-tabs">${managerTabs || `<span style="color:var(--muted); font-size:0.85rem;">No other managers to trade with.</span>`}</div>
+          <div class="trade-columns">
+            <div class="trade-panel">
+              <div class="trade-panel-header">Your Roster</div>
+              <div class="trade-panel-body">
+                ${myRoster.length === 0 ? `<div style="color:var(--muted); font-size:0.85rem;">No players.</div>` :
+                  myRoster.map(p => playerRow(p, { selected: selectedOfferId === p.id, onClickId: "offer" })).join("")}
+              </div>
+            </div>
+            <div class="trade-panel">
+              <div class="trade-panel-header">${selectedTargetUid ? `${lobbyData.players[selectedTargetUid].name}'s Roster` : "Their Roster"}</div>
+              <div class="trade-panel-body">
+                ${!selectedTargetUid ? `<div style="color:var(--muted); font-size:0.85rem;">Pick a manager above.</div>` :
+                  targetRoster.length === 0 ? `<div style="color:var(--muted); font-size:0.85rem;">No players.</div>` :
+                  targetRoster.map(p => playerRow(p, { selected: selectedRequestId === p.id, onClickId: "request" })).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="trade-confirm-bar">
+            <div class="trade-confirm-summary">
+              ${selectedOfferId && selectedRequestId
+                ? `You give <strong>${playerMap[selectedOfferId]?.name}</strong> for <strong>${playerMap[selectedRequestId]?.name}</strong>`
+                : "Select one of your players and one of theirs"}
+            </div>
+            <button class="btn-sm btn-sm-primary" id="btn-send-offer" ${(!selectedTargetUid || !selectedOfferId || !selectedRequestId) ? "disabled" : ""}>Send Offer</button>
+          </div>
+        `;
+      } else if (mode === "undrafted") {
+        const undrafted = getUndraftedPool(players, rosterMap)
+          .sort((a, b) => a.team.localeCompare(b.team) || a.name.localeCompare(b.name));
+
+        body = `
+          <div class="trade-columns">
+            <div class="trade-panel">
+              <div class="trade-panel-header">Your Roster (pick one to give up)</div>
+              <div class="trade-panel-body">
+                ${myRoster.length === 0 ? `<div style="color:var(--muted); font-size:0.85rem;">No players.</div>` :
+                  myRoster.map(p => playerRow(p, { selected: selectedGiveId === p.id, onClickId: "give" })).join("")}
+              </div>
+            </div>
+            <div class="trade-panel">
+              <div class="trade-panel-header">Undrafted Pool</div>
+              <div class="trade-panel-body">
+                ${undrafted.length === 0 ? `<div style="color:var(--muted); font-size:0.85rem;">No undrafted players left.</div>` :
+                  undrafted.map(p => playerRow(p, { selected: selectedTakeId === p.id, onClickId: "take" })).join("")}
+              </div>
+            </div>
+          </div>
+          <div class="trade-confirm-bar">
+            <div class="trade-confirm-summary">
+              ${selectedGiveId && selectedTakeId
+                ? `You give <strong>${playerMap[selectedGiveId]?.name}</strong> for <strong>${playerMap[selectedTakeId]?.name}</strong>`
+                : "Select one of your players and one undrafted player"}
+            </div>
+            <button class="btn-sm btn-sm-primary" id="btn-confirm-undrafted" ${(!selectedGiveId || !selectedTakeId) ? "disabled" : ""}>Confirm Trade</button>
+          </div>
+        `;
+      } else {
+        body = `<div class="trade-panel-body" style="color:var(--muted); font-size:0.85rem; padding:20px;">Choose an option above, or pass your turn.</div>`;
+      }
+
+      return `
+        <div class="trade-panel" style="margin-bottom:24px;">
+          <div class="trade-target-tabs" style="padding-top:14px;">${tabButtons}</div>
+          ${body}
+          <div style="padding:0 18px 18px; ${attempts > 0 ? "" : ""}">
+            ${attempts > 0 ? `<div style="color:var(--warn); font-size:0.78rem; margin-bottom:10px;">${attempts} rejected offer${attempts > 1 ? "s" : ""} this turn — ${3 - attempts} left before your turn passes.</div>` : ""}
+            <button class="btn-sm btn-sm-ghost" id="btn-pass-turn">Pass My Turn</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ── Trade log ─────────────────────────────────────────
+    function renderTradeLog(trades) {
+      const sorted = [...trades].sort((a, b) => (b.proposedAt || 0) - (a.proposedAt || 0));
+      return `
+        <div class="section-title">Trade Log</div>
+        <div class="trade-panel">
+          <div class="trade-panel-body">
+            ${sorted.length === 0 ? `<div style="color:var(--muted); font-size:0.85rem;">No trades yet.</div>` :
+              sorted.map(t => {
+                const desc = t.type === "player-undrafted"
+                  ? `${t.fromName} traded <strong>${t.givePlayerName}</strong> for undrafted <strong>${t.takePlayerName}</strong>`
+                  : `${t.fromName} ⇄ ${t.toName}: <strong>${t.offerName}</strong> for <strong>${t.requestName}</strong>`;
+                return `
+                  <div class="trade-log-row">
+                    <div class="trade-log-desc">${desc}</div>
+                    <div class="trade-log-round">R${t.round || 1}</div>
+                    <div class="trade-log-status ${t.status}">${t.status}</div>
+                  </div>
+                `;
+              }).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    // ── Event wiring ──────────────────────────────────────
+    function wireActiveHandlers({ isHost, isMyTurn, myOutgoing, players, playerMap, rosterMap }) {
+      if (isHost) {
+        document.getElementById("btn-force-pass")?.addEventListener("click", async () => {
+          try {
+            await passTurn({ code: lobbyCode, requestingUid: myUid, isHost: true });
+            resetSelections();
+            toast("Turn passed.", "success");
+          } catch (err) { toast(err.message || "Failed to pass turn.", "error"); }
+        });
+        document.getElementById("btn-close-trading")?.addEventListener("click", async () => {
+          try {
+            await closeTrading({ code: lobbyCode });
+            resetSelections();
+            toast("Trading closed.", "success");
+          } catch (err) { toast(err.message || "Failed to close trading.", "error"); }
+        });
+      }
+
+      // Accept / reject a trade addressed to me
+      document.querySelectorAll('[id^="btn-accept-"]').forEach(btn => {
+        const tradeId = btn.id.replace("btn-accept-", "");
+        btn.addEventListener("click", async () => {
+          try {
+            await respondTrade({ code: lobbyCode, tradeId, uid: myUid, accept: true });
+            toast("Trade accepted!", "success");
+          } catch (err) { toast(err.message || "Failed to accept trade.", "error"); }
+        });
+      });
+      document.querySelectorAll('[id^="btn-reject-"]').forEach(btn => {
+        const tradeId = btn.id.replace("btn-reject-", "");
+        btn.addEventListener("click", async () => {
+          try {
+            await respondTrade({ code: lobbyCode, tradeId, uid: myUid, accept: false });
+            toast("Trade rejected.", "success");
+          } catch (err) { toast(err.message || "Failed to reject trade.", "error"); }
+        });
+      });
+
+      if (!isMyTurn || myOutgoing) return;
+
+      // Mode tabs (propose vs undrafted)
+      document.querySelectorAll(".trade-target-tab[data-mode]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          mode = btn.dataset.mode;
+          selectedTargetUid = null;
+          selectedOfferId = null;
+          selectedRequestId = null;
+          selectedGiveId = null;
+          selectedTakeId = null;
+          render();
+        });
+      });
+
+      // Manager target tabs
+      document.querySelectorAll(".trade-target-tab[data-target]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selectedTargetUid = btn.dataset.target;
+          selectedRequestId = null;
+          render();
+        });
+      });
+
+      // Player row selection
+      document.querySelectorAll(".trade-player-row[data-select]").forEach(row => {
+        row.addEventListener("click", () => {
+          const kind = row.dataset.select;
+          const pid  = row.dataset.playerId;
+          if (kind === "offer")   selectedOfferId   = selectedOfferId   === pid ? null : pid;
+          if (kind === "request") selectedRequestId = selectedRequestId === pid ? null : pid;
+          if (kind === "give")    selectedGiveId    = selectedGiveId    === pid ? null : pid;
+          if (kind === "take")    selectedTakeId    = selectedTakeId    === pid ? null : pid;
+          render();
+        });
+      });
+
+      document.getElementById("btn-send-offer")?.addEventListener("click", async () => {
+        try {
+          await proposeTrade({
+            code: lobbyCode,
+            fromUid: myUid, fromName: myName,
+            toUid: selectedTargetUid, toName: lobbyData.players[selectedTargetUid].name,
+            offerPlayerId: selectedOfferId, offerName: playerMap[selectedOfferId].name,
+            requestPlayerId: selectedRequestId, requestName: playerMap[selectedRequestId].name,
+          });
+          resetSelections();
+          toast("Offer sent!", "success");
+        } catch (err) { toast(err.message || "Failed to send offer.", "error"); }
+      });
+
+      document.getElementById("btn-confirm-undrafted")?.addEventListener("click", async () => {
+        try {
+          await undraftedTrade({
+            code: lobbyCode, uid: myUid,
+            givePlayer: { id: selectedGiveId, name: playerMap[selectedGiveId].name },
+            takePlayer: { id: selectedTakeId, name: playerMap[selectedTakeId].name },
+          });
+          resetSelections();
+          toast("Trade complete!", "success");
+        } catch (err) { toast(err.message || "Failed to complete trade.", "error"); }
+      });
+
+      document.getElementById("btn-pass-turn")?.addEventListener("click", async () => {
+        try {
+          await passTurn({ code: lobbyCode, requestingUid: myUid, isHost: false });
+          resetSelections();
+          toast("Turn passed.", "success");
+        } catch (err) { toast(err.message || "Failed to pass turn.", "error"); }
+      });
+    }
+
+    // ── Init ───────────────────────────────────────────
+    async function init() {
+      await ensureAuth();
+      const { pd, md, td } = await loadData();
+      playerData = pd; matchData = md; tournamentData = td;
+
+      subscribeLobby(lobbyCode, (data) => {
+        lobbyData = data;
+        render();
+      });
+    }
+
+    init();
+  </script>
+
+</body>
+</html>
