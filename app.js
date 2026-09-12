@@ -86,6 +86,43 @@ export function totalPicks(numPlayers) {
   return numPlayers * CONFIG.ROSTER_SIZE;
 }
 
+// ── Placement Points (PP) ────────────────────────────────────
+// For International-region tournaments only, winning a bracket round
+// awards a flat bonus, regardless of how many matches a team played
+// to get there. Keyed by the match's "series" label with the group
+// letter / swiss record suffix stripped off — e.g.
+// "Group Stage: Winner's (A)" and "Group Stage: Winner's (D)" both
+// map to "Group Stage: Winner's". A round with no entry (or 0) awards
+// no PP. This is the single source of truth — stats.html, dashboard.html,
+// and standings.html all read from this rather than keeping their own copy.
+export const PP_BY_SERIES = {
+  "Group Stage: Opening":            0,
+  "Group Stage: Winner's":           110,
+  "Group Stage: Elimination":        0,
+  "Group Stage: Decider":            0,
+  "Swiss Stage: Round 1":            0,
+  "Swiss Stage: Round 2":            100,
+  "Swiss Stage: Round 3":            0,
+  "Playoffs: Upper Quarterfinals":   0,
+  "Playoffs: Upper Semifinals":      110,
+  "Playoffs: Upper Final":           110,
+  "Playoffs: Grand Final":           120,
+  "Playoffs: Lower Round 1":         0,
+  "Playoffs: Lower Round 2":         0,
+  "Playoffs: Lower Round 3":         0,
+  "Playoffs: Lower Final":           0,
+  "Playoffs: Quarterfinals":         0,
+  "Playoffs: Semifinals":            0,
+  "Playoffs: Consolation Final":     0,
+};
+
+// Strips a trailing "(A)" group letter or "(1-0)" swiss record off a
+// series label so it matches a PP_BY_SERIES key regardless of group
+// or seed.
+export function normalizeSeries(series) {
+  return (series || "").replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
+
 // ── Scoring Engine ───────────────────────────────────────────
 // Valorant-specific scoring weights (CL% excluded — calculated end of tournament only)
 export const SCORING = {
@@ -133,6 +170,25 @@ export const SCORING = {
         return { match: m, stats, pts: +this.calculate(stats).toFixed(1) };
       });
   },
+  // Placement Points earned by a player within a single tournament.
+  // Only awards PP when that tournament's region is "International" —
+  // pass the full tournaments array so the region can be looked up.
+  // Returns 0 for tournamentId === null (an "all tournaments" view has
+  // no single region to check against).
+  placementPoints(playerId, matches, tournamentId, tournaments) {
+    if (!tournamentId) return 0;
+    const tournament = tournaments?.find(t => t.id === tournamentId);
+    if (tournament?.region !== "International") return 0;
+
+    const wins = matches.filter(m =>
+      m.status === "completed" &&
+      m.tournamentId === tournamentId &&
+      m.winner &&
+      m.playerStats?.some(s => s.playerId === playerId && s.team === m.winner)
+    );
+
+    return +wins.reduce((total, m) => total + (PP_BY_SERIES[normalizeSeries(m.series)] || 0), 0).toFixed(1);
+  },
 };
 
 // ── Player Name Colors ───────────────────────────────────────
@@ -170,7 +226,7 @@ export async function createLobby({ code, hostUid, hostName, format, tournamentI
     currentPickIndex: 0,
     pickOrder:        [],
     players: {
-      [hostUid]: { name: hostName, isHost: true, joinedAt: Date.now() }
+      [hostUid]: { name: hostName, isHost: true, status: "active", joinedAt: Date.now() }
     },
     picks:             {},
     draftedPlayerIds:  [],
@@ -189,14 +245,69 @@ export async function joinLobby({ code, uid, name }) {
 
   const players = lobby.players || {};
   if (!players[uid] && lobby.maxPlayers) {
-    const currentCount = Object.keys(players).length;
-    if (currentCount >= lobby.maxPlayers) {
+    // Only players still active in the lobby count against the cap —
+    // someone who left frees their slot back up.
+    const activeCount = Object.values(players).filter(p => p.status !== "left").length;
+    if (activeCount >= lobby.maxPlayers) {
       throw new Error(`Lobby is full (${lobby.maxPlayers} / ${lobby.maxPlayers}).`);
     }
   }
 
   const playerRef = ref(db, `lobbies/${code}/players/${uid}`);
-  await set(playerRef, { name, isHost: false, joinedAt: Date.now() });
+  await set(playerRef, { name, isHost: false, status: "active", joinedAt: Date.now() });
+}
+
+// Marks a player as having left the lobby WITHOUT deleting their data —
+// their name, color, and (most importantly) their draft picks stay in
+// place, so Standings/Dashboard keep showing them instead of the row
+// just vanishing. This also means findPlayerByName can still find them
+// later, which is what makes "leave by accident, rejoin with the same
+// name" work at all.
+//
+// Pre-draft exception: if the HOST leaves before the draft has started,
+// there's no data to preserve yet, so we still close the lobby for
+// everyone (matches the old behavior). A host leaving DURING or AFTER
+// a draft instead hands host duties to another still-active player so
+// the lobby and everyone's picks stay intact.
+export async function leavePlayer({ code, uid }) {
+  const lobbyRef = ref(db, `lobbies/${code}`);
+  const snap = await get(lobbyRef);
+  const lobby = snap.val();
+  if (!lobby) return;
+
+  const players = lobby.players || {};
+  const wasHost = lobby.hostId === uid;
+
+  if (wasHost && lobby.status === "waiting") {
+    await set(lobbyRef, null);
+    return;
+  }
+
+  const updates = {};
+  updates[`lobbies/${code}/players/${uid}/status`] = "left";
+  updates[`lobbies/${code}/players/${uid}/leftAt`] = Date.now();
+
+  if (wasHost) {
+    const nextHost = Object.entries(players).find(
+      ([otherUid, p]) => otherUid !== uid && p.status !== "left"
+    );
+    if (nextHost) {
+      updates[`lobbies/${code}/hostId`] = nextHost[0];
+      updates[`lobbies/${code}/players/${nextHost[0]}/isHost`] = true;
+    }
+    updates[`lobbies/${code}/players/${uid}/isHost`] = false;
+  }
+
+  await update(ref(db), updates);
+}
+
+// Marks a player active again — used whenever someone who previously
+// left rejoins (whether their local session survived or not).
+export async function rejoinPlayer({ code, uid }) {
+  await update(ref(db, `lobbies/${code}/players/${uid}`), {
+    status: "active",
+    leftAt: null,
+  });
 }
 
 // Check if a lobby exists and is still in "waiting" status
@@ -251,8 +362,6 @@ export function formatCurrency(n) {
 export function el(id) {
   return document.getElementById(id);
 }
-<<<<<<< Updated upstream
-=======
 
 // Given a hex color (e.g. "#00e5ff"), returns "#000000" or "#ffffff" —
 // whichever gives better contrast against it. Used for badges whose
@@ -631,4 +740,3 @@ export async function undraftedTrade({ code, uid, givePlayer, takePlayer }) {
   const freshSnap = await get(lobbyRef);
   await advanceTurn(code, freshSnap.val());
 }
->>>>>>> Stashed changes
