@@ -8,6 +8,9 @@
         if (localStorage.getItem("theme") === "light") {
           document.documentElement.setAttribute("data-theme", "light");
         }
+        if (localStorage.getItem("draftViewMode") === "combined") {
+          document.documentElement.setAttribute("data-draft-view", "combined");
+        }
       } catch (e) {}
     })();
   </script>
@@ -38,12 +41,20 @@
       </span>
     </label>
     <div class="header-divider"></div>
+    <label class="draft-view-toggle" id="draft-view-toggle" title="Draft View layout: Tab (one panel at a time) or Combined (board + pool side by side)">
+      <input type="checkbox" id="draft-view-toggle-input" class="draft-view-toggle-input" />
+      <span class="draft-view-toggle-label draft-view-toggle-label-off">Tab</span>
+      <span class="draft-view-toggle-track">
+        <span class="draft-view-toggle-thumb"></span>
+      </span>
+      <span class="draft-view-toggle-label draft-view-toggle-label-on">Combined</span>
+    </label>
+    <div class="header-divider draft-view-divider"></div>
     <div class="pick-status" id="pick-status">Loading draft…</div>
     <div class="round-badge" id="round-badge">Round —</div>
     <div class="round-badge" id="tournament-badge" style="display:none; color:var(--accent);"></div>
     <nav class="draft-nav">
       <a href="matches.html"   class="nav-link">Matches</a>
-      <a href="trade.html"     class="nav-link">Trade</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
     </nav>
@@ -104,7 +115,6 @@
 
         <div style="display:flex; flex-direction:column; gap:10px;">
           <a href="matches.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Matches</div></a>
-          <a href="trade.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Trade</div></a>
           <a href="dashboard.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">My Team</div></a>
           <a href="standings.html" style="text-decoration:none;"><div class="info-pill" style="cursor:pointer; text-align:center;">Standings</div></a>
         </div>
@@ -220,10 +230,32 @@
   <script type="module">
     import {
       db, auth, ref, set, get, update, onValue, push,
-      ensureAuth, LS, CONFIG, getPickerUid, totalPicks, SCORING, subscribeLobby, initThemeToggle
+      ensureAuth, LS, CONFIG, getPickerUid, totalPicks, SCORING, subscribeLobby, initThemeToggle,
+      contrastTextColor
     } from "./app.js";
 
     initThemeToggle();
+
+    // ─────────────────────────────────────────────────────
+    //  Draft View toggle (Tab layout / Combined layout)
+    //  Desktop-only (>900px) — the actual layout switch lives
+    //  in CSS via html[data-draft-view="combined"], scoped to
+    //  @media (min-width: 901px) so it's a no-op on the mobile
+    //  tab layout. The attribute itself is applied before first
+    //  paint by the inline script in <head>.
+    // ─────────────────────────────────────────────────────
+    function initDraftViewToggle(inputId = "draft-view-toggle-input") {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      input.checked = document.documentElement.getAttribute("data-draft-view") === "combined";
+      input.addEventListener("change", () => {
+        const isCombined = input.checked;
+        if (isCombined) document.documentElement.setAttribute("data-draft-view", "combined");
+        else document.documentElement.removeAttribute("data-draft-view");
+        try { localStorage.setItem("draftViewMode", isCombined ? "combined" : "tab"); } catch {}
+      });
+    }
+    initDraftViewToggle();
 
     // ─────────────────────────────────────────────────────
     //  State
@@ -257,12 +289,14 @@
     //  Load player pool — only from players.json, no fallback
     // ─────────────────────────────────────────────────────
     let tournaments = [];
+    let teamsById   = new Map(); // team name → { name, abbrv, color }
 
     async function loadPlayers() {
-      const [playersRes, tournamentsRes, matchesRes] = await Promise.all([
+      const [playersRes, tournamentsRes, matchesRes, teamsRes] = await Promise.all([
         fetch("data/players.json"),
         fetch("data/tournaments.json"),
         fetch("data/matches.json"),
+        fetch("data/teams.json"),
       ]);
       if (!playersRes.ok) throw new Error("Failed to load players.json");
       players     = await playersRes.json();
@@ -271,6 +305,11 @@
       players     = players.filter(p => p.status !== "inactive");
       tournaments = tournamentsRes.ok ? await tournamentsRes.json() : [];
       const allMatches = matchesRes.ok ? await matchesRes.json() : [];
+
+      // teams.json is optional — cards just fall back to the default
+      // badge color (var(--surface3)) if it's missing or a team isn't in it.
+      const teamsList = teamsRes.ok ? await teamsRes.json() : [];
+      teamsById = new Map(teamsList.map(t => [t.name, t]));
 
       // Enrich players with Tracked stats (averaged from completed matches)
       // Falls back to Seeded (players.json stats) if no matches played
@@ -378,19 +417,28 @@
         return matchRegion && matchTeam && matchSearch && matchTournament;
       });
 
+      filtered.sort((a, b) =>
+        a.region.localeCompare(b.region) || a.team.localeCompare(b.team)
+      );
+
       const pool = document.getElementById("player-pool");
       pool.innerHTML = "";
 
       filtered.forEach(p => {
         const div = document.createElement("div");
         div.className = "player-card" + (drafted.has(p.id) ? " drafted" : "") + (selectedPlayer?.id === p.id ? " selected" : "");
+        const teamColor = teamsById.get(p.team)?.color;
+        if (teamColor) {
+          div.style.setProperty("--team-color", teamColor);
+          div.style.setProperty("--team-text", contrastTextColor(teamColor));
+        }
         div.innerHTML = `
           <div class="player-card-top">
             <div class="player-card-name">${p.name} ${p.tracked
               ? '<span style="font-size:0.58rem; color:var(--success); font-weight:700; letter-spacing:0.04em;">●TRACKED</span>'
               : '<span style="font-size:0.58rem; color:var(--muted); font-weight:700; letter-spacing:0.04em;">SEEDED</span>'
             }</div>
-            <div class="player-card-game">${p.team}</div>
+            <div class="player-card-game">${teamsById.get(p.team)?.abbrv || p.team}</div>
           </div>
           <div class="player-card-meta">${p.role} · ${p.region}</div>
           <div class="player-stats-row">
@@ -690,8 +738,11 @@
 
     // ─────────────────────────────────────────────────────
     //  Render center: Draft Grid
-    //  Columns = pick slots 1..N (participants in pick order)
+    //  Columns = participants (fixed per column for the whole board)
     //  Rows    = rounds 1..ROSTER_SIZE
+    //  Snake: even rounds pick left→right, odd rounds pick right→left,
+    //  so within a column-fixed layout, the "on the clock" cell zigzags
+    //  across the board round to round instead of jumping between columns.
     // ─────────────────────────────────────────────────────
     function renderDraftGrid() {
       if (!lobbyData) return;
@@ -700,7 +751,7 @@
       const numRounds  = CONFIG.ROSTER_SIZE;
       const picksArr   = Object.values(picks);
 
-      // Header: blank corner + Pick 1 .. Pick N
+      // Header: blank corner + one column per participant (fixed for the board)
       const thead = document.getElementById("draft-thead");
       thead.innerHTML = "";
       const headerRow = document.createElement("tr");
@@ -711,8 +762,11 @@
       headerRow.appendChild(cornerTh);
 
       for (let p = 0; p < numPlayers; p++) {
-        const th = document.createElement("th");
-        th.textContent = `Pick ${p + 1}`;
+        const uid  = pickOrder[p];
+        const th   = document.createElement("th");
+        th.textContent = lobbyPlayers[uid]?.name || `Pick ${p + 1}`;
+        const color = lobbyPlayers[uid]?.color || "";
+        if (color) th.style.color = color;
         headerRow.appendChild(th);
       }
       thead.appendChild(headerRow);
@@ -731,10 +785,14 @@
         tr.appendChild(roundTd);
 
         for (let p = 0; p < numPlayers; p++) {
-          const pickIndex = r * numPlayers + p;
-          // Snake: even rounds left→right, odd rounds right→left
-          // The participant who picks at this slot:
-          const ownerUid   = getPickerUid(pickOrder, pickIndex);
+          // Column p is always this participant's column. Snake: on even
+          // rounds they pick in column order (left→right); on odd rounds
+          // pick order is reversed (right→left), so figure out which
+          // position in the overall pick sequence this column's pick fell at.
+          const posInRound = (r % 2 === 0) ? p : (numPlayers - 1 - p);
+          const pickIndex  = r * numPlayers + posInRound;
+
+          const ownerUid   = pickOrder[p];
           const ownerName  = lobbyPlayers[ownerUid]?.name || "?";
           const ownerColor = lobbyPlayers[ownerUid]?.color || "";
           const pick        = picksArr[pickIndex];
@@ -751,8 +809,8 @@
             div.style.setProperty("--cell-active-color", ownerColor);
           }
 
-          // Label format: round.pick e.g. 1.1, 1.2, 2.3
-          const label = `${r + 1}.${p + 1}`;
+          // Label format: round.pick e.g. 1.1, 1.2, 2.3 (pick number = order within the round)
+          const label = `${r + 1}.${posInRound + 1}`;
 
           const byColor = lobbyPlayers[pick?.byUid]?.color || "";
 

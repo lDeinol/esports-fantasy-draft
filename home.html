@@ -43,9 +43,6 @@
 
   <main>
 
-    <!-- Active session banner — injected by JS only if session exists -->
-    <div id="session-banner-wrap"></div>
-
     <div class="hero-eyebrow">Valorant Fantasy Draft</div>
 
     <h1 class="hero-title">
@@ -91,28 +88,9 @@
   </main>
 
   <script type="module">
-    import { LS, initThemeToggle } from "./app.js";
+    import { initThemeToggle } from "./app.js";
 
     initThemeToggle();
-
-    // ── Session banner ─────────────────────────────────
-    const session = LS.getSession();
-    if (session?.lobbyCode) {
-      const wrap = document.getElementById("session-banner-wrap");
-      wrap.innerHTML = `
-        <div class="session-banner show">
-          <div class="session-text">
-            You have an active lobby: <span class="session-code">${session.lobbyCode}</span>
-          </div>
-          <a href="draft.html?code=${session.lobbyCode}" class="btn-sm btn-sm-primary">Rejoin Draft</a>
-          <button class="btn-sm btn-sm-ghost" id="clear-session-btn">Leave</button>
-        </div>
-      `;
-      document.getElementById("clear-session-btn").addEventListener("click", () => {
-        LS.clearSession();
-        wrap.innerHTML = "";
-      });
-    }
 
     // ── Tournaments section ────────────────────────────
     try {

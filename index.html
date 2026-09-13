@@ -36,7 +36,6 @@
       <a href="stats.html"     class="nav-link">Stats</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="index.html"     class="nav-link active">Draft</a>
-      <a href="trade.html"     class="nav-link">Trade</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
     </nav>
@@ -106,6 +105,15 @@
     <!-- ── Lobby / Waiting Room View ─────────────────── -->
     <div id="view-lobby" class="view">
       <div class="card">
+        <!-- Draft finished banner (shown when this lobby's draft has already completed —
+             no Leave button here since "Leave Lobby" below already covers that) -->
+        <div class="session-banner" id="lobby-finished-banner" style="margin-bottom:24px;">
+          <div class="session-text">
+            Your draft is finished: <span class="session-code" id="lobby-finished-banner-code"></span>
+          </div>
+          <button class="btn-sm btn-sm-primary" id="btn-lobby-finished-rejoin">View Draft Board</button>
+        </div>
+
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
           <div class="card-title">Lobby</div>
           <span id="lobby-format-badge" class="lobby-format-badge">Snake</span>
@@ -166,9 +174,11 @@
           <div class="order-list" id="order-list"></div>
         </div>
 
-        <!-- Host sees Start Draft; others see waiting message -->
+        <!-- Host sees Start Draft; others see waiting message.
+             Close Lobby is host-only and shown regardless of draft status. -->
         <div class="lobby-actions">
           <button class="btn btn-primary" id="btn-start" style="display:none">Start Draft</button>
+          <button class="btn btn-danger"  id="btn-close-lobby" style="display:none">Close Lobby</button>
           <button class="btn btn-danger"  id="btn-leave">Leave Lobby</button>
         </div>
         <div class="waiting-msg" id="waiting-msg" style="display:none">
@@ -184,7 +194,7 @@
       db, auth, ref, set, get, update, onValue,
       ensureAuth, LS, generateCode, createLobby, joinLobby,
       lobbyExists, subscribeLobby, CONFIG, initThemeToggle,
-      PLAYER_COLORS, setPlayerColor
+      PLAYER_COLORS, setPlayerColor, leavePlayer, rejoinPlayer
     } from "./app.js";
 
     initThemeToggle();
@@ -194,6 +204,18 @@
     let currentUid     = null;
     let unsubLobby     = null;
     let tournamentsData = [];
+
+    // Sign in anonymously right away, before anything else touches
+    // Firebase. Several flows below (checking a lobby exists before
+    // joining, the rejoin banner on page load) read from the database
+    // before the user has done anything else. Our rules require
+    // auth != null for every read, and a browser with a persisted
+    // session (auth restored automatically on load) hides that
+    // requirement — but a fresh session (incognito, a new device, or
+    // just a first-ever visit) has no cached auth yet, so those early
+    // reads get rejected until this resolves. Doing it up front here
+    // means auth is always ready first, regardless of browser mode.
+    const authReady = ensureAuth().then(user => { currentUid = user.uid; return user; });
 
     // ── Load tournaments into select ───────────────────
     // Sort order: Upcoming (soonest start first) → Live (soonest/most
@@ -353,7 +375,10 @@
     function renderPlayers(players, myUid, hostId, maxPlayers) {
       const list  = document.getElementById("player-list");
       const count = document.getElementById("player-count");
-      const entries = Object.entries(players || {});
+      // Only show/count players still active in the lobby — someone who
+      // left stays in Firebase (so Standings keeps them) but shouldn't
+      // clutter the pre-draft waiting-room list or take up a slot.
+      const entries = Object.entries(players || {}).filter(([, p]) => p.status !== "left");
       count.textContent = maxPlayers ? `${entries.length} / ${maxPlayers}` : `${entries.length}`;
       list.innerHTML = "";
 
@@ -405,7 +430,10 @@
     }
 
     // ── Enter lobby view ───────────────────────────────
-    function enterLobby(code, isHost, lobbyData) {
+    // finished=true renders the waiting-room view (player list, code)
+    // but for a draft that's already complete: shows the "draft
+    // finished" banner instead of Start/waiting/settings controls.
+    function enterLobby(code, isHost, lobbyData, finished = false) {
       showView("view-lobby");
       document.getElementById("lobby-code-display").textContent = code;
       document.getElementById("lobby-format-badge").textContent =
@@ -419,16 +447,32 @@
         nameEl.style.display = "block";
       }
 
-      // Host controls vs non-host
-      if (isHost) {
-        document.getElementById("btn-start").style.display   = "block";
-        document.getElementById("waiting-msg").style.display  = "none";
-        document.getElementById("draft-settings").style.display = "block";
+      const finishedBanner = document.getElementById("lobby-finished-banner");
+      if (finished) {
+        document.getElementById("lobby-finished-banner-code").textContent = code;
+        finishedBanner.classList.add("show");
+        document.getElementById("btn-start").style.display       = "none";
+        document.getElementById("waiting-msg").style.display     = "none";
+        document.getElementById("draft-settings").style.display  = "none";
       } else {
-        document.getElementById("btn-start").style.display   = "none";
-        document.getElementById("waiting-msg").style.display  = "block";
-        document.getElementById("draft-settings").style.display = "none";
+        finishedBanner.classList.remove("show");
+        // Host controls vs non-host
+        if (isHost) {
+          document.getElementById("btn-start").style.display   = "block";
+          document.getElementById("waiting-msg").style.display  = "none";
+          document.getElementById("draft-settings").style.display = "block";
+        } else {
+          document.getElementById("btn-start").style.display   = "none";
+          document.getElementById("waiting-msg").style.display  = "block";
+          document.getElementById("draft-settings").style.display = "none";
+        }
       }
+
+      // Close Lobby is host-only, and available whether the draft is
+      // still waiting, already finished, or (if the host lands back
+      // here) in progress — unlike Leave, it always deletes the lobby
+      // for everyone, so it stays a separate, clearly-labeled action.
+      document.getElementById("btn-close-lobby").style.display = isHost ? "inline-block" : "none";
 
       // Copy code button
       document.getElementById("btn-copy-code").addEventListener("click", () => {
@@ -455,8 +499,8 @@
         }
         renderPlayers(data.players, currentUid, data.hostId, data.maxPlayers);
 
-        // Enable start button only if 2+ players
-        const playerCount = Object.keys(data.players || {}).length;
+        // Enable start button only if 2+ active players
+        const playerCount = Object.values(data.players || {}).filter(p => p.status !== "left").length;
         document.getElementById("btn-start").disabled = playerCount < 2;
 
         // If status flips to "drafting", redirect everyone
@@ -518,6 +562,7 @@
       btn.innerHTML = '<span class="spinner"></span> Joining…';
 
       try {
+        await authReady;
         const lobby = await lobbyExists(code);
         if (!lobby) return showError("join-error", "Lobby not found. Check the code.");
 
@@ -534,7 +579,7 @@
         if (lobby.status !== "waiting") return showError("join-error", "This draft has already started.");
 
         // Player limit check (joinLobby double-checks this too, to avoid a race)
-        const currentCount = Object.keys(lobby.players || {}).length;
+        const currentCount = Object.values(lobby.players || {}).filter(p => p.status !== "left").length;
         if (lobby.maxPlayers && currentCount >= lobby.maxPlayers) {
           return showError("join-error", `Lobby is full (${lobby.maxPlayers} / ${lobby.maxPlayers}).`);
         }
@@ -561,21 +606,38 @@
 
       const { lobbyCode, isHost } = session;
       const msg = isHost
-        ? "You're the host. Leaving will close the lobby for everyone. Are you sure?"
-        : "Are you sure you want to leave this lobby?";
+        ? "You're the host. If the draft hasn't started yet, leaving will close the lobby for everyone. Are you sure?"
+        : "Are you sure you want to leave this lobby? Your picks are kept — you can rejoin with the lobby code and your name.";
 
       if (!confirm(msg)) return;
 
       try {
-        if (isHost) {
-          // Delete the entire lobby so all listeners get null and can react
-          await set(ref(db, `lobbies/${lobbyCode}`), null);
-        } else {
-          // Just remove this player from the lobby
-          await set(ref(db, `lobbies/${lobbyCode}/players/${currentUid}`), null);
-        }
+        // Marks you as "left" instead of deleting your player record, so
+        // your picks stay visible on Standings and you can rejoin later
+        // by name. (Only exception: the host leaving before the draft
+        // starts still closes the lobby — see leavePlayer in app.js.)
+        await leavePlayer({ code: lobbyCode, uid: currentUid });
       } catch (err) {
         console.error("Leave failed:", err);
+      } finally {
+        if (unsubLobby) unsubLobby();
+        LS.clearSession();
+        showView("view-landing");
+      }
+    });
+
+    // ── Close Lobby (host only — always deletes the whole lobby) ──
+    document.getElementById("btn-close-lobby").addEventListener("click", async () => {
+      const session = LS.getSession();
+      if (!session) { showView("view-landing"); return; }
+
+      const { lobbyCode } = session;
+      if (!confirm("Close this lobby for everyone? This deletes the draft and everyone's picks and can't be undone.")) return;
+
+      try {
+        await set(ref(db, `lobbies/${lobbyCode}`), null);
+      } catch (err) {
+        console.error("Close lobby failed:", err);
       } finally {
         if (unsubLobby) unsubLobby();
         LS.clearSession();
@@ -606,7 +668,7 @@
       try {
         const snap = await get(ref(db, `lobbies/${lobbyCode}/players`));
         const players = snap.val() || {};
-        const uids    = Object.keys(players);
+        const uids    = Object.keys(players).filter(uid => players[uid].status !== "left");
 
         let finalOrder;
         if (orderMode === "choose" && manualOrder.length > 0) {
@@ -641,6 +703,7 @@
     }
 
     async function doRejoin(code, name) {
+      await authReady;
       const lobby = await lobbyExists(code);
       if (!lobby) throw new Error("Lobby not found. Check the code.");
 
@@ -653,6 +716,8 @@
 
       // If their UID didn't change (storage wasn't cleared), just go straight in
       if (oldUid === currentUid) {
+        // Flip them back to active in case they'd previously left
+        await rejoinPlayer({ code, uid: currentUid });
         LS.saveSession({ uid: currentUid, name: playerData.name, lobbyCode: code, isHost: lobby.hostId === currentUid });
         if (lobby.status === "drafting") {
           window.location.href = `draft.html?code=${code}`;
@@ -665,7 +730,7 @@
       // Re-map old UID → new UID in Firebase
       const updates = {};
       updates[`lobbies/${code}/players/${oldUid}`]     = null;
-      updates[`lobbies/${code}/players/${currentUid}`] = { ...playerData, rejoinedAt: Date.now() };
+      updates[`lobbies/${code}/players/${currentUid}`] = { ...playerData, status: "active", leftAt: null, rejoinedAt: Date.now() };
 
       // If they were the host, update hostId too
       if (lobby.hostId === oldUid) {
@@ -725,13 +790,19 @@
       }
     });
 
+    // ── View draft board (from the finished-draft banner atop the lobby view) ──
+    document.getElementById("btn-lobby-finished-rejoin").addEventListener("click", () => {
+      const session = LS.getSession();
+      if (session?.lobbyCode) window.location.href = `draft.html?code=${session.lobbyCode}`;
+    });
+
     // ── Rejoin on page load ────────────────────────────
     (async () => {
       const params  = new URLSearchParams(location.search);
       const urlCode = params.get("code")?.toUpperCase();
       const session = LS.getSession();
 
-      // Case 1: valid session exists — try to resume it
+      // Case 1: saved session exists
       if (session) {
         try {
           const user  = await ensureAuth();
@@ -752,10 +823,21 @@
             return;
           }
 
+          // Draft in progress — jump straight back in, nothing to decide
           if (lobby.status === "drafting") {
             window.location.href = `draft.html?code=${session.lobbyCode}`;
             return;
           }
+
+          // Draft already finished — show the lobby (players + code) with a
+          // "draft finished" banner up top instead of silently redirecting,
+          // since landing here later is usually just browsing
+          if (lobby.status === "complete") {
+            enterLobby(session.lobbyCode, session.isHost, lobby, true);
+            return;
+          }
+
+          // Still in the waiting room pre-draft — resume it silently
           enterLobby(session.lobbyCode, session.isHost, lobby);
         } catch (err) {
           console.error("Rejoin failed:", err);
@@ -767,6 +849,7 @@
       // Case 2: no session but ?code= in URL — show rejoin banner
       if (urlCode) {
         try {
+          await authReady;
           const lobby = await lobbyExists(urlCode);
           if (lobby) {
             const banner = document.getElementById("rejoin-banner");

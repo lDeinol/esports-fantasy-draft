@@ -3,37 +3,39 @@ name: Scrape Ongoing Tournament
 # ─────────────────────────────────────────────────────────────
 #  WHEN THIS RUNS
 # ─────────────────────────────────────────────────────────────
-#  1) On a schedule, twice a day.
+#  1) On a schedule, four times a day.
 #  2) Manually, any time, via the "Run workflow" button on the
 #     Actions tab (that's what `workflow_dispatch` below enables).
 #
 #  ⚠ GitHub Actions cron schedules always run in UTC — there's no
-#  way to give it a US timezone directly. The two lines below are
-#  set for 1:00 AM and 1:00 PM US Central Time (Houston), converted
-#  to UTC for you:
+#  way to give it a US timezone directly. The four lines below are
+#  set for 12:00 AM, 6:00 AM, 12:00 PM, and 6:00 PM US Central Time
+#  (Houston), converted to UTC for you (using CDT, UTC-5):
 #
-#      1:00 AM CDT  ->  06:00 UTC   (cron: "0 6 * * *")
-#      1:00 PM CDT  ->  18:00 UTC   (cron: "0 18 * * *")
+#      12:00 AM CDT  ->  05:00 UTC   (cron: "0 5 * * *")
+#       6:00 AM CDT  ->  11:00 UTC   (cron: "0 11 * * *")
+#      12:00 PM CDT  ->  17:00 UTC   (cron: "0 17 * * *")
+#       6:00 PM CDT  ->  23:00 UTC   (cron: "0 23 * * *")
 #
 #  ┌───────────────────────────────────────────────────────────┐
-#  │  TO CHANGE THE SCHEDULE: edit the two "cron:" lines below. │
+#  │  TO CHANGE THE SCHEDULE: edit the "cron:" lines below.     │
 #  │  Format is: minute hour day month weekday (all in UTC).    │
-#  │  Example — to run at 3:00 AM and 3:00 PM UTC instead:      │
-#  │      - cron: "0 3 * * *"                                   │
-#  │      - cron: "0 15 * * *"                                  │
 #  └───────────────────────────────────────────────────────────┘
 #
 #  ⚠ DST NOTE: Central Time flips between CDT (UTC-5, roughly
 #  March–November) and CST (UTC-6, roughly November–March). The
-#  cron times above are set for CDT. During CST months this will
-#  actually fire at 12:00 AM / 12:00 PM Central instead of 1:00 —
-#  a 1-hour drift. If that matters to you, swap to "0 7 * * *" and
-#  "0 19 * * *" for the CST months, or just leave it — either way
+#  cron times above are set for CDT. During CST months these will
+#  actually fire an hour earlier Central than intended (e.g. the
+#  "12:00 AM" run lands at 11:00 PM the night before). If that
+#  matters to you, shift each line by +1 hour UTC ("0 6/12/18/0
+#  * * *") for the CST months, or just leave it — either way
 #  you're at most an hour off for part of the year.
 on:
-  schedule: 
-    - cron: "0 15 * * *"  # 9:00 AM CST / 10:00 AM CDT
-    - cron: "0 3 * * *"   # 9:00 PM CST / 10:00 PM CDT
+  schedule:
+    - cron: "0 5 * * *"   # 12:00 AM CDT / 11:00 PM CST
+    - cron: "0 11 * * *"  # 6:00 AM CDT / 5:00 AM CST
+    - cron: "0 17 * * *"  # 12:00 PM CDT / 11:00 AM CST
+    - cron: "0 23 * * *"  # 6:00 PM CDT / 5:00 PM CST
   workflow_dispatch:
     inputs:
       tournament_id:

@@ -6,6 +6,7 @@
 /* ── Tokens ─────────────────────────────────────────── */
 :root {
   --bg:       #0a0b0f;
+  --header:   #13151c;
   --surface:  #13151c;
   --surface2: #1c1f2b;
   --surface3: #22263a;
@@ -28,7 +29,8 @@
    header toggle (see .theme-toggle below) and persisted
    through initThemeToggle()/setTheme() in app.js. */
 :root[data-theme="light"] {
-  --bg:       #faf9f6;
+  --bg:       #C1C3C3;
+  --header:   #363636;
   --surface:  #ffffff;
   --surface2: #f2f0ea;
   --surface3: #e8e5dc;
@@ -70,6 +72,46 @@
 }
 .theme-toggle-input:checked ~ .theme-toggle-track .theme-toggle-thumb { transform: translateX(22px); }
 
+/* ── Draft View Toggle (Tab / Combined layout) ────────
+   Desktop-only control (hidden below 900px — see the
+   max-width: 900px header rules). Persisted via
+   localStorage "draftViewMode" and applied as
+   data-draft-view="combined" on <html>; see the
+   "Combined Draft View" rules further down for the
+   actual layout changes this drives. */
+.draft-view-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+.draft-view-toggle-input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.draft-view-toggle-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.draft-view-toggle-input:not(:checked) ~ .draft-view-toggle-label-off { color: var(--accent); }
+.draft-view-toggle-input:checked     ~ .draft-view-toggle-label-on  { color: var(--accent); }
+
+.draft-view-toggle-track {
+  position: relative;
+  width: 46px; height: 24px;
+  border-radius: 999px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  transition: background 0.15s, border-color 0.15s;
+}
+.draft-view-toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.2s ease;
+}
+.draft-view-toggle-input:checked ~ .draft-view-toggle-track .draft-view-toggle-thumb {
+  transform: translateX(22px);
+}
+
 /* ── Reset ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { min-height: 100vh; }
@@ -90,7 +132,7 @@ header {
   align-items: center;
   padding: 0 24px;
   gap: 16px;
-  background: var(--surface);
+  background: var(--header);
   flex-shrink: 0;
 }
 
@@ -868,6 +910,7 @@ select option { background: var(--surface2); }
   padding: 10px 14px;
   vertical-align: top;
   min-width: 140px;
+  background: var(--surface);
 }
 
 .draft-table td.round-label {
@@ -961,7 +1004,7 @@ select option { background: var(--surface2); }
 .player-card-name { font-size: 0.9rem; font-weight: 600; flex: 1; }
 .player-card-game {
   font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--muted); background: var(--surface3); border-radius: 4px; padding: 2px 6px;
+  color: var(--team-text, var(--muted)); background: var(--team-color, var(--surface3)); border-radius: 4px; padding: 2px 6px;
 }
 .player-card-meta { font-size: 0.72rem; color: var(--muted); }
 
@@ -1104,6 +1147,37 @@ select option { background: var(--surface2); }
     gap: 8px;
   }
   .side-slide-panel.collapsed:hover .side-tab-label { color: var(--accent); }
+}
+
+/* ── Combined Draft View (desktop only) ───────────────
+   Toggled via the header's Draft View switch (Tab / Combined).
+   Tab (default/off) keeps the existing expand-one-collapse-
+   the-other side panel behavior above. Combined (on) shows the
+   Draft Board and Player Pool at the same time — no tab strip,
+   no collapsing — with the pool rendered as a single scrollable
+   column instead of a card grid, and its search bar stacked
+   above the Team/Region filter row. */
+@media (min-width: 901px) {
+  html[data-draft-view="combined"] .side-slide-panel {
+    flex: 1 1 0% !important;
+    width: auto !important;
+  }
+  html[data-draft-view="combined"] #pool-panel {
+    flex: 0 0 380px !important;
+    width: 380px !important;
+  }
+  html[data-draft-view="combined"] .side-tab-strip { display: none !important; }
+  html[data-draft-view="combined"] .panel-expanded-content { display: flex !important; }
+
+  /* Search bar on its own row, Team + Region filters sharing the row below */
+  html[data-draft-view="combined"] .pool-filter-row { flex-wrap: wrap; }
+  html[data-draft-view="combined"] .pool-filter-row .search-input { flex: 1 1 100%; }
+  html[data-draft-view="combined"] .pool-filter-row .filter-dropdown { flex: 1 1 0; }
+
+  /* Player pool: single scrollable column instead of a card grid */
+  html[data-draft-view="combined"] #player-pool {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .detail-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 2px; }
@@ -1603,6 +1677,7 @@ main { flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 32px 24
 
 /* ── Stats Table ─────────────────────────────────────── */
 .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+#stats-table { background: var(--surface2); }
 
 table { width: 100%; border-collapse: collapse; min-width: 1000px; }
 
@@ -1627,10 +1702,23 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .td-rank    { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); width: 36px; }
 .td-name    { font-weight: 600; }
 .td-team    { color: var(--muted); font-size: 0.85rem; }
+
+.team-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--team-text, var(--text));
+  background: var(--team-color, var(--surface3));
+  border-radius: 4px;
+  padding: 3px 8px;
+}
 .td-role    { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: var(--surface3); border-radius: 4px; padding: 2px 7px; color: var(--muted); }
 .td-region  { font-size: 0.82rem; color: var(--muted); }
 .td-stat    { font-family: var(--font-mono); font-size: 0.925rem; }
 .td-pts     { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+.td-pp      { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; color: var(--success); }
 .td-matches { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
 
 /* ── Expanded Match History ──────────────────────────── */
@@ -1655,6 +1743,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .mh-date  { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
 
 .mh-tournament { font-size: 0.72rem; color: var(--muted); flex: 1; min-width: 160px; }
+.mh-series     { opacity: 0.7; }
 .mh-match      { font-size: 0.82rem; font-weight: 600; min-width: 120px; }
 .mh-result     { font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
 .mh-result.win  { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); border: 1px solid color-mix(in srgb, var(--success) 25%, transparent); }
@@ -1895,6 +1984,10 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
 }
 
 .player-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
@@ -1915,6 +2008,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .player-pts       { text-align: right; flex-shrink: 0; }
 .player-pts-val   { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 600; color: var(--accent); }
 .player-pts-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.player-pts-pp    { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; color: var(--success); margin-top: 2px; }
 
 /* ── Badges ──────────────────────────────────────────── */
 .price-badge {
@@ -2006,7 +2100,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 .podium-picks { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
 
 /* ── Standings Table ─────────────────────────────────── */
-.standings-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+.standings-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; background: var(--surface); }
 
 .standings-table th {
   text-align: left; padding: 10px 16px;
@@ -2194,6 +2288,7 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   #format-badge    { display: none !important; }
   #tournament-badge { display: none !important; }
   .draft-header .draft-nav { display: none !important; }
+  .draft-view-toggle, .draft-view-divider { display: none !important; }
 }
 
 /* ── Phone: compact header, stacked hero/cards ────────── */
@@ -2221,128 +2316,4 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
 
   .hero-sub { max-width: 100%; }
 }
-
-/* ── Traded Badge (standings / dashboard) ─────────────── */
-.traded-badge {
-  font-size: 0.7rem; font-weight: 600;
-  color: var(--accent2);
-  background: color-mix(in srgb, var(--accent2) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent2) 30%, transparent);
-  border-radius: 4px; padding: 2px 8px;
-}
-
-/* ── Trade Page ────────────────────────────────────────── */
-.trade-hero {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; flex-wrap: wrap;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 18px 22px; margin-bottom: 24px;
-}
-.trade-hero-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.03em; }
-.trade-hero-sub    { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
-.trade-hero-turn   { text-align: right; }
-.trade-turn-label  { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.trade-turn-name   { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--accent); }
-.trade-turn-name.mine { color: var(--warn); }
-
-.trade-round-pill {
-  font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
-  border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px;
-}
-
-.trade-order-strip {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
-}
-.trade-order-chip {
-  display: flex; align-items: center; gap: 6px;
-  font-size: 0.78rem; padding: 6px 12px;
-  border: 1px solid var(--border); border-radius: 20px;
-  color: var(--muted); background: var(--surface);
-}
-.trade-order-chip.active {
-  border-color: var(--accent); color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-}
-.trade-order-chip.done { opacity: 0.5; }
-.trade-order-chip .order-num { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
-
-.trade-not-started {
-  text-align: center; padding: 60px 20px;
-  border: 1px dashed var(--border); border-radius: 12px; color: var(--muted);
-}
-.trade-not-started-title {
-  font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
-  color: var(--text); margin-bottom: 10px;
-}
-.trade-start-form {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin-top: 20px; flex-wrap: wrap;
-}
-.trade-start-form input {
-  width: 70px; text-align: center; font-family: var(--font-mono); font-size: 0.95rem;
-}
-.trade-start-form label { font-size: 0.8rem; color: var(--muted); }
-
-.trade-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-@media (max-width: 900px) { .trade-columns { grid-template-columns: 1fr; } }
-
-.trade-panel {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; overflow: hidden;
-}
-.trade-panel-header {
-  padding: 14px 18px; border-bottom: 1px solid var(--border);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em;
-}
-.trade-panel-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
-
-.trade-target-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 18px 14px; }
-.trade-target-tab {
-  font-size: 0.78rem; padding: 6px 12px; border-radius: 20px; cursor: pointer;
-  border: 1px solid var(--border); background: var(--surface2); color: var(--text);
-}
-.trade-target-tab.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
-
-.trade-player-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
-  cursor: pointer; background: var(--surface2);
-}
-.trade-player-row:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
-.trade-player-row.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
-.trade-player-row.disabled { opacity: 0.4; cursor: not-allowed; }
-.trade-player-name { font-size: 0.88rem; font-weight: 600; }
-.trade-player-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
-.trade-player-pts  { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent); flex-shrink: 0; }
-
-.trade-confirm-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 14px 18px; border-top: 1px solid var(--border);
-  background: var(--surface2);
-}
-.trade-confirm-summary { font-size: 0.82rem; color: var(--muted); }
-.trade-confirm-summary strong { color: var(--text); }
-
-.pending-trade-card {
-  border: 1px solid var(--warn); border-radius: 10px; padding: 14px 18px;
-  background: color-mix(in srgb, var(--warn) 6%, var(--surface));
-  margin-bottom: 12px;
-}
-.pending-trade-title { font-size: 0.8rem; color: var(--warn); font-weight: 600; margin-bottom: 8px; }
-.pending-trade-swap { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; margin-bottom: 10px; }
-.pending-trade-swap .swap-arrow { color: var(--muted); }
-.pending-trade-actions { display: flex; gap: 8px; }
-
-.trade-log-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
-}
-.trade-log-row:last-child { border-bottom: none; }
-.trade-log-desc { flex: 1; }
-.trade-log-desc strong { color: var(--accent); }
-.trade-log-status { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; flex-shrink: 0; }
-.trade-log-status.completed { color: var(--success); }
-.trade-log-status.pending   { color: var(--warn); }
-.trade-log-status.rejected  { color: var(--danger); }
-.trade-log-round { font-size: 0.68rem; color: var(--muted); font-family: var(--font-mono); flex-shrink: 0; }
 

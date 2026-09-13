@@ -100,27 +100,102 @@ def resolve_team_name(raw_name):
     return full_name
 
 
-def resolve_status(date_str, has_score):
-    """Return 'upcoming' or 'completed' based on date vs today and whether a score exists."""
+# Score tuples that actually END a series for a given declared format.
+# e.g. a BO3 isn't over at 1-0 (map 2 still to come) — only 2-0/2-1 (or
+# the reverse) are real finishes. Used by is_series_final() below to stop
+# a match from being marked "completed" off a merely partial score.
+_VALID_FINAL_SCORES = {
+    "BO1": {(1, 0), (0, 1)},
+    "BO3": {(2, 0), (0, 2), (2, 1), (1, 2)},
+    "BO5": {(3, 0), (0, 3), (3, 1), (1, 3), (3, 2), (2, 3)},
+}
+
+
+def is_series_final(score_str, fmt):
+    """
+    True only if score_str is a *finished-series* score for the declared
+    format — e.g. 2-0/2-1 (or the reverse) for BO3, 3-0/3-1/3-2 (or the
+    reverse) for BO5, 1-0/0-1 for BO1. A score like "1-0" partway through
+    a BO3 returns False, so a match auto-scraped mid-series never gets
+    mistaken for completed just because *a* score is present.
+
+    If fmt couldn't be determined (extract_declared_format() found
+    nothing on the page), falls back to accepting any score that would
+    finish *some* standard format — the old best-effort behavior — so a
+    match with an undetectable declared format still resolves once it's
+    genuinely over.
+    """
+    if not score_str:
+        return False
+    m = re.match(r"^(\d+)-(\d+)$", score_str)
+    if not m:
+        return False
+    pair = (int(m.group(1)), int(m.group(2)))
+
+    if fmt in _VALID_FINAL_SCORES:
+        return pair in _VALID_FINAL_SCORES[fmt]
+    return any(pair in scores for scores in _VALID_FINAL_SCORES.values())
+
+
+def resolve_status(date_str, score_str, fmt):
+    """
+    Return 'upcoming', 'live', or 'completed':
+      - score_str is a finished-series score for fmt (is_series_final())
+                                                        -> 'completed'
+      - score_str exists but ISN'T a finished-series score (e.g. "1-0"
+        in a BO3 that's still being played)             -> 'live'
+        (the series has clearly started, but the score we have isn't
+        final — so an auto-run match that briefly shows a partial score
+        never gets stuck marked "completed" before it's actually over,
+        and instead keeps getting re-scraped next run until it is)
+      - No score, and the date is missing/unparsable -> 'upcoming' (can't
+        confirm it's started, so default to the safe/old behavior)
+      - No score, and the date is in the future       -> 'upcoming'
+      - No score, and the date is today or has passed -> 'live'
+        (VLR shows a match without a final score once it's kicked off —
+        that covers same-day matches still being played, and also a
+        rare stale/delayed-reporting case where the date has already
+        passed but a score still hasn't shown up)
+    """
+    if is_series_final(score_str, fmt):
+        return "completed"
+    if score_str:
+        return "live"
     if not date_str:
-        return "completed" if has_score else "upcoming"
+        return "upcoming"
     try:
         match_date = date.fromisoformat(date_str)
-        if match_date > date.today():
-            return "upcoming"
     except ValueError:
-        pass
-    return "completed" if has_score else "upcoming"
-    """Return 'upcoming', or 'completed' based on date vs today and whether a score exists."""
-    if not date_str:
-        return "completed" if has_score else "upcoming"
-    try:
-        match_date = date.fromisoformat(date_str)
-        if match_date > date.today():
-            return "upcoming"
-    except ValueError:
-        pass
-    return "completed" if has_score else "upcoming"
+        return "upcoming"
+    if match_date > date.today():
+        return "upcoming"
+    return "live"
+
+
+def extract_declared_format(soup):
+    """
+    Read the actual declared match format (Bo1/Bo3/Bo5) straight off the
+    page's match header, independent of the score. VLR prints this as
+    plain text ("Bo1"/"Bo3"/"Bo5") right next to the score, and it's known
+    before a single map is played — unlike inferring the format from the
+    final score, which only works once the series is already over and
+    gives zero signal while a match is still live.
+
+    Scoped to the `.match-header` container specifically (not the whole
+    page) so we don't pick up an unrelated "Bo3" mention elsewhere on the
+    page (comments, betting odds, etc).
+
+    Returns "BO1"/"BO3"/"BO5", or None if it can't be found (callers fall
+    back to inferring from the final score, same as the old behavior) —
+    if VLR's markup changes and `.match-header` stops matching, this
+    quietly degrades to that fallback rather than breaking.
+    """
+    header = soup.select_one(".match-header")
+    if not header:
+        return None
+    text = header.get_text(" ", strip=True)
+    m = re.search(r"\bBo([135])\b", text, re.IGNORECASE)
+    return f"BO{m.group(1)}" if m else None
 
 
 # ── Fetch page ─────────────────────────────────────────────
@@ -222,12 +297,22 @@ def parse_match(html, match_id):
         winner = teams[0] if s1 > s2 else teams[1] if s2 > s1 else None
 
     # ── Format (BO1/BO3/BO5) ──────────────────────────────
-    fmt = "BO3"
-    if score_str:
-        max_maps = max(int(scores[0]), int(scores[1])) if len(scores) >= 2 else 0
-        if max_maps == 1:   fmt = "BO1"
-        elif max_maps == 2: fmt = "BO3"
-        elif max_maps >= 3: fmt = "BO5"
+    # Try to read the real declared format off the page first — this is
+    # what makes it possible to tell a partial score (still live) apart
+    # from a final one (see is_series_final/resolve_status), since a
+    # format inferred FROM the score can never disagree with that score.
+    fmt = extract_declared_format(soup)
+    if not fmt:
+        # Couldn't find it on the page — fall back to the old guess from
+        # the score. Only reliable once the series is actually over; a
+        # match resolved this way just relies on is_series_final()'s own
+        # "matches some standard format" fallback (see its docstring).
+        fmt = "BO3"
+        if score_str:
+            max_maps = max(int(scores[0]), int(scores[1])) if len(scores) >= 2 else 0
+            if max_maps == 1:   fmt = "BO1"
+            elif max_maps == 2: fmt = "BO3"
+            elif max_maps >= 3: fmt = "BO5"
 
     # ── Date ──────────────────────────────────────────────
     date_el = soup.select_one(".match-header-date .moment-tz-convert")
@@ -248,8 +333,16 @@ def parse_match(html, match_id):
                 date_str = m.group(1)
 
     # ── Tournament ─────────────────────────────────────────
-    event_el = soup.select_one(".match-header-event-series") or soup.select_one(".match-header-event")
+    event_el = soup.select_one(".match-header-event")
     event_name = re.sub(r"\s+", " ", event_el.get_text(" ", strip=True)) if event_el else ""
+
+    # ── Series / stage (e.g. "Playoffs: Upper Final") ──────
+    # This is a sub-element inside .match-header-event that VLR uses
+    # to describe what part of the tournament this match belongs to
+    # (group stage, bracket round, etc). Pulled separately so it's
+    # not lost inside the broader event_name text above.
+    series_el = soup.select_one(".match-header-event-series")
+    series = re.sub(r"\s+", " ", series_el.get_text(" ", strip=True)) if series_el else ""
 
     # ── Player stats from the "all" (series total) tab ────
     # VLR shows per-map tabs + an "all" tab with series totals
@@ -350,6 +443,7 @@ def parse_match(html, match_id):
         "format": fmt,
         "date": date_str,
         "eventName": event_name,
+        "series": series,
         "roundsTotal": rounds_total,
         "playerStats": player_stats,
     }
@@ -450,6 +544,7 @@ def main():
     print(f"    Format:  {data['format']}")
     print(f"    Date:    {data['date'] or 'unknown'}")
     print(f"    Event:   {data['eventName'] or 'unknown'}")
+    print(f"    Series:  {data['series'] or 'unknown'}")
     print(f"    Rounds:  {data['roundsTotal']}")
     print(f"    Players: {len(data['playerStats'])}")
 
@@ -480,13 +575,13 @@ def main():
     default_match_id = vlr_id
     match_id = prompt(f"Match ID for matches.json", default=default_match_id)
 
-    # ── Auto-determine status from date ───────────────────
-    status = resolve_status(data["date"], bool(data["score"]))
+    # ── Auto-determine status from date + score-vs-format ─
+    status = resolve_status(data["date"], data["score"], data["format"])
     print(f"  → Status set to: {status}  (match date: {data['date'] or 'unknown'})")
 
-    # ── Build clean stats (skip if upcoming) ──────────────
+    # ── Build clean stats (only once the match is actually completed) ──
     clean_stats = []
-    if status != "upcoming":
+    if status == "completed":
         for p in data["playerStats"]:
             clean_stats.append({
                 "playerId": p["playerId"],
@@ -501,6 +596,7 @@ def main():
     new_match = {
         "id":           match_id,
         "tournamentId": tournament_id,
+        "series":       data["series"],
         "team1":        data["teams"][0],
         "team2":        data["teams"][1],
         "score":        data["score"],
@@ -509,7 +605,6 @@ def main():
         "date":         data["date"],
         "status":       status,
         "playerStats":  clean_stats,
-        "vlrId":        vlr_id,
     }
 
     # ── Update in place if ID exists, otherwise append ────

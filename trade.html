@@ -250,7 +250,7 @@
 
         ${pendingForMe ? renderPendingForMe(pendingForMe) : ""}
 
-        ${isMyTurn ? renderMyTurnUI({ myOutgoing, players, playerMap, rosterMap }) : `
+        ${isMyTurn ? renderMyTurnUI({ myOutgoing, players, playerMap, rosterMap, attempts }) : `
           <div class="trade-panel" style="margin-bottom:24px;">
             <div class="trade-panel-body" style="text-align:center; color:var(--muted); padding:24px;">
               Waiting for <strong style="color:var(--text);">${currentTurnName}</strong> to make a move…
@@ -283,7 +283,7 @@
     }
 
     // ── My-turn UI: propose trade or take undrafted ──────
-    function renderMyTurnUI({ myOutgoing, players, playerMap, rosterMap }) {
+    function renderMyTurnUI({ myOutgoing, players, playerMap, rosterMap, attempts }) {
       if (myOutgoing) {
         return `
           <div class="pending-trade-card" style="border-color:var(--accent);">
@@ -383,7 +383,7 @@
         <div class="trade-panel" style="margin-bottom:24px;">
           <div class="trade-target-tabs" style="padding-top:14px;">${tabButtons}</div>
           ${body}
-          <div style="padding:0 18px 18px; ${attempts > 0 ? "" : ""}">
+          <div style="padding:0 18px 18px;">
             ${attempts > 0 ? `<div style="color:var(--warn); font-size:0.78rem; margin-bottom:10px;">${attempts} rejected offer${attempts > 1 ? "s" : ""} this turn — ${3 - attempts} left before your turn passes.</div>` : ""}
             <button class="btn-sm btn-sm-ghost" id="btn-pass-turn">Pass My Turn</button>
           </div>

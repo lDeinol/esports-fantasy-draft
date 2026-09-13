@@ -36,7 +36,6 @@
       <a href="stats.html"     class="nav-link">Stats</a>
       <a href="matches.html"   class="nav-link">Matches</a>
       <a href="index.html"     class="nav-link">Draft</a>
-      <a href="trade.html"     class="nav-link">Trade</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link active">Standings</a>
     </nav>
@@ -51,8 +50,7 @@
   <script type="module">
     import {
       db, ref, get, subscribeLobby,
-      ensureAuth, LS, CONFIG, SCORING, initThemeToggle,
-      buildRosterMap, getOwnershipPeriods
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle
     } from "./app.js";
 
     initThemeToggle();
@@ -98,73 +96,37 @@
     }
 
     // ── Build per-participant standings ────────────────
-<<<<<<< Updated upstream
-    function buildStandings(lobbyData, playerMap, matchData, tournamentId) {
-      const { players, picks = {}, pickOrder = [] } = lobbyData;
-=======
     function buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData) {
-      const { players, picks = {} } = lobbyData;
->>>>>>> Stashed changes
+      const { players, picks = {}, pickOrder = [] } = lobbyData;
       const picksArr = Object.values(picks);
-      const pickByPlayerId = Object.fromEntries(picksArr.map(pk => [pk.playerId, pk]));
-      const rosterMap = buildRosterMap(lobbyData);
-      const ownershipLog = lobbyData.ownershipLog || {};
-
-      // Every player uid has ever owned but no longer does — appear in
-      // their roster list with a "Traded" badge and only the points/
-      // matches earned while they actually owned the player.
-      function tradedAwayIdsFor(uid) {
-        return Object.entries(ownershipLog)
-          .filter(([, periodsObj]) => Object.values(periodsObj).some(per => per.uid === uid && per.to !== null))
-          .map(([playerId]) => playerId);
-      }
 
       return Object.entries(players || {}).map(([uid, p]) => {
-        const currentIds = Object.entries(rosterMap).filter(([, owner]) => owner === uid).map(([pid]) => pid);
-        const tradedIds  = tradedAwayIdsFor(uid).filter(pid => !currentIds.includes(pid));
-        const allIds     = [...currentIds, ...tradedIds];
+        const myPicksList = picksArr.filter(pk => pk.byUid === uid);
 
-<<<<<<< Updated upstream
         const enriched = myPicksList.map(pick => {
           const pData     = playerMap[pick.playerId] || {};
           const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
-          const pts       = +SCORING.totalFromMatches(pick.playerId, matchData, tournamentId).toFixed(1);
-          const breakdown = SCORING.breakdown(stats);
-          const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
-          return { ...pick, pData, stats, pts, breakdown, history, tracked, matchCount };
-=======
-        const enriched = allIds.map(playerId => {
-          const pick      = pickByPlayerId[playerId];
-          const pData     = playerMap[playerId] || {};
-          const { stats, tracked, matchCount } = resolveStats(playerId, pData, matchData, tournamentId);
-          const periods   = getOwnershipPeriods(lobbyData, playerId);
-          const basePts   = SCORING.totalFromMatchesOwned(playerId, matchData, tournamentId, periods, uid);
-          const pp        = SCORING.placementPointsOwned(playerId, matchData, tournamentId, tournamentData, periods, uid);
+          const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
+          const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
           const pts       = +(basePts + pp).toFixed(1);
           const breakdown = SCORING.breakdown(stats);
-          const history   = SCORING.matchHistoryOwned(playerId, matchData, tournamentId, periods, uid);
-          const base = pick
-            ? pick
-            : { byUid: uid, playerId, playerName: pData.name, playerTeam: pData.team, playerRole: pData.role, label: "Trade" };
-          return { ...base, pData, stats, pts, pp, breakdown, history, tracked, matchCount, traded: tradedIds.includes(playerId) };
->>>>>>> Stashed changes
+          const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
+          return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
         });
 
         const totalScore = +enriched.reduce((s, e) => s + e.pts, 0).toFixed(1);
+        const totalPP    = +enriched.reduce((s, e) => s + e.pp, 0).toFixed(1);
 
         return {
           uid,
           name:   p.name,
           color:  p.color || null,
           isHost: p.isHost,
+          left:   p.status === "left",
           picks:  enriched,
           totalScore,
-<<<<<<< Updated upstream
-          pickCount: enriched.length,
-=======
           totalPP,
-          pickCount: currentIds.length,
->>>>>>> Stashed changes
+          pickCount: enriched.length,
         };
       }).sort((a, b) => b.totalScore - a.totalScore);
     }
@@ -195,7 +157,6 @@
             <div class="expand-player-name">
               ${p.playerName}
               ${p.skipped ? '<span class="skipped-tag">Auto</span>' : ""}
-              ${p.traded ? '<span class="traded-badge" style="margin-left:6px;">Traded</span>' : ""}
             </div>
             <div class="expand-player-meta">
               ${p.pData.team || p.playerTeam || "—"} ·
@@ -215,7 +176,7 @@
               </div>
             `).join("")}
           </div>
-          <div class="expand-pts">${p.pts} pts</div>
+          <div class="expand-pts">${p.pts} pts${p.pp > 0 ? `<br><span style="color:var(--success); font-size:0.65rem;">+${p.pp} PP</span>` : ""}</div>
         </div>
       `).join("");
 
@@ -242,7 +203,7 @@
       const playerMap    = Object.fromEntries(playerData.map(p => [p.id, p]));
       const tournamentId = lobbyData.tournamentId || null;
       const tournament   = tournamentData.find(t => t.id === tournamentId);
-      const standings    = buildStandings(lobbyData, playerMap, matchData, tournamentId);
+      const standings    = buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData);
       const isLive       = lobbyData.status === "drafting";
       const top3         = standings.slice(0, 3);
 
@@ -256,8 +217,9 @@
             <div class="podium-card rank-${i + 1}">
               <div class="podium-medal">${rankMedal(i)}</div>
               <div class="podium-rank">${i === 0 ? "1st" : i === 1 ? "2nd" : "3rd"}</div>
-              <div class="podium-name"><span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}</div>
+              <div class="podium-name"><span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>${e.uid === myUid ? ' <span style="color:var(--accent); font-size:0.75rem;">(You)</span>' : ""}${e.left ? ' <span style="color:var(--muted); font-size:0.7rem;">(Left)</span>' : ""}</div>
               <div class="podium-score">${e.totalScore}</div>
+              ${e.totalPP > 0 ? `<div style="color:var(--success); font-size:0.7rem; font-weight:600;">+${e.totalPP} PP</div>` : ""}
               <div class="podium-picks">${e.pickCount} pick${e.pickCount !== 1 ? "s" : ""}</div>
             </div>
           `).join("")}
@@ -276,9 +238,10 @@
               <span${e.color ? ` style="color:${e.color};"` : ""}>${e.name}</span>
               ${e.uid === myUid ? '<span class="you-tag">You</span>' : ""}
               ${e.isHost        ? '<span style="font-size:0.65rem; color:var(--accent2); margin-left:6px;">Host</span>' : ""}
+              ${e.left          ? '<span style="font-size:0.65rem; color:var(--muted); margin-left:6px;">Left Lobby</span>' : ""}
             </td>
             <td class="picks-cell">${e.pickCount} / ${CONFIG.ROSTER_SIZE}</td>
-            <td class="score-cell">${e.totalScore}</td>
+            <td class="score-cell">${e.totalScore}${e.totalPP > 0 ? `<div style="color:var(--success); font-size:0.65rem; font-weight:600;">+${e.totalPP} PP</div>` : ""}</td>
             <td class="expand-cell">${isExpanded ? "▲" : "▼"}</td>
           </tr>
           ${expandRow}
@@ -298,20 +261,22 @@
 
         ${podiumHTML}
 
-        <table class="standings-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Participant</th>
-              <th>Picks</th>
-              <th>Score</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="standings-tbody">
-            ${tableRows}
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table class="standings-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Participant</th>
+                <th>Picks</th>
+                <th>Score</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="standings-tbody">
+              ${tableRows}
+            </tbody>
+          </table>
+        </div>
       `;
     }
 

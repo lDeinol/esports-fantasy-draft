@@ -52,6 +52,7 @@
     <span class="legend-item">ACS <span>×0.15</span></span>
     <span class="legend-item">ADR <span>×0.10</span></span>
     <span class="legend-item">KPR <span>×10</span></span>
+    <span class="legend-item">PP <span>-Placement Points</span></span>
     <span style="font-size:0.75rem; color:var(--muted); margin-left:auto;">●Tracked = avg of matches played · Seeded = no match data</span>
   </div>
 
@@ -112,6 +113,7 @@
       <span class="sort-label">Sort</span>
       <select class="sort-select" id="sort-select">
         <option value="totalPts">Total Pts</option>
+        <option value="pp">PP</option>
         <option value="name">Player Name</option>
         <option value="team">Team</option>
         <option value="rating">Rating</option>
@@ -139,24 +141,26 @@
           <th data-col="adr">ADR</th>
           <th data-col="kpr">KPR</th>
           <th data-col="totalPts" class="sorted">Pts <span class="sort-arrow">▼</span></th>
+          <th data-col="pp">PP</th>
           <th>Matches</th>
         </tr>
       </thead>
       <tbody id="stats-tbody">
-        <tr><td colspan="13"><div class="loading-wrap"><div class="spinner"></div></div></td></tr>
+        <tr><td colspan="14"><div class="loading-wrap"><div class="spinner"></div></div></td></tr>
       </tbody>
     </table>
   </div>
 </main>
 
 <script type="module">
-  import { SCORING, initThemeToggle } from "./app.js";
+  import { SCORING, initThemeToggle, contrastTextColor, PP_BY_SERIES, normalizeSeries } from "./app.js";
 
   initThemeToggle();
 
   let players    = [];
   let matches    = [];
   let tournaments = [];
+  let teamsById   = new Map(); // team name → { name, abbrv, color }
   let selectedRegions = new Set(); // empty = all regions
   let selectedTeams   = new Set(); // empty = all teams
   let selectedTournaments = new Set(); // empty = all tournaments
@@ -164,14 +168,17 @@
   let expanded   = new Set();
 
   async function loadData() {
-    [players, matches, tournaments] = await Promise.all([
+    let teamsList;
+    [players, matches, tournaments, teamsList] = await Promise.all([
       fetch("data/players.json").then(r => r.json()),
       fetch("data/matches.json").then(r => r.json()),
       fetch("data/tournaments.json").then(r => r.json()),
+      fetch("data/teams.json").then(r => r.ok ? r.json() : []).catch(() => []),
     ]);
     // Only ever browse active players. Missing status is treated as
     // active for backwards-compatibility with older players.json entries.
     players = players.filter(p => p.status !== "inactive");
+    teamsById = new Map(teamsList.map(t => [t.name, t]));
   }
 
   // Build tournament lookup
@@ -179,10 +186,26 @@
     return tournaments.find(t => t.id === id)?.name || id;
   }
 
+  // Renders a team name as a colored badge (falls back to plain
+  // gray badge if the team isn't in teams.json)
+  function teamBadge(teamName) {
+    const team  = teamsById.get(teamName);
+    const style = team?.color
+      ? ` style="--team-color:${team.color}; --team-text:${contrastTextColor(team.color)}"`
+      : "";
+    return `<span class="team-badge"${style}>${team?.abbrv || teamName}</span>`;
+  }
+
   // Calculate per-match fantasy points
   function matchPts(stats) {
     return +SCORING.calculate(stats).toFixed(1);
   }
+
+  // Placement Points (PP): for International-region tournaments only,
+  // winning specific bracket rounds awards a flat bonus, regardless of
+  // how many total matches a team played to get there. See PP_BY_SERIES
+  // and normalizeSeries in app.js — shared with dashboard.html and
+  // standings.html so the point table only lives in one place.
 
   // Build enriched player list with match history, total pts, and
   // displayed stats (averaged from matches if any exist, else season stats from players.json)
@@ -192,6 +215,8 @@
       (selectedTournaments.size === 0 || selectedTournaments.has(m.tournamentId))
     );
     const statKeys = ["rating", "kd", "acs", "adr", "kpr"];
+
+    const tournamentsById = new Map(tournaments.map(t => [t.id, t]));
 
     return players.map(p => {
       const matchHistory = completedMatches
@@ -203,8 +228,24 @@
           return { match: m, stats, pts, isWin };
         });
 
-      const totalPts   = +matchHistory.reduce((s, h) => s + h.pts, 0).toFixed(1);
-      const matchCount = matchHistory.length;
+      const rawTotalPts = matchHistory.reduce((s, h) => s + h.pts, 0);
+      const matchCount   = matchHistory.length;
+
+      // --- Placement Points (International tournaments only) ---
+      // Award a flat bonus for each series this player's team won,
+      // based on which round that series was.
+      let ppTotal = 0;
+      matchHistory.forEach(h => {
+        if (!h.isWin) return;
+        const tournament = tournamentsById.get(h.match.tournamentId);
+        if (tournament?.region !== "International") return;
+
+        const key = normalizeSeries(h.match.series);
+        ppTotal += PP_BY_SERIES[key] || 0;
+      });
+
+      const pp       = +ppTotal.toFixed(1);
+      const totalPts = +(rawTotalPts + ppTotal).toFixed(1);
 
       // Displayed stats: average across matches played, or fall back to players.json
       let displayStats;
@@ -218,21 +259,24 @@
         displayStats = { ...p.stats };
       }
 
-      return { ...p, stats: displayStats, matchHistory, totalPts, matchCount };
+      return { ...p, stats: displayStats, matchHistory, totalPts, pp, matchCount };
     });
   }
 
   function filteredSorted(allPlayers) {
+    const tournamentTeams = selectedTournaments.size > 0 ? getTournamentTeams(selectedTournaments) : null;
     return allPlayers
       .filter(p => {
         const q = document.getElementById("search").value.toLowerCase();
         const matchRegion = selectedRegions.size === 0 || selectedRegions.has(p.region);
         const matchTeam   = selectedTeams.size === 0 || selectedTeams.has(p.team);
+        const matchTournament = !tournamentTeams || tournamentTeams.has(p.team);
         const matchSearch = !q || p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q);
-        return matchRegion && matchTeam && matchSearch;
+        return matchRegion && matchTeam && matchTournament && matchSearch;
       })
       .sort((a, b) => {
         if (sortCol === "totalPts")    return b.totalPts - a.totalPts;
+        if (sortCol === "pp")          return b.pp - a.pp;
         if (sortCol === "matchCount")  return b.matchCount - a.matchCount;
         if (sortCol === "name")        return a.name.localeCompare(b.name);
         if (sortCol === "team")        return a.team.localeCompare(b.team);
@@ -254,7 +298,7 @@
       tr.innerHTML = `
         <td class="td-rank">${i + 1}</td>
         <td class="td-name">${p.name}${p.matchCount > 0 ? ' <span style="font-size:0.62rem; color:var(--success); font-weight:600;">●Tracked</span>' : ' <span style="font-size:0.62rem; color:var(--muted); font-weight:600;">Seeded</span>'}</td>
-        <td class="td-team">${p.team}</td>
+        <td class="td-team">${teamBadge(p.team)}</td>
         <td><span class="td-role">${p.role}</span></td>
         <td class="td-region">${p.region}</td>
         <td class="td-stat">${p.stats.rating}</td>
@@ -263,6 +307,7 @@
         <td class="td-stat">${p.stats.adr}</td>
         <td class="td-stat">${p.stats.kpr}</td>
         <td class="td-pts">${p.totalPts}</td>
+        <td class="td-pp">${p.pp > 0 ? "+" + p.pp : "—"}</td>
         <td class="td-matches">${p.matchCount} ${isExpanded ? "▲" : "▼"}</td>
       `;
       tr.addEventListener("click", () => {
@@ -276,14 +321,14 @@
       expandTr.className = "expand-row" + (isExpanded ? " show" : "");
       const expandTd = document.createElement("td");
       expandTd.className = "expand-cell";
-      expandTd.colSpan = 13;
+      expandTd.colSpan = 14;
 
       if (p.matchCount === 0) {
         expandTd.innerHTML = `<div class="expand-title">Match History</div><div style="color:var(--muted); font-size:0.85rem; padding:4px 0 8px;">No completed matches yet.</div>`;
       } else {
         const historyHTML = p.matchHistory.map(h => `
           <div class="match-history-row">
-            <div class="mh-tournament">${tournamentName(h.match.tournamentId)}</div>
+            <div class="mh-tournament">${tournamentName(h.match.tournamentId)}${h.match.series ? `<span class="mh-series"> — ${h.match.series}</span>` : ""}</div>
             <div class="mh-match">${h.match.team1} vs ${h.match.team2} <span style="color:var(--muted); font-size:0.72rem;">${h.match.score}</span></div>
             <div class="mh-result ${h.isWin ? "win" : "loss"}">${h.isWin ? "W" : "L"}</div>
             <div class="mh-stats">
@@ -357,6 +402,37 @@
     return { populate, updateBadge };
   }
 
+  // Teams declared in tournaments.json for the given set of tournament ids.
+  // Reading from the tournament's own "teams" roster (rather than match
+  // data) means this works for upcoming/ongoing tournaments too, before
+  // any matches have been played.
+  function getTournamentTeams(tournamentIds) {
+    const set = new Set();
+    tournaments.forEach(t => {
+      if (tournamentIds.has(t.id)) {
+        (t.teams || []).forEach(name => set.add(name));
+      }
+    });
+    return set;
+  }
+
+  // Teams that are actually part of the currently-selected tournament(s).
+  // With no tournament selected, every team is valid.
+  function getValidTeamOptions() {
+    if (selectedTournaments.size === 0) {
+      return [...new Set(players.map(p => p.team))].sort();
+    }
+    return [...getTournamentTeams(selectedTournaments)].sort();
+  }
+
+  // Drop any selected teams that aren't part of the current tournament filter.
+  function pruneTeamSelection() {
+    const valid = new Set(getValidTeamOptions());
+    [...selectedTeams].forEach(t => {
+      if (!valid.has(t)) selectedTeams.delete(t);
+    });
+  }
+
   const regionFilter = wireCheckboxDropdown({
     btnId: "region-filter-btn", dropdownId: "region-dropdown", listId: "region-dropdown-list",
     badgeId: "region-filter-badge", clearBtnId: "region-clear-btn", selectedSet: selectedRegions,
@@ -367,7 +443,7 @@
   const teamFilter = wireCheckboxDropdown({
     btnId: "team-filter-btn", dropdownId: "team-dropdown", listId: "team-dropdown-list",
     badgeId: "team-filter-badge", clearBtnId: "team-clear-btn", selectedSet: selectedTeams,
-    getOptions: () => [...new Set(players.map(p => p.team))].sort(),
+    getOptions: getValidTeamOptions,
     onChange: () => renderTable(buildPlayerData()),
   });
 
@@ -400,6 +476,9 @@
       cb.addEventListener("change", () => {
         if (cb.checked) selectedTournaments.add(cb.value);
         else selectedTournaments.delete(cb.value);
+        pruneTeamSelection();
+        teamFilter.populate();
+        teamFilter.updateBadge();
         updateTournamentFilterUI();
         renderTable(buildPlayerData());
       });
@@ -424,6 +503,8 @@
     e.stopPropagation();
     selectedTournaments.clear();
     populateTournamentDropdown();
+    teamFilter.populate();
+    teamFilter.updateBadge();
     updateTournamentFilterUI();
     renderTable(buildPlayerData());
   });
