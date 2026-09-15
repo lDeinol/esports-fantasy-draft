@@ -2317,3 +2317,115 @@ td { padding: 14px 18px; font-size: 0.925rem; white-space: nowrap; }
   .hero-sub { max-width: 100%; }
 }
 
+
+/* ════════════════════════════════════════════════════════
+   TRADE.HTML — Trade Phase Specific Styles
+   ════════════════════════════════════════════════════════ */
+
+/* ── Turn queue ──────────────────────────────────────── */
+.turn-queue { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+
+.turn-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 20px; padding: 7px 14px 7px 10px;
+  font-size: 0.82rem; font-weight: 600;
+  transition: border-color 0.15s, background 0.15s;
+}
+.turn-chip.current {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface2));
+  color: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.turn-chip.done { opacity: 0.45; }
+.turn-chip-num {
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted);
+  background: var(--surface3); border-radius: 50%; width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.turn-chip.current .turn-chip-num { background: var(--accent); color: var(--bg); }
+.turn-chip-you { font-size: 0.68rem; color: var(--accent2); margin-left: 2px; }
+
+/* ── Trade phase banner (host start panel / status bar) ─ */
+.trade-phase-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px; margin-bottom: 22px;
+}
+.trade-phase-title {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.03em; text-transform: uppercase; margin-bottom: 4px;
+}
+.trade-phase-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 16px; }
+
+.round-picker { display: flex; gap: 8px; margin-bottom: 16px; }
+.round-btn {
+  flex: 1; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px; color: var(--muted);
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 0.04em; cursor: pointer; transition: all 0.15s;
+}
+.round-btn.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface2)); }
+
+/* ── Selectable player card (reuses .player-card look) ── */
+.trade-select-grid { display: flex; flex-direction: column; gap: 6px; max-height: 320px; overflow-y: auto; margin-bottom: 4px; }
+.trade-select-card {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.trade-select-card:hover    { border-color: var(--accent); }
+.trade-select-card.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface2)); }
+.trade-select-card.disabled { opacity: 0.35; pointer-events: none; }
+.trade-select-name { font-size: 0.88rem; font-weight: 600; flex: 1; }
+.trade-select-meta { font-size: 0.72rem; color: var(--muted); }
+.trade-select-pts  { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); flex-shrink: 0; }
+
+/* ── Manager tabs (choosing a trade counterparty) ───────── */
+.manager-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.manager-tab {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 20px;
+  padding: 6px 14px; font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer;
+}
+.manager-tab.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface2)); }
+
+.trade-mode-toggle { display: flex; gap: 6px; margin-bottom: 14px; }
+.trade-mode-btn {
+  flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 9px; font-size: 0.82rem; font-weight: 600; color: var(--muted); cursor: pointer;
+}
+.trade-mode-btn.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface2)); }
+
+/* ── Pending proposal card ──────────────────────────────── */
+.proposal-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px; margin-bottom: 14px;
+}
+.proposal-card.incoming { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.proposal-swap { display: flex; align-items: center; gap: 14px; margin: 12px 0; }
+.proposal-side { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center; }
+.proposal-side-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.proposal-side-name  { font-size: 0.9rem; font-weight: 600; }
+.proposal-arrow { color: var(--accent); font-size: 1.1rem; flex-shrink: 0; }
+.proposal-meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; }
+.proposal-btns { display: flex; gap: 10px; }
+
+.rejection-counter { font-size: 0.75rem; color: var(--warn); margin-top: 8px; }
+
+.trade-log-row {
+  display: flex; align-items: center; gap: 10px; padding: 10px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  font-size: 0.82rem;
+}
+.trade-log-row:last-child { border-bottom: none; }
+.trade-log-status { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+.trade-log-status.accepted  { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); }
+.trade-log-status.rejected  { color: var(--danger);  background: color-mix(in srgb, var(--danger)  12%, transparent); }
+.trade-log-status.cancelled { color: var(--muted);   background: var(--surface3); }
+
+@media (max-width: 640px) {
+  .proposal-swap { flex-direction: column; }
+  .proposal-arrow { transform: rotate(90deg); }
+  .round-picker { flex-wrap: wrap; }
+}

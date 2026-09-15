@@ -38,6 +38,7 @@
       <a href="index.html"     class="nav-link">Draft</a>
       <a href="dashboard.html" class="nav-link">My Team</a>
       <a href="standings.html" class="nav-link active">Standings</a>
+    <a href="trade.html"     class="nav-link">Trades</a>
     </nav>
   </header>
 
@@ -50,7 +51,8 @@
   <script type="module">
     import {
       db, ref, get, subscribeLobby,
-      ensureAuth, LS, CONFIG, SCORING, initThemeToggle
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle,
+      computeRoster, getOwnership
     } from "./app.js";
 
     initThemeToggle();
@@ -96,26 +98,25 @@
     }
 
     // ── Build per-participant standings ────────────────
+    // Trade-aware: each pick's ownership stint history decides who scores
+    // for which matches, so a traded player never moves points between
+    // managers retroactively (see computeRoster in app.js).
     function buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData) {
-      const { players, picks = {}, pickOrder = [] } = lobbyData;
-      const picksArr = Object.values(picks);
+      const { players, picks = {} } = lobbyData;
 
       return Object.entries(players || {}).map(([uid, p]) => {
-        const myPicksList = picksArr.filter(pk => pk.byUid === uid);
+        const roster = computeRoster({ uid, picks, matchData, tournamentId, tournamentData });
 
-        const enriched = myPicksList.map(pick => {
+        const enriched = roster.currentRoster.map(({ pickId, pick, pts, pp }) => {
           const pData     = playerMap[pick.playerId] || {};
           const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
-          const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
-          const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
-          const pts       = +(basePts + pp).toFixed(1);
           const breakdown = SCORING.breakdown(stats);
-          const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
-          return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
+          const myOpenStint = getOwnership(pick).find(s => s.uid === uid && s.to == null);
+          const historyFrom = myOpenStint?.from || 0;
+          const history = SCORING.matchHistory(pick.playerId, matchData, tournamentId)
+            .filter(h => new Date(h.match.date + "T00:00:00").getTime() >= historyFrom);
+          return { ...pick, pickId, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
         });
-
-        const totalScore = +enriched.reduce((s, e) => s + e.pts, 0).toFixed(1);
-        const totalPP    = +enriched.reduce((s, e) => s + e.pp, 0).toFixed(1);
 
         return {
           uid,
@@ -124,9 +125,10 @@
           isHost: p.isHost,
           left:   p.status === "left",
           picks:  enriched,
-          totalScore,
-          totalPP,
-          pickCount: enriched.length,
+          pastPlayers: roster.pastPlayers,
+          totalScore: roster.totalScore,
+          totalPP:    roster.totalPP,
+          pickCount:  enriched.length,
         };
       }).sort((a, b) => b.totalScore - a.totalScore);
     }
@@ -180,9 +182,22 @@
         </div>
       `).join("");
 
+      const pastRows = (entry.pastPlayers || []).length === 0 ? "" : `
+        <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin:14px 0 6px;">Traded Away (points still count)</div>
+        ${entry.pastPlayers.map(p => `
+          <div class="expand-player-row" style="opacity:0.6;">
+            <div style="flex:1; min-width:0;">
+              <div class="expand-player-name">${p.pick.playerName}</div>
+              <div class="expand-player-meta">${p.pick.playerTeam || "—"} · ${p.pick.playerRole || "—"}</div>
+            </div>
+            <div class="expand-pts">${p.total} pts</div>
+          </div>
+        `).join("")}`;
+
       return `<tr class="roster-expand-row show" id="expand-${entry.uid}">
         <td class="roster-expand-cell" colspan="5">
           <div class="roster-expand-grid">${rows}</div>
+          ${pastRows}
         </td>
       </tr>`;
     }

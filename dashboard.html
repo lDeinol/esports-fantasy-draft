@@ -38,6 +38,7 @@
       <a href="index.html"     class="nav-link">Draft</a>
       <a href="dashboard.html" class="nav-link active">My Team</a>
       <a href="standings.html" class="nav-link">Standings</a>
+      <a href="trade.html"     class="nav-link">Trades</a>
     </nav>
   </header>
 
@@ -50,7 +51,8 @@
   <script type="module">
     import {
       db, ref, get, subscribeLobby,
-      ensureAuth, LS, CONFIG, SCORING, initThemeToggle
+      ensureAuth, LS, CONFIG, SCORING, initThemeToggle,
+      computeRoster, getOwnership
     } from "./app.js";
 
     initThemeToggle();
@@ -113,7 +115,6 @@
       }
 
       const picks        = lobbyData.picks || {};
-      const myPicks      = Object.values(picks).filter(p => p.byUid === myUid);
       const playerMap    = Object.fromEntries(playerData.map(p => [p.id, p]));
       const format       = lobbyData.format;
       const tournamentId = lobbyData.tournamentId || null;
@@ -127,24 +128,27 @@
         ? `<span style="color:var(--accent); font-family:var(--font-mono); font-size:0.8rem;">📋 ${tournament.name}</span>`
         : `<span style="color:var(--muted); font-size:0.8rem;">No tournament selected</span>`;
 
-      // Enrich picks with tournament-scoped match points
-      let totalScore = 0;
-      let totalPP    = 0;
-      const enriched = myPicks.map(pick => {
+      // Enrich this manager's current roster with trade-aware, stint-scoped
+      // points — a player only earns points toward this manager's total for
+      // matches played while they actually owned them, so a trade never
+      // moves points retroactively either direction.
+      const roster     = computeRoster({ uid: myUid, picks, matchData, tournamentId, tournamentData });
+      const totalScore = roster.totalScore;
+      const totalPP    = roster.totalPP;
+
+      const enriched = roster.currentRoster.map(({ pickId, pick, pts, pp }) => {
         const pData     = playerMap[pick.playerId] || {};
         const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
-        const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
-        const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
-        const pts       = +(basePts + pp).toFixed(1);
         const breakdown = SCORING.breakdown(stats);
-        const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
-        totalScore     += pts;
-        totalPP        += pp;
-        return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
+        // Only show match history from when THIS manager acquired the
+        // player, so a traded-for player's card doesn't display matches
+        // that actually scored for its previous owner.
+        const myOpenStint = getOwnership(pick).find(s => s.uid === myUid && s.to == null);
+        const historyFrom = myOpenStint?.from || 0;
+        const history = SCORING.matchHistory(pick.playerId, matchData, tournamentId)
+          .filter(h => new Date(h.match.date + "T00:00:00").getTime() >= historyFrom);
+        return { ...pick, pickId, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
       });
-
-      totalScore = +totalScore.toFixed(1);
-      totalPP    = +totalPP.toFixed(1);
 
       // Stat summary across roster
       const avgRating = enriched.length
@@ -209,6 +213,9 @@
           <div class="info-pill">Roster size: <strong>${CONFIG.ROSTER_SIZE} picks</strong></div>
           <a href="standings.html" style="text-decoration:none;">
             <div class="info-pill" style="cursor:pointer; border-color:var(--accent); color:var(--accent);">View Standings →</div>
+          </a>
+          <a href="trade.html" style="text-decoration:none;">
+            <div class="info-pill" style="cursor:pointer; border-color:var(--accent2); color:var(--accent2);">Trades →</div>
           </a>
         </div>
 
@@ -284,6 +291,25 @@
             </div>
           `).join("")}
         </div>
+
+        ${roster.pastPlayers.length > 0 ? `
+        <div class="section-title" style="margin-top:28px;">Previously Rostered</div>
+        <div class="page-sub" style="margin-top:-14px;">Players you've traded away — you keep the points they scored while they were on your team.</div>
+        <div class="roster-grid">
+          ${roster.pastPlayers.map(p => `
+            <div class="roster-card" style="opacity:0.6; cursor:default;">
+              <div class="pick-num">Traded</div>
+              <div class="player-info">
+                <div class="player-name">${p.pick.playerName}</div>
+                <div class="player-meta">${p.pick.playerTeam || "—"} · ${p.pick.playerRole || "—"}</div>
+              </div>
+              <div class="player-pts">
+                <div class="player-pts-val">${p.total}</div>
+                <div class="player-pts-label">pts earned</div>
+              </div>
+            </div>
+          `).join("")}
+        </div>` : ""}
       `;
 
       // Click a roster card to expand/collapse its match history
