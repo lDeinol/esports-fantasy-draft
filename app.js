@@ -145,6 +145,23 @@ export const SCORING = {
       points: +((stats[key] ?? 0) * weight).toFixed(1),
     }));
   },
+  // Same as totalFromMatches, but only counts matches whose date falls
+  // within [from, to) — used to score a single ownership stint of a
+  // traded player rather than the whole tournament, so points never
+  // move retroactively when a player changes hands. from/to are epoch
+  // ms; to defaults to Infinity ("still owned as of now").
+  pointsInWindow(playerId, matches, tournamentId, from = 0, to = Infinity) {
+    const filtered = matches.filter(m => {
+      if (m.status !== "completed") return false;
+      if (tournamentId && m.tournamentId !== tournamentId) return false;
+      const ts = new Date(m.date + "T00:00:00").getTime();
+      return ts >= from && ts < to;
+    });
+    return +filtered.reduce((total, m) => {
+      const stats = m.playerStats?.find(s => s.playerId === playerId);
+      return total + (stats ? this.calculate(stats) : 0);
+    }, 0).toFixed(1);
+  },
   // Calculate total points for a playerId from matches, filtered to a tournament
   // matches: full matches array, tournamentId: string or null (null = all matches)
   totalFromMatches(playerId, matches, tournamentId = null) {
@@ -170,16 +187,51 @@ export const SCORING = {
         return { match: m, stats, pts: +this.calculate(stats).toFixed(1) };
       });
   },
+  // Same shape as matchHistory, but scoped to the given ownership stints
+  // (only matches whose date falls within one of them). Use this — not
+  // matchHistory — anywhere a manager's per-player match count, averaged
+  // stats, or points need to agree with each other; matchHistory alone
+  // is whole-tournament and will disagree with stint-scoped points once
+  // a player's been traded.
+  stintMatchHistory(playerId, matches, tournamentId, stints) {
+    return this.matchHistory(playerId, matches, tournamentId).filter(h => {
+      const ts = new Date(h.match.date + "T00:00:00").getTime();
+      return stints.some(s => ts >= (s.from || 0) && ts < (s.to ?? Infinity));
+    });
+  },
   // Placement Points earned by a player within a single tournament.
   // Only awards PP when that tournament's region is "International" —
   // pass the full tournaments array so the region can be looked up.
   // Returns 0 for tournamentId === null (an "all tournaments" view has
   // no single region to check against).
+  // from/to (epoch ms, to defaults to Infinity) optionally scope this to
+  // a single ownership stint, same as pointsInWindow above — omit them
+  // to get the old whole-tournament behavior.
+  placementPoints(playerId, matches, tournamentId, tournaments, from = 0, to = Infinity) {
   placementPoints(playerId, matches, tournamentId, tournaments) {
     if (!tournamentId) return 0;
     const tournament = tournaments?.find(t => t.id === tournamentId);
     if (tournament?.region !== "International") return 0;
 
+    const wins = matches.filter(m => {
+      if (m.status !== "completed" || m.tournamentId !== tournamentId || !m.winner) return false;
+      if (!m.playerStats?.some(s => s.playerId === playerId && s.team === m.winner)) return false;
+      const ts = new Date(m.date + "T00:00:00").getTime();
+      return ts >= from && ts < to;
+    });
+
+    return +wins.reduce((total, m) => total + (PP_BY_SERIES[normalizeSeries(m.series)] || 0), 0).toFixed(1);
+  },
+  // Points + PP earned during a single ownership stint (see getOwnership
+  // below) — from/to come straight off the stint record. `to: null`
+  // means "still owned", scored through to right now.
+  stintTotal(playerId, matches, tournamentId, tournaments, stint) {
+    const from = stint.from || 0;
+    const to   = stint.to ?? Infinity;
+    const base = this.pointsInWindow(playerId, matches, tournamentId, from, to);
+    const pp   = this.placementPoints(playerId, matches, tournamentId, tournaments, from, to);
+    return { base, pp, total: +(base + pp).toFixed(1) };
+  },
     const wins = matches.filter(m =>
       m.status === "completed" &&
       m.tournamentId === tournamentId &&
@@ -321,6 +373,282 @@ export function subscribeLobby(code, callback) {
   const lobbyRef = ref(db, `lobbies/${code}`);
   const unsub = onValue(lobbyRef, (snap) => callback(snap.val()));
   return unsub;
+}
+
+// ── Trades ───────────────────────────────────────────────────
+// Trades let managers swap players post-draft without moving points
+// retroactively: each pick tracks its own ownership history, and
+// scoring (via SCORING.pointsInWindow/stintTotal above) only credits a
+// manager for matches played while they actually held the player.
+
+export const TRADE_REJECTION_LIMIT = 3;
+
+// A pick's ownership history. Picks made before trades existed won't
+// have this field yet — synthesize a single still-open stint owned by
+// `byUid` since the pick was made, so old lobbies keep working.
+export function getOwnership(pick) {
+  if (Array.isArray(pick.ownership) && pick.ownership.length) return pick.ownership;
+  return [{ uid: pick.byUid, from: pick.pickedAt || 0, to: null }];
+}
+
+// The uid currently holding this pick's player, or null if it's been
+// traded away to the free-agent pool and nobody currently owns it.
+export function currentOwnerUid(pick) {
+  const ownership = getOwnership(pick);
+  const last = ownership[ownership.length - 1];
+  // Firebase Realtime Database treats a null value as "delete this key" —
+  // so a still-open stint written as `to: null` comes back with no `to`
+  // field at all (undefined), not null. Use == to catch both.
+  return last.to == null ? last.uid : null;
+}
+
+// Builds one manager's roster + score from `picks`, honoring every pick's
+// ownership stint history so trades never move points retroactively.
+// Returns:
+//   currentRoster — picks this uid owns right now, each with the points/PP
+//                   earned across every stint *this uid* held them for
+//                   (handles the rare trade-away-then-back-again case)
+//   pastPlayers   — picks this uid owned at some point but no longer does;
+//                   still contributes to totalScore, just not shown as a
+//                   live roster slot
+//   totalScore, totalPP — summed across current + past
+export function computeRoster({ uid, picks, matchData, tournamentId, tournamentData }) {
+  const currentRoster = [];
+  const pastPlayers   = [];
+  let totalScore = 0;
+  let totalPP    = 0;
+
+  Object.entries(picks || {}).forEach(([pickId, pick]) => {
+    const ownership = getOwnership(pick);
+    const myStints  = ownership.filter(s => s.uid === uid);
+    if (myStints.length === 0) return;
+
+    let pts = 0, pp = 0;
+    myStints.forEach(stint => {
+      const stintScore = SCORING.stintTotal(pick.playerId, matchData, tournamentId, tournamentData, stint);
+      pts += stintScore.base;
+      pp  += stintScore.pp;
+    });
+    pts = +pts.toFixed(1);
+    pp  = +pp.toFixed(1);
+    totalScore += pts + pp;
+    totalPP    += pp;
+
+    const entry = { pickId, pick, pts, pp, total: +(pts + pp).toFixed(1) };
+    (currentOwnerUid(pick) === uid ? currentRoster : pastPlayers).push(entry);
+  });
+
+  return { currentRoster, pastPlayers, totalScore: +totalScore.toFixed(1), totalPP: +totalPP.toFixed(1) };
+}
+
+// Host starts a trade phase (mid-tournament break). `order` is the
+// turn queue, already sorted worst-score-first by the caller — app.js
+// doesn't fetch match/tournament data itself, so it can't compute
+// standings on its own. roundCount is capped 1-3 by the UI.
+export async function startTradePhase({ code, roundCount, order }) {
+  await set(ref(db, `lobbies/${code}/tradePhase`), {
+    active: true,
+    roundCount,
+    currentRound: 1,
+    order,
+    currentIndex: 0,
+    rejectionCount: 0,
+    startedAt: Date.now(),
+    endedAt: null,
+  });
+}
+
+// Host ends the trade phase early. Also clears any still-pending
+// proposal — otherwise it could dangle forever with no turn queue
+// left to resolve it against.
+export async function endTradePhase({ code }) {
+  const snap  = await get(ref(db, `lobbies/${code}`));
+  const lobby = snap.val();
+
+  const updates = {};
+  updates[`lobbies/${code}/tradePhase/active`]  = false;
+  updates[`lobbies/${code}/tradePhase/endedAt`] = Date.now();
+
+  Object.entries(lobby?.trades || {}).forEach(([tradeId, trade]) => {
+    if (trade.status === "pending") {
+      updates[`lobbies/${code}/trades/${tradeId}/status`]      = "cancelled";
+      updates[`lobbies/${code}/trades/${tradeId}/respondedAt`] = Date.now();
+    }
+  });
+
+  await update(ref(db), updates);
+}
+
+// Shared turn-advance logic used by a completed trade, a voluntary
+// pass, a host force-pass, or hitting the rejection limit. Cancels any
+// proposal the outgoing manager still has pending (it shouldn't sit
+// there respondable once their turn has moved on), resets the
+// rejection counter, and rolls into the next round or closes the
+// phase once the last manager in the last round is done.
+async function advanceTurn(code) {
+  const snap  = await get(ref(db, `lobbies/${code}`));
+  const lobby = snap.val();
+  const phase = lobby?.tradePhase;
+  if (!phase || !phase.active) return;
+
+  const outgoingUid = phase.order[phase.currentIndex];
+  const updates = {};
+
+  Object.entries(lobby.trades || {}).forEach(([tradeId, trade]) => {
+    if (trade.status === "pending" && trade.proposedBy === outgoingUid) {
+      updates[`lobbies/${code}/trades/${tradeId}/status`]      = "cancelled";
+      updates[`lobbies/${code}/trades/${tradeId}/respondedAt`] = Date.now();
+    }
+  });
+
+  let nextIndex = phase.currentIndex + 1;
+  let nextRound = phase.currentRound;
+  if (nextIndex >= phase.order.length) {
+    nextIndex = 0;
+    nextRound += 1;
+  }
+
+  if (nextRound > phase.roundCount) {
+    updates[`lobbies/${code}/tradePhase/active`]  = false;
+    updates[`lobbies/${code}/tradePhase/endedAt`] = Date.now();
+  } else {
+    updates[`lobbies/${code}/tradePhase/currentIndex`]   = nextIndex;
+    updates[`lobbies/${code}/tradePhase/currentRound`]   = nextRound;
+    updates[`lobbies/${code}/tradePhase/rejectionCount`] = 0;
+  }
+
+  await update(ref(db), updates);
+}
+
+// Manager voluntarily ends their own turn with no trade.
+export async function passTurn({ code }) {
+  await advanceTurn(code);
+}
+
+// Host ends the current manager's turn on the spot (used instead of a
+// timer).
+export async function hostForcePass({ code }) {
+  await advanceTurn(code);
+}
+
+// Performs the actual player swap for an accepted trade: closes out
+// the old ownership stint(s) and opens new one(s). Every past stint is
+// left untouched, which is what makes past points stick with whoever
+// earned them. Manager-to-manager trades swap two existing picks;
+// undrafted-player pickups release the offered pick to the free-agent
+// pool (closed with no new stint) and create a brand-new pick entry
+// for the newly-acquired player.
+async function executeTrade({ code, tradeId }) {
+  const snap  = await get(ref(db, `lobbies/${code}`));
+  const lobby = snap.val();
+  const trade = lobby?.trades?.[tradeId];
+  const offerPick = lobby?.picks?.[trade?.offerPickId];
+  if (!trade || !offerPick) return;
+
+  const now = Date.now();
+  const updates = {};
+  updates[`lobbies/${code}/trades/${tradeId}/status`]      = "accepted";
+  updates[`lobbies/${code}/trades/${tradeId}/respondedAt`] = now;
+
+  const offerOwnership = getOwnership(offerPick).slice();
+  offerOwnership[offerOwnership.length - 1] = { ...offerOwnership[offerOwnership.length - 1], to: now };
+
+  if (trade.requestPickId) {
+    const requestPick = lobby.picks?.[trade.requestPickId];
+    if (!requestPick) return;
+    const requestOwnership = getOwnership(requestPick).slice();
+    requestOwnership[requestOwnership.length - 1] = { ...requestOwnership[requestOwnership.length - 1], to: now };
+
+    updates[`lobbies/${code}/picks/${trade.offerPickId}/ownership`] = [...offerOwnership, { uid: trade.proposedTo, from: now, to: null }];
+    updates[`lobbies/${code}/picks/${trade.offerPickId}/byUid`]     = trade.proposedTo;
+
+    updates[`lobbies/${code}/picks/${trade.requestPickId}/ownership`] = [...requestOwnership, { uid: trade.proposedBy, from: now, to: null }];
+    updates[`lobbies/${code}/picks/${trade.requestPickId}/byUid`]     = trade.proposedBy;
+  } else {
+    updates[`lobbies/${code}/picks/${trade.offerPickId}/ownership`] = offerOwnership; // closed, no new stint = free agent
+    updates[`lobbies/${code}/picks/${trade.offerPickId}/byUid`]     = null;
+
+    const newPickRef = push(ref(db, `lobbies/${code}/picks`));
+    updates[`lobbies/${code}/picks/${newPickRef.key}`] = {
+      playerId:    trade.requestPlayerId,
+      playerName:  trade.requestPlayerName,
+      playerTeam:  trade.requestPlayerTeam || null,
+      playerRole:  trade.requestPlayerRole || null,
+      round: null, pick: null, label: "Trade",
+      acquiredVia: "trade",
+      byUid: trade.proposedBy,
+      ownership: [{ uid: trade.proposedBy, from: now, to: null }],
+    };
+
+    const draftedIds = new Set(lobby.draftedPlayerIds || []);
+    draftedIds.add(trade.requestPlayerId);
+    updates[`lobbies/${code}/draftedPlayerIds`] = Array.from(draftedIds);
+  }
+
+  await update(ref(db), updates);
+}
+
+// Propose a trade. Pass requestPickId for a manager-to-manager trade
+// (needs their acceptance); pass requestPlayerId/Name/Team/Role instead
+// for an undrafted-player pickup, which has no counterparty and
+// executes immediately, ending the turn on its own.
+export async function proposeTrade({ code, round, proposedBy, proposedTo, offerPickId, requestPickId, requestPlayerId, requestPlayerName, requestPlayerTeam, requestPlayerRole }) {
+  const tradeRef = push(ref(db, `lobbies/${code}/trades`));
+  await set(tradeRef, {
+    status: proposedTo ? "pending" : "accepted",
+    round,
+    proposedBy,
+    proposedTo: proposedTo || null,
+    offerPickId,
+    requestPickId:     requestPickId     || null,
+    requestPlayerId:   requestPlayerId   || null,
+    requestPlayerName: requestPlayerName || null,
+    requestPlayerTeam: requestPlayerTeam || null,
+    requestPlayerRole: requestPlayerRole || null,
+    createdAt: Date.now(),
+    respondedAt: proposedTo ? null : Date.now(),
+  });
+
+  if (!proposedTo) {
+    await executeTrade({ code, tradeId: tradeRef.key });
+    await advanceTurn(code);
+  }
+  return tradeRef.key;
+}
+
+// The proposer cancels their own still-pending proposal, freeing them
+// up to make a different one without burning a rejection.
+export async function cancelTrade({ code, tradeId }) {
+  await update(ref(db, `lobbies/${code}/trades/${tradeId}`), {
+    status: "cancelled",
+    respondedAt: Date.now(),
+  });
+}
+
+// The receiving manager accepts or rejects a pending proposal.
+export async function respondToTrade({ code, tradeId, accept }) {
+  if (accept) {
+    await executeTrade({ code, tradeId });
+    await advanceTurn(code);
+    return;
+  }
+
+  const snap  = await get(ref(db, `lobbies/${code}`));
+  const lobby = snap.val();
+  const phase = lobby?.tradePhase;
+
+  const updates = {};
+  updates[`lobbies/${code}/trades/${tradeId}/status`]      = "rejected";
+  updates[`lobbies/${code}/trades/${tradeId}/respondedAt`] = Date.now();
+
+  const nextRejectionCount = (phase?.rejectionCount || 0) + 1;
+  if (nextRejectionCount >= TRADE_REJECTION_LIMIT) {
+    await update(ref(db), updates);
+    await advanceTurn(code); // resets rejectionCount as part of advancing
+  } else {
+    updates[`lobbies/${code}/tradePhase/rejectionCount`] = nextRejectionCount;
+    await update(ref(db), updates);
+  }
 }
 
 // ── Theme (Light / Dark) ─────────────────────────────────────
