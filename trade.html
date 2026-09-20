@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trades — DraftZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <a href="home.html" class="logo">Draft<span>Zone</span></a>
+    <label class="theme-toggle" title="Toggle light / dark mode">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" />
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-icon-moon">🌙</span>
+        <span class="theme-toggle-icon theme-toggle-icon-sun">☀️</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </label>
+    <div class="header-divider"></div>
+    <nav>
+      <a href="home.html"      class="nav-link">Home</a>
+      <a href="stats.html"     class="nav-link">Stats</a>
+      <a href="matches.html"   class="nav-link">Matches</a>
+      <a href="index.html"     class="nav-link">Draft</a>
+      <a href="dashboard.html" class="nav-link">My Team</a>
+      <a href="standings.html" class="nav-link">Standings</a>
+      <a href="trade.html"     class="nav-link active">Trades</a>
+    </nav>
+  </header>
+
+  <!-- ── Host Controls Bar (host only, shown while a phase is active) ── -->
+  <div id="host-controls">
+    <span class="host-controls-label">⚙ Host</span>
+    <button class="btn-host btn-host-skip" id="btn-force-pass">Force Pass Current Turn</button>
+    <button class="btn-host btn-host-end"  id="btn-end-phase">End Trade Phase</button>
+  </div>
+
+  <!-- ── Confirm Modal ─────────────────────────────────── -->
+  <div id="confirm-modal">
+    <div class="confirm-card">
+      <div class="confirm-title" id="confirm-title">Are you sure?</div>
+      <div class="confirm-body"  id="confirm-body">This action cannot be undone.</div>
+      <div class="confirm-btns">
+        <button class="confirm-btn ghost"  id="confirm-cancel">Cancel</button>
+        <button class="confirm-btn danger" id="confirm-ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div id="content">
+      <div class="loading-wrap"><div class="spinner"></div></div>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+
+  <script type="module">
+    import {
+      subscribeLobby, ensureAuth, LS, initThemeToggle, SCORING,
+      computeRoster, currentOwnerUid,
+      startTradePhase, endTradePhase, passTurn, hostForcePass,
+      proposeTrade, cancelTrade, respondToTrade, TRADE_REJECTION_LIMIT
+    } from "./app.js";
+
+    initThemeToggle();
+
+    const session = LS.getSession();
+    if (!session) { window.location.href = "index.html"; }
+    const { uid: myUid, name: myName, lobbyCode, isHost } = session;
+
+    // ── Local UI state (not persisted) ──────────────────
+    let selectedRoundCount   = 2;      // host's round picker, before starting a phase
+    let selectedOfferPickId  = null;   // which of MY players I'm offering
+    let tradeMode            = "manager"; // "manager" | "undrafted"
+    let selectedTargetUid    = null;   // manager tab picked, when tradeMode === "manager"
+    let selectedRequestPickId = null;  // their player I want
+    let undraftedSearch      = "";
+
+    function resetBuilder() {
+      selectedOfferPickId   = null;
+      tradeMode             = "manager";
+      selectedTargetUid     = null;
+      selectedRequestPickId = null;
+      undraftedSearch       = "";
+    }
+
+    // ── Toast helper (matches draft.html) ───────────────
+    function toast(msg, type = "") {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.className = `show ${type}`;
+      setTimeout(() => { t.className = ""; }, 2500);
+    }
+
+    // ── Confirm modal helper (matches draft.html) ───────
+    function showConfirm({ title, body, onConfirm }) {
+      document.getElementById("confirm-title").textContent = title;
+      document.getElementById("confirm-body").textContent  = body;
+      document.getElementById("confirm-modal").classList.add("show");
+      const ok     = document.getElementById("confirm-ok");
+      const cancel = document.getElementById("confirm-cancel");
+      const cleanup = () => {
+        document.getElementById("confirm-modal").classList.remove("show");
+        ok.replaceWith(ok.cloneNode(true));
+        cancel.replaceWith(cancel.cloneNode(true));
+      };
+      document.getElementById("confirm-ok").addEventListener("click", () => { cleanup(); onConfirm(); }, { once: true });
+      document.getElementById("confirm-cancel").addEventListener("click", cleanup, { once: true });
+    }
+
+    // ── Load static data ────────────────────────────────
+    async function loadData() {
+      const [playerData, matchData, tournamentData] = await Promise.all([
+        fetch("data/players.json").then(r => r.json()).catch(() => []),
+        fetch("data/matches.json").then(r => r.json()).catch(() => []),
+        fetch("data/tournaments.json").then(r => r.json()).catch(() => []),
+      ]);
+      return { playerData, matchData, tournamentData };
+    }
+
+    // ── Standings order (worst score first) for the turn queue ──
+    function buildAscendingOrder(lobbyData, matchData, tournamentId, tournamentData) {
+      const picks = lobbyData.picks || {};
+      const uids  = Object.keys(lobbyData.players || {}).filter(uid => lobbyData.players[uid].status !== "left");
+      return uids
+        .map(uid => ({ uid, score: computeRoster({ uid, picks, matchData, tournamentId, tournamentData }).totalScore }))
+        .sort((a, b) => a.score - b.score)
+        .map(r => r.uid);
+    }
+
+    // Team names eligible for the lobby's selected tournament, or null
+    // if no tournament filter applies — same pattern draft.html uses.
+    function getTournamentTeams(tournamentId, tournamentData) {
+      const tournament = tournamentData.find(t => t.id === tournamentId);
+      return tournament?.teams ? new Set(tournament.teams) : null;
+    }
+
+    // An undrafted player has no ownership stint yet, so their points
+    // are just their whole-tournament total (same figure stats.html shows).
+    function undraftedPts(playerId, matchData, tournamentId, tournamentData) {
+      const base = SCORING.totalFromMatches(playerId, matchData, tournamentId);
+      const pp   = SCORING.placementPoints(playerId, matchData, tournamentId, tournamentData);
+      return +(base + pp).toFixed(1);
+    }
+
+    // ── Render ───────────────────────────────────────────
+    function render(lobbyData, playerData, matchData, tournamentData) {
+      const content = document.getElementById("content");
+      const hostBar  = document.getElementById("host-controls");
+
+      if (!lobbyData) {
+        content.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-title">No active draft found.</div>
+            <p>Create or join a lobby to get started.</p>
+            <a href="index.html" class="empty-btn">Go Home</a>
+          </div>`;
+        hostBar.classList.remove("show");
+        return;
+      }
+
+      const picks        = lobbyData.picks || {};
+      const players      = lobbyData.players || {};
+      const tournamentId = lobbyData.tournamentId || null;
+      const phase        = lobbyData.tradePhase || null;
+      const trades       = lobbyData.trades || {};
+
+      // Draft must be complete before trading opens
+      if (lobbyData.status !== "complete") {
+        content.innerHTML = `
+          <div class="page-title">Trades</div>
+          <div class="empty-state">
+            <div class="empty-state-title">Trading opens after the draft</div>
+            <p>The host can start a trade phase once everyone's roster is set — usually during a mid-tournament break.</p>
+          </div>`;
+        hostBar.classList.remove("show");
+        return;
+      }
+
+      // ── No active phase: host start panel / waiting message ──
+      if (!phase || !phase.active) {
+        hostBar.classList.remove("show");
+        const everEnded = phase && !phase.active;
+        content.innerHTML = `
+          <div class="page-title">Trades</div>
+          <div class="page-sub">Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span></div>
+
+          <div class="trade-phase-card">
+            <div class="trade-phase-title">${everEnded ? "Trade Phase Complete" : "No Trade Phase Yet"}</div>
+            <div class="trade-phase-sub">
+              ${isHost
+                ? "Start a trade phase to let everyone make 1-for-1 trades in turn order, worst record first."
+                : "Waiting for the host to start a trade phase — this usually happens during a mid-tournament break."}
+            </div>
+            ${isHost ? `
+              <div style="font-size:0.75rem; color:var(--muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; font-weight:600;">Rounds (1-3)</div>
+              <div class="round-picker" id="round-picker">
+                ${[1, 2, 3].map(n => `<button class="round-btn${n === selectedRoundCount ? " active" : ""}" data-rounds="${n}">${n}</button>`).join("")}
+              </div>
+              <button class="btn btn-primary" id="btn-start-phase">Start Trade Phase</button>
+            ` : ""}
+          </div>
+
+          ${everEnded ? renderTradeLog(trades, players, picks) : ""}
+        `;
+
+        if (isHost) {
+          document.querySelectorAll(".round-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+              selectedRoundCount = +btn.dataset.rounds;
+              render(lobbyData, playerData, matchData, tournamentData);
+            });
+          });
+          document.getElementById("btn-start-phase").addEventListener("click", async () => {
+            const order = buildAscendingOrder(lobbyData, matchData, tournamentId, tournamentData);
+            if (order.length < 2) return toast("Need at least 2 managers to trade.", "error");
+            await startTradePhase({ code: lobbyCode, roundCount: selectedRoundCount, order });
+            toast("Trade phase started!", "success");
+          });
+        }
+        return;
+      }
+
+      // ── Active phase ─────────────────────────────────────
+      const currentUid = phase.order[phase.currentIndex];
+      const isMyTurn    = currentUid === myUid;
+
+      hostBar.classList.toggle("show", !!isHost);
+
+      const turnQueueHTML = `
+        <div class="turn-queue">
+          ${phase.order.map((uid, i) => {
+            const isCurrent = i === phase.currentIndex;
+            const isPast    = i < phase.currentIndex;
+            return `
+              <div class="turn-chip${isCurrent ? " current" : ""}${isPast ? " done" : ""}">
+                <span class="turn-chip-num">${i + 1}</span>
+                ${players[uid]?.name || "?"}${uid === myUid ? '<span class="turn-chip-you">(you)</span>' : ""}
+              </div>`;
+          }).join("")}
+        </div>`;
+
+      // Any proposal directed at me right now, regardless of whose turn it is
+      const incomingProposal = Object.entries(trades).find(([id, t]) => t.status === "pending" && t.proposedTo === myUid);
+      // My own outstanding proposal this turn
+      const myPendingProposal = Object.entries(trades).find(([id, t]) => t.status === "pending" && t.proposedBy === myUid);
+
+      let mainHTML = "";
+
+      if (incomingProposal) {
+        const [tradeId, t] = incomingProposal;
+        const offerPick   = picks[t.offerPickId];
+        const requestPick = picks[t.requestPickId];
+        mainHTML += `
+          <div class="proposal-card incoming">
+            <div class="trade-phase-title">Incoming Trade Offer</div>
+            <div class="proposal-meta">${players[t.proposedBy]?.name || "?"} wants to trade with you</div>
+            <div class="proposal-swap">
+              <div class="proposal-side">
+                <div class="proposal-side-label">They give up</div>
+                <div class="proposal-side-name">${offerPick?.playerName || "?"}</div>
+              </div>
+              <div class="proposal-arrow">⇄</div>
+              <div class="proposal-side">
+                <div class="proposal-side-label">You give up</div>
+                <div class="proposal-side-name">${requestPick?.playerName || "?"}</div>
+              </div>
+            </div>
+            <div class="proposal-btns">
+              <button class="btn btn-primary" id="btn-accept-incoming" style="flex:1;">Accept</button>
+              <button class="btn btn-danger"  id="btn-reject-incoming" style="flex:1;">Reject</button>
+            </div>
+          </div>`;
+      }
+
+      if (myPendingProposal) {
+        const [tradeId, t] = myPendingProposal;
+        const offerPick   = picks[t.offerPickId];
+        const requestPick = picks[t.requestPickId];
+        mainHTML += `
+          <div class="proposal-card">
+            <div class="trade-phase-title">Waiting on ${players[t.proposedTo]?.name || "?"}</div>
+            <div class="proposal-swap">
+              <div class="proposal-side">
+                <div class="proposal-side-label">You give up</div>
+                <div class="proposal-side-name">${offerPick?.playerName || "?"}</div>
+              </div>
+              <div class="proposal-arrow">⇄</div>
+              <div class="proposal-side">
+                <div class="proposal-side-label">You get</div>
+                <div class="proposal-side-name">${requestPick?.playerName || "?"}</div>
+              </div>
+            </div>
+            <button class="btn btn-ghost" id="btn-cancel-proposal" style="width:100%;">Cancel Proposal</button>
+            ${phase.rejectionCount > 0 ? `<div class="rejection-counter">${phase.rejectionCount} / ${TRADE_REJECTION_LIMIT} rejections this turn — 3 and your turn passes.</div>` : ""}
+          </div>`;
+      } else if (isMyTurn) {
+        mainHTML += renderTradeBuilder(lobbyData, playerData, matchData, tournamentData, phase);
+      } else {
+        mainHTML += `
+          <div class="empty-state" style="padding:30px 20px;">
+            <div class="empty-state-title">Waiting on ${players[currentUid]?.name || "?"}</div>
+            <p>Round ${phase.currentRound} of ${phase.roundCount}</p>
+          </div>`;
+      }
+
+      content.innerHTML = `
+        <div class="page-title">Trades</div>
+        <div class="page-sub">
+          Lobby <span style="font-family:var(--font-mono); color:var(--accent);">${lobbyCode}</span>
+          · Round ${phase.currentRound} of ${phase.roundCount}
+          · <span style="color:var(--accent);">${players[currentUid]?.name || "?"}'s turn</span>
+        </div>
+        ${turnQueueHTML}
+        ${mainHTML}
+        ${renderTradeLog(trades, players, picks)}
+      `;
+
+      // ── Wire up incoming proposal buttons ───────────────
+      if (incomingProposal) {
+        const [tradeId] = incomingProposal;
+        document.getElementById("btn-accept-incoming").addEventListener("click", async () => {
+          await respondToTrade({ code: lobbyCode, tradeId, accept: true });
+          toast("Trade accepted!", "success");
+        });
+        document.getElementById("btn-reject-incoming").addEventListener("click", async () => {
+          await respondToTrade({ code: lobbyCode, tradeId, accept: false });
+          toast("Trade rejected.", "");
+        });
+      }
+
+      if (myPendingProposal) {
+        const [tradeId] = myPendingProposal;
+        document.getElementById("btn-cancel-proposal").addEventListener("click", async () => {
+          await cancelTrade({ code: lobbyCode, tradeId });
+          resetBuilder();
+          toast("Proposal cancelled.", "");
+        });
+      }
+
+      if (isMyTurn && !myPendingProposal) {
+        wireTradeBuilder(lobbyData, playerData, matchData, tournamentData, phase);
+      }
+
+      // ── Host controls ────────────────────────────────────
+      if (isHost) {
+        document.getElementById("btn-force-pass").addEventListener("click", () => {
+          showConfirm({
+            title: "Force Pass?",
+            body: `End ${players[currentUid]?.name || "this manager"}'s turn now?`,
+            onConfirm: async () => {
+              await hostForcePass({ code: lobbyCode });
+              toast("Turn passed.", "success");
+            },
+          });
+        });
+        document.getElementById("btn-end-phase").addEventListener("click", () => {
+          showConfirm({
+            title: "End Trade Phase?",
+            body: "This ends trading for everyone immediately.",
+            onConfirm: async () => {
+              await endTradePhase({ code: lobbyCode });
+              toast("Trade phase ended.", "success");
+            },
+          });
+        });
+      }
+    }
+
+    // ── Trade builder (shown when it's your turn) ─────────
+    function renderTradeBuilder(lobbyData, playerData, matchData, tournamentData, phase) {
+      const picks        = lobbyData.picks || {};
+      const players      = lobbyData.players || {};
+      const tournamentId = lobbyData.tournamentId || null;
+
+      const myRoster = computeRoster({ uid: myUid, picks, matchData, tournamentId, tournamentData }).currentRoster;
+
+      const offerGridHTML = `
+        <div class="trade-select-grid" id="offer-grid">
+          ${myRoster.length === 0 ? `<div class="no-session-note">You have no players to trade.</div>` : myRoster.map(({ pickId, pick, total }) => `
+            <div class="trade-select-card${selectedOfferPickId === pickId ? " selected" : ""}" data-pick-id="${pickId}">
+              <div style="flex:1; min-width:0;">
+                <div class="trade-select-name">${pick.playerName}</div>
+                <div class="trade-select-meta">${pick.playerTeam || "—"} · ${pick.playerRole || "—"}</div>
+              </div>
+              <div class="trade-select-pts">${total} pts</div>
+            </div>
+          `).join("")}
+        </div>`;
+
+      let targetHTML = "";
+      if (selectedOfferPickId) {
+        const otherManagers = Object.keys(players).filter(uid => uid !== myUid && players[uid].status !== "left");
+
+        targetHTML = `
+          <div class="trade-mode-toggle">
+            <button class="trade-mode-btn${tradeMode === "manager" ? " active" : ""}" id="mode-manager">Trade with a Manager</button>
+            <button class="trade-mode-btn${tradeMode === "undrafted" ? " active" : ""}" id="mode-undrafted">Undrafted Player</button>
+          </div>`;
+
+        if (tradeMode === "manager") {
+          targetHTML += `
+            <div class="manager-tabs">
+              ${otherManagers.map(uid => `<div class="manager-tab${selectedTargetUid === uid ? " active" : ""}" data-target-uid="${uid}">${players[uid].name}</div>`).join("")}
+            </div>`;
+
+          if (selectedTargetUid) {
+            const theirRoster = computeRoster({ uid: selectedTargetUid, picks, matchData, tournamentId, tournamentData }).currentRoster;
+            targetHTML += `
+              <div class="trade-select-grid" id="request-grid">
+                ${theirRoster.length === 0 ? `<div class="no-session-note">This manager has no players.</div>` : theirRoster.map(({ pickId, pick, total }) => `
+                  <div class="trade-select-card${selectedRequestPickId === pickId ? " selected" : ""}" data-pick-id="${pickId}">
+                    <div style="flex:1; min-width:0;">
+                      <div class="trade-select-name">${pick.playerName}</div>
+                      <div class="trade-select-meta">${pick.playerTeam || "—"} · ${pick.playerRole || "—"}</div>
+                    </div>
+                    <div class="trade-select-pts">${total} pts</div>
+                  </div>
+                `).join("")}
+              </div>`;
+          }
+        } else {
+          const draftedIds = new Set(Object.values(picks).filter(p => currentOwnerUid(p) !== null).map(p => p.playerId));
+          const tournamentTeams = getTournamentTeams(tournamentId, tournamentData);
+          const undrafted = playerData.filter(p => !draftedIds.has(p.id) &&
+            (!tournamentTeams || tournamentTeams.has(p.team)) &&
+            p.name.toLowerCase().includes(undraftedSearch.toLowerCase()));
+          targetHTML += `
+            <div class="search-wrap" style="padding:0; border:none; margin-bottom:10px;">
+              <input class="search-input" id="undrafted-search" type="text" placeholder="Search undrafted players…" value="${undraftedSearch}" />
+            </div>
+            <div class="trade-select-grid" id="undrafted-grid">
+              ${undrafted.length === 0 ? `<div class="no-session-note">No matching undrafted players.</div>` : undrafted.slice(0, 40).map(p => `
+                <div class="trade-select-card${selectedRequestPickId === p.id ? " selected" : ""}" data-player-id="${p.id}" data-player-name="${p.name}" data-player-team="${p.team || ""}" data-player-role="${p.role || ""}">
+                  <div style="flex:1; min-width:0;">
+                    <div class="trade-select-name">${p.name}</div>
+                    <div class="trade-select-meta">${p.team || "—"} · ${p.role || "—"} · ${p.region || "—"}</div>
+                  </div>
+                  <div class="trade-select-pts">${undraftedPts(p.id, matchData, tournamentId, tournamentData)} pts</div>
+                </div>
+              `).join("")}
+            </div>`;
+        }
+      }
+
+      const canPropose = selectedOfferPickId && (
+        (tradeMode === "manager" && selectedTargetUid && selectedRequestPickId) ||
+        (tradeMode === "undrafted" && selectedRequestPickId)
+      );
+
+      return `
+        <div class="trade-phase-card">
+          <div class="trade-phase-title">Your Turn</div>
+          <div class="trade-phase-sub">Pick one of your players to trade away.</div>
+          ${offerGridHTML}
+          ${targetHTML}
+          <div style="display:flex; gap:10px; margin-top:16px;">
+            <button class="btn btn-ghost"   id="btn-pass-turn" style="flex:1;">Pass Turn</button>
+            <button class="btn btn-primary" id="btn-propose"   style="flex:2;" ${canPropose ? "" : "disabled"}>
+              ${tradeMode === "undrafted" ? "Pick Up Player" : "Propose Trade"}
+            </button>
+          </div>
+        </div>`;
+    }
+
+    function wireTradeBuilder(lobbyData, playerData, matchData, tournamentData, phase) {
+      const picks   = lobbyData.picks || {};
+      const players = lobbyData.players || {};
+
+      document.querySelectorAll("#offer-grid .trade-select-card").forEach(card => {
+        card.addEventListener("click", () => {
+          selectedOfferPickId = card.dataset.pickId === selectedOfferPickId ? null : card.dataset.pickId;
+          selectedTargetUid = null;
+          selectedRequestPickId = null;
+          render(lobbyData, playerData, matchData, tournamentData);
+        });
+      });
+
+      const modeManagerBtn   = document.getElementById("mode-manager");
+      const modeUndraftedBtn = document.getElementById("mode-undrafted");
+      if (modeManagerBtn) modeManagerBtn.addEventListener("click", () => {
+        tradeMode = "manager"; selectedRequestPickId = null;
+        render(lobbyData, playerData, matchData, tournamentData);
+      });
+      if (modeUndraftedBtn) modeUndraftedBtn.addEventListener("click", () => {
+        tradeMode = "undrafted"; selectedTargetUid = null; selectedRequestPickId = null;
+        render(lobbyData, playerData, matchData, tournamentData);
+      });
+
+      document.querySelectorAll(".manager-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          selectedTargetUid = tab.dataset.targetUid;
+          selectedRequestPickId = null;
+          render(lobbyData, playerData, matchData, tournamentData);
+        });
+      });
+
+      const requestGrid = document.getElementById("request-grid");
+      if (requestGrid) {
+        requestGrid.querySelectorAll(".trade-select-card").forEach(card => {
+          card.addEventListener("click", () => {
+            selectedRequestPickId = card.dataset.pickId === selectedRequestPickId ? null : card.dataset.pickId;
+            render(lobbyData, playerData, matchData, tournamentData);
+          });
+        });
+      }
+
+      const undraftedSearchInput = document.getElementById("undrafted-search");
+      if (undraftedSearchInput) {
+        const tournamentId = lobbyData.tournamentId || null;
+        undraftedSearchInput.addEventListener("input", (e) => {
+          undraftedSearch = e.target.value;
+          const grid = document.getElementById("undrafted-grid");
+          const draftedIds = new Set(Object.values(picks).filter(p => currentOwnerUid(p) !== null).map(p => p.playerId));
+          const tournamentTeams = getTournamentTeams(tournamentId, tournamentData);
+          const undrafted = playerData.filter(p => !draftedIds.has(p.id) &&
+            (!tournamentTeams || tournamentTeams.has(p.team)) &&
+            p.name.toLowerCase().includes(undraftedSearch.toLowerCase()));
+          grid.innerHTML = undrafted.length === 0 ? `<div class="no-session-note">No matching undrafted players.</div>` : undrafted.slice(0, 40).map(p => `
+            <div class="trade-select-card${selectedRequestPickId === p.id ? " selected" : ""}" data-player-id="${p.id}" data-player-name="${p.name}" data-player-team="${p.team || ""}" data-player-role="${p.role || ""}">
+              <div style="flex:1; min-width:0;">
+                <div class="trade-select-name">${p.name}</div>
+                <div class="trade-select-meta">${p.team || "—"} · ${p.role || "—"} · ${p.region || "—"}</div>
+              </div>
+              <div class="trade-select-pts">${undraftedPts(p.id, matchData, tournamentId, tournamentData)} pts</div>
+            </div>`).join("");
+          grid.querySelectorAll(".trade-select-card").forEach(card => {
+            card.addEventListener("click", () => {
+              selectedRequestPickId = card.dataset.playerId === selectedRequestPickId ? null : card.dataset.playerId;
+              render(lobbyData, playerData, matchData, tournamentData);
+            });
+          });
+        });
+      }
+
+      const undraftedGrid = document.getElementById("undrafted-grid");
+      if (undraftedGrid) {
+        undraftedGrid.querySelectorAll(".trade-select-card").forEach(card => {
+          card.addEventListener("click", () => {
+            selectedRequestPickId = card.dataset.playerId === selectedRequestPickId ? null : card.dataset.playerId;
+            render(lobbyData, playerData, matchData, tournamentData);
+          });
+        });
+      }
+
+      document.getElementById("btn-pass-turn").addEventListener("click", () => {
+        showConfirm({
+          title: "Pass Your Turn?",
+          body: "You won't get to trade again until your next turn.",
+          onConfirm: async () => {
+            resetBuilder();
+            await passTurn({ code: lobbyCode });
+            toast("Turn passed.", "");
+          },
+        });
+      });
+
+      const proposeBtn = document.getElementById("btn-propose");
+      if (proposeBtn && !proposeBtn.disabled) {
+        proposeBtn.addEventListener("click", () => {
+          if (tradeMode === "manager") {
+            const offerName   = picks[selectedOfferPickId]?.playerName;
+            const requestName = picks[selectedRequestPickId]?.playerName;
+            showConfirm({
+              title: "Propose Trade?",
+              body: `Offer ${offerName} for ${requestName}? ${players[selectedTargetUid]?.name} will need to accept.`,
+              onConfirm: async () => {
+                await proposeTrade({
+                  code: lobbyCode, round: phase.currentRound,
+                  proposedBy: myUid, proposedTo: selectedTargetUid,
+                  offerPickId: selectedOfferPickId, requestPickId: selectedRequestPickId,
+                });
+                resetBuilder();
+                toast("Trade proposed!", "success");
+              },
+            });
+          } else {
+            const card = document.querySelector(`.trade-select-card[data-player-id="${selectedRequestPickId}"]`);
+            const offerName = picks[selectedOfferPickId]?.playerName;
+            showConfirm({
+              title: "Pick Up Player?",
+              body: `Trade ${offerName} for ${card?.dataset.playerName || "this player"}? This executes immediately, no acceptance needed.`,
+              onConfirm: async () => {
+                await proposeTrade({
+                  code: lobbyCode, round: phase.currentRound,
+                  proposedBy: myUid, proposedTo: null,
+                  offerPickId: selectedOfferPickId,
+                  requestPlayerId:  card?.dataset.playerId,
+                  requestPlayerName: card?.dataset.playerName,
+                  requestPlayerTeam: card?.dataset.playerTeam,
+                  requestPlayerRole: card?.dataset.playerRole,
+                });
+                resetBuilder();
+                toast("Player picked up!", "success");
+              },
+            });
+          }
+        });
+      }
+    }
+
+    // ── Trade log (transparency — everyone sees every attempt) ──
+    function renderTradeLog(trades, players, picks) {
+      const entries = Object.values(trades).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      if (entries.length === 0) return "";
+      return `
+        <div class="section-title" style="margin-top:28px;">Trade Log</div>
+        <div class="table-wrap" style="padding:4px 18px;">
+          ${entries.map(t => `
+            <div class="trade-log-row">
+              <span class="trade-log-status ${t.status}">${t.status}</span>
+              <span style="flex:1;">
+                ${players[t.proposedBy]?.name || "?"} offered <strong>${picks[t.offerPickId]?.playerName || "?"}</strong>
+                for ${t.requestPlayerName ? `<strong>${t.requestPlayerName}</strong> (undrafted)` : `<strong>${picks[t.requestPickId]?.playerName || "?"}</strong> (${players[t.proposedTo]?.name || "?"})`}
+              </span>
+            </div>
+          `).join("")}
+        </div>`;
+    }
+
+    // ── Init ───────────────────────────────────────────
+    async function init() {
+      await ensureAuth();
+      const { playerData, matchData, tournamentData } = await loadData();
+
+      subscribeLobby(lobbyCode, (lobbyData) => {
+        render(lobbyData, playerData, matchData, tournamentData);
+      });
+    }
+
+    init();
+  </script>
+
+</body>
+</html>
