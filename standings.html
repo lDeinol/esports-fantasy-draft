@@ -132,6 +132,9 @@
     // managers retroactively (see computeRoster in app.js).
     function buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData) {
       const { players, picks = {} } = lobbyData;
+    function buildStandings(lobbyData, playerMap, matchData, tournamentId, tournamentData) {
+      const { players, picks = {}, pickOrder = [] } = lobbyData;
+      const picksArr = Object.values(picks);
 
       return Object.entries(players || {}).map(([uid, p]) => {
         const roster = computeRoster({ uid, picks, matchData, tournamentId, tournamentData });
@@ -156,6 +159,17 @@
           const history  = SCORING.stintMatchHistory(pick.playerId, matchData, tournamentId, myStints);
           return { ...pick, pickId, pts, pp, total, history };
         });
+          const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
+          const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
+          const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
+          const pts       = +(basePts + pp).toFixed(1);
+          const breakdown = SCORING.breakdown(stats);
+          const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
+          return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
+        });
+
+        const totalScore = +enriched.reduce((s, e) => s + e.pts, 0).toFixed(1);
+        const totalPP    = +enriched.reduce((s, e) => s + e.pp, 0).toFixed(1);
 
         return {
           uid,
@@ -168,6 +182,9 @@
           totalScore: roster.totalScore,
           totalPP:    roster.totalPP,
           pickCount:  enriched.length,
+          totalScore,
+          totalPP,
+          pickCount: enriched.length,
         };
       }).sort((a, b) => b.totalScore - a.totalScore);
     }

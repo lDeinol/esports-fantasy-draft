@@ -181,6 +181,25 @@
         return { ...pick, pickId, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
       });
 
+      // Enrich picks with tournament-scoped match points
+      let totalScore = 0;
+      let totalPP    = 0;
+      const enriched = myPicks.map(pick => {
+        const pData     = playerMap[pick.playerId] || {};
+        const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
+        const basePts   = SCORING.totalFromMatches(pick.playerId, matchData, tournamentId);
+        const pp        = SCORING.placementPoints(pick.playerId, matchData, tournamentId, tournamentData);
+        const pts       = +(basePts + pp).toFixed(1);
+        const breakdown = SCORING.breakdown(stats);
+        const history   = SCORING.matchHistory(pick.playerId, matchData, tournamentId);
+        totalScore     += pts;
+        totalPP        += pp;
+        return { ...pick, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
+      });
+
+      totalScore = +totalScore.toFixed(1);
+      totalPP    = +totalPP.toFixed(1);
+
       // Stat summary across roster
       const avgRating = enriched.length
         ? +(enriched.reduce((s, p) => s + (p.stats.rating || 0), 0) / enriched.length).toFixed(2)

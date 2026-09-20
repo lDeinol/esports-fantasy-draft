@@ -208,6 +208,7 @@ export const SCORING = {
   // a single ownership stint, same as pointsInWindow above — omit them
   // to get the old whole-tournament behavior.
   placementPoints(playerId, matches, tournamentId, tournaments, from = 0, to = Infinity) {
+  placementPoints(playerId, matches, tournamentId, tournaments) {
     if (!tournamentId) return 0;
     const tournament = tournaments?.find(t => t.id === tournamentId);
     if (tournament?.region !== "International") return 0;
@@ -230,6 +231,15 @@ export const SCORING = {
     const base = this.pointsInWindow(playerId, matches, tournamentId, from, to);
     const pp   = this.placementPoints(playerId, matches, tournamentId, tournaments, from, to);
     return { base, pp, total: +(base + pp).toFixed(1) };
+  },
+    const wins = matches.filter(m =>
+      m.status === "completed" &&
+      m.tournamentId === tournamentId &&
+      m.winner &&
+      m.playerStats?.some(s => s.playerId === playerId && s.team === m.winner)
+    );
+
+    return +wins.reduce((total, m) => total + (PP_BY_SERIES[normalizeSeries(m.series)] || 0), 0).toFixed(1);
   },
 };
 
