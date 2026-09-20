@@ -66,28 +66,60 @@
 
     const { uid: myUid, name: myName, lobbyCode } = session;
 
-    // ── Roster card expand/collapse state ───────────────
+    // ── Roster card expand/collapse state (keyed by pickId so a current
+    //    pick and a past-but-same-player pick never collide) ──────────
     const expandedPicks = new Set();
 
     // ── Load data ──────────────────────────────────────
-    // Returns averaged stats from tournament matches if any exist,
-    // otherwise falls back to seeded stats from players.json
-    function resolveStats(playerId, pData, matchData, tournamentId) {
+    // Averages stats from a given (already stint-scoped) match history,
+    // falling back to seeded stats from players.json if there's none yet.
+    // Pass in SCORING.stintMatchHistory's result — never whole-tournament
+    // matchHistory — so this always agrees with the points shown next to it.
+    function resolveStats(pData, history) {
       const statKeys = ["rating", "kd", "acs", "adr", "kpr"];
-      const tournamentMatches = matchData.filter(m =>
-        m.status === "completed" && m.tournamentId === tournamentId &&
-        m.playerStats?.some(s => s.playerId === playerId)
-      );
-      if (tournamentMatches.length > 0) {
-        const history = tournamentMatches.map(m => m.playerStats.find(s => s.playerId === playerId));
+      if (history.length > 0) {
         const avg = {};
         statKeys.forEach(key => {
-          avg[key] = +(history.reduce((s, h) => s + (h[key] ?? 0), 0) / history.length).toFixed(2);
+          avg[key] = +(history.reduce((s, h) => s + (h.stats[key] ?? 0), 0) / history.length).toFixed(2);
         });
-        return { stats: avg, tracked: true, matchCount: tournamentMatches.length };
+        return { stats: avg, tracked: true, matchCount: history.length };
       }
       const { cl: _cl, ...baseStats } = pData.stats || {};
       return { stats: baseStats, tracked: false, matchCount: 0 };
+    }
+
+    // Renders the expandable match-history block under a roster card —
+    // shared by current roster cards and Previously Rostered cards so
+    // they look and behave identically.
+    function renderMatchHistory(history) {
+      return `
+        <div class="roster-card-history">
+          <div class="expand-title">Match History</div>
+          ${history.length === 0
+            ? `<div style="color:var(--muted); font-size:0.8rem; padding-bottom:8px;">No completed matches yet.</div>`
+            : history.map(h => {
+                const isWin = h.match.winner === h.stats.team;
+                return `
+                  <div class="match-history-row">
+                    <div class="mh-left">
+                      <div class="mh-match">${h.match.team1} vs ${h.match.team2} <span style="color:var(--muted); font-size:0.72rem;">${h.match.score}</span></div>
+                      <div class="mh-result ${isWin ? "win" : "loss"}">${isWin ? "W" : "L"}</div>
+                      <div class="mh-date">${new Date(h.match.date + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</div>
+                    </div>
+                    <div class="mh-right">
+                      <div class="mh-stats">
+                        <div class="mh-chip">RTG <span>${h.stats.rating}</span></div>
+                        <div class="mh-chip">K/D <span>${h.stats.kd}</span></div>
+                        <div class="mh-chip">ACS <span>${h.stats.acs}</span></div>
+                        <div class="mh-chip">ADR <span>${h.stats.adr}</span></div>
+                        <div class="mh-chip">KPR <span>${h.stats.kpr}</span></div>
+                      </div>
+                      <div class="mh-pts">${h.pts} pts</div>
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+        </div>`;
     }
 
     // ── Load data ────────────────────────────────────────
@@ -138,15 +170,14 @@
 
       const enriched = roster.currentRoster.map(({ pickId, pick, pts, pp }) => {
         const pData     = playerMap[pick.playerId] || {};
-        const { stats, tracked, matchCount } = resolveStats(pick.playerId, pData, matchData, tournamentId);
+        // Every stint of THIS manager's on this pick (almost always just
+        // one, but a player traded away and back would have two) — the
+        // same window points are computed over, so stats/matchCount/
+        // history all agree with the pts shown right next to them.
+        const myStints  = getOwnership(pick).filter(s => s.uid === myUid);
+        const history   = SCORING.stintMatchHistory(pick.playerId, matchData, tournamentId, myStints);
+        const { stats, tracked, matchCount } = resolveStats(pData, history);
         const breakdown = SCORING.breakdown(stats);
-        // Only show match history from when THIS manager acquired the
-        // player, so a traded-for player's card doesn't display matches
-        // that actually scored for its previous owner.
-        const myOpenStint = getOwnership(pick).find(s => s.uid === myUid && s.to == null);
-        const historyFrom = myOpenStint?.from || 0;
-        const history = SCORING.matchHistory(pick.playerId, matchData, tournamentId)
-          .filter(h => new Date(h.match.date + "T00:00:00").getTime() >= historyFrom);
         return { ...pick, pickId, pData, stats, pts, pp, breakdown, history, tracked, matchCount };
       });
 
@@ -157,6 +188,15 @@
       const avgKD = enriched.length
         ? +(enriched.reduce((s, p) => s + (p.stats.kd || 0), 0) / enriched.length).toFixed(2)
         : 0;
+
+      // Same stint-scoped treatment for traded-away players, so clicking
+      // one shows exactly the matches that earned points while they were
+      // on THIS manager's roster (not their whole-tournament history).
+      const enrichedPast = roster.pastPlayers.map(({ pickId, pick, pts, pp, total }) => {
+        const myStints = getOwnership(pick).filter(s => s.uid === myUid);
+        const history  = SCORING.stintMatchHistory(pick.playerId, matchData, tournamentId, myStints);
+        return { ...pick, pickId, pts, pp, total, history };
+      });
 
       const statusBadge = lobbyData.status === "complete"
         ? `<span style="color:var(--success); font-size:0.8rem; font-weight:600;">✓ Draft Complete</span>`
@@ -230,7 +270,7 @@
             </div>
           ` : enriched.map((p, i) => `
             <div class="roster-card-wrap">
-              <div class="roster-card" data-player-id="${p.playerId}" style="cursor:pointer;">
+              <div class="roster-card" data-pick-id="${p.pickId}" style="cursor:pointer;">
                 <div class="pick-num">${p.label || `${p.round}.${p.pick}`}</div>
                 <div class="player-info">
                   <div class="player-name">${p.playerName}</div>
@@ -259,63 +299,39 @@
                   ${p.pp > 0 ? `<div class="player-pts-pp">+${p.pp} PP</div>` : ""}
                 </div>
               </div>
-              ${expandedPicks.has(p.playerId) ? `
-                <div class="roster-card-history">
-                  <div class="expand-title">Match History</div>
-                  ${p.history.length === 0
-                    ? `<div style="color:var(--muted); font-size:0.8rem; padding-bottom:8px;">No completed matches yet.</div>`
-                    : p.history.map(h => {
-                        const isWin = h.match.winner === h.stats.team;
-                        return `
-                          <div class="match-history-row">
-                            <div class="mh-left">
-                              <div class="mh-match">${h.match.team1} vs ${h.match.team2} <span style="color:var(--muted); font-size:0.72rem;">${h.match.score}</span></div>
-                              <div class="mh-result ${isWin ? "win" : "loss"}">${isWin ? "W" : "L"}</div>
-                              <div class="mh-date">${new Date(h.match.date + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</div>
-                            </div>
-                            <div class="mh-right">
-                              <div class="mh-stats">
-                                <div class="mh-chip">RTG <span>${h.stats.rating}</span></div>
-                                <div class="mh-chip">K/D <span>${h.stats.kd}</span></div>
-                                <div class="mh-chip">ACS <span>${h.stats.acs}</span></div>
-                                <div class="mh-chip">ADR <span>${h.stats.adr}</span></div>
-                                <div class="mh-chip">KPR <span>${h.stats.kpr}</span></div>
-                              </div>
-                              <div class="mh-pts">${h.pts} pts</div>
-                            </div>
-                          </div>
-                        `;
-                      }).join("")}
-                </div>
-              ` : ""}
+              ${expandedPicks.has(p.pickId) ? renderMatchHistory(p.history) : ""}
             </div>
           `).join("")}
         </div>
 
         ${roster.pastPlayers.length > 0 ? `
         <div class="section-title" style="margin-top:28px;">Previously Rostered</div>
-        <div class="page-sub" style="margin-top:-14px;">Players you've traded away — you keep the points they scored while they were on your team.</div>
+        <div class="page-sub" style="margin-top:-14px;">Players you've traded away — you keep the points they scored while they were on your team. Click one to see those matches.</div>
         <div class="roster-grid">
-          ${roster.pastPlayers.map(p => `
-            <div class="roster-card" style="opacity:0.6; cursor:default;">
-              <div class="pick-num">Traded</div>
-              <div class="player-info">
-                <div class="player-name">${p.pick.playerName}</div>
-                <div class="player-meta">${p.pick.playerTeam || "—"} · ${p.pick.playerRole || "—"}</div>
+          ${enrichedPast.map(p => `
+            <div class="roster-card-wrap">
+              <div class="roster-card" data-pick-id="${p.pickId}" style="opacity:0.6; cursor:pointer;">
+                <div class="pick-num">Traded</div>
+                <div class="player-info">
+                  <div class="player-name">${p.playerName}</div>
+                  <div class="player-meta">${p.playerTeam || "—"} · ${p.playerRole || "—"}</div>
+                </div>
+                <div class="player-pts">
+                  <div class="player-pts-val">${p.total}</div>
+                  <div class="player-pts-label">pts earned</div>
+                </div>
               </div>
-              <div class="player-pts">
-                <div class="player-pts-val">${p.total}</div>
-                <div class="player-pts-label">pts earned</div>
-              </div>
+              ${expandedPicks.has(p.pickId) ? renderMatchHistory(p.history) : ""}
             </div>
           `).join("")}
         </div>` : ""}
       `;
 
-      // Click a roster card to expand/collapse its match history
+      // Click a roster card (current or previously-rostered) to
+      // expand/collapse its match history
       content.querySelectorAll(".roster-card").forEach(card => {
         card.addEventListener("click", () => {
-          const id = card.dataset.playerId;
+          const id = card.dataset.pickId;
           expandedPicks.has(id) ? expandedPicks.delete(id) : expandedPicks.add(id);
           render(lobbyData, playerData, matchData, tournamentData);
         });

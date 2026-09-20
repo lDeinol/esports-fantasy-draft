@@ -187,6 +187,18 @@ export const SCORING = {
         return { match: m, stats, pts: +this.calculate(stats).toFixed(1) };
       });
   },
+  // Same shape as matchHistory, but scoped to the given ownership stints
+  // (only matches whose date falls within one of them). Use this — not
+  // matchHistory — anywhere a manager's per-player match count, averaged
+  // stats, or points need to agree with each other; matchHistory alone
+  // is whole-tournament and will disagree with stint-scoped points once
+  // a player's been traded.
+  stintMatchHistory(playerId, matches, tournamentId, stints) {
+    return this.matchHistory(playerId, matches, tournamentId).filter(h => {
+      const ts = new Date(h.match.date + "T00:00:00").getTime();
+      return stints.some(s => ts >= (s.from || 0) && ts < (s.to ?? Infinity));
+    });
+  },
   // Placement Points earned by a player within a single tournament.
   // Only awards PP when that tournament's region is "International" —
   // pass the full tournaments array so the region can be looked up.

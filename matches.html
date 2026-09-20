@@ -110,6 +110,14 @@
     return players.find(p => p.id === id)?.name || id;
   }
 
+  // Every player.json entry for a given team name — this is what lets us
+  // show "who's playing" before a match has any stats, since team1/team2
+  // are scraped for every match regardless of status, but individual
+  // player stats only exist once VLR has posted a box score.
+  function playersForTeam(teamName) {
+    return players.filter(p => p.team === teamName);
+  }
+
   // Who in the lobby has this player in their picks?
   function fantasyOwnersOf(playerId) {
     if (!lobbyData?.picks) return [];
@@ -140,6 +148,28 @@
         return { name: pk.playerName, pts };
       });
 
+      return { name: p.name, picks: enriched };
+    }).filter(o => o.picks.length > 0);
+  }
+
+  // Same idea as buildFantasyOverlap, but for a match with no playerStats
+  // yet (upcoming, or live before a box score posts). Eligibility is
+  // based on team roster (players.json) instead of playerStats, and
+  // there are no points to show — just which owned players are in it.
+  function buildFantasyOverlapPreview(match) {
+    if (!lobbyData?.players || !lobbyData?.picks) return [];
+    const eligibleIds = new Set([
+      ...playersForTeam(match.team1).map(p => p.id),
+      ...playersForTeam(match.team2).map(p => p.id),
+    ]);
+    const picks = Object.values(lobbyData.picks || {});
+
+    return Object.entries(lobbyData.players).map(([uid, p]) => {
+      const theirPicks = picks.filter(pk => pk.byUid === uid && eligibleIds.has(pk.playerId));
+      const enriched = theirPicks.map(pk => ({
+        name: pk.playerName,
+        team: players.find(pp => pp.id === pk.playerId)?.team || "",
+      }));
       return { name: p.name, picks: enriched };
     }).filter(o => o.picks.length > 0);
   }
@@ -251,8 +281,8 @@
 
       if (match.status === "completed" && match.playerStats.length > 0) {
         // Box score grouped by team
-        const team1Stats = match.playerStats.filter(s => s.team === match.team1);
-        const team2Stats = match.playerStats.filter(s => s.team === match.team2);
+        const team1Stats = match.playerStats.filter(s => s.team === match.team1).sort((a, b) => b.rating - a.rating);
+        const team2Stats = match.playerStats.filter(s => s.team === match.team2).sort((a, b) => b.rating - a.rating);
 
         const renderTeamRows = (teamStats, teamName) => {
           const divider = `<tr class="team-divider"><td colspan="8">${teamName}</td></tr>`;
@@ -319,10 +349,60 @@
 
         detailDiv.innerHTML = boxScoreHTML + fantasyHTML;
 
-      } else if (match.status === "live") {
-        detailDiv.innerHTML = `<div style="padding:20px 18px; color:var(--success); font-size:0.875rem;"><span class="status-dot live" style="display:inline-block;"></span> Match is currently live. Stats will appear when complete.</div>`;
       } else {
-        detailDiv.innerHTML = `<div style="padding:20px 18px; color:var(--muted); font-size:0.875rem;">Match hasn't started yet. Check back later for stats.</div>`;
+        // No box score yet (upcoming, or live before VLR posts one) —
+        // show each team's roster from players.json and a pre-match
+        // fantasy ownership preview instead of leaving this blank.
+        const team1Roster = playersForTeam(match.team1);
+        const team2Roster = playersForTeam(match.team2);
+        const overlapPreview = buildFantasyOverlapPreview(match);
+
+        const statusNote = match.status === "live"
+          ? `<div style="padding:16px 18px 0; color:var(--success); font-size:0.8rem;"><span class="status-dot live" style="display:inline-block;"></span> Match is live. Stats will appear here once VLR posts a box score.</div>`
+          : `<div style="padding:16px 18px 0; color:var(--muted); font-size:0.8rem;">Match hasn't started yet.</div>`;
+
+        const rosterHTML = `
+          <div class="box-score">
+            <div class="box-section-title">${match.status === "live" ? "Rosters" : "Projected Rosters"}</div>
+            <div style="display:flex; gap:20px; flex-wrap:wrap; padding:2px 18px 14px;">
+              ${[match.team1, match.team2].map(teamName => {
+                const roster = playersForTeam(teamName);
+                return `
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:0.7rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">${teamName}</div>
+                    ${roster.length === 0
+                      ? `<div style="font-size:0.78rem; color:var(--muted);">No roster found in players.json</div>`
+                      : roster.map(p => `<div style="font-size:0.82rem; padding:3px 0;">${p.name} <span style="color:var(--muted); font-size:0.7rem;">· ${p.role || "—"}</span></div>`).join("")}
+                  </div>`;
+              }).join("")}
+            </div>
+          </div>`;
+
+        let fantasyPreviewHTML = `
+          <div class="fantasy-section">
+            <div class="fantasy-section-title">Fantasy Team Overlap</div>
+        `;
+        if (!session) {
+          fantasyPreviewHTML += `<div class="no-session-note">Join or create a draft to see which participants own players in this match.</div>`;
+        } else if (overlapPreview.length === 0) {
+          fantasyPreviewHTML += `<div class="no-session-note">No participants in your lobby have players from this match.</div>`;
+        } else {
+          fantasyPreviewHTML += overlapPreview.map(o => `
+            <div class="fantasy-participant">
+              <div class="fp-name">${o.name} <span>${o.picks.length} player${o.picks.length !== 1 ? "s" : ""} in this match</span></div>
+              <div class="fp-players">
+                ${o.picks.map(p => `
+                  <div class="fp-player-tag">
+                    <span class="fp-player-name">${p.name}</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          `).join("");
+        }
+        fantasyPreviewHTML += `</div>`;
+
+        detailDiv.innerHTML = statusNote + rosterHTML + fantasyPreviewHTML;
       }
 
       card.appendChild(detailDiv);
