@@ -31042,12 +31042,103 @@
     "series": "Group Stage: Opening (C)",
     "team1": "TYLOO",
     "team2": "G2 Esports",
-    "score": "0-0",
-    "winner": null,
+    "score": "0-2",
+    "winner": "G2 Esports",
     "format": "BO3",
     "date": "2026-09-24",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Scales",
+        "team": "TYLOO",
+        "rating": 0.87,
+        "kd": 0.78,
+        "acs": 185.0,
+        "adr": 132.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Erv",
+        "team": "TYLOO",
+        "rating": 0.79,
+        "kd": 0.63,
+        "acs": 143.0,
+        "adr": 96.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "slowly",
+        "team": "TYLOO",
+        "rating": 0.77,
+        "kd": 0.77,
+        "acs": 193.0,
+        "adr": 123.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "SiuFatBB",
+        "team": "TYLOO",
+        "rating": 0.68,
+        "kd": 0.63,
+        "acs": 137.0,
+        "adr": 92.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "splash",
+        "team": "TYLOO",
+        "rating": 0.62,
+        "kd": 0.67,
+        "acs": 184.0,
+        "adr": 114.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.66,
+        "kd": 2.24,
+        "acs": 287.0,
+        "adr": 174.0,
+        "kpr": 1.09
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 1.21,
+        "kd": 1.43,
+        "acs": 235.0,
+        "adr": 147.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.15,
+        "kd": 1.14,
+        "acs": 198.0,
+        "adr": 125.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 1.15,
+        "kd": 1.47,
+        "acs": 185.0,
+        "adr": 119.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.96,
+        "kd": 1.12,
+        "acs": 218.0,
+        "adr": 155.0,
+        "kpr": 0.77
+      }
+    ]
   },
   {
     "id": "753460",
@@ -31131,7 +31222,7 @@
     "id": "753456",
     "tournamentId": "2766",
     "series": "Group Stage: Winner's (C)",
-    "team1": "TBD",
+    "team1": "G2 Esports",
     "team2": "Paper Rex",
     "score": null,
     "winner": null,
@@ -31183,7 +31274,7 @@
     "id": "753457",
     "tournamentId": "2766",
     "series": "Group Stage: Elimination (C)",
-    "team1": "TBD",
+    "team1": "TYLOO",
     "team2": "Team Liquid",
     "score": null,
     "winner": null,
