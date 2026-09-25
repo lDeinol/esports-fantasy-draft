@@ -31146,12 +31146,103 @@
     "series": "Group Stage: Opening (D)",
     "team1": "Nongshim RedForce",
     "team2": "NRG",
-    "score": "0-1",
+    "score": "0-2",
     "winner": "NRG",
     "format": "BO3",
     "date": "2026-09-25",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 0.95,
+        "kd": 0.93,
+        "acs": 188.0,
+        "adr": 132.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 0.84,
+        "kd": 0.87,
+        "acs": 187.0,
+        "adr": 126.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 0.8,
+        "kd": 0.79,
+        "acs": 147.0,
+        "adr": 94.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 0.63,
+        "kd": 0.68,
+        "acs": 147.0,
+        "adr": 94.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 0.6,
+        "kd": 0.53,
+        "acs": 141.0,
+        "adr": 94.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 1.39,
+        "kd": 1.48,
+        "acs": 236.0,
+        "adr": 148.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 1.22,
+        "kd": 1.36,
+        "acs": 196.0,
+        "adr": 129.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.22,
+        "kd": 1.39,
+        "acs": 227.0,
+        "adr": 147.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.21,
+        "kd": 1.33,
+        "acs": 209.0,
+        "adr": 132.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 1.09,
+        "acs": 157.0,
+        "adr": 103.0,
+        "kpr": 0.61
+      }
+    ]
   },
   {
     "id": "753459",
@@ -31159,12 +31250,103 @@
     "series": "Group Stage: Opening (D)",
     "team1": "Karmine Corp",
     "team2": "Xi Lai Gaming",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "Karmine Corp",
     "format": "BO3",
     "date": "2026-09-25",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 1.62,
+        "kd": 2.05,
+        "acs": 313.0,
+        "adr": 194.0,
+        "kpr": 1.11
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 1.39,
+        "kd": 1.94,
+        "acs": 243.0,
+        "adr": 154.0,
+        "kpr": 0.94
+      },
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 1.07,
+        "kd": 1.25,
+        "acs": 149.0,
+        "adr": 86.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 1.04,
+        "kd": 1.23,
+        "acs": 220.0,
+        "adr": 150.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 1.0,
+        "kd": 1.11,
+        "acs": 160.0,
+        "adr": 104.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "WsLeo",
+        "team": "Xi Lai Gaming",
+        "rating": 0.8,
+        "kd": 0.81,
+        "acs": 177.0,
+        "adr": 112.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Rarga",
+        "team": "Xi Lai Gaming",
+        "rating": 0.69,
+        "kd": 0.63,
+        "acs": 161.0,
+        "adr": 95.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "Lysoar",
+        "team": "Xi Lai Gaming",
+        "rating": 0.66,
+        "kd": 0.6,
+        "acs": 145.0,
+        "adr": 88.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "happywei",
+        "team": "Xi Lai Gaming",
+        "rating": 0.62,
+        "kd": 0.52,
+        "acs": 111.0,
+        "adr": 80.0,
+        "kpr": 0.4
+      },
+      {
+        "playerId": "NoMan",
+        "team": "Xi Lai Gaming",
+        "rating": 0.56,
+        "kd": 0.48,
+        "acs": 147.0,
+        "adr": 102.0,
+        "kpr": 0.43
+      }
+    ]
   },
   {
     "id": "753449",
@@ -31235,8 +31417,8 @@
     "id": "753461",
     "tournamentId": "2766",
     "series": "Group Stage: Winner's (D)",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "Karmine Corp",
+    "team2": "NRG",
     "score": null,
     "winner": null,
     "format": "BO3",
@@ -31287,8 +31469,8 @@
     "id": "753462",
     "tournamentId": "2766",
     "series": "Group Stage: Elimination (D)",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "Xi Lai Gaming",
+    "team2": "Nongshim RedForce",
     "score": null,
     "winner": null,
     "format": "BO3",
