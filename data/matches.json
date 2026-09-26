@@ -31354,12 +31354,103 @@
     "series": "Group Stage: Opening (B)",
     "team1": "Global Esports",
     "team2": "Team Vitality",
-    "score": "0-0",
-    "winner": null,
+    "score": "1-2",
+    "winner": "Team Vitality",
     "format": "BO3",
     "date": "2026-09-26",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 1.12,
+        "kd": 1.1,
+        "acs": 201.0,
+        "adr": 126.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 1.04,
+        "kd": 0.94,
+        "acs": 203.0,
+        "adr": 137.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.02,
+        "kd": 0.85,
+        "acs": 196.0,
+        "adr": 143.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 0.93,
+        "kd": 0.91,
+        "acs": 228.0,
+        "adr": 142.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.83,
+        "kd": 0.83,
+        "acs": 172.0,
+        "adr": 108.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 1.15,
+        "kd": 1.25,
+        "acs": 244.0,
+        "adr": 151.0,
+        "kpr": 0.87
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 1.09,
+        "kd": 1.09,
+        "acs": 208.0,
+        "adr": 138.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.98,
+        "kd": 1.04,
+        "acs": 235.0,
+        "adr": 154.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 0.92,
+        "kd": 1.06,
+        "acs": 227.0,
+        "adr": 144.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 0.88,
+        "kd": 0.96,
+        "acs": 168.0,
+        "adr": 110.0,
+        "kpr": 0.62
+      }
+    ]
   },
   {
     "id": "753450",
@@ -31367,12 +31458,103 @@
     "series": "Group Stage: Opening (B)",
     "team1": "LOUD",
     "team2": "EDward Gaming",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "LOUD",
     "format": "BO3",
     "date": "2026-09-26",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.51,
+        "kd": 1.96,
+        "acs": 321.0,
+        "adr": 208.0,
+        "kpr": 1.21
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 1.34,
+        "kd": 1.37,
+        "acs": 202.0,
+        "adr": 138.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.2,
+        "kd": 1.37,
+        "acs": 181.0,
+        "adr": 123.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 1.0,
+        "kd": 0.79,
+        "acs": 157.0,
+        "adr": 113.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 0.96,
+        "kd": 1.15,
+        "acs": 165.0,
+        "adr": 110.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 1.05,
+        "kd": 1.04,
+        "acs": 209.0,
+        "adr": 130.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.9,
+        "kd": 0.85,
+        "acs": 158.0,
+        "adr": 111.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.86,
+        "kd": 0.79,
+        "acs": 168.0,
+        "adr": 103.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.77,
+        "kd": 0.63,
+        "acs": 141.0,
+        "adr": 100.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "stew",
+        "team": "EDward Gaming",
+        "rating": 0.48,
+        "kd": 0.5,
+        "acs": 127.0,
+        "adr": 92.0,
+        "kpr": 0.41
+      }
+    ]
   },
   {
     "id": "753444",
@@ -31443,8 +31625,8 @@
     "id": "753451",
     "tournamentId": "2766",
     "series": "Group Stage: Winner's (B)",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "Team Vitality",
+    "team2": "LOUD",
     "score": null,
     "winner": null,
     "format": "BO3",
@@ -31495,8 +31677,8 @@
     "id": "753452",
     "tournamentId": "2766",
     "series": "Group Stage: Elimination (B)",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "Global Esports",
+    "team2": "EDward Gaming",
     "score": null,
     "winner": null,
     "format": "BO3",
