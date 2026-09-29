@@ -31770,12 +31770,103 @@
     "series": "Group Stage: Winner's (C)",
     "team1": "G2 Esports",
     "team2": "Paper Rex",
-    "score": "1-1",
-    "winner": null,
+    "score": "1-2",
+    "winner": "Paper Rex",
     "format": "BO3",
     "date": "2026-09-29",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 1.12,
+        "kd": 1.19,
+        "acs": 230.0,
+        "adr": 153.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 1.01,
+        "kd": 0.92,
+        "acs": 201.0,
+        "adr": 132.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.93,
+        "kd": 1.0,
+        "acs": 223.0,
+        "adr": 146.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 0.92,
+        "kd": 0.88,
+        "acs": 179.0,
+        "adr": 121.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 0.82,
+        "kd": 0.79,
+        "acs": 155.0,
+        "adr": 97.0,
+        "kpr": 0.56
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 1.26,
+        "kd": 1.27,
+        "acs": 259.0,
+        "adr": 173.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 1.16,
+        "kd": 1.24,
+        "acs": 229.0,
+        "adr": 152.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.96,
+        "kd": 0.96,
+        "acs": 172.0,
+        "adr": 111.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 0.91,
+        "kd": 0.93,
+        "acs": 166.0,
+        "adr": 112.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 0.77,
+        "kd": 0.83,
+        "acs": 172.0,
+        "adr": 123.0,
+        "kpr": 0.59
+      }
+    ]
   },
   {
     "id": "753461",
@@ -31783,12 +31874,103 @@
     "series": "Group Stage: Winner's (D)",
     "team1": "Karmine Corp",
     "team2": "NRG",
-    "score": null,
-    "winner": null,
+    "score": "1-2",
+    "winner": "NRG",
     "format": "BO3",
     "date": "2026-09-29",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 1.06,
+        "kd": 0.95,
+        "acs": 148.0,
+        "adr": 99.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 1.02,
+        "kd": 1.12,
+        "acs": 187.0,
+        "adr": 124.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 0.95,
+        "kd": 0.98,
+        "acs": 191.0,
+        "adr": 132.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 0.92,
+        "kd": 1.0,
+        "acs": 189.0,
+        "adr": 117.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 0.84,
+        "kd": 0.78,
+        "acs": 177.0,
+        "adr": 120.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.09,
+        "kd": 1.05,
+        "acs": 195.0,
+        "adr": 122.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.06,
+        "kd": 1.1,
+        "acs": 198.0,
+        "adr": 123.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.03,
+        "kd": 1.08,
+        "acs": 184.0,
+        "adr": 114.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.93,
+        "kd": 1.02,
+        "acs": 202.0,
+        "adr": 124.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 0.92,
+        "kd": 0.86,
+        "acs": 152.0,
+        "adr": 104.0,
+        "kpr": 0.55
+      }
+    ]
   },
   {
     "id": "753446",
@@ -31872,7 +32054,7 @@
     "id": "753458",
     "tournamentId": "2766",
     "series": "Group Stage: Decider (C)",
-    "team1": "TBD",
+    "team1": "G2 Esports",
     "team2": "TBD",
     "score": null,
     "winner": null,
@@ -31885,7 +32067,7 @@
     "id": "753463",
     "tournamentId": "2766",
     "series": "Group Stage: Decider (D)",
-    "team1": "TBD",
+    "team1": "Karmine Corp",
     "team2": "TBD",
     "score": null,
     "winner": null,
