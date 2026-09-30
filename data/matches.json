@@ -31978,12 +31978,103 @@
     "series": "Group Stage: Winner's (A)",
     "team1": "100 Thieves",
     "team2": "FUT Esports",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "100 Thieves",
     "format": "BO3",
     "date": "2026-09-30",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.21,
+        "kd": 1.3,
+        "acs": 263.0,
+        "adr": 160.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.2,
+        "kd": 1.17,
+        "acs": 203.0,
+        "adr": 128.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.1,
+        "kd": 1.22,
+        "acs": 171.0,
+        "adr": 109.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.09,
+        "kd": 1.21,
+        "acs": 209.0,
+        "adr": 138.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.0,
+        "kd": 1.2,
+        "acs": 192.0,
+        "adr": 128.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "KROSTALY",
+        "team": "FUT Esports",
+        "rating": 1.02,
+        "kd": 0.93,
+        "acs": 197.0,
+        "adr": 123.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "yetujey",
+        "team": "FUT Esports",
+        "rating": 0.97,
+        "kd": 1.03,
+        "acs": 204.0,
+        "adr": 125.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "xeus",
+        "team": "FUT Esports",
+        "rating": 0.81,
+        "kd": 0.78,
+        "acs": 184.0,
+        "adr": 129.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "sociablEE",
+        "team": "FUT Esports",
+        "rating": 0.76,
+        "kd": 0.72,
+        "acs": 140.0,
+        "adr": 95.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "s0pp",
+        "team": "FUT Esports",
+        "rating": 0.69,
+        "kd": 0.63,
+        "acs": 139.0,
+        "adr": 98.0,
+        "kpr": 0.46
+      }
+    ]
   },
   {
     "id": "753451",
@@ -31991,12 +32082,103 @@
     "series": "Group Stage: Winner's (B)",
     "team1": "Team Vitality",
     "team2": "LOUD",
-    "score": "1-0",
+    "score": "2-0",
     "winner": "Team Vitality",
     "format": "BO3",
     "date": "2026-09-30",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.15,
+        "kd": 1.31,
+        "acs": 187.0,
+        "adr": 126.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 1.13,
+        "kd": 1.24,
+        "acs": 197.0,
+        "adr": 125.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 1.08,
+        "kd": 1.14,
+        "acs": 228.0,
+        "adr": 147.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 1.04,
+        "kd": 1.07,
+        "acs": 224.0,
+        "adr": 152.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 0.91,
+        "kd": 1.02,
+        "acs": 205.0,
+        "adr": 135.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.28,
+        "kd": 1.38,
+        "acs": 266.0,
+        "adr": 172.0,
+        "kpr": 0.96
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.13,
+        "kd": 1.09,
+        "acs": 244.0,
+        "adr": 164.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 0.94,
+        "kd": 0.87,
+        "acs": 176.0,
+        "adr": 116.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 0.85,
+        "kd": 0.74,
+        "acs": 178.0,
+        "adr": 118.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.48,
+        "kd": 0.39,
+        "acs": 110.0,
+        "adr": 68.0,
+        "kpr": 0.34
+      }
+    ]
   },
   {
     "id": "753457",
@@ -32080,7 +32262,7 @@
     "id": "753448",
     "tournamentId": "2766",
     "series": "Group Stage: Decider (A)",
-    "team1": "TBD",
+    "team1": "FUT Esports",
     "team2": "TBD",
     "score": null,
     "winner": null,
@@ -32093,7 +32275,7 @@
     "id": "753453",
     "tournamentId": "2766",
     "series": "Group Stage: Decider (B)",
-    "team1": "TBD",
+    "team1": "LOUD",
     "team2": "TBD",
     "score": null,
     "winner": null,
