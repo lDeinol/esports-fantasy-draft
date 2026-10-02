@@ -32407,12 +32407,103 @@
     "series": "Group Stage: Elimination (B)",
     "team1": "Global Esports",
     "team2": "EDward Gaming",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "Global Esports",
     "format": "BO3",
     "date": "2026-10-02",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Kr1stal",
+        "team": "Global Esports",
+        "rating": 1.43,
+        "kd": 1.94,
+        "acs": 242.0,
+        "adr": 150.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "UdoTan",
+        "team": "Global Esports",
+        "rating": 1.32,
+        "kd": 1.58,
+        "acs": 313.0,
+        "adr": 182.0,
+        "kpr": 1.11
+      },
+      {
+        "playerId": "PatMen",
+        "team": "Global Esports",
+        "rating": 1.25,
+        "kd": 1.42,
+        "acs": 258.0,
+        "adr": 168.0,
+        "kpr": 0.92
+      },
+      {
+        "playerId": "xavi8k",
+        "team": "Global Esports",
+        "rating": 1.14,
+        "kd": 1.24,
+        "acs": 204.0,
+        "adr": 132.0,
+        "kpr": 0.7
+      },
+      {
+        "playerId": "Autumn",
+        "team": "Global Esports",
+        "rating": 0.72,
+        "kd": 0.79,
+        "acs": 144.0,
+        "adr": 90.0,
+        "kpr": 0.51
+      },
+      {
+        "playerId": "ZmjjKK",
+        "team": "EDward Gaming",
+        "rating": 0.99,
+        "kd": 1.0,
+        "acs": 236.0,
+        "adr": 152.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "Smoggy",
+        "team": "EDward Gaming",
+        "rating": 0.86,
+        "kd": 0.8,
+        "acs": 179.0,
+        "adr": 113.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "nobody",
+        "team": "EDward Gaming",
+        "rating": 0.77,
+        "kd": 0.69,
+        "acs": 199.0,
+        "adr": 133.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "CHICHOO",
+        "team": "EDward Gaming",
+        "rating": 0.76,
+        "kd": 0.59,
+        "acs": 145.0,
+        "adr": 94.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "stew",
+        "team": "EDward Gaming",
+        "rating": 0.68,
+        "kd": 0.59,
+        "acs": 164.0,
+        "adr": 102.0,
+        "kpr": 0.54
+      }
+    ]
   },
   {
     "id": "753458",
@@ -32458,7 +32549,7 @@
     "tournamentId": "2766",
     "series": "Group Stage: Decider (B)",
     "team1": "LOUD",
-    "team2": "TBD",
+    "team2": "Global Esports",
     "score": null,
     "winner": null,
     "format": "BO3",
