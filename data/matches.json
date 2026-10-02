@@ -32394,12 +32394,103 @@
     "series": "Group Stage: Elimination (A)",
     "team1": "T1",
     "team2": "JD Gaming",
-    "score": null,
-    "winner": null,
+    "score": "2-1",
+    "winner": "T1",
     "format": "BO3",
     "date": "2026-10-02",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "BuZz",
+        "team": "T1",
+        "rating": 1.14,
+        "kd": 1.25,
+        "acs": 238.0,
+        "adr": 157.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "stax",
+        "team": "T1",
+        "rating": 1.03,
+        "kd": 1.03,
+        "acs": 168.0,
+        "adr": 108.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Meteor",
+        "team": "T1",
+        "rating": 0.98,
+        "kd": 1.21,
+        "acs": 185.0,
+        "adr": 122.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Munchkin",
+        "team": "T1",
+        "rating": 0.93,
+        "kd": 0.9,
+        "acs": 193.0,
+        "adr": 120.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "iZu",
+        "team": "T1",
+        "rating": 0.82,
+        "kd": 0.74,
+        "acs": 149.0,
+        "adr": 101.0,
+        "kpr": 0.48
+      },
+      {
+        "playerId": "crownfisher",
+        "team": "JD Gaming",
+        "rating": 1.12,
+        "kd": 1.08,
+        "acs": 204.0,
+        "adr": 123.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "jkuro",
+        "team": "JD Gaming",
+        "rating": 1.02,
+        "kd": 0.9,
+        "acs": 181.0,
+        "adr": 117.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "zhe",
+        "team": "JD Gaming",
+        "rating": 1.0,
+        "kd": 1.14,
+        "acs": 193.0,
+        "adr": 121.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "BerLIN",
+        "team": "JD Gaming",
+        "rating": 0.86,
+        "kd": 0.75,
+        "acs": 154.0,
+        "adr": 103.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "Yuicaw",
+        "team": "JD Gaming",
+        "rating": 0.83,
+        "kd": 0.82,
+        "acs": 150.0,
+        "adr": 110.0,
+        "kpr": 0.53
+      }
+    ]
   },
   {
     "id": "753452",
@@ -32536,7 +32627,7 @@
     "tournamentId": "2766",
     "series": "Group Stage: Decider (A)",
     "team1": "FUT Esports",
-    "team2": "TBD",
+    "team2": "T1",
     "score": null,
     "winner": null,
     "format": "BO3",
