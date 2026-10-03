@@ -32602,12 +32602,103 @@
     "series": "Group Stage: Decider (C)",
     "team1": "G2 Esports",
     "team2": "Team Liquid",
-    "score": "1-0",
+    "score": "2-0",
     "winner": "G2 Esports",
     "format": "BO3",
     "date": "2026-10-03",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.34,
+        "kd": 1.58,
+        "acs": 252.0,
+        "adr": 160.0,
+        "kpr": 0.95
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 1.2,
+        "kd": 1.24,
+        "acs": 229.0,
+        "adr": 140.0,
+        "kpr": 0.84
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.98,
+        "kd": 1.06,
+        "acs": 219.0,
+        "adr": 148.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 0.95,
+        "kd": 1.03,
+        "acs": 209.0,
+        "adr": 137.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 0.72,
+        "kd": 0.74,
+        "acs": 153.0,
+        "adr": 115.0,
+        "kpr": 0.53
+      },
+      {
+        "playerId": "trexx",
+        "team": "Team Liquid",
+        "rating": 1.15,
+        "kd": 1.0,
+        "acs": 227.0,
+        "adr": 154.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "kamo",
+        "team": "Team Liquid",
+        "rating": 1.13,
+        "kd": 1.06,
+        "acs": 222.0,
+        "adr": 148.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Kicks",
+        "team": "Team Liquid",
+        "rating": 1.11,
+        "kd": 1.09,
+        "acs": 215.0,
+        "adr": 138.0,
+        "kpr": 0.81
+      },
+      {
+        "playerId": "GSR",
+        "team": "Team Liquid",
+        "rating": 0.74,
+        "kd": 0.74,
+        "acs": 171.0,
+        "adr": 111.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "nAts",
+        "team": "Team Liquid",
+        "rating": 0.72,
+        "kd": 0.63,
+        "acs": 157.0,
+        "adr": 112.0,
+        "kpr": 0.51
+      }
+    ]
   },
   {
     "id": "753463",
@@ -32615,12 +32706,103 @@
     "series": "Group Stage: Decider (D)",
     "team1": "Karmine Corp",
     "team2": "Nongshim RedForce",
-    "score": null,
-    "winner": null,
+    "score": "1-2",
+    "winner": "Nongshim RedForce",
     "format": "BO3",
     "date": "2026-10-03",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "N4RRATE",
+        "team": "Karmine Corp",
+        "rating": 1.14,
+        "kd": 1.25,
+        "acs": 231.0,
+        "adr": 150.0,
+        "kpr": 0.85
+      },
+      {
+        "playerId": "SUYGETSU",
+        "team": "Karmine Corp",
+        "rating": 0.98,
+        "kd": 1.02,
+        "acs": 193.0,
+        "adr": 127.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Avez",
+        "team": "Karmine Corp",
+        "rating": 0.84,
+        "kd": 0.79,
+        "acs": 181.0,
+        "adr": 120.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "LewN",
+        "team": "Karmine Corp",
+        "rating": 0.81,
+        "kd": 0.92,
+        "acs": 210.0,
+        "adr": 135.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "dos9",
+        "team": "Karmine Corp",
+        "rating": 0.67,
+        "kd": 0.59,
+        "acs": 141.0,
+        "adr": 91.0,
+        "kpr": 0.46
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 1.21,
+        "kd": 1.2,
+        "acs": 260.0,
+        "adr": 166.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 1.2,
+        "kd": 1.35,
+        "acs": 199.0,
+        "adr": 119.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.12,
+        "kd": 1.17,
+        "acs": 196.0,
+        "adr": 119.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 1.05,
+        "kd": 1.12,
+        "acs": 216.0,
+        "adr": 144.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 0.72,
+        "kd": 0.78,
+        "acs": 171.0,
+        "adr": 104.0,
+        "kpr": 0.59
+      }
+    ]
   },
   {
     "id": "753448",
