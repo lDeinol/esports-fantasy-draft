@@ -33148,12 +33148,103 @@
     "series": "Playoffs: Upper Quarterfinals",
     "team1": "Paper Rex",
     "team2": "LOUD",
-    "score": null,
-    "winner": null,
+    "score": "0-2",
+    "winner": "LOUD",
     "format": "BO3",
     "date": "2026-10-07",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "something",
+        "team": "Paper Rex",
+        "rating": 1.04,
+        "kd": 1.16,
+        "acs": 198.0,
+        "adr": 120.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "Jinggg",
+        "team": "Paper Rex",
+        "rating": 0.94,
+        "kd": 1.03,
+        "acs": 220.0,
+        "adr": 133.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "f0rsakeN",
+        "team": "Paper Rex",
+        "rating": 0.91,
+        "kd": 0.87,
+        "acs": 189.0,
+        "adr": 128.0,
+        "kpr": 0.66
+      },
+      {
+        "playerId": "invy",
+        "team": "Paper Rex",
+        "rating": 0.81,
+        "kd": 0.72,
+        "acs": 176.0,
+        "adr": 120.0,
+        "kpr": 0.58
+      },
+      {
+        "playerId": "d4v41",
+        "team": "Paper Rex",
+        "rating": 0.79,
+        "kd": 0.77,
+        "acs": 158.0,
+        "adr": 102.0,
+        "kpr": 0.54
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.36,
+        "kd": 1.43,
+        "acs": 220.0,
+        "adr": 153.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.31,
+        "kd": 1.49,
+        "acs": 288.0,
+        "adr": 176.0,
+        "kpr": 1.04
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.97,
+        "kd": 0.94,
+        "acs": 184.0,
+        "adr": 125.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 0.89,
+        "kd": 0.92,
+        "acs": 208.0,
+        "adr": 137.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 0.87,
+        "kd": 0.79,
+        "acs": 131.0,
+        "adr": 87.0,
+        "kpr": 0.44
+      }
+    ]
   },
   {
     "id": "754738",
@@ -33173,7 +33264,7 @@
     "tournamentId": "2766",
     "series": "Playoffs: Lower Round 1",
     "team1": "T1",
-    "team2": "TBD",
+    "team2": "Paper Rex",
     "score": null,
     "winner": null,
     "format": "BO3",
@@ -33199,7 +33290,7 @@
     "tournamentId": "2766",
     "series": "Playoffs: Upper Semifinals",
     "team1": "NRG",
-    "team2": "TBD",
+    "team2": "LOUD",
     "score": null,
     "winner": null,
     "format": "BO3",
