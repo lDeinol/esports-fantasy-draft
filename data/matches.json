@@ -33044,12 +33044,103 @@
     "series": "Playoffs: Upper Quarterfinals",
     "team1": "NRG",
     "team2": "T1",
-    "score": null,
-    "winner": null,
+    "score": "2-0",
+    "winner": "NRG",
     "format": "BO3",
     "date": "2026-10-07",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.46,
+        "kd": 1.86,
+        "acs": 264.0,
+        "adr": 169.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.37,
+        "kd": 1.48,
+        "acs": 215.0,
+        "adr": 144.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 1.14,
+        "kd": 1.16,
+        "acs": 240.0,
+        "adr": 159.0,
+        "kpr": 0.82
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 1.13,
+        "kd": 1.08,
+        "acs": 184.0,
+        "adr": 127.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 0.86,
+        "kd": 0.88,
+        "acs": 148.0,
+        "adr": 102.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "BuZz",
+        "team": "T1",
+        "rating": 0.99,
+        "kd": 1.03,
+        "acs": 211.0,
+        "adr": 127.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Meteor",
+        "team": "T1",
+        "rating": 0.88,
+        "kd": 0.88,
+        "acs": 185.0,
+        "adr": 125.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "iZu",
+        "team": "T1",
+        "rating": 0.79,
+        "kd": 0.9,
+        "acs": 154.0,
+        "adr": 100.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Munchkin",
+        "team": "T1",
+        "rating": 0.65,
+        "kd": 0.69,
+        "acs": 150.0,
+        "adr": 96.0,
+        "kpr": 0.5
+      },
+      {
+        "playerId": "stax",
+        "team": "T1",
+        "rating": 0.6,
+        "kd": 0.45,
+        "acs": 117.0,
+        "adr": 77.0,
+        "kpr": 0.32
+      }
+    ]
   },
   {
     "id": "754733",
@@ -33081,7 +33172,7 @@
     "id": "754739",
     "tournamentId": "2766",
     "series": "Playoffs: Lower Round 1",
-    "team1": "TBD",
+    "team1": "T1",
     "team2": "TBD",
     "score": null,
     "winner": null,
@@ -33107,7 +33198,7 @@
     "id": "754735",
     "tournamentId": "2766",
     "series": "Playoffs: Upper Semifinals",
-    "team1": "TBD",
+    "team1": "NRG",
     "team2": "TBD",
     "score": null,
     "winner": null,
