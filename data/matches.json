@@ -33122,12 +33122,103 @@
     "series": "Playoffs: Upper Quarterfinals",
     "team1": "Team Vitality",
     "team2": "Nongshim RedForce",
-    "score": "0-0",
-    "winner": null,
+    "score": "2-1",
+    "winner": "Team Vitality",
     "format": "BO3",
     "date": "2026-10-08",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.28,
+        "kd": 1.55,
+        "acs": 214.0,
+        "adr": 140.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 1.03,
+        "kd": 1.11,
+        "acs": 221.0,
+        "adr": 142.0,
+        "kpr": 0.78
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 1.0,
+        "kd": 1.05,
+        "acs": 168.0,
+        "adr": 115.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.87,
+        "kd": 0.84,
+        "acs": 185.0,
+        "adr": 117.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 0.77,
+        "kd": 0.79,
+        "acs": 175.0,
+        "adr": 117.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "Ivy",
+        "team": "Nongshim RedForce",
+        "rating": 1.27,
+        "kd": 1.28,
+        "acs": 231.0,
+        "adr": 164.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Xross",
+        "team": "Nongshim RedForce",
+        "rating": 0.93,
+        "kd": 0.92,
+        "acs": 150.0,
+        "adr": 104.0,
+        "kpr": 0.55
+      },
+      {
+        "playerId": "Francis",
+        "team": "Nongshim RedForce",
+        "rating": 0.92,
+        "kd": 0.93,
+        "acs": 204.0,
+        "adr": 137.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Dambi",
+        "team": "Nongshim RedForce",
+        "rating": 0.85,
+        "kd": 0.82,
+        "acs": 196.0,
+        "adr": 127.0,
+        "kpr": 0.64
+      },
+      {
+        "playerId": "Rb",
+        "team": "Nongshim RedForce",
+        "rating": 0.8,
+        "kd": 0.79,
+        "acs": 133.0,
+        "adr": 85.0,
+        "kpr": 0.52
+      }
+    ]
   },
   {
     "id": "754732",
@@ -33342,7 +33433,7 @@
     "tournamentId": "2766",
     "series": "Playoffs: Lower Round 1",
     "team1": "100 Thieves",
-    "team2": "TBD",
+    "team2": "Nongshim RedForce",
     "score": null,
     "winner": null,
     "format": "BO3",
@@ -33368,7 +33459,7 @@
     "tournamentId": "2766",
     "series": "Playoffs: Upper Semifinals",
     "team1": "G2 Esports",
-    "team2": "TBD",
+    "team2": "Team Vitality",
     "score": null,
     "winner": null,
     "format": "BO3",
