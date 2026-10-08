@@ -33018,12 +33018,103 @@
     "series": "Playoffs: Upper Quarterfinals",
     "team1": "100 Thieves",
     "team2": "G2 Esports",
-    "score": null,
-    "winner": null,
+    "score": "0-2",
+    "winner": "G2 Esports",
     "format": "BO3",
     "date": "2026-10-08",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.19,
+        "kd": 1.12,
+        "acs": 258.0,
+        "adr": 167.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.0,
+        "kd": 1.03,
+        "acs": 240.0,
+        "adr": 145.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 0.91,
+        "kd": 0.83,
+        "acs": 174.0,
+        "adr": 114.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 0.8,
+        "kd": 0.86,
+        "acs": 158.0,
+        "adr": 114.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 0.72,
+        "kd": 0.75,
+        "acs": 156.0,
+        "adr": 101.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.28,
+        "kd": 1.58,
+        "acs": 221.0,
+        "adr": 145.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.16,
+        "kd": 1.25,
+        "acs": 238.0,
+        "adr": 146.0,
+        "kpr": 0.83
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 1.13,
+        "kd": 1.07,
+        "acs": 212.0,
+        "adr": 146.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.83,
+        "kd": 0.9,
+        "acs": 173.0,
+        "adr": 106.0,
+        "kpr": 0.62
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.78,
+        "kd": 0.78,
+        "acs": 207.0,
+        "adr": 133.0,
+        "kpr": 0.67
+      }
+    ]
   },
   {
     "id": "754731",
@@ -33031,7 +33122,7 @@
     "series": "Playoffs: Upper Quarterfinals",
     "team1": "Team Vitality",
     "team2": "Nongshim RedForce",
-    "score": null,
+    "score": "0-0",
     "winner": null,
     "format": "BO3",
     "date": "2026-10-08",
@@ -33250,7 +33341,7 @@
     "id": "754738",
     "tournamentId": "2766",
     "series": "Playoffs: Lower Round 1",
-    "team1": "TBD",
+    "team1": "100 Thieves",
     "team2": "TBD",
     "score": null,
     "winner": null,
@@ -33276,7 +33367,7 @@
     "id": "754734",
     "tournamentId": "2766",
     "series": "Playoffs: Upper Semifinals",
-    "team1": "TBD",
+    "team1": "G2 Esports",
     "team2": "TBD",
     "score": null,
     "winner": null,
