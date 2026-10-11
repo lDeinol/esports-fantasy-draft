@@ -33850,12 +33850,103 @@
     "series": "Playoffs: Lower Round 2",
     "team1": "NRG",
     "team2": "100 Thieves",
-    "score": null,
-    "winner": null,
+    "score": "0-2",
+    "winner": "100 Thieves",
     "format": "BO3",
     "date": "2026-10-11",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "brawk",
+        "team": "NRG",
+        "rating": 1.11,
+        "kd": 1.0,
+        "acs": 221.0,
+        "adr": 150.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "keiko",
+        "team": "NRG",
+        "rating": 1.01,
+        "kd": 1.0,
+        "acs": 210.0,
+        "adr": 142.0,
+        "kpr": 0.72
+      },
+      {
+        "playerId": "mada",
+        "team": "NRG",
+        "rating": 0.8,
+        "kd": 0.84,
+        "acs": 182.0,
+        "adr": 119.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "Ethan",
+        "team": "NRG",
+        "rating": 0.75,
+        "kd": 0.58,
+        "acs": 160.0,
+        "adr": 114.0,
+        "kpr": 0.44
+      },
+      {
+        "playerId": "skuba",
+        "team": "NRG",
+        "rating": 0.71,
+        "kd": 0.62,
+        "acs": 133.0,
+        "adr": 74.0,
+        "kpr": 0.49
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 1.35,
+        "kd": 1.39,
+        "acs": 267.0,
+        "adr": 170.0,
+        "kpr": 0.91
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 1.22,
+        "kd": 1.28,
+        "acs": 214.0,
+        "adr": 150.0,
+        "kpr": 0.74
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.07,
+        "kd": 1.12,
+        "acs": 188.0,
+        "adr": 126.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.05,
+        "kd": 1.26,
+        "acs": 200.0,
+        "adr": 138.0,
+        "kpr": 0.79
+      },
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.0,
+        "kd": 1.17,
+        "acs": 158.0,
+        "adr": 104.0,
+        "kpr": 0.63
+      }
+    ]
   },
   {
     "id": "754741",
@@ -33887,7 +33978,7 @@
     "id": "754742",
     "tournamentId": "2766",
     "series": "Playoffs: Lower Round 3",
-    "team1": "TBD",
+    "team1": "100 Thieves",
     "team2": "TBD",
     "score": null,
     "winner": null,
