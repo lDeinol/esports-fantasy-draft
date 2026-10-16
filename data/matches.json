@@ -34058,12 +34058,103 @@
     "series": "Playoffs: Upper Final",
     "team1": "Team Vitality",
     "team2": "LOUD",
-    "score": "1-1",
-    "winner": null,
+    "score": "1-2",
+    "winner": "LOUD",
     "format": "BO3",
     "date": "2026-10-16",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 1.01,
+        "kd": 1.07,
+        "acs": 185.0,
+        "adr": 113.0,
+        "kpr": 0.75
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.0,
+        "kd": 1.0,
+        "acs": 214.0,
+        "adr": 133.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 0.95,
+        "kd": 0.81,
+        "acs": 180.0,
+        "adr": 117.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 0.92,
+        "kd": 0.89,
+        "acs": 194.0,
+        "adr": 134.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.77,
+        "kd": 0.68,
+        "acs": 185.0,
+        "adr": 123.0,
+        "kpr": 0.57
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 1.32,
+        "kd": 1.52,
+        "acs": 286.0,
+        "adr": 180.0,
+        "kpr": 1.02
+      },
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.29,
+        "kd": 1.26,
+        "acs": 255.0,
+        "adr": 172.0,
+        "kpr": 0.86
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 1.07,
+        "kd": 1.17,
+        "acs": 199.0,
+        "adr": 132.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 0.92,
+        "kd": 0.96,
+        "acs": 198.0,
+        "adr": 138.0,
+        "kpr": 0.68
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 0.78,
+        "kd": 0.74,
+        "acs": 127.0,
+        "adr": 84.0,
+        "kpr": 0.46
+      }
+    ]
   },
   {
     "id": "754742",
@@ -34071,19 +34162,110 @@
     "series": "Playoffs: Lower Round 3",
     "team1": "100 Thieves",
     "team2": "G2 Esports",
-    "score": null,
-    "winner": null,
+    "score": "2-1",
+    "winner": "100 Thieves",
     "format": "BO3",
     "date": "2026-10-16",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "Cryocells",
+        "team": "100 Thieves",
+        "rating": 1.23,
+        "kd": 1.4,
+        "acs": 241.0,
+        "adr": 156.0,
+        "kpr": 0.89
+      },
+      {
+        "playerId": "bang",
+        "team": "100 Thieves",
+        "rating": 1.12,
+        "kd": 1.13,
+        "acs": 213.0,
+        "adr": 145.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Timotino",
+        "team": "100 Thieves",
+        "rating": 1.06,
+        "kd": 1.04,
+        "acs": 239.0,
+        "adr": 156.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "Asuna",
+        "team": "100 Thieves",
+        "rating": 0.79,
+        "kd": 0.85,
+        "acs": 165.0,
+        "adr": 107.0,
+        "kpr": 0.61
+      },
+      {
+        "playerId": "vora",
+        "team": "100 Thieves",
+        "rating": 0.77,
+        "kd": 0.71,
+        "acs": 142.0,
+        "adr": 94.0,
+        "kpr": 0.52
+      },
+      {
+        "playerId": "trent",
+        "team": "G2 Esports",
+        "rating": 1.14,
+        "kd": 1.22,
+        "acs": 210.0,
+        "adr": 138.0,
+        "kpr": 0.76
+      },
+      {
+        "playerId": "leaf",
+        "team": "G2 Esports",
+        "rating": 1.05,
+        "kd": 1.04,
+        "acs": 234.0,
+        "adr": 146.0,
+        "kpr": 0.8
+      },
+      {
+        "playerId": "BABYBAY",
+        "team": "G2 Esports",
+        "rating": 1.02,
+        "kd": 1.02,
+        "acs": 206.0,
+        "adr": 135.0,
+        "kpr": 0.71
+      },
+      {
+        "playerId": "valyn",
+        "team": "G2 Esports",
+        "rating": 0.98,
+        "kd": 0.87,
+        "acs": 167.0,
+        "adr": 106.0,
+        "kpr": 0.59
+      },
+      {
+        "playerId": "jawgemo",
+        "team": "G2 Esports",
+        "rating": 0.88,
+        "kd": 0.81,
+        "acs": 185.0,
+        "adr": 129.0,
+        "kpr": 0.64
+      }
+    ]
   },
   {
     "id": "754743",
     "tournamentId": "2766",
     "series": "Playoffs: Lower Final",
-    "team1": "TBD",
-    "team2": "TBD",
+    "team1": "Team Vitality",
+    "team2": "100 Thieves",
     "score": null,
     "winner": null,
     "format": "BO5",
@@ -34095,7 +34277,7 @@
     "id": "754737",
     "tournamentId": "2766",
     "series": "Playoffs: Grand Final",
-    "team1": "TBD",
+    "team1": "LOUD",
     "team2": "TBD",
     "score": null,
     "winner": null,
