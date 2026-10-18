@@ -34370,11 +34370,102 @@
     "series": "Playoffs: Grand Final",
     "team1": "LOUD",
     "team2": "Team Vitality",
-    "score": "1-1",
-    "winner": null,
+    "score": "3-1",
+    "winner": "LOUD",
     "format": "BO5",
     "date": "2026-10-18",
-    "status": "live",
-    "playerStats": []
+    "status": "completed",
+    "playerStats": [
+      {
+        "playerId": "erde",
+        "team": "LOUD",
+        "rating": 1.13,
+        "kd": 1.18,
+        "acs": 222.0,
+        "adr": 152.0,
+        "kpr": 0.77
+      },
+      {
+        "playerId": "tkzin",
+        "team": "LOUD",
+        "rating": 1.1,
+        "kd": 1.17,
+        "acs": 251.0,
+        "adr": 163.0,
+        "kpr": 0.9
+      },
+      {
+        "playerId": "DaviH",
+        "team": "LOUD",
+        "rating": 1.05,
+        "kd": 1.0,
+        "acs": 167.0,
+        "adr": 116.0,
+        "kpr": 0.6
+      },
+      {
+        "playerId": "Darker",
+        "team": "LOUD",
+        "rating": 0.96,
+        "kd": 0.93,
+        "acs": 178.0,
+        "adr": 119.0,
+        "kpr": 0.63
+      },
+      {
+        "playerId": "lukxo",
+        "team": "LOUD",
+        "rating": 0.95,
+        "kd": 1.05,
+        "acs": 190.0,
+        "adr": 118.0,
+        "kpr": 0.69
+      },
+      {
+        "playerId": "Sayonara",
+        "team": "Team Vitality",
+        "rating": 1.03,
+        "kd": 1.07,
+        "acs": 205.0,
+        "adr": 129.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Chronicle",
+        "team": "Team Vitality",
+        "rating": 0.97,
+        "kd": 0.9,
+        "acs": 201.0,
+        "adr": 134.0,
+        "kpr": 0.65
+      },
+      {
+        "playerId": "Derke",
+        "team": "Team Vitality",
+        "rating": 0.94,
+        "kd": 0.97,
+        "acs": 199.0,
+        "adr": 125.0,
+        "kpr": 0.73
+      },
+      {
+        "playerId": "Jamppi",
+        "team": "Team Vitality",
+        "rating": 0.92,
+        "kd": 0.95,
+        "acs": 193.0,
+        "adr": 123.0,
+        "kpr": 0.67
+      },
+      {
+        "playerId": "PROFEK",
+        "team": "Team Vitality",
+        "rating": 0.82,
+        "kd": 0.79,
+        "acs": 158.0,
+        "adr": 111.0,
+        "kpr": 0.56
+      }
+    ]
   }
 ]
